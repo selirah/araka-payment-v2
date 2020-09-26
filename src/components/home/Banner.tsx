@@ -20,7 +20,9 @@ const Banner: React.FC = () => {
               <span>OrangeMoney</span>
             </p>
             <div className="btn-links banner-text">
-              <button className="btn">Become a merchant</button>
+              <Link to={path.register}>
+                <button className="btn">Become a merchant</button>
+              </Link>
               <Link to={path.payment}>
                 <button className="btn">Start making payments</button>
               </Link>

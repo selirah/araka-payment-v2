@@ -26,6 +26,7 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return {
         ...state,
         categories: action.payload,
+        loading: false,
       };
     case PaymentActionTypes.FETCH_CATEGORIES_FAILURE:
       return {

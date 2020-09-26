@@ -54,6 +54,7 @@ const Layout: React.FC<Props> = ({ title }) => {
   }, [loading, categories, step]);
 
   let render: any;
+
   if (spinner && isEmpty(categoryData)) {
     render = <Spinner />;
   } else if (!spinner && !isEmpty(categoryData) && step === 1) {
@@ -64,6 +65,8 @@ const Layout: React.FC<Props> = ({ title }) => {
     render = <Details />;
   } else if (!spinner && !isEmpty(categoryData) && step === 4) {
     render = <Summary />;
+  } else {
+    console.log('empty');
   }
 
   return (

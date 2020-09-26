@@ -18,6 +18,9 @@ import { I18nextProvider } from 'react-i18next';
 import { i18n } from './i18n';
 import configureStore from './configureStore';
 import { secure } from './utils/secure';
+import { isEmpty } from './helpers/isEmpty';
+import { setUser } from './store/auth/actions';
+import { authorization } from './utils/auhtorization';
 import * as serviceWorker from './serviceWorker';
 
 const history = createBrowserHistory();
@@ -30,6 +33,13 @@ declare global {
 
 const initialState = window.INITIAL_REDUX_STATE;
 export const store = configureStore(history, initialState);
+
+const user = secure.get('user');
+const { token } = user;
+if (!isEmpty(token)) {
+  authorization(token);
+  store.dispatch(setUser(user));
+}
 
 ReactDOM.render(
   <React.Fragment>

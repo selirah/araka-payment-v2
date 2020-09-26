@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
@@ -112,7 +113,13 @@ const ProcessWizard: React.FC = () => {
   }, [step]);
 
   const previousStep = (position: number): void => {
-    dispatch(decreasePaymentStep(position));
+    if (position === step) {
+      return;
+    } else if (position > step) {
+      return;
+    } else if (position < step) {
+      dispatch(decreasePaymentStep(position));
+    }
   };
 
   return (
@@ -121,60 +128,60 @@ const ProcessWizard: React.FC = () => {
         <div className="progress">
           <div className="progress-bar"></div>
         </div>
-        <a
+        <Link
           className="bs-wizard-dot"
           onClick={() => previousStep(1)}
           style={{ cursor: 'pointer' }}
-          href={href}
-        ></a>
+          to={href}
+        ></Link>
         <div className="bs-wizard-info text-center">Payment Type</div>
       </div>
       <div className={`col-sm-2 bs-wizard-step text-center ${secondProcess}`}>
         <div className="progress">
           <div className="progress-bar"></div>
         </div>
-        <a
+        <Link
           className="bs-wizard-dot"
           onClick={() => previousStep(2)}
           style={{ cursor: 'pointer' }}
-          href={href}
-        ></a>
+          to={href}
+        ></Link>
         <div className="bs-wizard-info text-center">Provider</div>
       </div>
       <div className={`col-sm-2 bs-wizard-step text-center ${thirdProcess}`}>
         <div className="progress">
           <div className="progress-bar"></div>
         </div>
-        <a
+        <Link
           className="bs-wizard-dot"
           onClick={() => previousStep(3)}
           style={{ cursor: 'pointer' }}
-          href={href}
-        ></a>
+          to={href}
+        ></Link>
         <div className="bs-wizard-info text-center">Details</div>
       </div>
       <div className={`col-sm-2 bs-wizard-step text-center ${fourthProcess}`}>
         <div className="progress">
           <div className="progress-bar"></div>
         </div>
-        <a
+        <Link
           className="bs-wizard-dot"
           onClick={() => previousStep(4)}
           style={{ cursor: 'pointer' }}
-          href={href}
-        ></a>
+          to={href}
+        ></Link>
         <div className="bs-wizard-info text-center">Summary</div>
       </div>
       <div className={`col-sm-2 bs-wizard-step text-center ${fifthProcess}`}>
         <div className="progress">
           <div className="progress-bar"></div>
         </div>
-        <a
+        <Link
           className="bs-wizard-dot"
           onClick={() => previousStep(5)}
           style={{ cursor: 'pointer' }}
-          href={href}
-        ></a>
+          to={href}
+        ></Link>
         <div className="bs-wizard-info text-center">Pay</div>
       </div>
     </div>

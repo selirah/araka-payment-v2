@@ -22,7 +22,9 @@ const Description: React.FC = () => {
               <span>private merchants</span> and everything in between,
             </p>
             <div className="clients-btn-links">
-              <button className="btn">Become a merchant</button>
+              <Link to={path.register}>
+                <button className="btn">Become a merchant</button>
+              </Link>
               <Link to={path.payment}>
                 <button className="btn">Start making payments</button>
               </Link>

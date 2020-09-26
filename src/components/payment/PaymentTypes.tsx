@@ -22,6 +22,8 @@ const PaymentTypes: React.FC<Props> = ({ categories }) => {
     activeCategory
   );
 
+  console.log(categories);
+
   const updateSelectedCategory = (categoryId: number): void => {
     dispatch(setActiveCategory(categoryId));
     // fetch products under category

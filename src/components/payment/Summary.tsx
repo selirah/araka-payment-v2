@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-
 import { Category, Product } from '../../interfaces';
 import { processOrderRequest } from '../../store/payment';
 import { SmallIcon } from '../common/Styles';
-import { isEmpty } from '../../helpers/isEmpty';
-import axios from 'axios';
 
 const Summary: React.FC = () => {
   const dispatch = useDispatch();
@@ -106,8 +103,12 @@ const Summary: React.FC = () => {
           onClick={onSubmit}
         >
           Make Payment{' '}
-          {/* <SmallIcon className="fa fa-spinner fa-spin fa-3x fa-fw"></SmallIcon>
-          <span className="sr-only">Loading...</span> */}
+          {isProcessing ? (
+            <React.Fragment>
+              <SmallIcon className="fa fa-spinner fa-spin fa-3x fa-fw"></SmallIcon>
+              <span className="sr-only">Loading...</span>
+            </React.Fragment>
+          ) : null}
         </button>
       </div>
     </React.Fragment>
