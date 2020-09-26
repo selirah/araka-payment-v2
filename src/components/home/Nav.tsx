@@ -9,6 +9,7 @@ const Nav: React.FC = () => {
   // const changeLanguage = (lang: string) => {
   //   i18n.changeLanguage(lang);
   // };
+  const href = '#';
 
   return (
     <header>
@@ -16,7 +17,7 @@ const Nav: React.FC = () => {
         <nav className="navbar navbar-expand-md navbar-custom shadow">
           <div className="container">
             <Link className="navbar-brand" to={path.home}>
-              <img src="/img/araka/logo_symbol.png" width="40" /> Araka
+              <img src="/img/araka/logo_symbol.png" width="40" alt="" /> Araka
             </Link>
             <button
               className="navbar-toggler custom-toggler"
@@ -29,27 +30,27 @@ const Nav: React.FC = () => {
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <Link to="#" className="nav-link">
                     Merchants
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <Link to="#" className="nav-link">
                     Pricing
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <Link to="#" className="nav-link">
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link"></a>
+                  <Link to="#" className="nav-link"></Link>
                 </li>
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
-                    href="#"
+                    href={href}
                     id="navbarDropdown"
                     role="button"
                     data-toggle="dropdown"
@@ -64,14 +65,14 @@ const Nav: React.FC = () => {
                   >
                     <a
                       className="dropdown-item"
-                      href="#"
+                      href={href}
                       // onClick={() => changeLanguage('en')}
                     >
                       <i className="flag-icon flag-icon-gb"></i> English
                     </a>
                     <a
                       className="dropdown-item"
-                      href="#"
+                      href={href}
                       // onClick={() => changeLanguage('fr')}
                     >
                       <i className="flag-icon flag-icon-fr"></i> Français
@@ -79,9 +80,9 @@ const Nav: React.FC = () => {
                   </div>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="btn btn-outline-custom">
+                  <Link to="#" className="btn btn-outline-custom">
                     Sign in
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

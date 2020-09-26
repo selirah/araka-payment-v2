@@ -24,9 +24,7 @@ const Description: React.FC = () => {
             <div className="clients-btn-links">
               <button className="btn">Become a merchant</button>
               <Link to={path.payment}>
-                <a>
-                  <button className="btn">Start making payments</button>
-                </a>
+                <button className="btn">Start making payments</button>
               </Link>
             </div>
           </div>

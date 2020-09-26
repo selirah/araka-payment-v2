@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { logo } from '../../images/Images';
 
 const Footer: React.FC = () => {
   return (
@@ -7,10 +9,10 @@ const Footer: React.FC = () => {
         <footer>
           <div className="row">
             <div className="col-md-4">
-              <a className="footer-brand" href="index.html">
-                <img src="/img/araka/logo_symbol.png" width="40" />
+              <Link className="footer-brand" to="index.html">
+                <img src={logo} width="40" alt="" />
                 ARAKA
-              </a>
+              </Link>
               <address className="mt-3">
                 105 N 1st
                 <br />
@@ -20,24 +22,24 @@ const Footer: React.FC = () => {
               </address>
               <ul className="list-unstyled text-white footer-social list-inline">
                 <li className="list-inline-item">
-                  <a href="">
+                  <Link to="">
                     <i className="mdi mdi-facebook facebook"></i>
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-inline-item">
-                  <a href="#">
+                  <Link to="#">
                     <i className="mdi mdi-instagram instagram"></i>
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-inline-item">
-                  <a href="#">
+                  <Link to="#">
                     <i className="mdi mdi-twitter twitter"></i>
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-inline-item">
-                  <a href="#">
+                  <Link to="#">
                     <i className="mdi mdi-linkedin linkedin"></i>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -46,13 +48,13 @@ const Footer: React.FC = () => {
               <div className="mt-4">
                 <ul className="list-unstyled footer-list">
                   <li>
-                    <a href="">About Us</a>
+                    <Link to="">About Us</Link>
                   </li>
                   <li>
-                    <a href="">Pricing</a>
+                    <Link to="">Pricing</Link>
                   </li>
                   <li>
-                    <a href="">Get Onboarded</a>
+                    <Link to="">Get Onboarded</Link>
                   </li>
                 </ul>
               </div>
@@ -62,16 +64,16 @@ const Footer: React.FC = () => {
               <div className="mt-4">
                 <ul className="list-unstyled text-white footer-list">
                   <li>
-                    <a href="">Contact</a>
+                    <Link to="">Contact</Link>
                   </li>
                   <li>
-                    <a href="">Terms &amp; Conditions</a>
+                    <Link to="">Terms &amp; Conditions</Link>
                   </li>
                   <li>
-                    <a href="">Privacy Policy</a>
+                    <Link to="">Privacy Policy</Link>
                   </li>
                   <li>
-                    <a href="faq">FAQs</a>
+                    <Link to="faq">FAQs</Link>
                   </li>
                 </ul>
               </div>
@@ -81,13 +83,13 @@ const Footer: React.FC = () => {
               <div className="mt-4">
                 <ul className="list-unstyled footer-list">
                   <li>
-                    <a href="">Plug n' Pay</a>
+                    <Link to="">Plug n' Pay</Link>
                   </li>
                   <li>
-                    <a href="">API Documentation</a>
+                    <Link to="">API Documentation</Link>
                   </li>
                   <li>
-                    <a href="">Enterprise Business</a>
+                    <Link to="">Enterprise Business</Link>
                   </li>
                 </ul>
               </div>

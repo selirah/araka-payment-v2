@@ -11,6 +11,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@popperjs/core';
 import 'gsap';
 import 'swiper/swiper-bundle.esm';
+import './script';
 
 import App from './App';
 import { I18nextProvider } from 'react-i18next';
@@ -31,11 +32,11 @@ const initialState = window.INITIAL_REDUX_STATE;
 export const store = configureStore(history, initialState);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <I18nextProvider i18n={i18n}>
       <App store={store} history={history} />
     </I18nextProvider>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById('root')
 );
 

@@ -31,3 +31,9 @@ export const processOrderSuccess = (data: OrderResponse) =>
 
 export const processOrderFailure = (error: any) =>
   action(PaymentActionTypes.ORDER_FAILURE, error);
+
+export const fetchProducts = (products: Product[]) =>
+  action(PaymentActionTypes.FETCH_PRODUCTS, products);
+
+export const saveOrderData = (data: any) =>
+  action(PaymentActionTypes.SAVE_ORDER_DATA, data);

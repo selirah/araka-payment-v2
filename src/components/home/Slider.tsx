@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Images from '../../images/Images';
 
 const Slider: React.FC = () => {
   return (
@@ -9,50 +10,50 @@ const Slider: React.FC = () => {
             <div className="customer-logos slider swiper-container forward">
               <div className="swiper-wrapper">
                 <div className="swiper-slide">
-                  <img src="/img/logos/airtel.jpg" />
+                  <img src={Images.airtel} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/dstv.jpg" />
+                  <img src={Images.dstv} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/canalplus.jpg" />
+                  <img src={Images.canal} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/vodacom.jpg" />
+                  <img src={Images.vodacom} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/mpesa.jpg" />
+                  <img src={Images.mpesa} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/orangemoney.jpg" />
+                  <img src={Images.orange} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/airtelmoney.jpg" />
+                  <img src={Images.airtelMoney} alt="logo" />
                 </div>
               </div>
             </div>
             <div className="mt-4 customer-logos slider swiper-container reverse">
               <div className="swiper-wrapper">
                 <div className="swiper-slide">
-                  <img src="/img/logos/airtelmoney.jpg" />
+                  <img src={Images.airtelMoney} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/airtel.jpg" />
+                  <img src={Images.airtel} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/mpesa.jpg" />
+                  <img src={Images.mpesa} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/dstv.jpg" />
+                  <img src={Images.dstv} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/vodacom.jpg" />
+                  <img src={Images.vodacom} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/orangemoney.jpg" />
+                  <img src={Images.orange} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src="/img/logos/canalplus.jpg" />
+                  <img src={Images.canal} alt="logo" />
                 </div>
               </div>
             </div>

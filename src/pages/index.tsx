@@ -9,7 +9,7 @@ const IndexPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchCategories());
-  }, []);
+  });
 
   return <Layout title="Araka | Payment Platform" />;
 };

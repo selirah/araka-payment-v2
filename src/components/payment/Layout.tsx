@@ -1,0 +1,87 @@
+import React, { useState, useEffect } from 'react';
+import { appSelector } from '../../helpers/appSelector';
+import { Helmet } from 'react-helmet';
+import { NavLayout } from './NavLayout';
+import { PageContainer } from './PageContainer';
+import { PaymentTypes } from './PaymentTypes';
+import { Help } from './Help';
+import { Category } from '../../interfaces';
+import { Spinner } from '../common/Spinner';
+import { DisplayHeader } from '../common/DisplayHeader';
+import { isEmpty } from '../../helpers/isEmpty';
+import { Providers } from './Providers';
+import { Details } from './Details';
+import { Summary } from './Summary';
+
+type Props = {
+  title?: string;
+};
+
+const Layout: React.FC<Props> = ({ title }) => {
+  const { categories, loading, step } = appSelector((state) => state.payment);
+  const [spinner, setSpinner] = useState<boolean>(loading);
+  const [categoryData, setCategoryData] = useState<Category[]>(categories);
+  const [mainTitle, setMainTitle] = useState<string>('');
+  const [subTitle, setSubTitle] = useState<string>('');
+  const [smallText, setSmallText] = useState<string>('');
+
+  useEffect(() => {
+    setSpinner(loading);
+    setCategoryData(categories);
+
+    switch (step) {
+      case 1:
+        setMainTitle('Araka Welcomes You');
+        setSubTitle('Which type of payment would you like to perform?');
+        setSmallText('Select only one type');
+        break;
+      case 2:
+        setMainTitle('');
+        setSubTitle('Which provider would you like to choose?');
+        setSmallText('Select only one payment method');
+        break;
+      case 3:
+        setMainTitle('');
+        setSubTitle('');
+        setSmallText('');
+        break;
+      case 4:
+        setMainTitle('');
+        setSubTitle('');
+        setSmallText('');
+        break;
+    }
+  }, [loading, categories, step]);
+
+  let render: any;
+  if (spinner && isEmpty(categoryData)) {
+    render = <Spinner />;
+  } else if (!spinner && !isEmpty(categoryData) && step === 1) {
+    render = <PaymentTypes categories={categoryData} />;
+  } else if (!spinner && !isEmpty(categoryData) && step === 2) {
+    render = <Providers />;
+  } else if (!spinner && !isEmpty(categoryData) && step === 3) {
+    render = <Details />;
+  } else if (!spinner && !isEmpty(categoryData) && step === 4) {
+    render = <Summary />;
+  }
+
+  return (
+    <section className="payment-app">
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+      <NavLayout />
+      <PageContainer>
+        {subTitle !== '' ? (
+          <DisplayHeader h2={mainTitle} h4={subTitle} h6={smallText} />
+        ) : null}
+
+        {render}
+      </PageContainer>
+      <Help />
+    </section>
+  );
+};
+
+export { Layout };
