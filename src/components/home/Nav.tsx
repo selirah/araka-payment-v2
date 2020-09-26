@@ -1,6 +1,7 @@
 import React from 'react';
 // import { i18n, useTranslation } from '../../i18n';
 import { Link } from 'react-router-dom';
+import { logo } from '../../images/Images';
 import { path } from '../../helpers/path';
 
 const Nav: React.FC = () => {
@@ -17,7 +18,7 @@ const Nav: React.FC = () => {
         <nav className="navbar navbar-expand-md navbar-custom shadow">
           <div className="container">
             <Link className="navbar-brand" to={path.home}>
-              <img src="/img/araka/logo_symbol.png" width="40" alt="" /> Araka
+              <img src={logo} width="40" alt="" /> Araka
             </Link>
             <button
               className="navbar-toggler custom-toggler"
@@ -80,7 +81,7 @@ const Nav: React.FC = () => {
                   </div>
                 </li>
                 <li className="nav-item">
-                  <Link to="#" className="btn btn-outline-custom">
+                  <Link to={path.login} className="btn btn-outline-custom">
                     Sign in
                   </Link>
                 </li>

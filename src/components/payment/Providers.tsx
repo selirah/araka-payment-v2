@@ -4,7 +4,12 @@ import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { Button } from './Button';
 import { Provider } from './Provider';
-import { setActiveProduct, increasePaymentStep } from '../../store/payment';
+import {
+  setActiveProduct,
+  increasePaymentStep,
+  setProduct,
+} from '../../store/payment';
+import { Product } from 'src/interfaces';
 
 const Providers: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -15,8 +20,9 @@ const Providers: React.FC = () => {
     dispatch(increasePaymentStep());
   };
 
-  const updateSelectedProduct = (productId: number): void => {
+  const updateSelectedProduct = (productId: number, product: Product): void => {
     dispatch(setActiveProduct(productId));
+    dispatch(setProduct(product));
   };
 
   useEffect(() => {

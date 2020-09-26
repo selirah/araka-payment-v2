@@ -2,21 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { Category, Product } from '../../interfaces';
 import { FormIO } from './Form';
 import { increasePaymentStep } from '../../store/payment/actions';
 import { Button } from './Button';
 
 const Details: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { categories, products, activeCategory, activeProduct } = appSelector(
-    (state) => state.payment
-  );
-
-  let product: Product | undefined, category: Category | undefined;
-
-  category = categories.find((c) => c.productCategoryId === activeCategory);
-  product = products.find((p) => p.productId === activeProduct);
+  const { category, product } = appSelector((state) => state.payment);
 
   const continueProcess = (): void => {
     dispatch(increasePaymentStep());
@@ -48,7 +40,9 @@ const Details: React.FC = () => {
       </div>
       <div className="row display-options justify-content-center pt-0">
         <div className="col-sm-12">
-          <FormIO schema={JSON.parse(product?.form)} />
+          {product !== undefined ? (
+            <FormIO schema={JSON.parse(product?.form)} />
+          ) : null}
         </div>
       </div>
       <Button

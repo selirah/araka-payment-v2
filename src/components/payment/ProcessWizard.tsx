@@ -142,7 +142,7 @@ const ProcessWizard: React.FC = () => {
         </div>
         <Link
           className="bs-wizard-dot"
-          onClick={() => previousStep(2)}
+          onClick={() => previousStep(1)}
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
@@ -154,7 +154,7 @@ const ProcessWizard: React.FC = () => {
         </div>
         <Link
           className="bs-wizard-dot"
-          onClick={() => previousStep(3)}
+          onClick={() => previousStep(1)}
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
@@ -166,7 +166,7 @@ const ProcessWizard: React.FC = () => {
         </div>
         <Link
           className="bs-wizard-dot"
-          onClick={() => previousStep(4)}
+          onClick={() => previousStep(1)}
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
@@ -178,7 +178,7 @@ const ProcessWizard: React.FC = () => {
         </div>
         <Link
           className="bs-wizard-dot"
-          onClick={() => previousStep(5)}
+          onClick={() => previousStep(1)}
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>

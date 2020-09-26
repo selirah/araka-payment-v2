@@ -12,6 +12,7 @@ import { isEmpty } from '../../helpers/isEmpty';
 import { Providers } from './Providers';
 import { Details } from './Details';
 import { Summary } from './Summary';
+import { Pay } from './Pay';
 
 type Props = {
   title?: string;
@@ -50,6 +51,13 @@ const Layout: React.FC<Props> = ({ title }) => {
         setSubTitle('');
         setSmallText('');
         break;
+      case 5:
+        setMainTitle('');
+        setSubTitle(
+          'Last thing - how would you like to pay for this transaction?'
+        );
+        setSmallText('Select only one type');
+        break;
     }
   }, [loading, categories, step]);
 
@@ -65,8 +73,8 @@ const Layout: React.FC<Props> = ({ title }) => {
     render = <Details />;
   } else if (!spinner && !isEmpty(categoryData) && step === 4) {
     render = <Summary />;
-  } else {
-    console.log('empty');
+  } else if (!spinner && !isEmpty(categoryData) && step === 5) {
+    render = <Pay />;
   }
 
   return (

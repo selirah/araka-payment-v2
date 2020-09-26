@@ -9,6 +9,7 @@ import {
   setActiveCategory,
   increasePaymentStep,
   fetchProducts,
+  setCategory,
 } from '../../store/payment';
 
 type Props = {
@@ -22,10 +23,12 @@ const PaymentTypes: React.FC<Props> = ({ categories }) => {
     activeCategory
   );
 
-  console.log(categories);
-
-  const updateSelectedCategory = (categoryId: number): void => {
+  const updateSelectedCategory = (
+    categoryId: number,
+    category: Category
+  ): void => {
     dispatch(setActiveCategory(categoryId));
+    dispatch(setCategory(category));
     // fetch products under category
     let cat = categories.find(
       (category) => category.productCategoryId === categoryId

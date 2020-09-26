@@ -24,6 +24,7 @@ import {
   RegisterLink,
 } from './Styles';
 import { isEmpty } from '../../helpers/isEmpty';
+import { path } from '../../helpers/path';
 
 // import { validateLoginInput } from '../../helpers/validation/login';
 // import { Login } from '../../models/Login';
@@ -35,6 +36,7 @@ type Props = {
 const LoginForm: React.FC<Props> = ({ history }) => {
   const dispatch: AppDispatch = useDispatch();
   const auth = appSelector((state) => state.auth);
+  const { isPerformingPayment } = appSelector((state) => state.payment);
   const { t } = useTranslation();
   const [values, setValues] = useState<Login>({
     EmailAddress: '',
@@ -50,8 +52,10 @@ const LoginForm: React.FC<Props> = ({ history }) => {
 
   useEffect(() => {
     const { isAuthenticated } = auth;
-    if (isAuthenticated) {
-      history.push('/');
+    if (isAuthenticated && isPerformingPayment) {
+      history.push(path.payment);
+    } else if (isAuthenticated && !isPerformingPayment) {
+      history.push(path.home);
     }
     dispatch(resetErrorState());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,10 +86,12 @@ const LoginForm: React.FC<Props> = ({ history }) => {
     setIsSubmitting(isSubmitting);
     setError(error);
     setSingleError(singleError);
-    if (isAuthenticated) {
-      history.push('/');
+    if (isAuthenticated && isPerformingPayment) {
+      history.push(path.payment);
+    } else if (isAuthenticated && !isPerformingPayment) {
+      history.push(path.home);
     }
-  }, [auth, history]);
+  }, [auth, isPerformingPayment, history]);
 
   return (
     <React.Fragment>
@@ -127,9 +133,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                   <ChangeLanguage />
                   <div className="col-6 text-right">
                     <ForgottenLink>
-                      <Link to="/auth/forgotten-password">
-                        {t('login.forgotten')}
-                      </Link>
+                      <Link to={path.forgot}>{t('login.forgotten')}</Link>
                     </ForgottenLink>
                   </div>
                 </div>
@@ -142,7 +146,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                 <div className="text-center mb-3">
                   <RegisterLink>
                     {t('login.note')}{' '}
-                    <Link to="/auth/register">{t('login.register_note')}</Link>
+                    <Link to={path.register}>{t('login.register_note')}</Link>
                   </RegisterLink>
                 </div>
               </form>

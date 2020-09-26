@@ -3,7 +3,7 @@ import { Category } from '../../interfaces';
 
 type Prop = {
   category: Category;
-  updateSelectedCategory(categoryId: number): void;
+  updateSelectedCategory(categoryId: number, category: Category): void;
   activeCategory: number;
 };
 
@@ -27,10 +27,14 @@ const PaymentType: React.FC<Prop> = ({
           <img
             src={url}
             alt=""
-            onClick={() => updateSelectedCategory(category.productCategoryId)}
+            onClick={() =>
+              updateSelectedCategory(category.productCategoryId, category)
+            }
           />
           <h2
-            onClick={() => updateSelectedCategory(category.productCategoryId)}
+            onClick={() =>
+              updateSelectedCategory(category.productCategoryId, category)
+            }
           >
             {category.name}
           </h2>

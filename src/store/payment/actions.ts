@@ -37,3 +37,15 @@ export const fetchProducts = (products: Product[]) =>
 
 export const saveOrderData = (data: any) =>
   action(PaymentActionTypes.SAVE_ORDER_DATA, data);
+
+export const setCategory = (category: Category) =>
+  action(PaymentActionTypes.SET_CATEGORY, category);
+
+export const setProduct = (product: Product) =>
+  action(PaymentActionTypes.SET_PRODUCT, product);
+
+export const performingPayment = (payload: boolean) =>
+  action(PaymentActionTypes.IS_PERFORMING_PAYMENT, payload);
+
+export const setPayOption = (payload: string) =>
+  action(PaymentActionTypes.SET_ACTIVE_PAY_OPTION, payload);

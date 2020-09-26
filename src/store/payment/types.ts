@@ -13,6 +13,10 @@ export enum PaymentActionTypes {
   ORDER_SUCCESS = '@@payment/ORDER_SUCCESS',
   ORDER_FAILURE = '@@payment/ORDER_FAILURE',
   SAVE_ORDER_DATA = '@@payment/SAVE_ORDER_DATA',
+  SET_PRODUCT = '@@payment/SET_PRODUCT',
+  SET_CATEGORY = '@@payment/SET_CATEGORY',
+  IS_PERFORMING_PAYMENT = '@@payment/IS_PERFORMING_PAYMENT',
+  SET_ACTIVE_PAY_OPTION = '@@payment/SET_ACTIVE_PAY_OPTION',
 }
 
 export type PaymentState = {
@@ -27,4 +31,8 @@ export type PaymentState = {
   readonly isSubmit: boolean;
   readonly orderData: any;
   readonly orderError: any;
+  readonly product: Product | undefined;
+  readonly category: Category | undefined;
+  readonly isPerformingPayment: boolean;
+  readonly paymentOption: string;
 };

@@ -13,6 +13,10 @@ export const initialState: PaymentState = {
   isSubmit: false,
   orderData: undefined,
   orderError: undefined,
+  product: undefined,
+  category: undefined,
+  isPerformingPayment: false,
+  paymentOption: '',
 };
 
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
@@ -90,6 +94,30 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         ...state,
         isSubmit: false,
         orderData: action.payload,
+      };
+
+    case PaymentActionTypes.SET_CATEGORY:
+      return {
+        ...state,
+        category: action.payload,
+      };
+
+    case PaymentActionTypes.SET_PRODUCT:
+      return {
+        ...state,
+        product: action.payload,
+      };
+
+    case PaymentActionTypes.IS_PERFORMING_PAYMENT:
+      return {
+        ...state,
+        isPerformingPayment: action.payload,
+      };
+
+    case PaymentActionTypes.SET_ACTIVE_PAY_OPTION:
+      return {
+        ...state,
+        paymentOption: action.payload,
       };
 
     default:
