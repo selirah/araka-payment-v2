@@ -12,9 +12,10 @@ const NavLayout: React.FC = () => {
     <header>
       <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-md navbar-custom shadow">
+          {/* Direct to dashboard when its fixed */}
           <Link
             className="navbar-brand"
-            to={isAuthenticated ? path.dashboard : path.home}
+            to={isAuthenticated ? path.home : path.home}
           >
             <img src={logo} width="40" alt="" /> Araka
           </Link>
