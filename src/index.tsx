@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import jwt_decode from 'jwt-decode';
 import { createBrowserHistory } from 'history';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -21,6 +22,8 @@ import { secure } from './utils/secure';
 import { isEmpty } from './helpers/isEmpty';
 import { setUser } from './store/auth/actions';
 import { authorization } from './utils/auhtorization';
+import { logout } from './store/auth/actions';
+import { path } from './helpers/path';
 import * as serviceWorker from './serviceWorker';
 
 const history = createBrowserHistory();
@@ -39,6 +42,16 @@ const { token } = user;
 if (!isEmpty(token)) {
   authorization(token);
   store.dispatch(setUser(user));
+
+  const decoded: any = jwt_decode(token);
+
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    secure.removeAll();
+    secure.clear();
+    store.dispatch(logout());
+    window.location.href = path.login;
+  }
 }
 
 ReactDOM.render(

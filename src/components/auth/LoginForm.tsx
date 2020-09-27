@@ -52,9 +52,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
 
   useEffect(() => {
     const { isAuthenticated } = auth;
-    if (isAuthenticated && isPerformingPayment) {
-      history.push(path.payment);
-    } else if (isAuthenticated && !isPerformingPayment) {
+    if (isAuthenticated) {
       history.push(path.home);
     }
     dispatch(resetErrorState());

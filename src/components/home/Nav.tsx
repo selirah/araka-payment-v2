@@ -1,16 +1,29 @@
 import React from 'react';
 // import { i18n, useTranslation } from '../../i18n';
+import { useDispatch } from 'react-redux';
+import { appSelector } from '../../helpers/appSelector';
+import { AppDispatch } from '../../helpers/appDispatch';
 import { Link } from 'react-router-dom';
 import { logo } from '../../images/Images';
 import { path } from '../../helpers/path';
+import { logout } from '../../store/auth/actions';
+import { secure } from '../../utils/secure';
 
 const Nav: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const { isAuthenticated } = appSelector((state) => state.auth);
   // const { t } = useTranslation();
 
   // const changeLanguage = (lang: string) => {
   //   i18n.changeLanguage(lang);
   // };
   const href = '#';
+
+  const logoutUser = (): void => {
+    secure.removeAll();
+    secure.clear();
+    dispatch(logout());
+  };
 
   return (
     <header>
@@ -81,9 +94,18 @@ const Nav: React.FC = () => {
                   </div>
                 </li>
                 <li className="nav-item">
-                  <Link to={path.login} className="btn btn-outline-custom">
-                    Sign in
-                  </Link>
+                  {!isAuthenticated ? (
+                    <Link to={path.login} className="btn btn-outline-custom">
+                      Sign in
+                    </Link>
+                  ) : (
+                    <button
+                      className="btn btn-outline-custom"
+                      onClick={() => logoutUser()}
+                    >
+                      LOGOUT
+                    </button>
+                  )}
                 </li>
               </ul>
             </div>
