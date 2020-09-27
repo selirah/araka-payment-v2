@@ -54,8 +54,9 @@ const NavLayout: React.FC = () => {
                 </div>
               </li>
               <li>
+                {/* Direct to dashboard when its fixed */}
                 <Link
-                  to={isAuthenticated ? path.dashboard : path.home}
+                  to={isAuthenticated ? path.home : path.home}
                   className="close-icon"
                 >
                   <i className="mbri-close"></i>
