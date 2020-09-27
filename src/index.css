@@ -964,6 +964,8 @@ footer .list-inline-item.mdi {
   font-size: 3rem;
   margin-bottom: -23px;
   display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .summary-item .tag {
   padding: 5px 10px 5px 10px;
