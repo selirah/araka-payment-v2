@@ -14,8 +14,8 @@ import { MultipleErrors } from './MultipleErrors';
 import { SingleError } from './SingleError';
 import { Button } from './Button';
 import { Register, Error } from '../../interfaces';
-import 'react-phone-number-input/style.css';
-import PhoneInput from 'react-phone-number-input';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import {
   ContainerFluid,
   ImageContainer,
@@ -76,7 +76,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
     const payload: Register = {
       Name: values.Name,
       EmailAddress: values.EmailAddress,
-      PhoneNumber: values.PhoneNumber,
+      PhoneNumber: phone,
       Password: values.Password,
       IsBusiness: isBusiness,
     };
@@ -103,6 +103,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
         Password: '',
         IsBusiness: false,
       });
+      setPhone('');
       history.push('/');
     }
   }, [auth, history]);
@@ -111,9 +112,8 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
     setIsBusiness(!isBusiness);
   };
 
-  const setPhoneNumber = (e: any) => {
+  const setPhoneNumber = (e: string) => {
     setPhone(e);
-    console.log(e);
   };
 
   return (
@@ -152,7 +152,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   // error={clientValidation ? clientValidation.EmailAddress : ''}
                   onChange={onChange}
                 />
-                <TextInput
+                {/* <TextInput
                   type="text"
                   name="PhoneNumber"
                   value={values.PhoneNumber}
@@ -161,12 +161,27 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   id="phone"
                   // error={clientValidation ? clientValidation.PhoneNumber : ''}
                   onChange={onChange}
-                />
-                {/* <PhoneInput
+                /> */}
+                <PhoneInput
                   placeholder="Enter phone number"
                   value={phone}
-                  onChange={setPhone}
-                /> */}
+                  country="gh"
+                  preferredCountries={['gh', 'cd', 'us', 'gb']}
+                  onChange={setPhoneNumber}
+                  containerStyle={{ marginBottom: '0.8rem' }}
+                  inputStyle={{
+                    width: '100%',
+                    paddingLeft: '3.1rem',
+                    border: 'none',
+                    height: '2.5rem',
+                  }}
+                  buttonStyle={{
+                    border: 'none',
+                    background: '#fff',
+                    paddingLeft: '0.6rem',
+                  }}
+                  // inputClass={}
+                />
                 <PasswordInput
                   type="password"
                   name="Password"
