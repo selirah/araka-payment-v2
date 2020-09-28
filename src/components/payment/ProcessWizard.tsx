@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { decreasePaymentStep } from '../../store/payment/actions';
+import { decreasePaymentStepCustom } from '../../store/payment/actions';
 
 const ProcessWizard: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -118,7 +118,7 @@ const ProcessWizard: React.FC = () => {
     } else if (position > step) {
       return;
     } else if (position < step) {
-      dispatch(decreasePaymentStep(position));
+      dispatch(decreasePaymentStepCustom(position));
     }
   };
 
@@ -142,7 +142,7 @@ const ProcessWizard: React.FC = () => {
         </div>
         <Link
           className="bs-wizard-dot"
-          onClick={() => previousStep(1)}
+          onClick={() => previousStep(2)}
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
@@ -154,7 +154,7 @@ const ProcessWizard: React.FC = () => {
         </div>
         <Link
           className="bs-wizard-dot"
-          onClick={() => previousStep(1)}
+          onClick={() => previousStep(3)}
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
@@ -166,7 +166,7 @@ const ProcessWizard: React.FC = () => {
         </div>
         <Link
           className="bs-wizard-dot"
-          onClick={() => previousStep(1)}
+          onClick={() => previousStep(4)}
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
@@ -178,7 +178,7 @@ const ProcessWizard: React.FC = () => {
         </div>
         <Link
           className="bs-wizard-dot"
-          onClick={() => previousStep(1)}
+          onClick={() => previousStep(5)}
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>

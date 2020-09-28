@@ -8,6 +8,7 @@ import {
   setActiveProduct,
   increasePaymentStep,
   setProduct,
+  decreasePaymentStep,
 } from '../../store/payment';
 import { Product } from 'src/interfaces';
 
@@ -18,6 +19,10 @@ const Providers: React.FC = () => {
 
   const continueProcess = (): void => {
     dispatch(increasePaymentStep());
+  };
+
+  const previousProcess = (): void => {
+    dispatch(decreasePaymentStep());
   };
 
   const updateSelectedProduct = (productId: number, product: Product): void => {
@@ -46,6 +51,8 @@ const Providers: React.FC = () => {
         disabled={selectedProduct === 0 ? true : false}
         type="button"
         onContinueProcess={continueProcess}
+        addPrevious={true}
+        onPreviousProcess={previousProcess}
       />
     </React.Fragment>
   );

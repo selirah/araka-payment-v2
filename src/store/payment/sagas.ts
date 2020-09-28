@@ -24,14 +24,9 @@ function* fetchCategories() {
 function* processOrderRequest({ payload }: { type: string; payload: any }) {
   try {
     const res = yield call(callApiPost, 'payments/processrequest', payload);
-    if (res.data && res.data.status !== undefined) {
-      yield put(processOrderSuccess(res.data));
-    } else {
-      yield put(processOrderFailure('An error occured during payment.'));
-    }
+    yield put(processOrderSuccess(res.data));
   } catch (err) {
     if (err && err.response) {
-      // yield put(processOrderError(err.response.data));
       yield put(processOrderFailure('An error occured during payment.'));
     } else {
       throw err;

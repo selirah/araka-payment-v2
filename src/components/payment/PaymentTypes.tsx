@@ -10,6 +10,7 @@ import {
   increasePaymentStep,
   fetchProducts,
   setCategory,
+  decreasePaymentStep,
 } from '../../store/payment';
 
 type Props = {
@@ -44,6 +45,10 @@ const PaymentTypes: React.FC<Props> = ({ categories }) => {
     dispatch(increasePaymentStep());
   };
 
+  const previousProcess = (): void => {
+    dispatch(decreasePaymentStep());
+  };
+
   useEffect(() => {
     setSelectedCategory(activeCategory);
   }, [activeCategory]);
@@ -65,6 +70,8 @@ const PaymentTypes: React.FC<Props> = ({ categories }) => {
         disabled={selectedCategory === 0 ? true : false}
         type="button"
         onContinueProcess={continueProcess}
+        addPrevious={false}
+        onPreviousProcess={previousProcess}
       />
     </React.Fragment>
   );

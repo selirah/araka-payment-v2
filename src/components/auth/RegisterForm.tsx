@@ -14,6 +14,8 @@ import { MultipleErrors } from './MultipleErrors';
 import { SingleError } from './SingleError';
 import { Button } from './Button';
 import { Register, Error } from '../../interfaces';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
 import {
   ContainerFluid,
   ImageContainer,
@@ -47,6 +49,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
   const [isBusiness, setIsBusiness] = useState<boolean>(false);
   const [error, setError] = useState<Error | {}>({});
   const [singleError, setSingleError] = useState<string>('');
+  const [phone, setPhone] = useState('');
   // const [clientValidation, setClientValidation] = useState<Register>({
   //   Name: '',
   //   EmailAddress: '',
@@ -108,6 +111,11 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
     setIsBusiness(!isBusiness);
   };
 
+  const setPhoneNumber = (e: any) => {
+    setPhone(e);
+    console.log(e);
+  };
+
   return (
     <React.Fragment>
       <ContainerFluid>
@@ -150,9 +158,15 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   value={values.PhoneNumber}
                   placeholder={t('register.phone')}
                   icon="fa-phone"
+                  id="phone"
                   // error={clientValidation ? clientValidation.PhoneNumber : ''}
                   onChange={onChange}
                 />
+                {/* <PhoneInput
+                  placeholder="Enter phone number"
+                  value={phone}
+                  onChange={setPhone}
+                /> */}
                 <PasswordInput
                   type="password"
                   name="Password"
@@ -163,7 +177,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   onChange={onChange}
                 />
                 <div className="row mb-2">
-                  <div className="col-12 d-flex">
+                  <div className="col-sm-6 d-flex pl-3">
                     <FormBoxCustomControl className="custom-control custom-checkbox">
                       <input
                         type="checkbox"

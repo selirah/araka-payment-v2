@@ -3,7 +3,10 @@ import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { FormIO } from './Form';
-import { increasePaymentStep } from '../../store/payment/actions';
+import {
+  increasePaymentStep,
+  decreasePaymentStep,
+} from '../../store/payment/actions';
 import { Button } from './Button';
 
 const Details: React.FC = () => {
@@ -12,6 +15,10 @@ const Details: React.FC = () => {
 
   const continueProcess = (): void => {
     dispatch(increasePaymentStep());
+  };
+
+  const previousProcess = (): void => {
+    dispatch(decreasePaymentStep());
   };
 
   return (
@@ -41,7 +48,7 @@ const Details: React.FC = () => {
       <div className="row display-options justify-content-center pt-0">
         <div className="col-sm-12">
           {product !== undefined ? (
-            <FormIO schema={JSON.parse(product?.form)} />
+            <FormIO schema={JSON.parse(product.form)} />
           ) : null}
         </div>
       </div>
@@ -50,6 +57,8 @@ const Details: React.FC = () => {
         disabled={false}
         type="button"
         onContinueProcess={continueProcess}
+        addPrevious={true}
+        onPreviousProcess={previousProcess}
       />
     </React.Fragment>
   );

@@ -125,14 +125,20 @@ header {
 
 .navbar-nav > li > .dropdown-menu {
   background-color: #ffffff;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 700;
   top: 60px;
   right: 0;
   left: auto;
-  text-transform: capitalize;
+  text-transform: uppercase;
   border: 1px solid #ffdbce;
   border-top: 0 none;
   border-radius: 0 0 0.25rem 0.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav > li > .dropdown-menu :hover {
+  color: #f4744b;
 }
 
 .btn-custom {
@@ -1023,6 +1029,10 @@ footer .list-inline-item.mdi {
   margin: 3rem 0;
 }
 
+.option-submit button {
+  margin-right: 0.8rem;
+}
+
 .option-submit-button {
   font-size: 18px;
   height: 2.66rem;
@@ -1036,6 +1046,29 @@ footer .list-inline-item.mdi {
   transition: all 0.3s ease-in-out;
 }
 
+.option-submit-button-previous {
+  font-size: 18px;
+  height: 2.66rem;
+  padding: 0.46rem 1.33rem 0.46rem 1.2rem;
+  border: none;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1) !important;
+  font-weight: 700;
+  border-radius: 5px;
+  background: #949dac;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-previous {
+  font-size: 18px;
+  height: 2.66rem;
+  padding: 0.46rem 1.33rem 0.46rem 1.2rem;
+  border-color: #6c757d;
+  font-weight: 700;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
 .btn.option-submit-button:disabled {
   opacity: 0.15;
 }
@@ -1043,6 +1076,13 @@ footer .list-inline-item.mdi {
 .option-submit-button:hover,
 .option-submit-button:focus {
   background-color: #ffae00;
+  outline: none;
+  color: #fff;
+}
+
+.option-submit-button-previous:hover,
+.option-submit-button-previous:focus {
+  background-color: #888888;
   outline: none;
   color: #fff;
 }
@@ -1070,12 +1110,12 @@ footer .list-inline-item.mdi {
   margin: 0 auto;
   max-width: 80%;
   padding: 20px;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   border-radius: 16.8px;
 }
 .selectable-item.selected {
   border-color: #ffd4c4;
-  background: #faf2ef;
+  background: #fff;
 }
 .image-placeholder {
   width: 4rem;
@@ -1098,7 +1138,16 @@ footer .list-inline-item.mdi {
   transition: all 0.2s ease-in-out;
 }
 
-.help-footer button {
+.reset-footer {
+  position: fixed;
+  z-index: 998;
+  bottom: 3rem;
+  left: 2.66rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.help-footer button,
+.reset-footer button {
   font-size: 18px;
   height: 2.66rem;
   padding: 0.46rem 1.33rem 0.46rem 1.2rem;
@@ -1111,10 +1160,11 @@ footer .list-inline-item.mdi {
   transition: all 0.3s ease-in-out;
 }
 
-.help-footer-button button:hover {
-  border: 0.125rem solid #b6b1b1;
+.help-footer button:hover,
+.reset-footer button:hover {
   background: #eeeeee;
   border-radius: 0;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1) !important;
   color: #222;
 }
 

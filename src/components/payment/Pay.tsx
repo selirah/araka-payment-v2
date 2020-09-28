@@ -6,18 +6,22 @@ import { AppDispatch } from '../../helpers/appDispatch';
 import { setPayOption } from '../../store/payment/actions';
 import { payOption } from '../../helpers/constants';
 import { path } from '../../helpers/path';
-import { User } from 'src/interfaces';
+import {
+  processOrderRequest,
+  decreasePaymentStep,
+} from '../../store/payment/actions';
+import { SmallIcon } from '../common/Styles';
 
 const Pay: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
-  const { paymentOption } = appSelector((state) => state.payment);
-  const { isAuthenticated, user } = appSelector((state) => state.auth);
-  const [userData, setUserData] = useState<User>({});
   const history = useHistory();
-
+  const dispatch: AppDispatch = useDispatch();
+  const { paymentOption, orderData, isSubmit, orderResponse } = appSelector(
+    (state) => state.payment
+  );
+  const { isAuthenticated } = appSelector((state) => state.auth);
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [option, setOption] = useState<string>('');
-  const data = localStorage.getItem('orderData');
-  const [submitData, setSubmitData] = useState<any>(null);
+  const [buttonTitle, setButtonTitle] = useState<string>('Continue to Payment');
 
   const selectOption = (option: string): void => {
     dispatch(setPayOption(option));
@@ -25,43 +29,27 @@ const Pay: React.FC = () => {
 
   useEffect(() => {
     setOption(paymentOption);
-    if (user !== {}) {
-      setUserData(user);
+    setIsProcessing(isSubmit);
+    if (orderResponse !== undefined) {
+      setButtonTitle('Redirecting...');
+      window.location.href = orderResponse.order.orderURL;
     }
-  }, [paymentOption, user]);
+  }, [paymentOption, isSubmit, orderResponse]);
 
   const onSubmit = () => {
-    // dispatch(processOrder(orderData));
     switch (isAuthenticated) {
       case true:
-        if (data !== null) {
-          setSubmitData(JSON.parse(data));
-          if (submitData !== null) {
-            submitData.data.Amount = parseInt(submitData.data.Amount);
-          }
+        if (orderData !== undefined) {
+          dispatch(processOrderRequest(orderData));
         }
-        (async () => {
-          console.log(localStorage.getItem('orderData'));
-          const rawResponse = await fetch(
-            'https://pcessppappserverdev01.eastus.cloudapp.azure.com/api/payments/processrequest',
-            {
-              method: 'POST',
-              headers: {
-                Accept: 'application/json',
-                Authorization: `Bearer ${userData.token}`,
-                'Content-Type': 'application/json',
-              },
-              body: localStorage.getItem('orderData'),
-            }
-          );
-          const content = await rawResponse.json();
-          // console.log(content);
-          window.location.href = content.order.orderURL;
-        })();
         break;
       case false:
         history.push(path.login);
     }
+  };
+
+  const previousProcess = (): void => {
+    dispatch(decreasePaymentStep());
   };
 
   return (
@@ -102,17 +90,24 @@ const Pay: React.FC = () => {
       <div className="row justify-content-center option-submit">
         <button
           type="button"
+          className="btn option-submit-button-previous"
+          onClick={() => previousProcess()}
+        >
+          Previous
+        </button>
+        <button
+          type="button"
           className="btn option-submit-button"
           onClick={onSubmit}
           disabled={paymentOption === '' ? true : false}
         >
-          Continue to Payment{' '}
-          {/* {isProcessing ? (
+          {buttonTitle}{' '}
+          {isProcessing ? (
             <React.Fragment>
               <SmallIcon className="fa fa-spinner fa-spin fa-3x fa-fw"></SmallIcon>
               <span className="sr-only">Loading...</span>
             </React.Fragment>
-          ) : null} */}
+          ) : null}
         </button>
       </div>
     </React.Fragment>

@@ -8,6 +8,7 @@ import { logo } from '../../images/Images';
 import { path } from '../../helpers/path';
 import { logout } from '../../store/auth/actions';
 import { secure } from '../../utils/secure';
+import { user } from '../../images/Images';
 
 const Nav: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -23,6 +24,7 @@ const Nav: React.FC = () => {
     secure.removeAll();
     secure.clear();
     dispatch(logout());
+    window.location.href = path.home;
   };
 
   return (
@@ -93,20 +95,47 @@ const Nav: React.FC = () => {
                     </a>
                   </div>
                 </li>
-                <li className="nav-item">
-                  {!isAuthenticated ? (
+                {!isAuthenticated ? (
+                  <li className="nav-item">
                     <Link to={path.login} className="btn btn-outline-custom">
                       Sign in
                     </Link>
-                  ) : (
-                    <button
-                      className="btn btn-outline-custom"
-                      onClick={() => logoutUser()}
+                  </li>
+                ) : (
+                  <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href={href}
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
                     >
-                      LOGOUT
-                    </button>
-                  )}
-                </li>
+                      <img
+                        className="thumbnail-image"
+                        src={user}
+                        alt="user pic"
+                        width="20"
+                      />
+                    </a>
+                    <div
+                      className="dropdown-menu animate slideIn"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      <Link className="dropdown-item" to={path.dashboard}>
+                        <i className="fa fa-dashboard"></i> Dashboard
+                      </Link>
+                      <a
+                        className="dropdown-item"
+                        href={href}
+                        onClick={() => logoutUser()}
+                      >
+                        <i className="fa fa-sign-out"></i> Logout
+                      </a>
+                    </div>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

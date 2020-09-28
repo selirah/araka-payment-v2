@@ -12,16 +12,15 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@popperjs/core';
 import 'gsap';
 import 'swiper/swiper-bundle.esm';
-import './script';
 
 import App from './App';
 import { I18nextProvider } from 'react-i18next';
 import { i18n } from './i18n';
-import configureStore from './configureStore';
+import { configureStore } from './configureStore';
 import { secure } from './utils/secure';
 import { isEmpty } from './helpers/isEmpty';
 import { setUser } from './store/auth/actions';
-import { authorization } from './utils/auhtorization';
+import { authorization } from './utils/authorization';
 import { logout } from './store/auth/actions';
 import { path } from './helpers/path';
 import * as serviceWorker from './serviceWorker';
@@ -35,7 +34,7 @@ declare global {
 }
 
 const initialState = window.INITIAL_REDUX_STATE;
-export const store = configureStore(history, initialState);
+export const { store, persistor } = configureStore(history, initialState);
 
 const user = secure.get('user');
 const { token } = user;
@@ -57,7 +56,7 @@ if (!isEmpty(token)) {
 ReactDOM.render(
   <React.Fragment>
     <I18nextProvider i18n={i18n}>
-      <App store={store} history={history} />
+      <App store={store} history={history} persistor={persistor} />
     </I18nextProvider>
   </React.Fragment>,
   document.getElementById('root')

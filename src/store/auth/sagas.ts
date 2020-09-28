@@ -9,18 +9,18 @@ import {
 } from './actions';
 import { callApiPost } from '../../utils/api';
 import { Login, Register } from '../../interfaces';
-import { authorization } from '../../utils/auhtorization';
+import { authorization } from '../../utils/authorization';
 import { secure } from '../../utils/secure';
 
 function* login({ payload }: { type: string; payload: Login }) {
   try {
     const res = yield call(callApiPost, 'login', payload);
     secure.set('user', res.data);
+    yield authorization(res.data.token);
     yield put(loginSuccess(res.data));
   } catch (err) {
     if (err && err.response) {
       if (err.response.data.status) {
-        yield authorization(err.response.data.token);
         yield put(loginError(err.response.data));
       } else {
         yield put(logError(err.response.data));

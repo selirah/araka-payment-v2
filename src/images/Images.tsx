@@ -12,6 +12,7 @@ import vodacom from './logos/vodacom.jpg';
 import mpesa from './logos/mpesa.jpg';
 import orange from './logos/orangemoney.jpg';
 import airtelMoney from './logos/airtelmoney.jpg';
+import user from './user.svg';
 
 export {
   logoNav,
@@ -27,4 +28,5 @@ export {
   orange,
   airtelMoney,
   logo,
+  user,
 };

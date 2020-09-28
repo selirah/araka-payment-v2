@@ -48,7 +48,13 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
     case PaymentActionTypes.DECREASE_PAYMENT_STEP:
       return {
         ...state,
-        step: state.step - action.payload,
+        step: state.step - 1,
+      };
+
+    case PaymentActionTypes.DECREASE_PAYMENT_STEP_CUSTOM:
+      return {
+        ...state,
+        step: action.payload,
       };
 
     case PaymentActionTypes.SET_ACTIVE_CATEGORY:
@@ -73,6 +79,7 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return {
         ...state,
         isSubmit: true,
+        orderError: undefined,
       };
 
     case PaymentActionTypes.ORDER_SUCCESS:
@@ -86,13 +93,12 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return {
         ...state,
         isSubmit: false,
-        error: action.payload,
+        orderError: action.payload,
       };
 
     case PaymentActionTypes.SAVE_ORDER_DATA:
       return {
         ...state,
-        isSubmit: false,
         orderData: action.payload,
       };
 
@@ -118,6 +124,18 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return {
         ...state,
         paymentOption: action.payload,
+      };
+
+    case PaymentActionTypes.RESET_TRANSACTION:
+      return {
+        ...state,
+        paymentOption: initialState.isPerformingPayment,
+        product: initialState.product,
+        category: initialState.category,
+        activeCategory: initialState.activeCategory,
+        activeProduct: initialState.activeProduct,
+        orderData: initialState.orderData,
+        step: initialState.step,
       };
 
     default:

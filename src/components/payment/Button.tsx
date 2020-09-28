@@ -5,6 +5,8 @@ type Props = {
   disabled?: boolean;
   type: any;
   onContinueProcess(): void;
+  addPrevious: boolean;
+  onPreviousProcess(): void;
 };
 
 const Button: React.FC<Props> = ({
@@ -12,9 +14,21 @@ const Button: React.FC<Props> = ({
   disabled,
   type,
   onContinueProcess,
+  addPrevious,
+  onPreviousProcess,
 }) => {
   return (
     <div className="row justify-content-center option-submit">
+      {addPrevious ? (
+        <button
+          type={type}
+          className="btn btn btn-outline-secondary button-previous"
+          onClick={() => onPreviousProcess()}
+        >
+          Previous
+        </button>
+      ) : null}
+
       <button
         type={type}
         className="btn option-submit-button"

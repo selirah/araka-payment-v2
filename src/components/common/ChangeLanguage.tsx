@@ -16,7 +16,7 @@ const ChangeLanguage: React.FC = () => {
 
   return (
     <React.Fragment>
-      <LanguageContainer className="col-6 d-flex">
+      <LanguageContainer className="col-sm-6 d-flex pl-3">
         <DropdownToggle
           className="dropdown-toggle"
           id="dropdown-flag"
@@ -24,6 +24,7 @@ const ChangeLanguage: React.FC = () => {
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          style={{ textDecoration: 'none' }}
         >
           {t('home.language')}{' '}
           {lang === 'en' ? (

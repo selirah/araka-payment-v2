@@ -5,6 +5,7 @@ import { NavLayout } from './NavLayout';
 import { PageContainer } from './PageContainer';
 import { PaymentTypes } from './PaymentTypes';
 import { Help } from './Help';
+import { Reset } from './Reset';
 import { Category } from '../../interfaces';
 import { Spinner } from '../common/Spinner';
 import { DisplayHeader } from '../common/DisplayHeader';
@@ -13,22 +14,27 @@ import { Providers } from './Providers';
 import { Details } from './Details';
 import { Summary } from './Summary';
 import { Pay } from './Pay';
+import { Error } from '../common/Error';
 
 type Props = {
   title?: string;
 };
 
 const Layout: React.FC<Props> = ({ title }) => {
-  const { categories, loading, step } = appSelector((state) => state.payment);
+  const { categories, loading, step, orderError } = appSelector(
+    (state) => state.payment
+  );
   const [spinner, setSpinner] = useState<boolean>(loading);
   const [categoryData, setCategoryData] = useState<Category[]>(categories);
   const [mainTitle, setMainTitle] = useState<string>('');
   const [subTitle, setSubTitle] = useState<string>('');
   const [smallText, setSmallText] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     setSpinner(loading);
     setCategoryData(categories);
+    setError(orderError);
 
     switch (step) {
       case 1:
@@ -59,9 +65,9 @@ const Layout: React.FC<Props> = ({ title }) => {
         setSmallText('Select only one type');
         break;
     }
-  }, [loading, categories, step]);
+  }, [loading, categories, step, orderError]);
 
-  let render: any;
+  let render: React.ReactNode;
 
   if (spinner && isEmpty(categoryData)) {
     render = <Spinner />;
@@ -84,6 +90,7 @@ const Layout: React.FC<Props> = ({ title }) => {
       </Helmet>
       <NavLayout />
       <PageContainer>
+        {!isEmpty(error) ? <Error error={error} /> : null}
         {subTitle !== '' ? (
           <DisplayHeader h2={mainTitle} h4={subTitle} h6={smallText} />
         ) : null}
@@ -91,6 +98,7 @@ const Layout: React.FC<Props> = ({ title }) => {
         {render}
       </PageContainer>
       <Help />
+      <Reset />
     </section>
   );
 };

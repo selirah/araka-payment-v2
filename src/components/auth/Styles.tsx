@@ -67,7 +67,6 @@ export const FormBoxCustomControl = styled.div`
   z-index: 1;
   display: block;
   min-height: 1.5rem;
-  padding-left: 0.5rem;
 
   input[type='checkbox']:not(:checked) + label:before {
     background: transparent;
@@ -99,6 +98,7 @@ export const ForgottenLink = styled.div`
     color: #506077;
     font-weight: 700;
     transition: all 0.3s ease-in-out;
+    text-decoration: none;
     :hover {
       color: #f4744b;
     }
@@ -136,6 +136,7 @@ export const SubmitButton = styled.div`
 
 export const DropdownToggle = styled.a`
   color: #506077;
+  text-decoration: none !important;
   font-weight: 700;
   :hover {
     color: #f4744b;

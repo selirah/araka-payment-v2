@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
 import { all, fork } from 'redux-saga/effects';
 import { connectRouter, RouterState } from 'connected-react-router';
 import { History } from 'history';
@@ -7,6 +8,7 @@ import { authSaga } from './auth/sagas';
 
 import { PaymentState, paymentReducer } from './payment';
 import { AuthState, authReducer } from './auth';
+import storage from 'redux-persist/lib/storage';
 
 export type ApplicationState = {
   payment: PaymentState;
@@ -14,12 +16,28 @@ export type ApplicationState = {
   router: RouterState;
 };
 
-export const createRootReducer = (history: History) =>
-  combineReducers({
-    payment: paymentReducer,
-    auth: authReducer,
-    router: connectRouter(history),
-  });
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['paymentReducer', 'authReducer'],
+};
+
+// export const createRootReducer = (history: History) =>
+//   combineReducers({
+//     payment: paymentReducer,
+//     auth: authReducer,
+//     router: connectRouter(history),
+//   });
+
+export const persistingReducer = (history: History) =>
+  persistReducer(
+    persistConfig,
+    combineReducers({
+      payment: paymentReducer,
+      auth: authReducer,
+      router: connectRouter(history),
+    })
+  );
 
 export function* rootSaga() {
   yield all([fork(paymentSaga), fork(authSaga)]);

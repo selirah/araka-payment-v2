@@ -14,7 +14,10 @@ export const fetchCategoriesFailure = (message: string) =>
 export const increasePaymentStep = () =>
   action(PaymentActionTypes.INCREASE_PAYMENT_STEP);
 
-export const decreasePaymentStep = (step: number) =>
+export const decreasePaymentStep = () =>
+  action(PaymentActionTypes.DECREASE_PAYMENT_STEP);
+
+export const decreasePaymentStepCustom = (step: number) =>
   action(PaymentActionTypes.DECREASE_PAYMENT_STEP, step);
 
 export const setActiveCategory = (categoryId: number) =>
@@ -29,7 +32,7 @@ export const processOrderRequest = (payload: any) =>
 export const processOrderSuccess = (data: OrderResponse) =>
   action(PaymentActionTypes.ORDER_SUCCESS, data);
 
-export const processOrderFailure = (error: any) =>
+export const processOrderFailure = (error: string) =>
   action(PaymentActionTypes.ORDER_FAILURE, error);
 
 export const fetchProducts = (products: Product[]) =>
@@ -49,3 +52,6 @@ export const performingPayment = (payload: boolean) =>
 
 export const setPayOption = (payload: string) =>
   action(PaymentActionTypes.SET_ACTIVE_PAY_OPTION, payload);
+
+export const resetTransaction = () =>
+  action(PaymentActionTypes.RESET_TRANSACTION);

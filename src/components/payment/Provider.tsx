@@ -25,6 +25,7 @@ const Provider: React.FC<Prop> = ({
             onClick={() => updateSelectedProduct(product.productId, product)}
             style={{
               backgroundImage: `url(data:image/jpeg;base64,${product.image})`,
+              cursor: 'pointer',
             }}
           ></div>
           {/* <img

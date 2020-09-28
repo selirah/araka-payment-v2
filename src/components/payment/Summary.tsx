@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
@@ -6,32 +6,44 @@ import { Button } from './Button';
 import {
   increasePaymentStep,
   performingPayment,
+  saveOrderData,
+  decreasePaymentStep,
 } from '../../store/payment/actions';
+import { secure } from '../../utils/secure';
+import { isEmpty } from '../../helpers/isEmpty';
 
 const Summary: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { category, product } = appSelector((state) => state.payment);
+  const data: any = secure.get('orderData');
 
-  const data = localStorage.getItem('orderData');
-  // const [orderData, setOrderData] = useState(data);
+  useEffect(() => {
+    const data: any = secure.get('orderData');
+    if (!isEmpty(data)) {
+      dispatch(saveOrderData(data));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const continueProcess = (): void => {
     dispatch(increasePaymentStep());
     dispatch(performingPayment(true));
   };
 
+  const previousProcess = (): void => {
+    dispatch(decreasePaymentStep());
+  };
+
   let summary;
   if (data !== null) {
-    const d = JSON.parse(data);
-    summary = Object.keys(d.data).map(function (key, index) {
+    summary = Object.keys(data.data).map(function (key, index) {
       return (
         <div className="col-md-6" key={index}>
           <div className="summary-item mb-5">
             <label htmlFor="">{key}</label>
             <div className="tag">
               <i className="mbri-target mr-1 icon"></i>
-              {/* <img className="image" />  */}
-              {d.data[key]}
+              {data.data[key]}
             </div>
           </div>
         </div>
@@ -47,7 +59,6 @@ const Summary: React.FC = () => {
             <label htmlFor="">Payment type</label>
             <div className="tag">
               <i className="mbri-mobile mr-1 icon"></i>
-              {/* <img className="image" />  */}
               {category !== undefined ? category.name : null}
             </div>
           </div>
@@ -57,12 +68,10 @@ const Summary: React.FC = () => {
             <label htmlFor="">Provider</label>
             <div className="tag">
               <i className="mbri-cash mr-1 icon"></i>
-              {/* <img className="image" />  */}
               {product !== undefined ? product.name : null}
             </div>
           </div>
         </div>
-
         {summary}
       </div>
       <Button
@@ -70,6 +79,8 @@ const Summary: React.FC = () => {
         disabled={false}
         type="button"
         onContinueProcess={continueProcess}
+        addPrevious={true}
+        onPreviousProcess={previousProcess}
       />
     </React.Fragment>
   );
