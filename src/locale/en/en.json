@@ -1,0 +1,74 @@
+{
+  "translations": {
+    "nav_links": {
+      "top_up": "Top Up",
+      "pay_bills": "Pay Bills",
+      "faqs": "FAQS",
+      "how_it_works": "How it Works",
+      "english": "English",
+      "french": "French",
+      "login": "Login",
+      "signup": "Sign Up"
+    },
+    "footer": {
+      "slogan": "Making Payments Easy...",
+      "location": "We are here",
+      "about_us": "About Us",
+      "get_onboarded": "Get Onboarded",
+      "support": "Support",
+      "contact": "Contact",
+      "privacy_policy": "Privacy Policy",
+      "faqs": "FAQs",
+      "locate_us": "Locate us",
+      "payment_platform": "Payment Platform",
+      "all_rights": "All rights reserved",
+      "copyright": "Copyright"
+    },
+    "home": {
+      "welcome": "Welcome To Araka Payments",
+      "slogan": "Making Online Transactions Seemless",
+      "option": "Select one of the options below to display your payment choice",
+      "get_started": "Get Started",
+      "get_started_paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lectus libero, molestie non vulputate et, tempor id nibh. Sedultrices nec urna sed vestibulum.",
+      "language": "Language"
+    },
+    "login": {
+      "header": "Login To Your Account",
+      "email": "Email",
+      "password": "Password",
+      "remember": "Remember Me",
+      "forgotten": "Forgotten Password",
+      "btn_title": "Login",
+      "note": "Don't have an account?",
+      "register_note": "Register here",
+      "processing": "Processing.."
+    },
+    "register": {
+      "header": "Sign Up to Join",
+      "customer": "Register as customer",
+      "business": "Register as business",
+      "name": "Business name or Full name",
+      "email": "Email",
+      "phone": "Phone number",
+      "password": "Password",
+      "confirm": "Re-type password",
+      "btn_title": "Register",
+      "note": "Already have an account?",
+      "login_note": "Sign in",
+      "processing": "Processing..",
+      "unmatch_password": "Passwords do not match. Try again"
+    },
+    "forgotten": {
+      "header": "Enter email to reset password",
+      "email": "Email",
+      "btn_title": "Send",
+      "note": "Remembered password now?",
+      "login_note": "Sign in",
+      "processing": "Processing.."
+    },
+    "dashboard": {
+      "dashboard": "Dashboard",
+      "logout": "Logout"
+    }
+  }
+}
