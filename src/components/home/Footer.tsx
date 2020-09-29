@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { logo } from '../../images/Images';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <section className="">
       <div className="container">
@@ -44,60 +46,60 @@ const Footer: React.FC = () => {
               </ul>
             </div>
             <div className="col-lg-2">
-              <h5 className="footer-title">Products</h5>
+              <h5 className="footer-title">{t('footer.products')}</h5>
               <div className="mt-4">
                 <ul className="list-unstyled footer-list">
                   <li>
-                    <Link to="">About Us</Link>
+                    <Link to="">{t('footer.about-us')}</Link>
                   </li>
                   <li>
-                    <Link to="">Pricing</Link>
+                    <Link to="">{t('footer.pricing')}</Link>
                   </li>
                   <li>
-                    <Link to="">Get Onboarded</Link>
+                    <Link to="">{t('footer.get-onboarded')}</Link>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="col-lg-2">
-              <h5 className="footer-title">Support</h5>
+              <h5 className="footer-title">{t('footer.support')}</h5>
               <div className="mt-4">
                 <ul className="list-unstyled text-white footer-list">
                   <li>
-                    <Link to="">Contact</Link>
+                    <Link to="">{t('footer.contact')}</Link>
                   </li>
                   <li>
-                    <Link to="">Terms &amp; Conditions</Link>
+                    <Link to="">{t('footer.terms')}</Link>
                   </li>
                   <li>
-                    <Link to="">Privacy Policy</Link>
+                    <Link to="">{t('footer.privacy-policy')}</Link>
                   </li>
                   <li>
-                    <Link to="faq">FAQs</Link>
+                    <Link to="faq">{t('footer.faq')}</Link>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="col-lg-4">
-              <h5 className="footer-title">Developer &amp; Resources</h5>
+              <h5 className="footer-title">{t('footer.developer')}</h5>
               <div className="mt-4">
                 <ul className="list-unstyled footer-list">
                   <li>
-                    <Link to="">Plug n' Pay</Link>
+                    <Link to="">{t('footer.plug')}</Link>
                   </li>
                   <li>
-                    <Link to="">API Documentation</Link>
+                    <Link to="">{t('footer.api')}</Link>
                   </li>
                   <li>
-                    <Link to="">Enterprise Business</Link>
+                    <Link to="">{t('footer.enterprise')}</Link>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
           <div className="footer-note text-center">
-            Copyright&copy;
-            {new Date().getUTCFullYear()}. ARAKA Payment Platform. All rights
+            {t('footer.copy')}&copy;
+            {new Date().getUTCFullYear()}. ARAKA {t('footer.rights')}
             reserved.
           </div>
         </footer>

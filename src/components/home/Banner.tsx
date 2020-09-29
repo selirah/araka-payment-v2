@@ -1,30 +1,27 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { path } from '../../helpers/path';
 
 const Banner: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <section className="banner">
       <div className="container">
         <div className="row">
           <div className="col-sm-6">
-            <h2 className="banner-text">
-              Fast and secure payment platform for the internet
-            </h2>
+            <h2 className="banner-text">{t('home.banner-header')}</h2>
             <p className="banner-text">
-              <span>Araka</span> is a payment platform that allows any
-              registered user make payment for goods and services, it also
-              allows merchants registered on it to accept online payments for
-              goods and services with cards and mobile money wallets{' '}
-              <span>M-PESA</span> &bull; <span>AirtelMoney</span> and{' '}
+              <span>Araka</span> {t('home.banner-text')} <span>M-PESA</span>{' '}
+              &bull; <span>AirtelMoney</span> {t('home.and')}{' '}
               <span>OrangeMoney</span>
             </p>
             <div className="btn-links banner-text">
               <Link to={path.register}>
-                <button className="btn">Become a merchant</button>
+                <button className="btn">{t('home.btn-merchant')}</button>
               </Link>
               <Link to={path.payment}>
-                <button className="btn">Start making payments</button>
+                <button className="btn">{t('home.btn-payments')}</button>
               </Link>
             </div>
           </div>

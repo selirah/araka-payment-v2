@@ -1,34 +1,39 @@
 {
   "translations": {
-    "nav_links": {
-      "top_up": "Recharger",
-      "pay_bills": "Payer les factures",
-      "faqs": "FAQ",
-      "how_it_works": "Comment ça fonctionne",
-      "english": "Anglais",
-      "french": "Français",
-      "login": "S'identifier",
-      "signup": "S'inscrire"
+    "nav-links": {
+      "merchants": "Marchand(e)s",
+      "pricing": "Tarifs",
+      "about": "Sur",
+      "english": "Anglais(e)",
+      "french": "Français(e)",
+      "sign-in": "se connecter",
+      "welcome": "Bienvenu(e)",
+      "dashboard": "Tableau de bord",
+      "logout": "Se déconnecter"
     },
     "footer": {
-      "slogan": "Faciliter les paiements ...",
-      "location": "Nous sommes ici",
-      "about_us": "À propos de nous",
-      "get_onboarded": "Embarquez",
+      "products": "Des produits",
       "support": "Soutien",
+      "developer": "Développeur et ressources",
+      "about-us": "À propos de nous",
+      "pricing": "Tarifs",
+      "get-onboarded": "Embarquez",
       "contact": "Contact",
-      "privacy_policy": "Politique de confidentialité",
-      "faqs": "FAQ",
-      "locate_us": "Nous localiser",
-      "payment_platform": "Plateforme de paiement",
-      "all_rights": "Tous les droits sont réservés",
-      "copyright": "Copyright"
+      "terms": "Termes et conditions",
+      "privacy-policy": "Politique de confidentialité",
+      "faq": "FAQs",
+      "plug": "Brancher et utiliser",
+      "api": "Documentation API",
+      "enterprise": "Entreprise",
+      "copy": "droits d'auteur",
+      "rights": "Tous les droits sont réservés"
     },
     "home": {
-      "welcome": "Bienvenue chez Araka Payments",
-      "slogan": "Rendre les transactions en ligne fluides",
-      "option": "Sélectionnez l'une des options ci-dessous pour afficher votre choix de paiement",
-      "get_started": "Commencer",
+      "banner-header": "Plateforme de paiement rapide et sécurisée pour Internet",
+      "banner-text": "est une plateforme de paiement qui permet à tout utilisateur enregistré d'effectuer le paiement de biens et de services, elle permet également aux commerçants inscrits sur celle-ci d'accepter des paiements en ligne pour des biens et services avec des cartes et des portefeuilles d'argent mobile",
+      "and": "et",
+      "btn_merchant": "Devenez marchand",
+      "btn-payments": "Effectuer des paiements",
       "get_started_paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lectus libero, molestie non vulputate et, tempor id nibh. Sedultrices nec urna sed vestibulum.",
       "language": "Langue"
     },

@@ -11,6 +11,8 @@ import {
   decreasePaymentStep,
 } from '../../store/payment';
 import { Product } from 'src/interfaces';
+import { isEmpty } from 'src/helpers/isEmpty';
+import { EmptyBox } from './EmptyBox';
 
 const Providers: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -37,14 +39,18 @@ const Providers: React.FC = () => {
   return (
     <React.Fragment>
       <div className="row display-options justify-content-center">
-        {products.map((product) => (
-          <Provider
-            product={product}
-            key={product.productId}
-            updateSelectedProduct={updateSelectedProduct}
-            activeProduct={activeProduct}
-          />
-        ))}
+        {!isEmpty(products) ? (
+          products.map((product) => (
+            <Provider
+              product={product}
+              key={product.productId}
+              updateSelectedProduct={updateSelectedProduct}
+              activeProduct={activeProduct}
+            />
+          ))
+        ) : (
+          <EmptyBox />
+        )}
       </div>
       <Button
         title="Continue"

@@ -1,34 +1,39 @@
 {
   "translations": {
-    "nav_links": {
-      "top_up": "Top Up",
-      "pay_bills": "Pay Bills",
-      "faqs": "FAQS",
-      "how_it_works": "How it Works",
+    "nav-links": {
+      "merchants": "Merchants",
+      "pricing": "Pricing",
+      "about": "About",
       "english": "English",
       "french": "French",
-      "login": "Login",
-      "signup": "Sign Up"
+      "sign-in": "Sign in",
+      "welcome": "Welcome",
+      "dashboard": "Dashboard",
+      "logout": "Logout"
     },
     "footer": {
-      "slogan": "Making Payments Easy...",
-      "location": "We are here",
-      "about_us": "About Us",
-      "get_onboarded": "Get Onboarded",
+      "products": "Products",
       "support": "Support",
+      "developer": "Developer and Resources",
+      "about-us": "About us",
+      "pricing": "Pricing",
+      "get-onboarded": "Get Onboarded",
       "contact": "Contact",
-      "privacy_policy": "Privacy Policy",
-      "faqs": "FAQs",
-      "locate_us": "Locate us",
-      "payment_platform": "Payment Platform",
-      "all_rights": "All rights reserved",
-      "copyright": "Copyright"
+      "terms": "Terms and Conditions",
+      "privacy-policy": "Privacy Policy",
+      "faq": "FAQs",
+      "plug": "Plug 'n Play",
+      "api": "API Documentation",
+      "enterprise": "Enterprise Business",
+      "copy": "Copyright",
+      "rights": "All rights reserved"
     },
     "home": {
-      "welcome": "Welcome To Araka Payments",
-      "slogan": "Making Online Transactions Seemless",
-      "option": "Select one of the options below to display your payment choice",
-      "get_started": "Get Started",
+      "banner-header": "Fast and secure payment platform for the internet",
+      "banner-text": "is a payment platform that allows any registered user makes the payment for goods and services, it also allows merchants registered on it to accept online payments for goods and services with cards and mobile money wallets",
+      "and": "and",
+      "btn_merchant": "Become a merchant",
+      "btn-payments": "Start making payments",
       "get_started_paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lectus libero, molestie non vulputate et, tempor id nibh. Sedultrices nec urna sed vestibulum.",
       "language": "Language"
     },

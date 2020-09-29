@@ -4,12 +4,14 @@ import jwt_decode from 'jwt-decode';
 import { createBrowserHistory } from 'history';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'flag-icon-css/css/flag-icon.min.css';
 import 'swiper/swiper-bundle.min.css';
 import './index.css';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@popperjs/core';
+import 'jquery.easing/jquery.easing.min';
 import 'gsap';
 import 'swiper/swiper-bundle.esm';
 

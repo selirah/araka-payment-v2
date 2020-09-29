@@ -51,14 +51,14 @@ const ChangeLanguage: React.FC = () => {
             href={href}
             onClick={() => changeLanguage('en')}
           >
-            <i className="flag-icon flag-icon-gb"></i> {t('nav_links.english')}
+            <i className="flag-icon flag-icon-gb"></i> {t('nav-links.english')}
           </a>
           <a
             className="dropdown-item"
             href={href}
             onClick={() => changeLanguage('fr')}
           >
-            <i className="flag-icon flag-icon-fr"></i> {t('nav_links.french')}
+            <i className="flag-icon flag-icon-fr"></i> {t('nav-links.french')}
           </a>
         </div>
       </LanguageContainer>

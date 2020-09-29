@@ -17,7 +17,7 @@ const App: React.FC<AppProps> = ({ store, history, persistor }) => {
   return (
     <React.Fragment>
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
+        <PersistGate persistor={persistor} loading={null}>
           <ConnectedRouter history={history}>
             <Routes />
           </ConnectedRouter>

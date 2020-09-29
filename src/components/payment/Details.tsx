@@ -8,6 +8,8 @@ import {
   decreasePaymentStep,
 } from '../../store/payment/actions';
 import { Button } from './Button';
+import { EmptyBox } from './EmptyBox';
+import { isEmpty } from 'src/helpers/isEmpty';
 
 const Details: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -47,14 +49,19 @@ const Details: React.FC = () => {
       </div>
       <div className="row display-options justify-content-center pt-0">
         <div className="col-sm-12">
-          {product !== undefined ? (
+          {product !== undefined && !isEmpty(product.form) ? (
             <FormIO schema={JSON.parse(product.form)} />
-          ) : null}
+          ) : (
+            <EmptyBox />
+          )}
         </div>
       </div>
+
       <Button
         title="Continue"
-        disabled={false}
+        disabled={
+          product !== undefined && !isEmpty(product.form) ? false : true
+        }
         type="button"
         onContinueProcess={continueProcess}
         addPrevious={true}

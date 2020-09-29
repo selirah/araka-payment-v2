@@ -11,6 +11,7 @@ import {
 } from '../../store/payment/actions';
 import { secure } from '../../utils/secure';
 import { isEmpty } from '../../helpers/isEmpty';
+import { EmptyBox } from './EmptyBox';
 
 const Summary: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -19,7 +20,7 @@ const Summary: React.FC = () => {
 
   useEffect(() => {
     const data: any = secure.get('orderData');
-    if (!isEmpty(data)) {
+    if (!isEmpty(data) && data !== undefined) {
       dispatch(saveOrderData(data));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,7 +36,7 @@ const Summary: React.FC = () => {
   };
 
   let summary;
-  if (data !== null) {
+  if (data !== null || data !== undefined) {
     summary = Object.keys(data.data).map(function (key, index) {
       return (
         <div className="col-md-6" key={index}>
@@ -49,6 +50,8 @@ const Summary: React.FC = () => {
         </div>
       );
     });
+  } else {
+    return <EmptyBox />;
   }
 
   return (

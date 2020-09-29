@@ -19,15 +19,8 @@ export type ApplicationState = {
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['paymentReducer', 'authReducer'],
+  whitelist: ['payment', 'auth', 'router'],
 };
-
-// export const createRootReducer = (history: History) =>
-//   combineReducers({
-//     payment: paymentReducer,
-//     auth: authReducer,
-//     router: connectRouter(history),
-//   });
 
 export const persistingReducer = (history: History) =>
   persistReducer(

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { i18n, useTranslation } from '../../i18n';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
@@ -14,13 +14,17 @@ import { User } from 'src/interfaces';
 const Nav: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { isAuthenticated, user } = appSelector((state) => state.auth);
+  const [lang, setLang] = useState<string | null>(
+    localStorage.getItem('i18nextLng')
+  );
   const [userDetails] = useState<User>(user);
   const [fname, setFname] = useState('');
-  // const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  // const changeLanguage = (lang: string) => {
-  //   i18n.changeLanguage(lang);
-  // };
+  const changeLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
+    setLang(lang);
+  };
   const href = '#';
 
   useEffect(() => {
@@ -36,9 +40,7 @@ const Nav: React.FC = () => {
 
   const logoutUser = (): void => {
     secure.removeAll();
-    secure.clear();
     dispatch(logout());
-    window.location.href = path.home;
   };
 
   return (
@@ -61,17 +63,17 @@ const Nav: React.FC = () => {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link to="#" className="nav-link">
-                    Merchants
+                    {t('nav-links.merchants')}
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="#" className="nav-link">
-                    Pricing
+                    {t('nav-links.pricing')}
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="#" className="nav-link">
-                    About
+                    {t('nav-links.about')}
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -87,7 +89,11 @@ const Nav: React.FC = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i className="flag-icon flag-icon-gb"></i>
+                    {lang === 'en' ? (
+                      <i className="flag-icon flag-icon-gb"></i>
+                    ) : (
+                      <i className="flag-icon flag-icon-fr"></i>
+                    )}
                   </a>
                   <div
                     className="dropdown-menu animate slideIn"
@@ -96,23 +102,25 @@ const Nav: React.FC = () => {
                     <a
                       className="dropdown-item"
                       href={href}
-                      // onClick={() => changeLanguage('en')}
+                      onClick={() => changeLanguage('en')}
                     >
-                      <i className="flag-icon flag-icon-gb"></i> English
+                      <i className="flag-icon flag-icon-gb"></i>{' '}
+                      {t('nav-links.english')}
                     </a>
                     <a
                       className="dropdown-item"
                       href={href}
-                      // onClick={() => changeLanguage('fr')}
+                      onClick={() => changeLanguage('fr')}
                     >
-                      <i className="flag-icon flag-icon-fr"></i> Français
+                      <i className="flag-icon flag-icon-fr"></i>{' '}
+                      {t('nav-links.french')}
                     </a>
                   </div>
                 </li>
                 {!isAuthenticated ? (
                   <li className="nav-item">
                     <Link to={path.login} className="btn btn-outline-custom">
-                      Sign in
+                      {t('nav-links.sign-in')}
                     </Link>
                   </li>
                 ) : (
@@ -126,7 +134,7 @@ const Nav: React.FC = () => {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      Welcome, {fname}{' '}
+                      {t('nav-links.welcome')}, {fname}{' '}
                       <img
                         className="thumbnail-image"
                         src={avatar}
@@ -139,14 +147,16 @@ const Nav: React.FC = () => {
                       aria-labelledby="navbarDropdown"
                     >
                       <Link className="dropdown-item" to={path.dashboard}>
-                        <i className="fa fa-dashboard"></i> Dashboard
+                        <i className="fa fa-dashboard"></i>{' '}
+                        {t('nav-links.dashboard')}
                       </Link>
                       <a
                         className="dropdown-item"
                         href={href}
                         onClick={() => logoutUser()}
                       >
-                        <i className="fa fa-sign-out"></i> Logout
+                        <i className="fa fa-sign-out"></i>{' '}
+                        {t('nav-links.logout')}
                       </a>
                     </div>
                   </li>

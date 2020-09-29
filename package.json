@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.0",
     "@popperjs/core": "^2.5.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -28,7 +29,9 @@
     "@types/swiper": "^5.4.0",
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
+    "chart.js": "^2.9.3",
     "connected-react-router": "^6.8.0",
+    "datatables.net-bs4": "^1.10.22",
     "flag-icon-css": "^3.5.0",
     "font-awesome": "^4.7.0",
     "gsap": "^3.5.1",
@@ -36,7 +39,9 @@
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-xhr-backend": "^3.2.2",
     "jquery": "^3.5.1",
+    "jquery.easing": "^1.4.1",
     "jwt-decode": "^3.0.0-beta.2",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-formio": "^4.3.0",
@@ -78,6 +83,7 @@
     ]
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.24",
     "redux-devtools-extension": "^2.13.8"
   }
 }

@@ -4,6 +4,7 @@ import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { Category } from '../../interfaces';
 import { PaymentType } from './PaymentType';
+import { EmptyBox } from './EmptyBox';
 import { Button } from './Button';
 import {
   setActiveCategory,
@@ -12,6 +13,7 @@ import {
   setCategory,
   decreasePaymentStep,
 } from '../../store/payment';
+import { isEmpty } from 'src/helpers/isEmpty';
 
 type Props = {
   categories: Category[];
@@ -56,14 +58,18 @@ const PaymentTypes: React.FC<Props> = ({ categories }) => {
   return (
     <React.Fragment>
       <div className="row display-options justify-content-center">
-        {categories.map((category) => (
-          <PaymentType
-            category={category}
-            key={category.productCategoryId}
-            updateSelectedCategory={updateSelectedCategory}
-            activeCategory={activeCategory}
-          />
-        ))}
+        {!isEmpty(categories) ? (
+          categories.map((category) => (
+            <PaymentType
+              category={category}
+              key={category.productCategoryId}
+              updateSelectedCategory={updateSelectedCategory}
+              activeCategory={activeCategory}
+            />
+          ))
+        ) : (
+          <EmptyBox />
+        )}
       </div>
       <Button
         title="Continue"
