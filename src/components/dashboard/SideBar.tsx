@@ -4,7 +4,6 @@ import { logo } from '../../images/Images';
 import { path } from '../../helpers/path';
 
 const SideBar: React.FC = () => {
-  const href = '#';
   return (
     <ul
       className="navbar-nav bg-gradient-custom sidebar sidebar-dark accordion"
@@ -15,7 +14,6 @@ const SideBar: React.FC = () => {
         href="index.html"
       >
         <div className="sidebar-brand-icon rotate-n-15">
-          {/* <i className="fas fa-laugh-wink"></i> */}
           <img src={logo} alt="" width="40" />
         </div>
         <div className="sidebar-brand-text mx-3">ARAKA</div>
@@ -23,34 +21,20 @@ const SideBar: React.FC = () => {
 
       <hr className="sidebar-divider my-0"></hr>
 
-      <li className="nav-item active">
-        <a className="nav-link" href="index.html">
-          <button className="btn btn-custom">Make Payments</button>
-        </a>
-      </li>
+      {/* <li className="nav-item active">
+        <Link className="nav-link btn-custom" to={path.payment}>
+          <span>Make Payments</span>
+        </Link>
+      </li> */}
 
       <hr className="sidebar-divider my-0"></hr>
 
       <li className="nav-item active">
-        <a className="nav-link" href="index.html">
-          <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-
-      <hr className="sidebar-divider"></hr>
-
-      <div className="sidebar-heading">Home</div>
-
-      <li className="nav-item">
-        <a className="nav-link" href="index.html">
+        <Link className="nav-link" to={path.home}>
           <i className="fas fa-fw fa-home"></i>
           <span>Home</span>
-        </a>
+        </Link>
       </li>
-
-      <hr className="sidebar-divider"></hr>
-      <div className="sidebar-heading">Account</div>
 
       <li className="nav-item">
         <a className="nav-link" href="charts.html">

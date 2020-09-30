@@ -1,0 +1,47 @@
+.btn-custom {
+  background: #f4744b !important;
+  transition: all 0.5s ease-in-out !important;
+  color: #fff !important;
+  text-transform: uppercase;
+  font-weight: 700 !important;
+  text-align: center !important;
+  border-radius: 1.2rem !important;
+}
+
+.btn-custom:hover {
+  background: #f85924 !important;
+}
+
+.new-user {
+  display: block;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.new-user .top-display {
+  text-align: center;
+  padding-bottom: 0.6rem;
+}
+
+.new-user .bottom-display {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.new-user .payment-button {
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.new-user .btn-make-payment {
+  border-radius: 0 !important;
+  background: #f4744b !important;
+  transition: all 0.5s ease-in-out !important;
+  color: #fff !important;
+  text-transform: uppercase;
+  font-weight: 700 !important;
+  text-align: center !important;
+  padding: 1rem;
+}

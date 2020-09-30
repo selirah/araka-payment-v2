@@ -19,6 +19,7 @@ export enum PaymentActionTypes {
   IS_PERFORMING_PAYMENT = '@@payment/IS_PERFORMING_PAYMENT',
   SET_ACTIVE_PAY_OPTION = '@@payment/SET_ACTIVE_PAY_OPTION',
   RESET_TRANSACTION = '@@payment/RESET_TRANSACTION',
+  CLEAR_ORDER_ERROR = '@@payment/CLEAR_ORDER_ERROR',
 }
 
 export type PaymentState = {

@@ -55,3 +55,6 @@ export const setPayOption = (payload: string) =>
 
 export const resetTransaction = () =>
   action(PaymentActionTypes.RESET_TRANSACTION);
+
+export const clearOrderError = () =>
+  action(PaymentActionTypes.CLEAR_ORDER_ERROR);

@@ -13,7 +13,11 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = ({ title }) => (
-  <section className="home-page" data-spy="scroll" data-target="#navbarResponsive">
+  <section
+    className="home-page"
+    data-spy="scroll"
+    data-target="#navbarResponsive"
+  >
     <Helmet>
       <title>{title}</title>
     </Helmet>

@@ -79,20 +79,20 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return {
         ...state,
         isSubmit: true,
-        orderError: undefined,
+        orderError: initialState.orderError,
       };
 
     case PaymentActionTypes.ORDER_SUCCESS:
       return {
         ...state,
-        isSubmit: false,
+        isSubmit: initialState.isSubmit,
         orderResponse: action.payload,
       };
 
     case PaymentActionTypes.ORDER_FAILURE:
       return {
         ...state,
-        isSubmit: false,
+        isSubmit: initialState.isSubmit,
         orderError: action.payload,
       };
 
@@ -136,6 +136,13 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         activeProduct: initialState.activeProduct,
         orderData: initialState.orderData,
         step: initialState.step,
+        orderError: initialState.orderError,
+      };
+
+    case PaymentActionTypes.CLEAR_ORDER_ERROR:
+      return {
+        ...state,
+        orderError: initialState.orderError,
       };
 
     default:

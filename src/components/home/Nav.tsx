@@ -46,7 +46,7 @@ const Nav: React.FC = () => {
   return (
     <header>
       <div className="container">
-        <nav className="navbar navbar-expand-md navbar-custom shadow">
+        <nav className="navbar navbar-alt navbar-expand-md navbar-custom shadow">
           <div className="container">
             <Link className="navbar-brand" to={path.home}>
               <img src={logo} width="40" alt="" /> Araka
@@ -59,7 +59,10 @@ const Nav: React.FC = () => {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarResponsive">
+            <div
+              className="collapse navbar-collapse navbar-collapse-alt"
+              id="navbarResponsive"
+            >
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link to="#" className="nav-link">

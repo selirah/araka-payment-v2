@@ -12,11 +12,7 @@ const NavLayout: React.FC = () => {
     <header>
       <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-md navbar-custom shadow">
-          {/* Direct to dashboard when its fixed */}
-          <Link
-            className="navbar-brand"
-            to={isAuthenticated ? path.home : path.home}
-          >
+          <Link className="navbar-brand" to={path.home}>
             <img src={logo} width="40" alt="" /> Araka
           </Link>
           <ProcessWizard />
@@ -57,7 +53,7 @@ const NavLayout: React.FC = () => {
               <li>
                 {/* Direct to dashboard when its fixed */}
                 <Link
-                  to={isAuthenticated ? path.home : path.home}
+                  to={isAuthenticated ? path.dashboard : path.home}
                   className="close-icon"
                 >
                   <i className="mbri-close"></i>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { User } from 'src/interfaces';
 import { logout } from '../../store/auth/actions';
 import { secure } from '../../utils/secure';
+import { path } from '../../helpers/path';
 
 const TopNav: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -25,6 +27,13 @@ const TopNav: React.FC = () => {
       >
         <i className="fa fa-bars"></i>
       </button>
+
+      <div className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+        <h6>
+          {' '}
+          <i className="fa fa-home"></i> Home
+        </h6>
+      </div>
 
       <ul className="navbar-nav ml-auto">
         <li className="nav-item dropdown no-arrow d-sm-none">
@@ -254,10 +263,10 @@ const TopNav: React.FC = () => {
               <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
               Settings
             </a>
-            <a className="dropdown-item" href={href}>
-              <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-              Activity Log
-            </a>
+            <Link className="dropdown-item" to={path.home}>
+              <i className="fas fa-building fa-sm fa-fw mr-2 text-gray-400"></i>
+              Main Page
+            </Link>
             <div className="dropdown-divider"></div>
             <a
               className="dropdown-item"

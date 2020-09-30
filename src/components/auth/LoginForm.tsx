@@ -87,7 +87,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
     if (isAuthenticated && isPerformingPayment) {
       history.push(path.payment);
     } else if (isAuthenticated && !isPerformingPayment) {
-      history.push(path.home);
+      history.push(path.dashboard);
     }
   }, [auth, isPerformingPayment, history]);
 

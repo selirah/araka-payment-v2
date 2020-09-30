@@ -9,6 +9,7 @@ import { path } from '../../helpers/path';
 import {
   processOrderRequest,
   decreasePaymentStep,
+  clearOrderError,
 } from '../../store/payment/actions';
 import { SmallIcon } from '../common/Styles';
 
@@ -50,6 +51,7 @@ const Pay: React.FC = () => {
 
   const previousProcess = (): void => {
     dispatch(decreasePaymentStep());
+    dispatch(clearOrderError());
   };
 
   return (
