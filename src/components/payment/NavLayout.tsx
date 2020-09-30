@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { appSelector } from '../../helpers/appSelector';
-import { ProcessWizard } from './ProcessWizard';
 import { path } from '../../helpers/path';
 import { logo } from '../../images/Images';
 
-const NavLayout: React.FC = () => {
+type Props = {
+  children?: React.ReactNode;
+};
+
+const NavLayout: React.FC<Props> = ({ children }) => {
   const { isAuthenticated } = appSelector((state) => state.auth);
   const [lang, setLang] = useState<string | null>(
     localStorage.getItem('i18nextLng')
@@ -26,7 +29,7 @@ const NavLayout: React.FC = () => {
           <Link className="navbar-brand" to={path.home}>
             <img src={logo} width="40" alt="" /> Araka
           </Link>
-          <ProcessWizard />
+          {children}
           <button
             className="navbar-toggler custom-toggler"
             type="button"

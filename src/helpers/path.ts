@@ -5,4 +5,7 @@ export const path = {
   register: '/auth/register',
   forgot: '/auth/forgotten-password',
   dashboard: '/dashboard',
+  success: '/transaction/success',
+  cancelled: '/transaction/cancelled',
+  failure: '/transaction/failure',
 };

@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 import IndexPage from '../pages/_index';
 import PaymentPage from '../pages/payment/payment';
+import SuccessPage from '../pages/payment/success';
 import LoginPage from '../pages/auth/login';
 import RegisterPage from '../pages/auth/register';
 import ForgottenPasswordPage from '../pages/auth/forgotten-password';
@@ -19,6 +20,7 @@ const Routes: React.FC = () => {
         <Route exact path={path.register} component={RegisterPage} />
         <Route exact path={path.forgot} component={ForgottenPasswordPage} />
         <PrivateRoute exact path={path.dashboard} component={DashboardPage} />
+        <PrivateRoute exact path={path.success} component={SuccessPage} />
       </Switch>
     </React.Fragment>
   );

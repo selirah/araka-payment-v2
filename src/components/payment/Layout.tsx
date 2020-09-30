@@ -3,13 +3,14 @@ import { appSelector } from '../../helpers/appSelector';
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import { NavLayout } from './NavLayout';
+import { ProcessWizard } from './ProcessWizard';
 import { PageContainer } from './PageContainer';
 import { PaymentTypes } from './PaymentTypes';
 import { Help } from './Help';
 import { Reset } from './Reset';
 import { Category } from '../../interfaces';
 import { Spinner } from '../common/Spinner';
-import { DisplayHeader } from '../common/DisplayHeader';
+import { DisplayHeader } from './DisplayHeader';
 import { isEmpty } from '../../helpers/isEmpty';
 import { Providers } from './Providers';
 import { Details } from './Details';
@@ -96,7 +97,9 @@ const Layout: React.FC<Props> = ({ title }) => {
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <NavLayout />
+      <NavLayout>
+        <ProcessWizard />
+      </NavLayout>
       <PageContainer>
         {!isEmpty(error) ? <Error error={error} /> : null}
         {subTitle !== '' ? (
