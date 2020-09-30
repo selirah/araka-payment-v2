@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { appSelector } from '../../helpers/appSelector';
 import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 import { NavLayout } from './NavLayout';
 import { PageContainer } from './PageContainer';
 import { PaymentTypes } from './PaymentTypes';
@@ -30,6 +31,7 @@ const Layout: React.FC<Props> = ({ title }) => {
   const [subTitle, setSubTitle] = useState<string>('');
   const [smallText, setSmallText] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     setSpinner(loading);
@@ -38,14 +40,14 @@ const Layout: React.FC<Props> = ({ title }) => {
 
     switch (step) {
       case 1:
-        setMainTitle('Araka Welcomes You');
-        setSubTitle('Which type of payment would you like to perform?');
-        setSmallText('Select only one type');
+        setMainTitle(t('wizard.step-1.main-title'));
+        setSubTitle(t('wizard.step-1.subtitle'));
+        setSmallText(t('wizard.step-1.small-text'));
         break;
       case 2:
         setMainTitle('');
-        setSubTitle('Which provider would you like to choose?');
-        setSmallText('Select only one payment method');
+        setSubTitle(t('wizard.step-2.subtitle'));
+        setSmallText(t('wizard.step-2.small-text'));
         break;
       case 3:
         setMainTitle('');
@@ -59,13 +61,11 @@ const Layout: React.FC<Props> = ({ title }) => {
         break;
       case 5:
         setMainTitle('');
-        setSubTitle(
-          'Last thing - how would you like to pay for this transaction?'
-        );
-        setSmallText('Select only one type');
+        setSubTitle(t('wizard.step-3.subtitle'));
+        setSmallText(t('wizard.step-3.small-text'));
         break;
     }
-  }, [loading, categories, step, orderError]);
+  }, [loading, categories, step, orderError, t]);
 
   let render: React.ReactNode;
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { decreasePaymentStepCustom } from '../../store/payment/actions';
@@ -13,6 +14,7 @@ const ProcessWizard: React.FC = () => {
   const [thirdProcess, setThirdProcess] = useState<string>('disabled');
   const [fourthProcess, setFourthProcess] = useState<string>('disabled');
   const [fifthProcess, setFifthProcess] = useState<string>('disabled');
+  const { t } = useTranslation();
 
   const href = '#';
 
@@ -134,7 +136,9 @@ const ProcessWizard: React.FC = () => {
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
-        <div className="bs-wizard-info text-center">Payment Type</div>
+        <div className="bs-wizard-info text-center">
+          {t('wizard.payment-type')}
+        </div>
       </div>
       <div className={`col-sm-2 bs-wizard-step text-center ${secondProcess}`}>
         <div className="progress">
@@ -146,7 +150,7 @@ const ProcessWizard: React.FC = () => {
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
-        <div className="bs-wizard-info text-center">Provider</div>
+        <div className="bs-wizard-info text-center">{t('wizard.provider')}</div>
       </div>
       <div className={`col-sm-2 bs-wizard-step text-center ${thirdProcess}`}>
         <div className="progress">
@@ -158,7 +162,7 @@ const ProcessWizard: React.FC = () => {
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
-        <div className="bs-wizard-info text-center">Details</div>
+        <div className="bs-wizard-info text-center">{t('wizard.details')}</div>
       </div>
       <div className={`col-sm-2 bs-wizard-step text-center ${fourthProcess}`}>
         <div className="progress">
@@ -170,7 +174,7 @@ const ProcessWizard: React.FC = () => {
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
-        <div className="bs-wizard-info text-center">Summary</div>
+        <div className="bs-wizard-info text-center">{t('wizard.summary')}</div>
       </div>
       <div className={`col-sm-2 bs-wizard-step text-center ${fifthProcess}`}>
         <div className="progress">
@@ -182,7 +186,7 @@ const ProcessWizard: React.FC = () => {
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
-        <div className="bs-wizard-info text-center">Pay</div>
+        <div className="bs-wizard-info text-center">{t('wizard.pay')}</div>
       </div>
     </div>
   );

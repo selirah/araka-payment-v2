@@ -74,6 +74,28 @@
     "dashboard": {
       "dashboard": "Tableau de bord",
       "logout": "Se déconnecter"
+    },
+    "wizard": {
+      "payment-type": "Type de paiement",
+      "provider": "Fournisseur",
+      "details": "Détails",
+      "summary": "Résumé",
+      "pay": "Payer",
+      "step-1": {
+        "main-title": "Araka vous souhaite la bienvenue",
+        "subtitle": "Quel type de paiement souhaitez-vous effectuer?",
+        "small-text": "Sélectionnez un seul type"
+      },
+      "step-2": {
+        "subtitle": "Quel fournisseur souhaitez-vous choisir?",
+        "small-text": "Sélectionnez un seul mode de paiement"
+      },
+      "step-3": {
+        "subtitle": "Dernière chose - comment aimeriez-vous payer pour cette transaction?",
+        "small-text": "Sélectionnez un seul type"
+      },
+      "help": "Aidez-moi",
+      "reset": "Réinitialiser"
     }
   }
 }

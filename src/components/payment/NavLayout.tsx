@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { appSelector } from '../../helpers/appSelector';
 import { ProcessWizard } from './ProcessWizard';
 import { path } from '../../helpers/path';
@@ -7,7 +8,17 @@ import { logo } from '../../images/Images';
 
 const NavLayout: React.FC = () => {
   const { isAuthenticated } = appSelector((state) => state.auth);
+  const [lang, setLang] = useState<string | null>(
+    localStorage.getItem('i18nextLng')
+  );
+  const { t, i18n } = useTranslation();
   const href = '#';
+
+  const changeLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
+    setLang(lang);
+  };
+
   return (
     <header>
       <div className="container-fluid p-0">
@@ -36,17 +47,31 @@ const NavLayout: React.FC = () => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <i className="flag-icon flag-icon-gb"></i>
+                  {lang === 'en' ? (
+                    <i className="flag-icon flag-icon-gb"></i>
+                  ) : (
+                    <i className="flag-icon flag-icon-fr"></i>
+                  )}
                 </a>
                 <div
                   className="dropdown-menu animate slideIn"
                   aria-labelledby="navbarDropdown"
                 >
-                  <a className="dropdown-item" href={href}>
-                    <i className="flag-icon flag-icon-gb"></i> English
+                  <a
+                    className="dropdown-item"
+                    href={href}
+                    onClick={() => changeLanguage('en')}
+                  >
+                    <i className="flag-icon flag-icon-gb"></i>{' '}
+                    {t('nav-links.english')}
                   </a>
-                  <a className="dropdown-item" href={href}>
-                    <i className="flag-icon flag-icon-fr"></i> Français
+                  <a
+                    className="dropdown-item"
+                    href={href}
+                    onClick={() => changeLanguage('fr')}
+                  >
+                    <i className="flag-icon flag-icon-fr"></i>{' '}
+                    {t('nav-links.french')}
                   </a>
                 </div>
               </li>

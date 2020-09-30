@@ -74,6 +74,28 @@
     "dashboard": {
       "dashboard": "Dashboard",
       "logout": "Logout"
+    },
+    "wizard": {
+      "payment-type": "Payment Type",
+      "provider": "Provider",
+      "details": "Details",
+      "summary": "Summary",
+      "pay": "Pay",
+      "step-1": {
+        "main-title": "Araka Welcomes You",
+        "subtitle": "Which type of payment would you like to perform?",
+        "small-text": "Select only one type"
+      },
+      "step-2": {
+        "subtitle": "Which provider would you like to choose?",
+        "small-text": "Select only one payment method"
+      },
+      "step-3": {
+        "subtitle": "Last thing - how would you like to pay for this transaction?",
+        "small-text": "Select only one type"
+      },
+      "help": "Help",
+      "reset": "Reset"
     }
   }
 }
