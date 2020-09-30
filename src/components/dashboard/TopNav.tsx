@@ -7,6 +7,7 @@ import { User } from 'src/interfaces';
 import { logout } from '../../store/auth/actions';
 import { secure } from '../../utils/secure';
 import { path } from '../../helpers/path';
+import { user as avatar } from '../../images/Images';
 
 const TopNav: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -245,11 +246,7 @@ const TopNav: React.FC = () => {
                 ? userDetails.name
                 : null}
             </span>
-            <img
-              className="img-profile rounded-circle"
-              src="https://source.unsplash.com/QAB-WJcbgJk/60x60"
-              alt=""
-            />
+            <img className="img-profile rounded-circle" src={avatar} alt="" />
           </a>
           <div
             className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
