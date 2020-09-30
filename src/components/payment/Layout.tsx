@@ -71,16 +71,24 @@ const Layout: React.FC<Props> = ({ title }) => {
 
   if (spinner && isEmpty(categoryData)) {
     render = <Spinner />;
-  } else if (!spinner && !isEmpty(categoryData) && step === 1) {
-    render = <PaymentTypes categories={categoryData} />;
-  } else if (!spinner && !isEmpty(categoryData) && step === 2) {
-    render = <Providers />;
-  } else if (!spinner && !isEmpty(categoryData) && step === 3) {
-    render = <Details />;
-  } else if (!spinner && !isEmpty(categoryData) && step === 4) {
-    render = <Summary />;
-  } else if (!spinner && !isEmpty(categoryData) && step === 5) {
-    render = <Pay />;
+  } else {
+    switch (step) {
+      case 1:
+        render = <PaymentTypes categories={categoryData} />;
+        break;
+      case 2:
+        render = <Providers />;
+        break;
+      case 3:
+        render = <Details />;
+        break;
+      case 4:
+        render = <Summary />;
+        break;
+      case 5:
+        render = <Pay />;
+        break;
+    }
   }
 
   return (
