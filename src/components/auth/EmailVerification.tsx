@@ -37,13 +37,12 @@ const EmailVerification: React.FC<Props> = ({ processId }) => {
   useEffect(() => {
     const { isSubmitting, verificationResponse, verifyError } = auth;
     setIsSubmitting(isSubmitting);
-    setSingleError(verifyError);
+
     setResponse(verificationResponse);
-    if (
-      response?.emailAddress !== undefined ||
-      response?.emailAddress !== null
-    ) {
+    if (response !== undefined && response.emailAddress !== undefined) {
       window.location.href = path.login;
+    } else {
+      setSingleError(verifyError);
     }
   }, [auth]);
 
