@@ -1926,7 +1926,7 @@ pre code {
   border: 0;
 }
 
-.form-control {
+.form-control-dashboard {
   display: block;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);

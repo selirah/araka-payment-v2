@@ -55,7 +55,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
   useEffect(() => {
     const { isAuthenticated } = auth;
     if (isAuthenticated) {
-      history.push('/');
+      history.push(path.home);
     }
     dispatch(resetErrorState());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,7 +92,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
         IsBusiness: false,
       });
       setPhone('');
-      history.push('/');
+      history.push(path.registerSuccess);
     }
   }, [auth, history]);
 

@@ -16,11 +16,11 @@ import user from './user.svg';
 import successIcon from './transaction/success.svg';
 import failedIcon from './transaction/reject-failed.svg';
 import cancelledIcon from './transaction/cancelled.svg';
-import display_1 from './araka/1.jpg';
-import display_2 from './araka/2.jpg';
-import display_3 from './araka/3.jpg';
-import display_4 from './araka/4.jpg';
-import display_5 from './araka/5.jpg';
+import display_1 from './araka/1.svg';
+import display_2 from './araka/2.svg';
+import display_3 from './araka/3.svg';
+import display_4 from './araka/4.svg';
+import display_5 from './araka/5.svg';
 import exclamationIcon from './araka/exclamation.svg';
 
 export {
