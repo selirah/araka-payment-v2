@@ -8,6 +8,7 @@ import {
   logError,
   verificationSuccess,
   verificationError,
+  logVerifyError,
 } from './actions';
 import { callApiPost } from '../../utils/api';
 import { Login, Register, Verification } from '../../interfaces';
@@ -59,7 +60,7 @@ function* verify({ payload }: { type: string; payload: Verification }) {
       if (err.response.data.status) {
         yield put(verificationError(err.response.data));
       } else {
-        yield put(logError(err.response.data));
+        yield put(logVerifyError(err.response.data));
       }
     } else {
       throw err;

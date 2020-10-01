@@ -1,3 +1,4 @@
 export type VerificationResponse = {
-  EmailAddress: string;
+  processId?: string;
+  emailAddress?: string;
 };

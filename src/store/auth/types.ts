@@ -16,6 +16,7 @@ export enum AuthActionTypes {
   VERIFY_EMAIL_SUCCESS = '@@auth/VERIFY_EMAIL_SUCCESS',
   VERIFY_EMAIL_FAILURE = '@@auth/VERIFY_EMAIL_FAILURE',
   CLEAR_VERIFICATION_RESPONSE = '@@auth/CLEAR_VERIFICATION_RESPONSE',
+  VERIFY_ERROR = '@@auth/VERIFY_ERROR',
 }
 
 export type AuthState = {
@@ -26,4 +27,5 @@ export type AuthState = {
   readonly user: User | {};
   readonly singleError: string;
   readonly verificationResponse: VerificationResponse | undefined;
+  readonly verifyError: string;
 };

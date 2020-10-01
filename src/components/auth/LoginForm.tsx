@@ -109,7 +109,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                 <img src={logoNav} alt="logo" width="100" />
               </LogoContainer>
 
-              {!isEmpty(response) && response?.EmailAddress !== null ? (
+              {!isEmpty(response) && response?.emailAddress !== null ? (
                 <VerificationSuccess />
               ) : (
                 <React.Fragment>
@@ -124,7 +124,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                 </React.Fragment>
               )}
               {!isEmpty(error) ? <MultipleErrors error={error} /> : null}
-              {!isEmpty(singleError) ? (
+              {!isEmpty(singleError) && response?.emailAddress == undefined ? (
                 <SingleError error={singleError} />
               ) : null}
               <form onSubmit={onSubmit}>

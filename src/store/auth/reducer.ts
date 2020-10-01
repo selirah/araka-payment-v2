@@ -9,6 +9,7 @@ export const initialState: AuthState = {
   success: false,
   user: {},
   verificationResponse: undefined,
+  verifyError: '',
 };
 
 const reducer: Reducer<AuthState> = (state = initialState, action) => {
@@ -91,13 +92,21 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
       return {
         ...state,
         isSubmitting: false,
-        singleError: action.payload,
+        verifyError: action.payload,
       };
     case AuthActionTypes.VERIFY_EMAIL_FAILURE:
       return {
         ...state,
         verificationResponse: initialState.verificationResponse,
       };
+    case AuthActionTypes.VERIFY_ERROR: {
+      return {
+        ...state,
+        isSubmitting: false,
+        verifyError: action.payload,
+        success: false,
+      };
+    }
     case AuthActionTypes.DESTROY_STATES:
       return initialState;
     default:
