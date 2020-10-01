@@ -44,7 +44,7 @@ const EmailVerification: React.FC<Props> = ({ processId }) => {
     } else {
       setSingleError(verifyError);
     }
-  }, [auth]);
+  }, [auth, response]);
 
   let render: React.ReactNode;
 

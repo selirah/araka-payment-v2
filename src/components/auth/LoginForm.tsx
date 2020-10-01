@@ -96,7 +96,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
       dispatch(clearVerificationResponse());
       history.push(path.dashboard);
     }
-  }, [auth, isPerformingPayment, history]);
+  }, [auth, isPerformingPayment, history, dispatch]);
 
   return (
     <React.Fragment>
@@ -124,7 +124,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                 </React.Fragment>
               )}
               {!isEmpty(error) ? <MultipleErrors error={error} /> : null}
-              {!isEmpty(singleError) && response?.emailAddress == undefined ? (
+              {!isEmpty(singleError) && response?.emailAddress === undefined ? (
                 <SingleError error={singleError} />
               ) : null}
               <form onSubmit={onSubmit}>

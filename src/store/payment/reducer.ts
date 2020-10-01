@@ -135,6 +135,7 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         activeCategory: initialState.activeCategory,
         activeProduct: initialState.activeProduct,
         orderData: initialState.orderData,
+        orderResponse: initialState.orderResponse,
         step: initialState.step,
         orderError: initialState.orderError,
       };

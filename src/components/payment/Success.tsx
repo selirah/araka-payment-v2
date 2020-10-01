@@ -9,9 +9,7 @@ import { NavLayout } from './NavLayout';
 import { PageContainer } from './PageContainer';
 import { successIcon } from '../../images/Images';
 import { path } from '../../helpers/path';
-import {
-  resetTransaction
-} from '../../store/payment';
+import { resetTransaction } from '../../store/payment';
 
 type Props = {
   title?: string;
@@ -49,10 +47,10 @@ const Success: React.FC<Props> = ({ title }) => {
               <h4>{t('wizard.success.sub3')}</h4>
             </div>
             <div className="display-success-failure-cancel-buttons">
+              <button className="btn">{t('wizard.success.btn')}</button>
               <button className="btn" onClick={() => startPayment()}>
-                {t('wizard.success.btn')}
+                {t('wizard.success.btn2')}
               </button>
-              <button className="btn">{t('wizard.success.btn2')}</button>
             </div>
           </div>
         </div>

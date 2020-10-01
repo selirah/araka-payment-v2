@@ -10,6 +10,7 @@ export const initialState: AuthState = {
   user: {},
   verificationResponse: undefined,
   verifyError: '',
+  isVerifying: false,
 };
 
 const reducer: Reducer<AuthState> = (state = initialState, action) => {
@@ -78,23 +79,23 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
     case AuthActionTypes.VERIFY_EMAIL_REQUEST:
       return {
         ...state,
-        isSubmitting: true,
+        isVerifying: true,
         singleError: '',
       };
     case AuthActionTypes.VERIFY_EMAIL_SUCCESS:
       return {
         ...state,
-        isSubmitting: false,
+        isVerifying: false,
         verificationResponse: action.payload,
         success: true,
       };
     case AuthActionTypes.VERIFY_EMAIL_FAILURE:
       return {
         ...state,
-        isSubmitting: false,
+        isVerifying: false,
         verifyError: action.payload,
       };
-    case AuthActionTypes.VERIFY_EMAIL_FAILURE:
+    case AuthActionTypes.CLEAR_VERIFICATION_RESPONSE:
       return {
         ...state,
         verificationResponse: initialState.verificationResponse,
@@ -102,7 +103,7 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
     case AuthActionTypes.VERIFY_ERROR: {
       return {
         ...state,
-        isSubmitting: false,
+        isVerifying: false,
         verifyError: action.payload,
         success: false,
       };

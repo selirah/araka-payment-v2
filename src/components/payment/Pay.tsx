@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { setPayOption } from '../../store/payment/actions';
+import { setPayOption /*resetTransaction*/ } from '../../store/payment/actions';
 import { payOption } from '../../helpers/constants';
 import { path } from '../../helpers/path';
 import {
@@ -12,6 +12,7 @@ import {
   clearOrderError,
 } from '../../store/payment/actions';
 import { SmallIcon } from '../common/Styles';
+import { secure } from '../../utils/secure';
 
 const Pay: React.FC = () => {
   const history = useHistory();
@@ -33,9 +34,12 @@ const Pay: React.FC = () => {
     setIsProcessing(isSubmit);
     if (orderResponse !== undefined) {
       setButtonTitle('Redirecting...');
-      window.location.href = orderResponse.order.orderURL;
+      const url = orderResponse.order.orderURL;
+      // clear transaction states
+      window.location.href = url;
+      secure.remove('orderData');
     }
-  }, [paymentOption, isSubmit, orderResponse]);
+  }, [paymentOption, isSubmit, orderResponse, dispatch]);
 
   const onSubmit = () => {
     switch (isAuthenticated) {
@@ -83,9 +87,11 @@ const Pay: React.FC = () => {
           >
             <i
               className="mbri-cash mb-3 text-custom"
-              onClick={() => selectOption(payOption.CREDIT_CARD)}
+              // onClick={() => selectOption(payOption.CREDIT_CARD)}
             ></i>
-            <h2 onClick={() => selectOption(payOption.CREDIT_CARD)}>mPesa</h2>
+            <h2 /*onClick={() => selectOption(payOption.CREDIT_CARD)} */>
+              mPesa
+            </h2>
           </div>
         </div>
       </div>
