@@ -1173,11 +1173,11 @@ footer .list-inline-item.mdi {
 /**-- Form Control --**/
 
 .form-control {
-  border: 1px solid #fbd5c7 !important;
-  padding: 1.5rem !important;
-  font-size: 1.2rem !important;
-  background-color: #fff !important;
-  height: 4rem !important;
+  border: 1px solid #fbd5c7;
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  background-color: #fff;
+  height: 4rem;
 }
 
 .formio-hidden {
@@ -1621,7 +1621,7 @@ footer .list-inline-item.mdi {
 
 .display-success-failure-cancel .display-icon .icon-success {
   font-size: 6rem;
-  color: #949dac;
+  color: #4bb543;
 }
 
 .display-success-failure-cancel .display-icon .icon-failure {

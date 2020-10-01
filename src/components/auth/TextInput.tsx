@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-  FormBoxInput,
-  FormBoxInputText,
-  FormBoxInputSpan,
-  ErrorSpan,
-} from './Styles';
+import { FormBoxInput, FormBoxInputText, ErrorSpan } from './Styles';
 
 type Props = {
   type: string;
   name: string;
   value: any;
   placeholder: string;
-  icon: string;
   error?: string;
   id?: string;
   onChange(e: React.FormEvent<EventTarget>): void;
@@ -21,7 +15,6 @@ const TextInput: React.FC<Props> = ({
   name,
   value,
   placeholder,
-  icon,
   error,
   onChange,
   id,
@@ -29,9 +22,6 @@ const TextInput: React.FC<Props> = ({
   return (
     <React.Fragment>
       <FormBoxInput>
-        <FormBoxInputSpan>
-          <i className={`fa ${icon}`}></i>
-        </FormBoxInputSpan>
         <FormBoxInputText
           type={type}
           name={name}

@@ -7,16 +7,20 @@ export const SmallIcon = styled.i`
   font-size: 1rem;
 `;
 export const LanguageContainer = styled.div`
-  padding-left: 0;
+  background: #f4f6f8;
+  position: absolute;
+  right: 3rem;
+  top: 1rem;
+
+  i {
+    margin-right: 1rem;
+    cursor: pointer;
+  }
 `;
 
 export const DropdownToggle = styled.a`
   color: #506077;
-  font-weight: 700;
-  :hover {
-    color: #f4744b;
-    font-weight: 700;
-  }
+  text-decoration: none !important;
 `;
 export const AlertContainer = styled.div`
   text-align: left;

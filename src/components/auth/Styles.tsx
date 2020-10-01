@@ -1,12 +1,42 @@
 import styled from 'styled-components';
-import { ecommerce_1 } from '../../images/Images';
+import {
+  display_1,
+  display_2,
+  display_3,
+  display_4,
+  display_5,
+} from '../../images/Images';
 
 export const ContainerFluid = styled.div`
   padding: 0;
 `;
 
-export const ImageContainer = styled.div`
-  background: url(${ecommerce_1}) center no-repeat;
+export const ImageContainerLogin = styled.div`
+  background: url(${display_2}) center no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+`;
+
+export const ImageContainerRegister = styled.div`
+  background: url(${display_5}) center no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+`;
+
+export const ImageContainerForgotten = styled.div`
+  background: url(${display_1}) center no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+`;
+
+export const ImageEmailValidation = styled.div`
+  background: url(${display_4}) center no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+`;
+
+export const ImageResetPassword = styled.div`
+  background: url(${display_3}) center no-repeat;
   background-size: cover;
   min-height: 100vh;
 `;
@@ -26,10 +56,34 @@ export const FormBox = styled.div`
 
 export const FormBoxHeader = styled.div`
   h4 {
+    margin-top: 1.5rem;
     font-weight: 700;
-    font-size: 0.8rem !important;
+    font-size: 1rem !important;
     color: #506077;
-    text-transform: uppercase;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+`;
+
+export const FormBoxSubHeader = styled.div`
+  h6 {
+    font-weight: 400;
+    font-size: 0.95rem !important;
+    color: #506077;
+    margin-bottom: 1.5rem;
+
+    a {
+      color: #f85924;
+      border-bottom: 1px solid #f85924;
+      text-decoration: none;
+      padding-bottom: 0.2rem;
+      transition: all 0.5s ease-in-out;
+
+      :hover {
+        color: #506077;
+        border-bottom: 1px solid #506077;
+      }
+    }
   }
 `;
 
@@ -39,19 +93,18 @@ export const FormBoxInput = styled.div`
 
 export const FormBoxInputText = styled.input`
   width: 100%;
-  height: 2.5rem;
+  height: 3rem;
   margin-bottom: 0.65rem;
   border: none;
   border-radius: 0;
   outline: none;
   background: #fff;
-  padding-left: 2.8125rem;
+  padding: 1rem;
+  color: #000;
+  font-weight: 400;
 
   ::placeholder {
     padding: 0;
-  }
-  :focus {
-    border-bottom: 0.125rem solid #f4744b;
   }
 `;
 
@@ -68,11 +121,18 @@ export const FormBoxCustomControl = styled.div`
   display: block;
   min-height: 1.5rem;
 
+  label {
+    font-size: 0.9rem;
+    font-weight: 300;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+
   input[type='checkbox']:not(:checked) + label:before {
     background: transparent;
     border: 0.125rem solid #506077;
-    width: 0.9375rem;
-    height: 0.9375rem;
+    width: 0.8rem;
+    height: 0.8rem;
     border-radius: 0;
     color: #506077;
   }
@@ -89,18 +149,20 @@ export const FormBoxCheckLabel = styled.label`
   font-weight: 700;
 `;
 
-export const LanguageContainer = styled.div`
-  padding-left: 0;
-`;
-
 export const ForgottenLink = styled.div`
   a {
     color: #506077;
-    font-weight: 700;
+    font-weight: 400;
     transition: all 0.3s ease-in-out;
     text-decoration: none;
+    border-bottom: 1px solid #506077;
+    padding-bottom: 0.2rem;
+    transition: all 0.5s ease-in-out;
+    font-size: 0.9rem;
+
     :hover {
       color: #f4744b;
+      border-bottom: 1px solid #f4744b;
     }
   }
 `;
@@ -120,27 +182,21 @@ export const SubmitButton = styled.div`
   button[type='submit'] {
     border: none;
     cursor: pointer;
-    width: 9.375rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 12rem;
     height: 2.5rem;
     border-right: 0.3125rem;
     background-color: #506077;
     color: #fff;
-    font-weight: 400;
+    font-weight: 700;
     transition: 0.5s;
     border-radius: 0;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
     :hover {
       background-color: #f4744b;
     }
-  }
-`;
-
-export const DropdownToggle = styled.a`
-  color: #506077;
-  text-decoration: none !important;
-  font-weight: 700;
-  :hover {
-    color: #f4744b;
-    font-weight: 700;
   }
 `;
 
@@ -174,7 +230,7 @@ export const PassWrapper = styled.div`
 
 export const IconEye = styled.span`
   position: absolute;
-  top: 0.5rem;
+  top: 0.8rem;
   right: 1rem;
   color: #777777;
   padding-right: 0.5rem;
@@ -205,4 +261,28 @@ export const ErrorSpan = styled.div`
   margin-bottom: 0.6rem;
   text-align: left;
   color: #f44336;
+`;
+
+export const LogoContainer = styled.div`
+  margin: 0 auto;
+`;
+
+export const TermsContainer = styled.div`
+  h4 {
+    font-size: 0.75rem;
+    margin-top: 2rem;
+
+    a {
+      color: #f85924;
+      border-bottom: 1px solid #f85924;
+      text-decoration: none;
+      padding-bottom: 0.2rem;
+      transition: all 0.5s ease-in-out;
+
+      :hover {
+        color: #506077;
+        border-bottom: 1px solid #506077;
+      }
+    }
+  }
 `;

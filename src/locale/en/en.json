@@ -95,7 +95,31 @@
         "small-text": "Select only one type"
       },
       "help": "Help",
-      "reset": "Reset"
+      "reset": "Reset",
+      "success": {
+        "main": "Awesome! Your transaction was completed successfully",
+        "sub": "You can perform another or view your",
+        "sub2": "transaction history",
+        "sub3": "Airtime top-up was successful",
+        "btn": "View history",
+        "btn2": "Start new payment"
+      },
+      "failure": {
+        "main": "Oops ... something went wrong processing your transaction",
+        "sub": "You can re-try or start this process over",
+        "sub2": "this has been logged in your transaction history",
+        "sub3": "Airtime top-up failed",
+        "btn": "View history",
+        "btn2": "Re-try"
+      },
+      "cancelled": {
+        "main": "... sad to see you cancel the transaction. Did something go wrong?",
+        "sub": "You can re-try or start this process over",
+        "sub2": "",
+        "sub3": "Airtime top-up cancelled",
+        "btn": "Start Over",
+        "btn2": "Re-try"
+      }
     }
   }
 }

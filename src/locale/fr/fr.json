@@ -95,7 +95,31 @@
         "small-text": "Sélectionnez un seul type"
       },
       "help": "Aidez-moi",
-      "reset": "Réinitialiser"
+      "reset": "Réinitialiser",
+      "success": {
+        "main": "Impressionnant! Votre transaction a été effectuée avec succès",
+        "sub": "Vous pouvez en exécuter une autre ou afficher votre",
+        "sub2": "historique des transactions",
+        "sub3": "La recharge de temps d'antenne a réussi",
+        "btn": "Voir l'historique",
+        "btn2": "Nouveau paiement"
+      },
+      "failure": {
+        "main": "Oups ... une erreur s'est produite lors du traitement de votre transaction",
+        "sub": "Vous pouvez réessayer ou recommencer ce processus",
+        "sub2": "cela a été enregistré dans votre historique de transactions",
+        "sub3": "Échec de la recharge de temps d'antenne",
+        "btn": "Voir l'historique",
+        "btn2": "Recommencez"
+      },
+      "cancelled": {
+        "main": "... triste de vous voir annuler la transaction. Quelque chose s'est mal passé?",
+        "sub": "Vous pouvez réessayer ou recommencer ce processus",
+        "sub2": "",
+        "sub3": "Recharge de temps d'antenne annulée",
+        "btn": "Recommencer",
+        "btn2": "Recommencez"
+      }
     }
   }
 }

@@ -18,17 +18,18 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import {
   ContainerFluid,
-  ImageContainer,
+  ImageContainerRegister,
   FormContainer,
   FormBox,
   FormBoxHeader,
-  RegisterLink,
+  TermsContainer,
   FormBoxCustomControl,
   FormBoxCheckLabel,
+  LogoContainer,
+  FormBoxSubHeader,
 } from './Styles';
 import { isEmpty } from '../../helpers/isEmpty';
-// import { validateRegisterInput } from '../../helpers/validation/register';
-// import { Register } from '../../models/Register';
+import { path } from '../../helpers/path';
 
 interface Props {
   history: History;
@@ -50,12 +51,6 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
   const [error, setError] = useState<Error | {}>({});
   const [singleError, setSingleError] = useState<string>('');
   const [phone, setPhone] = useState('');
-  // const [clientValidation, setClientValidation] = useState<Register>({
-  //   Name: '',
-  //   EmailAddress: '',
-  //   PhoneNumber: '',
-  //   Password: '',
-  // });
 
   useEffect(() => {
     const { isAuthenticated } = auth;
@@ -81,13 +76,6 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
       IsBusiness: isBusiness,
     };
     dispatch(registerRequest(payload));
-
-    // const { errors, isValid } = validateRegisterInput(payload);
-    // if (isValid) {
-    //   dispatch(registerRequest(payload));
-    // } else {
-    //   setClientValidation(errors);
-    // }
   };
 
   useEffect(() => {
@@ -120,15 +108,20 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
     <React.Fragment>
       <ContainerFluid>
         <div className="row">
-          <ImageContainer className="col-lg-6 col-md-6 d-none d-md-block"></ImageContainer>
-          <FormContainer className="col-lg-6 col-md-6">
-            <FormBox className="col-lg-8 col-md-12 col-sm-9 col-xs-12 text-center">
-              <div className="logo mb-3">
-                <img src={logoNav} alt="logo" width="80" />
-              </div>
-              <FormBoxHeader className="mb-4">
-                <h4>{t('register.header')}</h4>
+          <ImageContainerRegister className="col-lg-5 col-md-5 d-none d-md-block"></ImageContainerRegister>
+          <FormContainer className="col-lg-7 col-md-7">
+            <FormBox className="col-sm-5 text-center">
+              <LogoContainer className="mt-0">
+                <img src={logoNav} alt="logo" width="100" />
+              </LogoContainer>
+              <FormBoxHeader>
+                <h4>Welcome to ARAKA Payments</h4>
               </FormBoxHeader>
+              <FormBoxSubHeader>
+                <h6>
+                  Already a member? <Link to={path.login}>Log in</Link>
+                </h6>
+              </FormBoxSubHeader>
               {!isEmpty(error) ? <MultipleErrors error={error} /> : null}
               {!isEmpty(singleError) ? (
                 <SingleError error={singleError} />
@@ -138,22 +131,18 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   type="text"
                   name="Name"
                   value={values.Name}
-                  placeholder={t('register.name')}
-                  icon="fa-building"
-                  // error={clientValidation ? clientValidation.Name : ''}
+                  placeholder="Your full name or merchant name ..."
                   onChange={onChange}
                 />
                 <TextInput
                   type="email"
                   name="EmailAddress"
                   value={values.EmailAddress}
-                  placeholder={t('register.email')}
-                  icon="fa-envelope"
-                  // error={clientValidation ? clientValidation.EmailAddress : ''}
+                  placeholder="Your email address ..."
                   onChange={onChange}
                 />
                 <PhoneInput
-                  placeholder="Enter phone number"
+                  placeholder="Your phone number ..."
                   value={phone}
                   country="gh"
                   preferredCountries={['gh', 'cd', 'us', 'gb']}
@@ -161,33 +150,41 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   containerStyle={{ marginBottom: '0.8rem' }}
                   inputStyle={{
                     width: '100%',
-                    paddingLeft: '3.1rem',
                     border: 'none',
-                    height: '2.5rem',
+                    borderRadius: '0',
+                    padding: '1.5rem',
+                    paddingLeft: '3rem',
+                    color: '#000',
+                    fontWeight: 'normal',
                   }}
                   buttonStyle={{
                     border: 'none',
                     background: '#fff',
-                    paddingLeft: '0.6rem',
+                    padding: '0.2rem',
+                    borderRadius: '0',
                   }}
                   dropdownStyle={{
                     textAlign: 'left',
                     fontSize: '0.8rem',
-                    fontWeight: 'bold',
+                    fontWeight: 'normal',
                   }}
-                  // inputClass={}
                 />
                 <PasswordInput
                   type="password"
                   name="Password"
                   value={values.Password}
-                  placeholder={t('register.password')}
-                  icon="fa-lock"
-                  // error={clientValidation ? clientValidation.Password : ''}
+                  placeholder="Your password ..."
                   onChange={onChange}
                 />
-                <div className="row mb-2">
-                  <div className="col-sm-6 d-flex pl-3">
+                <Button
+                  type="submit"
+                  title="Sign up"
+                  isSubmitting={isSubmitting}
+                  processTitle={t('register.processing')}
+                />
+
+                <div className="row">
+                  <div className="col-sm-12 d-flex">
                     <FormBoxCustomControl className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
@@ -199,32 +196,23 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                         className="custom-control-label"
                         htmlFor="cb1"
                       >
-                        {!isBusiness
-                          ? t('register.business')
-                          : t('register.customer')}
+                        Register me as a merchant
                       </FormBoxCheckLabel>
                     </FormBoxCustomControl>
                   </div>
                 </div>
-                <div className="row mb-2">
-                  <ChangeLanguage />
-                </div>
-                <Button
-                  type="submit"
-                  title={t('register.btn_title')}
-                  isSubmitting={isSubmitting}
-                  processTitle={t('register.processing')}
-                />
-                <div className="text-center mb-3">
-                  <RegisterLink>
-                    {t('register.note')}{' '}
-                    <Link to="/auth/login" className="register-link">
-                      {t('register.login_note')}
-                    </Link>
-                  </RegisterLink>
-                </div>
+                <TermsContainer className="row">
+                  <div className="col-sm-12 d-flex mt-2">
+                    <h4>
+                      By continuing, you accept our{' '}
+                      <Link to="#">Terms of Use</Link> and{' '}
+                      <Link to="#">Privacy Policy</Link>
+                    </h4>
+                  </div>
+                </TermsContainer>
               </form>
             </FormBox>
+            <ChangeLanguage />
           </FormContainer>
         </div>
       </ContainerFluid>

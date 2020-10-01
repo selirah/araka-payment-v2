@@ -16,18 +16,19 @@ import { Button } from './Button';
 import { Login, Error } from '../../interfaces';
 import {
   ContainerFluid,
-  ImageContainer,
+  ImageContainerLogin,
   FormContainer,
   FormBox,
   FormBoxHeader,
   ForgottenLink,
-  RegisterLink,
+  TermsContainer,
+  LogoContainer,
+  FormBoxSubHeader,
+  FormBoxCustomControl,
+  FormBoxCheckLabel,
 } from './Styles';
 import { isEmpty } from '../../helpers/isEmpty';
 import { path } from '../../helpers/path';
-
-// import { validateLoginInput } from '../../helpers/validation/login';
-// import { Login } from '../../models/Login';
 
 type Props = {
   history: History;
@@ -45,10 +46,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<Error | {}>({});
   const [singleError, setSingleError] = useState<string>('');
-  // const [clientValidation, setClientValidation] = useState<Login>({
-  //   EmailAddress: '',
-  //   Password: '',
-  // });
+  const [remember, setRemember] = useState<boolean>(false);
 
   useEffect(() => {
     const { isAuthenticated } = auth;
@@ -64,18 +62,16 @@ const LoginForm: React.FC<Props> = ({ history }) => {
     setValues({ ...values, [name]: value });
   };
 
+  const setRememberFlag = (): void => {
+    setRemember(!remember);
+  };
+
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
     const payload: Login = {
       EmailAddress: values.EmailAddress,
       Password: values.Password,
     };
-    // const { errors, isValid } = validateLoginInput(payload);
-    // if (!isValid) {
-    //   setClientValidation(errors);
-    // } else {
-    //   dispatch(loginRequest(payload));
-    // }
     dispatch(loginRequest(payload));
   };
 
@@ -95,15 +91,20 @@ const LoginForm: React.FC<Props> = ({ history }) => {
     <React.Fragment>
       <ContainerFluid>
         <div className="row">
-          <ImageContainer className="col-lg-6 col-md-6 d-none d-md-block"></ImageContainer>
-          <FormContainer className="col-lg-6 col-md-6">
-            <FormBox className="col-lg-8 col-md-12 col-sm-9 col-xs-12 text-center">
-              <div className="logo mb-3">
+          <ImageContainerLogin className="col-lg-5 col-md-4 d-none d-md-block"></ImageContainerLogin>
+          <FormContainer className="col-lg-7 col-md-7">
+            <FormBox className="col-sm-5 text-center">
+              <LogoContainer className="mt-0">
                 <img src={logoNav} alt="logo" width="100" />
-              </div>
-              <FormBoxHeader className="mb-4">
-                <h4>{t('login.header')}</h4>
+              </LogoContainer>
+              <FormBoxHeader>
+                <h4>Welcome back</h4>
               </FormBoxHeader>
+              <FormBoxSubHeader>
+                <h6>
+                  New to ARAKA? <Link to={path.register}>Sign Up</Link>
+                </h6>
+              </FormBoxSubHeader>
               {!isEmpty(error) ? <MultipleErrors error={error} /> : null}
               {!isEmpty(singleError) ? (
                 <SingleError error={singleError} />
@@ -113,22 +114,18 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                   type="text"
                   name="EmailAddress"
                   value={values.EmailAddress}
-                  placeholder={t('login.email')}
-                  icon="fa-envelope"
-                  // error={clientValidation ? clientValidation.EmailAddress : ''}
+                  placeholder="Your email address ..."
                   onChange={onChange}
                 />
                 <PasswordInput
                   type="password"
                   name="Password"
                   value={values.Password}
-                  placeholder={t('login.password')}
-                  icon="fa-lock"
-                  // error={clientValidation ? clientValidation.Password : ''}
+                  placeholder="Your password ..."
                   onChange={onChange}
                 />
                 <div className="row mb-3">
-                  <ChangeLanguage />
+                  <div className="col-6"></div>
                   <div className="col-6 text-right">
                     <ForgottenLink>
                       <Link to={path.forgot}>{t('login.forgotten')}</Link>
@@ -141,14 +138,36 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                   isSubmitting={isSubmitting}
                   processTitle={t('login.processing')}
                 />
-                <div className="text-center mb-3">
-                  <RegisterLink>
-                    {t('login.note')}{' '}
-                    <Link to={path.register}>{t('login.register_note')}</Link>
-                  </RegisterLink>
+                <div className="row">
+                  <div className="col-sm-12 d-flex">
+                    <FormBoxCustomControl className="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        className="custom-control-input"
+                        onClick={() => setRememberFlag()}
+                        id="cb1"
+                      />
+                      <FormBoxCheckLabel
+                        className="custom-control-label"
+                        htmlFor="cb1"
+                      >
+                        Remember me on this device
+                      </FormBoxCheckLabel>
+                    </FormBoxCustomControl>
+                  </div>
                 </div>
+                <TermsContainer className="row">
+                  <div className="col-sm-12 d-flex mt-2">
+                    <h4>
+                      By continuing, you accept our{' '}
+                      <Link to="#">Terms of Use</Link> and{' '}
+                      <Link to="#">Privacy Policy</Link>
+                    </h4>
+                  </div>
+                </TermsContainer>
               </form>
             </FormBox>
+            <ChangeLanguage />
           </FormContainer>
         </div>
       </ContainerFluid>

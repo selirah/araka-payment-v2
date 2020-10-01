@@ -13,6 +13,14 @@ import mpesa from './logos/mpesa.jpg';
 import orange from './logos/orangemoney.jpg';
 import airtelMoney from './logos/airtelmoney.jpg';
 import user from './user.svg';
+import successIcon from './transaction/success.svg';
+import failedIcon from './transaction/reject-failed.svg';
+import cancelledIcon from './transaction/cancelled.svg';
+import display_1 from './araka/1.jpg';
+import display_2 from './araka/2.jpg';
+import display_3 from './araka/3.jpg';
+import display_4 from './araka/4.jpg';
+import display_5 from './araka/5.jpg';
 
 export {
   logoNav,
@@ -29,4 +37,12 @@ export {
   airtelMoney,
   logo,
   user,
+  successIcon,
+  failedIcon,
+  cancelledIcon,
+  display_1,
+  display_2,
+  display_3,
+  display_4,
+  display_5,
 };

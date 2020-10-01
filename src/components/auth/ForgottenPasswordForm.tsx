@@ -12,12 +12,15 @@ import { Button } from './Button';
 import { ForgottenPassword } from '../../interfaces';
 import {
   ContainerFluid,
-  ImageContainer,
+  ImageContainerForgotten,
   FormContainer,
   FormBox,
   FormBoxHeader,
-  RegisterLink,
+  LogoContainer,
+  FormBoxSubHeader,
+  TermsContainer,
 } from './Styles';
+import { path } from '../../helpers/path';
 
 const ForgottenPasswordForm: React.FC = () => {
   // const dispatch: AppDispatch = useDispatch();
@@ -51,41 +54,47 @@ const ForgottenPasswordForm: React.FC = () => {
     <React.Fragment>
       <ContainerFluid>
         <div className="row">
-          <ImageContainer className="col-lg-6 col-md-6 d-none d-md-block"></ImageContainer>
-          <FormContainer className="col-lg-6 col-md-6">
-            <FormBox className="col-lg-8 col-md-12 col-sm-9 col-xs-12 text-center">
-              <div className="logo mb-3">
+          <ImageContainerForgotten className="col-lg-5 col-md-4 d-none d-md-block"></ImageContainerForgotten>
+          <FormContainer className="col-lg-7 col-md-7">
+            <FormBox className="col-sm-5 text-center">
+              <LogoContainer className="mt-0">
                 <img src={logoNav} alt="logo" width="100" />
-              </div>
-              <FormBoxHeader className="mb-4">
-                <h4>{t('forgotten.header')}</h4>
+              </LogoContainer>
+              <FormBoxHeader>
+                <h4>Reset your password</h4>
               </FormBoxHeader>
+              <FormBoxSubHeader>
+                <h6>
+                  Remembered password? <Link to={path.login}>Log in</Link>
+                </h6>
+              </FormBoxSubHeader>
               <form onSubmit={onSubmit}>
                 <TextInput
                   type="email"
                   name="EmailAddress"
                   value={values.EmailAddress}
-                  placeholder={t('forgotten.email')}
-                  icon="fa-envelope"
+                  placeholder="Your email"
                   onChange={onChange}
                 />
-                <div className="row mb-3">
-                  <ChangeLanguage />
-                </div>
+
                 <Button
                   type="submit"
                   title={t('forgotten.btn_title')}
                   isSubmitting={isSubmitting}
                   processTitle={t('forgotten.processing')}
                 />
-                <div className="text-center mb-3">
-                  <RegisterLink>
-                    {t('forgotten.note')}{' '}
-                    <Link to="/auth/login">{t('forgotten.login_note')}</Link>
-                  </RegisterLink>
-                </div>
+                <TermsContainer className="row">
+                  <div className="col-sm-12 d-flex mt-2">
+                    <h4>
+                      By continuing, you accept our{' '}
+                      <Link to="#">Terms of Use</Link> and{' '}
+                      <Link to="#">Privacy Policy</Link>
+                    </h4>
+                  </div>
+                </TermsContainer>
               </form>
             </FormBox>
+            <ChangeLanguage />
           </FormContainer>
         </div>
       </ContainerFluid>
