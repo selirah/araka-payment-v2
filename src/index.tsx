@@ -51,7 +51,7 @@ if (!isEmpty(token)) {
     secure.removeAll();
     secure.clear();
     store.dispatch(logout());
-    window.location.href = path.login;
+    window.location.href = path.home;
   }
 }
 

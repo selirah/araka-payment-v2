@@ -1575,92 +1575,110 @@ footer .list-inline-item.mdi {
 
 /*-- Success Page **/
 
-.display-success {
+.display-success-failure-cancel {
   padding: 2rem;
   background-color: #fff;
   min-height: 40vh;
   max-height: 40vh;
 }
 
-.display-success {
+.display-success-failure-cancel {
   margin-top: 1rem;
   padding: 1rem;
 }
 
-.display-success h2 {
-  font-size: 1.7rem;
-  font-weight: 700;
+.display-success-failure-cancel h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
   color: #425466;
 }
 
-.display-success h4 {
+.display-success-failure-cancel h4 {
   margin-top: 2rem;
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 300;
   text-transform: uppercase;
   color: #949dac;
 }
 
-.display-success h5 {
+.display-success-failure-cancel h5 {
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 300;
   color: #949dac;
   text-transform: uppercase;
 }
 
-.display-success h6 {
-  font-size: 1rem;
-  color: #949dac5e;
-  font-weight: 100;
+.display-success-failure-cancel h6 {
+  font-size: 1.2rem;
+  color: #425372;
+  font-weight: 300;
   text-transform: uppercase;
 }
 
-.display-success .display-icon {
+.display-success-failure-cancel .display-icon {
   margin-top: 1.5rem;
 }
 
-.display-success .display-icon i {
-  font-size: 8rem;
-  color: #4bb543;
+.display-success-failure-cancel .display-icon .icon-success {
+  font-size: 6rem;
+  color: #949dac;
 }
 
-.display-success .display-success-buttons {
-  margin-top: 7rem;
+.display-success-failure-cancel .display-icon .icon-failure {
+  font-size: 6rem;
+  color: #949dac;
 }
 
-.display-success .display-success-buttons button {
+.display-success-failure-cancel .display-icon .icon-cancel {
+  font-size: 6rem;
+  color: #949dac;
+}
+
+.display-success-failure-cancel .display-success-failure-cancel-buttons {
+  margin-top: 5rem;
+}
+
+.display-success-failure-cancel .display-success-failure-cancel-buttons button {
   margin: 1rem;
   padding: 0.8rem;
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
-.display-success .display-success-buttons button:first-child {
+.display-success-failure-cancel
+  .display-success-failure-cancel-buttons
+  button:first-child {
   background: transparent;
   border-radius: 0.25rem;
-  border: 0.25rem solid rgb(66, 84, 102);
+  border: 0.0625rem solid rgb(66, 84, 102);
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.display-success .display-success-buttons button:first-child:hover {
+.display-success-failure-cancel
+  .display-success-failure-cancel-buttons
+  button:first-child:hover {
   background: rgb(66, 84, 102);
   color: #fff;
 }
 
-.display-success .display-success-buttons button:last-child {
+.display-success-failure-cancel
+  .display-success-failure-cancel-buttons
+  button:last-child {
   background: #fbbd19;
   color: #fff;
   border-radius: 0.25rem;
-  border: 0.25rem solid #fbbd19;
+  border: 0.0625rem solid #fbbd19;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.display-success .display-success-buttons button:last-child:hover {
+.display-success-failure-cancel
+  .display-success-failure-cancel-buttons
+  button:last-child:hover {
   background: #ffae00;
   color: #fff;
-  border: 0.25rem solid #ffae00;
+  border: 0.0625rem solid #ffae00;
 }
 
 /* End Success Page */
