@@ -5,15 +5,20 @@ import { Link } from 'react-router-dom';
 import { History } from 'history';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { appSelector } from '../../helpers/appSelector';
-import { loginRequest, resetErrorState } from '../../store/auth/actions';
+import {
+  loginRequest,
+  resetErrorState,
+  clearVerificationResponse,
+} from '../../store/auth/actions';
 import { ChangeLanguage } from '../common/ChangeLanguage';
 import { logoNav } from '../../images/Images';
 import { TextInput } from './TextInput';
 import { PasswordInput } from './PasswordInput';
 import { MultipleErrors } from './MultipleErrors';
 import { SingleError } from './SingleError';
+import { VerificationSuccess } from './VerificationSuccess';
 import { Button } from './Button';
-import { Login, Error } from '../../interfaces';
+import { Login, Error, VerificationResponse } from '../../interfaces';
 import {
   ContainerFluid,
   ImageContainerLogin,
@@ -47,12 +52,16 @@ const LoginForm: React.FC<Props> = ({ history }) => {
   const [error, setError] = useState<Error | {}>({});
   const [singleError, setSingleError] = useState<string>('');
   const [remember, setRemember] = useState<boolean>(false);
+  const [response, setResponse] = useState<VerificationResponse | undefined>(
+    undefined
+  );
 
   useEffect(() => {
-    const { isAuthenticated } = auth;
+    const { isAuthenticated, verificationResponse } = auth;
     if (isAuthenticated) {
       history.push(path.home);
     }
+    setResponse(verificationResponse);
     dispatch(resetErrorState());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -81,8 +90,10 @@ const LoginForm: React.FC<Props> = ({ history }) => {
     setError(error);
     setSingleError(singleError);
     if (isAuthenticated && isPerformingPayment) {
+      dispatch(clearVerificationResponse());
       history.push(path.payment);
     } else if (isAuthenticated && !isPerformingPayment) {
+      dispatch(clearVerificationResponse());
       history.push(path.dashboard);
     }
   }, [auth, isPerformingPayment, history]);
@@ -97,14 +108,21 @@ const LoginForm: React.FC<Props> = ({ history }) => {
               <LogoContainer className="mt-0">
                 <img src={logoNav} alt="logo" width="100" />
               </LogoContainer>
-              <FormBoxHeader>
-                <h4>Welcome back</h4>
-              </FormBoxHeader>
-              <FormBoxSubHeader>
-                <h6>
-                  New to ARAKA? <Link to={path.register}>Sign Up</Link>
-                </h6>
-              </FormBoxSubHeader>
+
+              {!isEmpty(response) && response?.EmailAddress !== null ? (
+                <VerificationSuccess />
+              ) : (
+                <React.Fragment>
+                  <FormBoxHeader>
+                    <h4>Welcome back</h4>
+                  </FormBoxHeader>
+                  <FormBoxSubHeader>
+                    <h6>
+                      New to ARAKA? <Link to={path.register}>Sign Up</Link>
+                    </h6>
+                  </FormBoxSubHeader>
+                </React.Fragment>
+              )}
               {!isEmpty(error) ? <MultipleErrors error={error} /> : null}
               {!isEmpty(singleError) ? (
                 <SingleError error={singleError} />

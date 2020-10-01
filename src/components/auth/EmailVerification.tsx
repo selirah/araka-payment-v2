@@ -39,6 +39,12 @@ const EmailVerification: React.FC<Props> = ({ processId }) => {
     setIsSubmitting(isSubmitting);
     setSingleError(singleError);
     setResponse(verificationResponse);
+    if (
+      response?.EmailAddress !== undefined ||
+      response?.EmailAddress !== null
+    ) {
+      window.location.href = path.login;
+    }
   }, [auth]);
 
   let render: React.ReactNode;
@@ -46,45 +52,22 @@ const EmailVerification: React.FC<Props> = ({ processId }) => {
   if (isSubmitting) {
     render = <Spinner />;
   } else {
-    if (response !== undefined && !isEmpty(response?.EmailAddress)) {
-      render = (
-        <React.Fragment>
-          <SuccessContainer>
-            <h2>
-              <img src={exclamationIcon} alt="success" />
-              Account Verified
-            </h2>
-            <p>
-              Nice! We have successfully verified your account. Go ahead and
-              login with password you used to sign up. Let's start making
-              payments!
-            </p>
-          </SuccessContainer>
-          <ButtonLink>
-            <Link to={path.login} className="btn">
-              Proceed to Login
-            </Link>
-          </ButtonLink>
-        </React.Fragment>
-      );
-    } else {
-      render = (
-        <React.Fragment>
-          <SuccessContainer>
-            <h2>
-              <img src={exclamationIcon} alt="success" />
-              {singleError}
-            </h2>
-            <p>OOps!...we could not verify your email at this time</p>
-          </SuccessContainer>
-          <ButtonLink>
-            <Link to={path.login} className="btn">
-              Return to Login
-            </Link>
-          </ButtonLink>
-        </React.Fragment>
-      );
-    }
+    render = (
+      <React.Fragment>
+        <SuccessContainer>
+          <h2>
+            <img src={exclamationIcon} alt="success" />
+            {singleError}
+          </h2>
+          <p>OOps!...we could not verify your email at this time</p>
+        </SuccessContainer>
+        <ButtonLink>
+          <Link to={path.login} className="btn">
+            Return to Login
+          </Link>
+        </ButtonLink>
+      </React.Fragment>
+    );
   }
 
   return (

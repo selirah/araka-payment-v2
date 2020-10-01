@@ -44,3 +44,6 @@ export const verificationSuccess = (response: VerificationResponse) =>
 
 export const verificationError = (error: string) =>
   action(AuthActionTypes.VERIFY_EMAIL_FAILURE, error);
+
+export const clearVerificationResponse = () =>
+  action(AuthActionTypes.CLEAR_VERIFICATION_RESPONSE);

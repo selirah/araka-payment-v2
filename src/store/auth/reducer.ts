@@ -93,6 +93,11 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         isSubmitting: false,
         singleError: action.payload,
       };
+    case AuthActionTypes.VERIFY_EMAIL_FAILURE:
+      return {
+        ...state,
+        verificationResponse: initialState.verificationResponse,
+      };
     case AuthActionTypes.DESTROY_STATES:
       return initialState;
     default:
