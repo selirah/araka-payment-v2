@@ -1,4 +1,4 @@
-import { User, Error } from '../../interfaces';
+import { User, Error, VerificationResponse } from '../../interfaces';
 
 export enum AuthActionTypes {
   IS_SUBMITTING = '@@auth/IS_SUBMITTING',
@@ -12,6 +12,9 @@ export enum AuthActionTypes {
   LOG_SINGLE_ERROR = '@@auth/LOG_SINGLE_ERROR',
   SET_USER = '@@auth/SET_USER',
   DESTROY_STATES = '@@auth/DESTROY_STATES',
+  VERIFY_EMAIL_REQUEST = '@@auth/VERIFY_EMAIL_REQUEST',
+  VERIFY_EMAIL_SUCCESS = '@@auth/VERIFY_EMAIL_SUCCESS',
+  VERIFY_EMAIL_FAILURE = '@@auth/VERIFY_EMAIL_FAILURE',
 }
 
 export type AuthState = {
@@ -21,4 +24,5 @@ export type AuthState = {
   readonly success: boolean;
   readonly user: User | {};
   readonly singleError: string;
+  readonly verificationResponse: VerificationResponse | undefined;
 };

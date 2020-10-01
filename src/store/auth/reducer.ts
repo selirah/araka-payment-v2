@@ -8,6 +8,7 @@ export const initialState: AuthState = {
   singleError: '',
   success: false,
   user: {},
+  verificationResponse: undefined,
 };
 
 const reducer: Reducer<AuthState> = (state = initialState, action) => {
@@ -72,6 +73,25 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         ...state,
         user: action.payload,
         isAuthenticated: true,
+      };
+    case AuthActionTypes.VERIFY_EMAIL_REQUEST:
+      return {
+        ...state,
+        isSubmitting: true,
+        singleError: '',
+      };
+    case AuthActionTypes.VERIFY_EMAIL_SUCCESS:
+      return {
+        ...state,
+        isSubmitting: false,
+        verificationResponse: action.payload,
+        success: true,
+      };
+    case AuthActionTypes.VERIFY_EMAIL_FAILURE:
+      return {
+        ...state,
+        isSubmitting: false,
+        singleError: action.payload,
       };
     case AuthActionTypes.DESTROY_STATES:
       return initialState;

@@ -6,3 +6,5 @@ export * from './Error';
 export * from './Register';
 export * from './Login';
 export * from './ForgottenPassword';
+export * from './Verification';
+export * from './VerificationResponse';

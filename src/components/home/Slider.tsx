@@ -35,25 +35,34 @@ const Slider: React.FC = () => {
             <div className="mt-4 customer-logos slider swiper-container reverse">
               <div className="swiper-wrapper">
                 <div className="swiper-slide">
-                  <img src={Images.airtelMoney} alt="logo" />
+                  <img src={Images.caa} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src={Images.airtel} alt="logo" />
+                  <img src={Images.ag} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src={Images.mpesa} alt="logo" />
+                  <img src={Images.congoair} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src={Images.dstv} alt="logo" />
+                  <img src={Images.fleu} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src={Images.vodacom} alt="logo" />
+                  <img src={Images.jefferey} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src={Images.orange} alt="logo" />
+                  <img src={Images.cepd} alt="logo" />
                 </div>
                 <div className="swiper-slide">
-                  <img src={Images.canal} alt="logo" />
+                  <img src={Images.lapati} alt="logo" />
+                </div>
+                <div className="swiper-slide">
+                  <img src={Images.mbuella} alt="logo" />
+                </div>
+                <div className="swiper-slide">
+                  <img src={Images.phila} alt="logo" />
+                </div>
+                <div className="swiper-slide">
+                  <img src={Images.zimbali} alt="logo" />
                 </div>
               </div>
             </div>

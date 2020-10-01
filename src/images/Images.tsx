@@ -22,6 +22,16 @@ import display_3 from './araka/3.svg';
 import display_4 from './araka/4.svg';
 import display_5 from './araka/5.svg';
 import exclamationIcon from './araka/exclamation.svg';
+import ag from './logos/ag.jpg';
+import caa from './logos/caa.jpg';
+import cepd from './logos/cepd.jpg';
+import congoair from './logos/congo-air.jpg';
+import fleu from './logos/fleu.jpg';
+import jefferey from './logos/jefferey.jpg';
+import lapati from './logos/la-pati.jpg';
+import mbuella from './logos/mbuella.jpg';
+import phila from './logos/phila.jpg';
+import zimbali from './logos/zimbali.jpg';
 
 export {
   logoNav,
@@ -47,4 +57,14 @@ export {
   display_4,
   display_5,
   exclamationIcon,
+  ag,
+  caa,
+  congoair,
+  fleu,
+  jefferey,
+  cepd,
+  lapati,
+  mbuella,
+  phila,
+  zimbali,
 };

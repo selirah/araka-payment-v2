@@ -6,9 +6,11 @@ import {
   registerError,
   registerSuccess,
   logError,
+  verificationSuccess,
+  verificationError,
 } from './actions';
 import { callApiPost } from '../../utils/api';
-import { Login, Register } from '../../interfaces';
+import { Login, Register, Verification } from '../../interfaces';
 import { authorization } from '../../utils/authorization';
 import { secure } from '../../utils/secure';
 
@@ -48,6 +50,23 @@ function* register({ payload }: { type: string; payload: Register }) {
   }
 }
 
+function* verify({ payload }: { type: string; payload: Verification }) {
+  try {
+    const res = yield call(callApiPost, 'login/verifyaccount', payload);
+    yield put(verificationSuccess(res.data));
+  } catch (err) {
+    if (err && err.response) {
+      if (err.response.data.status) {
+        yield put(verificationError(err.response.data));
+      } else {
+        yield put(logError(err.response.data));
+      }
+    } else {
+      throw err;
+    }
+  }
+}
+
 function* watchLogin() {
   yield takeEvery(AuthActionTypes.REQUEST_LOGIN_SUBMIT, login);
 }
@@ -56,8 +75,12 @@ function* watchRegister() {
   yield takeEvery(AuthActionTypes.REQUEST_REGISTER_SUBMIT, register);
 }
 
+function* watchVerification() {
+  yield takeEvery(AuthActionTypes.VERIFY_EMAIL_REQUEST, verify);
+}
+
 function* authSaga() {
-  yield all([fork(watchLogin), fork(watchRegister)]);
+  yield all([fork(watchLogin), fork(watchRegister), fork(watchVerification)]);
 }
 
 export { authSaga };
