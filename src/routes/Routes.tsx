@@ -8,6 +8,7 @@ import FailurePage from '../pages/payment/failure';
 import CancelledPage from '../pages/payment/cancelled';
 import LoginPage from '../pages/auth/login';
 import RegisterPage from '../pages/auth/register';
+import RegisterSuccessPage from '../pages/auth/register-success';
 import ForgottenPasswordPage from '../pages/auth/forgotten-password';
 import DashboardPage from '../pages/dashboard/dashboard';
 import NotFoundPage from '../pages/_404';
@@ -21,6 +22,11 @@ const Routes: React.FC = () => {
         <Route exact path={path.payment} component={PaymentPage} />
         <Route exact path={path.login} component={LoginPage} />
         <Route exact path={path.register} component={RegisterPage} />
+        <Route
+          exact
+          path={path.registerSuccess}
+          component={RegisterSuccessPage}
+        />
         <Route exact path={path.forgot} component={ForgottenPasswordPage} />
 
         <PrivateRoute exact path={path.dashboard} component={DashboardPage} />

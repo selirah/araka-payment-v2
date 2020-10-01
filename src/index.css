@@ -1118,8 +1118,8 @@ footer .list-inline-item.mdi {
   background: #fff;
 }
 .image-placeholder {
-  width: 4rem;
-  height: 4rem;
+  width: 10rem;
+  height: 10rem;
   margin: 0 auto;
   background-size: contain;
   background-repeat: no-repeat;

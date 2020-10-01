@@ -21,6 +21,7 @@ import display_2 from './araka/2.jpg';
 import display_3 from './araka/3.jpg';
 import display_4 from './araka/4.jpg';
 import display_5 from './araka/5.jpg';
+import exclamationIcon from './araka/exclamation.svg';
 
 export {
   logoNav,
@@ -45,4 +46,5 @@ export {
   display_3,
   display_4,
   display_5,
+  exclamationIcon,
 };

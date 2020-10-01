@@ -35,7 +35,7 @@ export const ImageEmailValidation = styled.div`
   min-height: 100vh;
 `;
 
-export const ImageResetPassword = styled.div`
+export const ImageRegisterSuccessful = styled.div`
   background: url(${display_3}) center no-repeat;
   background-size: cover;
   min-height: 100vh;
@@ -283,6 +283,66 @@ export const TermsContainer = styled.div`
         color: #506077;
         border-bottom: 1px solid #506077;
       }
+    }
+  }
+`;
+
+export const SuccessHeader = styled.div`
+  margin-bottom: 3rem;
+  h4 {
+    margin-top: 1.5rem;
+    font-weight: 700;
+    font-size: 1rem !important;
+    color: #506077;
+    font-style: italic;
+  }
+`;
+
+export const SuccessContainer = styled.div`
+  border: 0.0625rem solid #e0e0e0;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  position: relative;
+
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 1.3rem;
+    font-weight: 700;
+    color: #506077;
+  }
+
+  p {
+    font-size: 0.8rem;
+    text-align: left;
+    line-height: 1.5rem;
+    font-weight: 300;
+  }
+
+  img {
+    width: 2rem;
+    position: absolute;
+    left: 1.2rem;
+    top: 1.3rem;
+    margin-right: 1.5rem;
+  }
+`;
+
+export const ButtonLink = styled.div`
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+
+  a {
+    background: #506077;
+    color: #fff;
+    border-radius: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.75rem;
+    transition: all 0.5s ease-in-out;
+
+    :hover {
+      background: #f85924;
+      color: #fff;
     }
   }
 `;

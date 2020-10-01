@@ -3,6 +3,7 @@ export const path = {
   payment: '/transaction/payment',
   login: '/auth/login',
   register: '/auth/register',
+  registerSuccess: '/auth/register-success',
   forgot: '/auth/forgotten-password',
   dashboard: '/dashboard',
   success: '/transaction/success',
