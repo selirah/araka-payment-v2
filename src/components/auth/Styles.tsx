@@ -346,3 +346,37 @@ export const ButtonLink = styled.div`
     }
   }
 `;
+
+export const VerificationContainer = styled.div`
+  position: abosute;
+  top: 50%;
+
+  border: 0.0625rem solid #e0e0e0;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  position: relative;
+
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 1.3rem;
+    font-weight: 700;
+    color: #506077;
+  }
+
+  p {
+    font-size: 0.8rem;
+    text-align: left;
+    line-height: 1.5rem;
+    font-weight: 300;
+  }
+
+  img {
+    width: 2rem;
+    position: absolute;
+    left: 1.2rem;
+    top: 1.3rem;
+    margin-right: 1.5rem;
+  }
+`;
+
+export const VerificationButtonLink = styled.div``;

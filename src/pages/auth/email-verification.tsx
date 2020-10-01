@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { EmailVerification } from '../../components/auth/EmailVerification';
 
@@ -12,4 +13,4 @@ const EmailVerificationPage: React.FC = () => {
   );
 };
 
-export default EmailVerificationPage;
+export default withRouter(EmailVerificationPage);

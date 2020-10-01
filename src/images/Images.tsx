@@ -32,6 +32,7 @@ import lapati from './logos/la-pati.jpg';
 import mbuella from './logos/mbuella.jpg';
 import phila from './logos/phila.jpg';
 import zimbali from './logos/zimbali.jpg';
+import forwardingIcon from './transaction/forwarding.svg';
 
 export {
   logoNav,
@@ -67,4 +68,5 @@ export {
   mbuella,
   phila,
   zimbali,
+  forwardingIcon,
 };

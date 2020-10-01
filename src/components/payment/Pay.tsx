@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { setPayOption /*resetTransaction*/ } from '../../store/payment/actions';
+import { setPayOption } from '../../store/payment/actions';
 import { payOption } from '../../helpers/constants';
 import { path } from '../../helpers/path';
 import {
@@ -33,13 +33,11 @@ const Pay: React.FC = () => {
     setOption(paymentOption);
     setIsProcessing(isSubmit);
     if (orderResponse !== undefined) {
-      setButtonTitle('Redirecting...');
-      const url = orderResponse.order.orderURL;
-      // clear transaction states
-      window.location.href = url;
+      setButtonTitle('Please wait ... ');
       secure.remove('orderData');
+      history.push(path.redirecting);
     }
-  }, [paymentOption, isSubmit, orderResponse, dispatch]);
+  }, [paymentOption, isSubmit, orderResponse, history]);
 
   const onSubmit = () => {
     switch (isAuthenticated) {

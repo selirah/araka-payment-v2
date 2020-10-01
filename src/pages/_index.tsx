@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../helpers/appDispatch';
 import { Layout } from '../components/home/Layout';
@@ -17,4 +18,4 @@ const IndexPage: React.FC = () => {
   return <Layout title="Araka | Payment Platform" />;
 };
 
-export default IndexPage;
+export default withRouter(IndexPage);

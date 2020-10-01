@@ -10,4 +10,5 @@ export const path = {
   success: '/transaction/success',
   cancelled: '/transaction/cancelled',
   failure: '/transaction/failure',
+  redirecting: '/transaction/redirecting',
 };

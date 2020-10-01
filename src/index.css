@@ -72,7 +72,7 @@ header {
   padding-left: 1.5rem;
 }
 .close-icon {
-  height: 45px !important;
+  height: 52px !important;
   padding: 15px !important;
   border: 2px solid #ffdbce !important;
   border-radius: 50% !important;
@@ -1682,6 +1682,24 @@ footer .list-inline-item.mdi {
 }
 
 /* End Success Page */
+
+/* Redirecting Page */
+.redirecting-container {
+  position: absolute;
+  top: 30%;
+  text-align: center;
+}
+
+.redirecting-container h4 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  font-weight: 200;
+}
+
+.redirecting-container img {
+  width: 8rem;
+  height: 8rem;
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {

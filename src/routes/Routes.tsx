@@ -6,6 +6,7 @@ import PaymentPage from '../pages/payment/payment';
 import SuccessPage from '../pages/payment/success';
 import FailurePage from '../pages/payment/failure';
 import CancelledPage from '../pages/payment/cancelled';
+import RedirectingPage from '../pages/payment/redirecting';
 import LoginPage from '../pages/auth/login';
 import RegisterPage from '../pages/auth/register';
 import RegisterSuccessPage from '../pages/auth/register-success';
@@ -35,6 +36,11 @@ const Routes: React.FC = () => {
         <PrivateRoute exact path={path.success} component={SuccessPage} />
         <PrivateRoute exact path={path.failure} component={FailurePage} />
         <PrivateRoute exact path={path.cancelled} component={CancelledPage} />
+        <PrivateRoute
+          exact
+          path={path.redirecting}
+          component={RedirectingPage}
+        />
 
         <Route exact component={NotFoundPage} />
       </Switch>

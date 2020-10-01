@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { RegisterSuccess } from '../../components/auth/RegisterSuccess';
 
 const RegisterSuccessPage: React.FC = () => {
@@ -9,4 +10,4 @@ const RegisterSuccessPage: React.FC = () => {
   );
 };
 
-export default RegisterSuccessPage;
+export default withRouter(RegisterSuccessPage);

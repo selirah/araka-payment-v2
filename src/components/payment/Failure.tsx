@@ -1,10 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Help } from './Help';
 import { NavLayout } from './NavLayout';
 import { PageContainer } from './PageContainer';
 import { failedIcon } from '../../images/Images';
+import { path } from '../../helpers/path';
 
 type Props = {
   title?: string;
@@ -35,7 +37,9 @@ const Failure: React.FC<Props> = ({ title }) => {
             </div>
             <div className="display-success-failure-cancel-buttons">
               <button className="btn">{t('wizard.failure.btn')}</button>
-              <button className="btn">{t('wizard.failure.btn2')}</button>
+              <Link to={path.payment}>
+                <button className="btn">{t('wizard.failure.btn2')}</button>
+              </Link>
             </div>
           </div>
         </div>

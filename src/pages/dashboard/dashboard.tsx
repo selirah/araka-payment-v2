@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Layout } from '../../components/dashboard/Layout';
 import {
   toggleSideNav,
@@ -21,4 +22,4 @@ const DashboardPage: React.FC = () => {
   return <Layout title="Araka | Dashboard" />;
 };
 
-export default DashboardPage;
+export default withRouter(DashboardPage);

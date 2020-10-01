@@ -16,9 +16,8 @@ import { TextInput } from './TextInput';
 import { PasswordInput } from './PasswordInput';
 import { MultipleErrors } from './MultipleErrors';
 import { SingleError } from './SingleError';
-import { VerificationSuccess } from './VerificationSuccess';
 import { Button } from './Button';
-import { Login, Error, VerificationResponse } from '../../interfaces';
+import { Login, Error } from '../../interfaces';
 import {
   ContainerFluid,
   ImageContainerLogin,
@@ -44,24 +43,25 @@ const LoginForm: React.FC<Props> = ({ history }) => {
   const auth = appSelector((state) => state.auth);
   const { isPerformingPayment } = appSelector((state) => state.payment);
   const { t } = useTranslation();
+  const { verificationResponse } = auth;
   const [values, setValues] = useState<Login>({
-    EmailAddress: '',
+    EmailAddress:
+      verificationResponse?.emailAddress !== undefined
+        ? verificationResponse?.emailAddress
+        : '',
     Password: '',
   });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<Error | {}>({});
   const [singleError, setSingleError] = useState<string>('');
   const [remember, setRemember] = useState<boolean>(false);
-  const [response, setResponse] = useState<VerificationResponse | undefined>(
-    undefined
-  );
 
   useEffect(() => {
-    const { isAuthenticated, verificationResponse } = auth;
+    dispatch(clearVerificationResponse());
+    const { isAuthenticated } = auth;
     if (isAuthenticated) {
       history.push(path.home);
     }
-    setResponse(verificationResponse);
     dispatch(resetErrorState());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -90,10 +90,8 @@ const LoginForm: React.FC<Props> = ({ history }) => {
     setError(error);
     setSingleError(singleError);
     if (isAuthenticated && isPerformingPayment) {
-      dispatch(clearVerificationResponse());
       history.push(path.payment);
     } else if (isAuthenticated && !isPerformingPayment) {
-      dispatch(clearVerificationResponse());
       history.push(path.dashboard);
     }
   }, [auth, isPerformingPayment, history, dispatch]);
@@ -108,23 +106,18 @@ const LoginForm: React.FC<Props> = ({ history }) => {
               <LogoContainer className="mt-0">
                 <img src={logoNav} alt="logo" width="100" />
               </LogoContainer>
-
-              {!isEmpty(response) && response?.emailAddress !== null ? (
-                <VerificationSuccess />
-              ) : (
-                <React.Fragment>
-                  <FormBoxHeader>
-                    <h4>Welcome back</h4>
-                  </FormBoxHeader>
-                  <FormBoxSubHeader>
-                    <h6>
-                      New to ARAKA? <Link to={path.register}>Sign Up</Link>
-                    </h6>
-                  </FormBoxSubHeader>
-                </React.Fragment>
-              )}
+              <React.Fragment>
+                <FormBoxHeader>
+                  <h4>Welcome back</h4>
+                </FormBoxHeader>
+                <FormBoxSubHeader>
+                  <h6>
+                    New to ARAKA? <Link to={path.register}>Sign Up</Link>
+                  </h6>
+                </FormBoxSubHeader>
+              </React.Fragment>
               {!isEmpty(error) ? <MultipleErrors error={error} /> : null}
-              {!isEmpty(singleError) && response?.emailAddress === undefined ? (
+              {!isEmpty(singleError) ? (
                 <SingleError error={singleError} />
               ) : null}
               <form onSubmit={onSubmit}>

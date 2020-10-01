@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { LoginForm } from '../../components/auth/LoginForm';
 
@@ -11,4 +12,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default withRouter(LoginPage);

@@ -8,7 +8,7 @@ import { verificationRequest } from '../../store/auth/actions';
 import { Verification, VerificationResponse } from '../../interfaces';
 import { Spinner } from '../common/Spinner';
 import { path } from '../../helpers/path';
-import { SuccessContainer, ButtonLink } from './Styles';
+import { VerificationContainer, VerificationButtonLink } from './Styles';
 import { exclamationIcon } from '../../images/Images';
 
 type Props = {
@@ -37,13 +37,8 @@ const EmailVerification: React.FC<Props> = ({ processId }) => {
   useEffect(() => {
     const { isSubmitting, verificationResponse, verifyError } = auth;
     setIsSubmitting(isSubmitting);
-
     setResponse(verificationResponse);
-    if (response !== undefined && response.emailAddress !== undefined) {
-      window.location.href = path.login;
-    } else {
-      setSingleError(verifyError);
-    }
+    setSingleError(verifyError);
   }, [auth, response]);
 
   let render: React.ReactNode;
@@ -51,20 +46,37 @@ const EmailVerification: React.FC<Props> = ({ processId }) => {
   if (isSubmitting) {
     render = <Spinner />;
   } else {
+    if (response !== undefined && response.emailAddress !== undefined) {
+      render = (
+        <React.Fragment>
+          <VerificationContainer>
+            <h2>
+              <img src={exclamationIcon} alt="success" />
+              Account Verified
+            </h2>
+            <p>
+              Nice! We have successfully verified your account. Go ahead and
+              login with password you used to sign up. Let's start making
+              payments!
+            </p>
+          </VerificationContainer>
+        </React.Fragment>
+      );
+    }
     render = (
       <React.Fragment>
-        <SuccessContainer>
+        <VerificationContainer>
           <h2>
             <img src={exclamationIcon} alt="success" />
             {singleError}
           </h2>
           <p>OOps!...we could not verify your email at this time</p>
-        </SuccessContainer>
-        <ButtonLink>
+        </VerificationContainer>
+        <VerificationButtonLink>
           <Link to={path.login} className="btn">
             Return to Login
           </Link>
-        </ButtonLink>
+        </VerificationButtonLink>
       </React.Fragment>
     );
   }

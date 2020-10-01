@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { RegisterForm } from '../../components/auth/RegisterForm';
 
@@ -11,4 +12,4 @@ const RegisterPage: React.FC = () => {
   );
 };
 
-export default RegisterPage;
+export default withRouter(RegisterPage);

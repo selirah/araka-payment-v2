@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { Layout } from '../../components/payment/Layout';
@@ -19,4 +20,4 @@ const PaymentPage: React.FC = () => {
   return <Layout title="Araka | Making Payments" />;
 };
 
-export default PaymentPage;
+export default withRouter(PaymentPage);
