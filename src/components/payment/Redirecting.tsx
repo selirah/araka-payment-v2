@@ -4,9 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { forwardingIcon } from '../../images/Images';
 import { resetTransaction } from '../../store/payment/actions';
 import { path } from '../../helpers/path';
+import { Spinner } from '../common/Spinner';
+import { SpinnerContainer } from '../auth/Styles';
 
 type Props = {
   title?: string;
@@ -25,7 +26,7 @@ const Redirecting: React.FC<Props> = ({ title }) => {
         window.location.href = url;
       }, 3000);
     } else {
-      history.push(path.payment);
+      history.push(path.home);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -38,7 +39,9 @@ const Redirecting: React.FC<Props> = ({ title }) => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="redirecting-container">
-            <img src={forwardingIcon} alt="redirecting" />
+            <SpinnerContainer>
+              <Spinner />
+            </SpinnerContainer>
             <h4>We are redirecting you to checkout page...please wait</h4>
           </div>
         </div>

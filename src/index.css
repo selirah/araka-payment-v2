@@ -1685,8 +1685,6 @@ footer .list-inline-item.mdi {
 
 /* Redirecting Page */
 .redirecting-container {
-  position: absolute;
-  top: 30%;
   text-align: center;
 }
 

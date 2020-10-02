@@ -348,35 +348,74 @@ export const ButtonLink = styled.div`
 `;
 
 export const VerificationContainer = styled.div`
-  position: abosute;
-  top: 50%;
-
+  position: relative;
+  margin-top: 13rem;
   border: 0.0625rem solid #e0e0e0;
   padding: 1.75rem;
-  margin-bottom: 2rem;
-  position: relative;
+  width: 30rem;
 
   h2 {
-    font-size: 1rem;
+    font-size: 1.8rem;
     margin-bottom: 1.3rem;
-    font-weight: 700;
+    font-weight: 300;
     color: #506077;
+    margin-left: 1rem;
   }
 
   p {
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-align: left;
     line-height: 1.5rem;
-    font-weight: 300;
+    font-weight: 200;
+    margin-left: 1rem;
   }
 
-  img {
+  .success {
     width: 2rem;
     position: absolute;
-    left: 1.2rem;
-    top: 1.3rem;
+    left: 0.5rem;
+    top: 0.5rem;
     margin-right: 1.5rem;
   }
 `;
 
-export const VerificationButtonLink = styled.div``;
+export const LoadingContainer = styled.div`
+  color: #4bb543;
+  font-size: 2rem;
+  text-align: center;
+
+  h6 {
+    color: #fbbd19;
+    font-size: 0.9rem;
+    font-weight: 100;
+  }
+`;
+
+export const VerificationButtonLink = styled.div`
+  text-align: left;
+  margin-left: 1rem;
+
+  button {
+    background: #d21919;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 0.8rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+  }
+
+  button:hover {
+    background: #de1919;
+    color: #fff;
+  }
+`;
+
+export const SpinnerContainer = styled.div`
+  position: relative;
+  margin-top: 15rem;
+  padding: 1.75rem;
+  width: 30rem;
+`;

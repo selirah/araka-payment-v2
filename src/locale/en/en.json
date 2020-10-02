@@ -32,7 +32,7 @@
       "banner-header": "Fast and secure payment platform for the internet",
       "banner-text": "is a payment platform that allows any registered user makes the payment for goods and services, it also allows merchants registered on it to accept online payments for goods and services with cards and mobile money wallets",
       "and": "and",
-      "btn_merchant": "Become a merchant",
+      "btn-merchant": "Become a merchant",
       "btn-payments": "Start making payments",
       "get_started_paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lectus libero, molestie non vulputate et, tempor id nibh. Sedultrices nec urna sed vestibulum.",
       "language": "Language"

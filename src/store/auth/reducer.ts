@@ -80,7 +80,7 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
       return {
         ...state,
         isVerifying: true,
-        singleError: '',
+        verifyError: '',
       };
     case AuthActionTypes.VERIFY_EMAIL_SUCCESS:
       return {
@@ -105,7 +105,6 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         ...state,
         isVerifying: false,
         verifyError: action.payload,
-        success: false,
       };
     }
     case AuthActionTypes.DESTROY_STATES:

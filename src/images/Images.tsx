@@ -33,6 +33,9 @@ import mbuella from './logos/mbuella.jpg';
 import phila from './logos/phila.jpg';
 import zimbali from './logos/zimbali.jpg';
 import forwardingIcon from './transaction/forwarding.svg';
+import checkedIcon from './araka/checked.svg';
+import loadingIcon from './araka/loading.svg';
+import errorIcon from './araka/error.svg';
 
 export {
   logoNav,
@@ -69,4 +72,7 @@ export {
   phila,
   zimbali,
   forwardingIcon,
+  checkedIcon,
+  loadingIcon,
+  errorIcon,
 };
