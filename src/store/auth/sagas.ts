@@ -54,6 +54,7 @@ function* register({ payload }: { type: string; payload: Register }) {
 function* verify({ payload }: { type: string; payload: Verification }) {
   try {
     const res = yield call(callApiPost, 'login/verifyaccount', payload);
+    console.log(res.data);
     yield put(verificationSuccess(res.data));
   } catch (err) {
     if (err && err.response) {
@@ -62,8 +63,6 @@ function* verify({ payload }: { type: string; payload: Verification }) {
       } else {
         yield put(logVerifyError(err.response.data));
       }
-    } else {
-      throw err;
     }
   }
 }

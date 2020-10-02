@@ -12,3 +12,12 @@ export async function callApiPost(
 ): Promise<AxiosResponse> {
   return await axios.post(`${API_ENDPOINT}/api/${path}`, payload);
 }
+
+export async function callApiPostQueryParams(
+  path: string,
+  payload: any
+): Promise<AxiosResponse> {
+  return await axios.post(`${API_ENDPOINT}/api/${path}`, null, {
+    params: payload,
+  });
+}

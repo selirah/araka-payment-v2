@@ -4,7 +4,7 @@ import { appSelector } from '../helpers/appSelector';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../helpers/appDispatch';
 import { Layout } from '../components/home/Layout';
-import { fetchCategories } from '../store/payment/actions';
+import { fetchCategories, resetTransaction } from '../store/payment/actions';
 import { slider } from '../helpers/slider';
 import { isEmpty } from 'src/helpers/isEmpty';
 
@@ -13,6 +13,7 @@ const IndexPage: React.FC = () => {
   const { categories } = appSelector((state) => state.payment);
 
   useEffect(() => {
+    dispatch(resetTransaction());
     if (isEmpty(categories)) {
       dispatch(fetchCategories());
     }

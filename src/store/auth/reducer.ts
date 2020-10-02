@@ -11,6 +11,7 @@ export const initialState: AuthState = {
   verificationResponse: undefined,
   verifyError: '',
   isVerifying: false,
+  isVerified: false,
 };
 
 const reducer: Reducer<AuthState> = (state = initialState, action) => {
@@ -69,6 +70,7 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
       return {
         ...state,
         error: {},
+        isSubmitting: false,
       };
     case AuthActionTypes.SET_USER:
       return {
@@ -81,30 +83,37 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         ...state,
         isVerifying: true,
         verifyError: '',
+        isVerified: false,
+        verificationResponse: undefined,
       };
     case AuthActionTypes.VERIFY_EMAIL_SUCCESS:
       return {
         ...state,
-        isVerifying: false,
+        isVerified: true,
         verificationResponse: action.payload,
-        success: true,
+        isVerifying: false,
       };
     case AuthActionTypes.VERIFY_EMAIL_FAILURE:
       return {
         ...state,
-        isVerifying: false,
+        isVerified: initialState.isVerified,
         verifyError: action.payload,
+        verificationResponse: initialState.verificationResponse,
+        isVerifying: false,
       };
     case AuthActionTypes.CLEAR_VERIFICATION_RESPONSE:
       return {
         ...state,
         verificationResponse: initialState.verificationResponse,
+        isVerified: initialState.isVerified,
+        verifyError: initialState.verifyError,
       };
     case AuthActionTypes.VERIFY_ERROR: {
       return {
         ...state,
         isVerifying: false,
         verifyError: action.payload,
+        isVerified: false,
       };
     }
     case AuthActionTypes.DESTROY_STATES:

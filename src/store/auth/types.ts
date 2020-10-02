@@ -29,4 +29,5 @@ export type AuthState = {
   readonly verificationResponse: VerificationResponse | undefined;
   readonly verifyError: string;
   readonly isVerifying: boolean;
+  readonly isVerified: boolean;
 };

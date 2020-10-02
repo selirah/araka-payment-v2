@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { isEmpty } from 'src/helpers/isEmpty';
+import { useHistory } from 'react-router-dom';
 import {
   verificationRequest,
   clearVerificationResponse,
@@ -13,6 +13,7 @@ import { path } from '../../helpers/path';
 import { SpinnerContainer } from './Styles';
 import { VerificationSuccess } from './VerificationSuccess';
 import { VerificationFailure } from './VerificationFailure';
+import { isEmpty } from '../../helpers/isEmpty';
 
 type Props = {
   processId: string | null;
@@ -21,6 +22,7 @@ type Props = {
 const EmailVerification: React.FC<Props> = ({ processId }) => {
   const dispatch: AppDispatch = useDispatch();
   const auth = appSelector((state) => state.auth);
+  const history = useHistory();
   const [render, setRender] = useState<React.ReactNode>(
     <SpinnerContainer>
       <Spinner />
@@ -28,18 +30,24 @@ const EmailVerification: React.FC<Props> = ({ processId }) => {
   );
 
   useEffect(() => {
-    if (!isEmpty(processId) || processId !== undefined) {
-      dispatch(clearVerificationResponse());
-      const payload: Verification = {
-        ProcessId: processId,
-      };
-      dispatch(verificationRequest(payload));
+    dispatch(clearVerificationResponse());
+    const { isAuthenticated } = auth;
+    if (isAuthenticated) {
+      history.push(path.home);
+    } else {
+      if (!isEmpty(processId) && processId !== undefined) {
+        const payload: Verification = {
+          ProcessId: processId,
+        };
+        dispatch(verificationRequest(payload));
+      }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const { isSubmitting, verificationResponse } = auth;
+    const { isSubmitting, isVerified, verifyError } = auth;
     if (isSubmitting) {
       setRender(
         <SpinnerContainer>
@@ -47,16 +55,24 @@ const EmailVerification: React.FC<Props> = ({ processId }) => {
         </SpinnerContainer>
       );
     } else {
-      if (!isEmpty(verificationResponse?.emailAddress)) {
+      if (isVerified) {
         setRender(<VerificationSuccess />);
         setInterval(() => {
-          window.location.href = path.login;
+          history.push(path.login);
         }, 5000);
       } else {
-        setRender(<VerificationFailure />);
+        if (!isEmpty(verifyError)) {
+          setRender(<VerificationFailure />);
+        } else {
+          setRender(
+            <SpinnerContainer>
+              <Spinner />
+            </SpinnerContainer>
+          );
+        }
       }
     }
-  }, [auth]);
+  }, [auth, history]);
 
   return (
     <React.Fragment>

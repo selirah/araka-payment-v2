@@ -303,6 +303,7 @@ export const SuccessContainer = styled.div`
   padding: 1.75rem;
   margin-bottom: 2rem;
   position: relative;
+  background: #fff;
 
   h2 {
     font-size: 1rem;
