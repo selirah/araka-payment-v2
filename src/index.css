@@ -95,9 +95,9 @@ header {
 
 .navbar-brand,
 .footer-brand {
-  color: rgb(66, 84, 102);
-  font-weight: 700;
-  font-size: 30px;
+  color: rgb(66, 84, 102) !important;
+  font-weight: 700 !important;
+  font-size: 30px !important;
 }
 
 .footer-brand:hover,
