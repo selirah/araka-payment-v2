@@ -57,7 +57,6 @@ const LoginForm: React.FC<Props> = ({ history }) => {
   const [remember, setRemember] = useState<boolean>(false);
 
   useEffect(() => {
-    dispatch(clearVerificationResponse());
     const { isAuthenticated } = auth;
     if (isAuthenticated) {
       history.push(path.home);
@@ -90,8 +89,10 @@ const LoginForm: React.FC<Props> = ({ history }) => {
     setError(error);
     setSingleError(singleError);
     if (isAuthenticated && isPerformingPayment) {
+      dispatch(clearVerificationResponse());
       history.push(path.payment);
     } else if (isAuthenticated && !isPerformingPayment) {
+      dispatch(clearVerificationResponse());
       history.push(path.dashboard);
     }
   }, [auth, isPerformingPayment, history, dispatch]);
