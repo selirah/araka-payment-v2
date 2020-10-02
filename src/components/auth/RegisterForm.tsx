@@ -22,7 +22,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import {
   ContainerFluid,
-  ImageContainerRegister,
+  ImageContainerLogin,
   FormContainer,
   FormBox,
   FormBoxHeader,
@@ -113,7 +113,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
     <React.Fragment>
       <ContainerFluid>
         <div className="row">
-          <ImageContainerRegister className="col-lg-5 col-md-5 d-none d-md-block"></ImageContainerRegister>
+          <ImageContainerLogin className="col-lg-5 col-md-5 d-none d-md-block"></ImageContainerLogin>
           <FormContainer className="col-lg-7 col-md-7">
             <FormBox className="col-sm-5 text-center">
               <LogoContainer className="mt-0">

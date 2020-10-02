@@ -10,7 +10,7 @@ import { logoNav, exclamationIcon } from '../../images/Images';
 import { clearAuthState } from '../../store/auth/actions';
 import {
   ContainerFluid,
-  ImageRegisterSuccessful,
+  ImageContainerLogin,
   FormContainer,
   FormBox,
   LogoContainer,
@@ -40,7 +40,7 @@ const RegisterSuccess: React.FC = () => {
     <React.Fragment>
       <ContainerFluid>
         <div className="row">
-          <ImageRegisterSuccessful className="col-lg-5 col-md-4 d-none d-md-block"></ImageRegisterSuccessful>
+          <ImageContainerLogin className="col-lg-5 col-md-4 d-none d-md-block"></ImageContainerLogin>
           <FormContainer className="col-lg-7 col-md-7">
             <FormBox className="col-sm-5 text-center">
               <LogoContainer className="mt-0">

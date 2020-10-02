@@ -12,7 +12,7 @@ import { Button } from './Button';
 import { ForgottenPassword } from '../../interfaces';
 import {
   ContainerFluid,
-  ImageContainerForgotten,
+  ImageContainerLogin,
   FormContainer,
   FormBox,
   FormBoxHeader,
@@ -54,7 +54,7 @@ const ForgottenPasswordForm: React.FC = () => {
     <React.Fragment>
       <ContainerFluid>
         <div className="row">
-          <ImageContainerForgotten className="col-lg-5 col-md-4 d-none d-md-block"></ImageContainerForgotten>
+          <ImageContainerLogin className="col-lg-5 col-md-4 d-none d-md-block"></ImageContainerLogin>
           <FormContainer className="col-lg-7 col-md-7">
             <FormBox className="col-sm-5 text-center">
               <LogoContainer className="mt-0">
