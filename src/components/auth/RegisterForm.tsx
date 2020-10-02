@@ -5,7 +5,11 @@ import { Link } from 'react-router-dom';
 import { History } from 'history';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { appSelector } from '../../helpers/appSelector';
-import { registerRequest, resetErrorState } from '../../store/auth/actions';
+import {
+  registerRequest,
+  resetErrorState,
+  clearAuthState,
+} from '../../store/auth/actions';
 import { ChangeLanguage } from '../common/ChangeLanguage';
 import { logoNav } from '../../images/Images';
 import { TextInput } from './TextInput';
@@ -53,6 +57,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
   const [phone, setPhone] = useState('');
 
   useEffect(() => {
+    dispatch(clearAuthState());
     const { isAuthenticated } = auth;
     if (isAuthenticated) {
       history.push(path.home);

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../helpers/appDispatch';
+import { appSelector } from '../../helpers/appSelector';
+import { useHistory } from 'react-router-dom';
 import { ChangeLanguage } from '../common/ChangeLanguage';
 import { logoNav, exclamationIcon } from '../../images/Images';
+import { clearAuthState } from '../../store/auth/actions';
 import {
   ContainerFluid,
   ImageRegisterSuccessful,
@@ -17,7 +22,19 @@ import {
 import { path } from '../../helpers/path';
 
 const RegisterSuccess: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
   // const { t } = useTranslation();
+  const auth = appSelector((state) => state.auth);
+  const history = useHistory();
+
+  useEffect(() => {
+    dispatch(clearAuthState());
+    const { isAuthenticated } = auth;
+    if (isAuthenticated) {
+      history.push(path.home);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <React.Fragment>

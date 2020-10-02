@@ -17,6 +17,7 @@ export enum AuthActionTypes {
   VERIFY_EMAIL_FAILURE = '@@auth/VERIFY_EMAIL_FAILURE',
   CLEAR_VERIFICATION_RESPONSE = '@@auth/CLEAR_VERIFICATION_RESPONSE',
   VERIFY_ERROR = '@@auth/VERIFY_ERROR',
+  CLEAR_AUTH_STATES = '@@auth/CLEAR_AUTH_STATES',
 }
 
 export type AuthState = {

@@ -33,7 +33,7 @@ const Failure: React.FC<Props> = ({ title }) => {
                 alt="success"
                 className="icon-failure"
               />
-              <h4>{t('wizard.failure.sub3')}</h4>
+              {/* <h4>{t('wizard.failure.sub3')}</h4> */}
             </div>
             <div className="display-success-failure-cancel-buttons">
               <button className="btn">{t('wizard.failure.btn')}</button>

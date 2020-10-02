@@ -42,7 +42,6 @@ const EmailVerification: React.FC<Props> = ({ processId }) => {
         dispatch(verificationRequest(payload));
       }
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

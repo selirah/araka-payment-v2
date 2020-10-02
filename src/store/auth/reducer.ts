@@ -116,6 +116,15 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         isVerified: false,
       };
     }
+    case AuthActionTypes.CLEAR_AUTH_STATES:
+      return {
+        ...state,
+        success: initialState.success,
+        isVerified: initialState.isVerified,
+        verifyError: initialState.verifyError,
+        error: initialState.error,
+        isSubmitting: initialState.isSubmitting,
+      };
     case AuthActionTypes.DESTROY_STATES:
       return initialState;
     default:

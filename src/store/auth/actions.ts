@@ -50,3 +50,5 @@ export const clearVerificationResponse = () =>
 
 export const logVerifyError = (error: string) =>
   action(AuthActionTypes.VERIFY_ERROR, error);
+
+export const clearAuthState = () => action(AuthActionTypes.CLEAR_AUTH_STATES);

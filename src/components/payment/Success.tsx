@@ -34,7 +34,7 @@ const Success: React.FC<Props> = ({ title }) => {
                 alt="success"
                 className="icon-success"
               />
-              <h4>{t('wizard.success.sub3')}</h4>
+              {/* <h4>{t('wizard.success.sub3')}</h4> */}
             </div>
             <div className="display-success-failure-cancel-buttons">
               <button className="btn">{t('wizard.success.btn')}</button>
