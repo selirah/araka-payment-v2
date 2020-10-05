@@ -131,7 +131,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
               {!isEmpty(singleError) ? (
                 <SingleError error={singleError} />
               ) : null}
-              <form onSubmit={onSubmit}>
+              <form onSubmit={onSubmit} className="mt-5">
                 <TextInput
                   type="text"
                   name="Name"
@@ -181,6 +181,22 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   placeholder="Your password ..."
                   onChange={onChange}
                 />
+                <div className="text-left mt-2 mb-5">
+                  <FormBoxCustomControl className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      onClick={() => setBusinessFlag()}
+                      id="cb1"
+                    />
+                    <FormBoxCheckLabel
+                      className="custom-control-label"
+                      htmlFor="cb1"
+                    >
+                      Register me as a merchant
+                    </FormBoxCheckLabel>
+                  </FormBoxCustomControl>
+                </div>
                 <Button
                   type="submit"
                   title="Sign up"
@@ -188,32 +204,12 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   processTitle={t('register.processing')}
                 />
 
-                <div className="row">
-                  <div className="col-sm-12 d-flex">
-                    <FormBoxCustomControl className="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        className="custom-control-input"
-                        onClick={() => setBusinessFlag()}
-                        id="cb1"
-                      />
-                      <FormBoxCheckLabel
-                        className="custom-control-label"
-                        htmlFor="cb1"
-                      >
-                        Register me as a merchant
-                      </FormBoxCheckLabel>
-                    </FormBoxCustomControl>
-                  </div>
-                </div>
                 <TermsContainer className="row">
-                  <div className="col-sm-12 d-flex mt-2">
-                    <h4>
+                    <h4 className="mx-auto">
                       By continuing, you accept our{' '}
                       <Link to="#">Terms of Use</Link> and{' '}
                       <Link to="#">Privacy Policy</Link>
                     </h4>
-                  </div>
                 </TermsContainer>
               </form>
             </FormBox>

@@ -13,6 +13,7 @@ const FormIO = ({ schema }) => {
   };
 
   const onChange = (submission) => {
+    console.log(submission);
     delete submission.changed;
     secure.set('orderData', submission);
   };

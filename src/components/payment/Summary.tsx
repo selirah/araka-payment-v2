@@ -35,19 +35,27 @@ const Summary: React.FC = () => {
     dispatch(decreasePaymentStep());
   };
 
-  let summary;
+  let keys;
+  let values;
   if (data !== null || data !== undefined) {
-    summary = Object.keys(data.data).map(function (key, index) {
+    keys = Object.keys(data.data).map(function (key, index) {
       return (
-        <div className="col-md-6" key={index}>
-          <div className="summary-item mb-5">
-            <label htmlFor="">{key}</label>
-            <div className="tag">
-              <i className="mbri-target mr-1 icon"></i>
+        <React.Fragment key={index}>
+          <label htmlFor="">{key}</label>
+        </React.Fragment>
+      );
+    });
+
+    values = Object.keys(data.data).map(function (key, index) {
+      return (
+        <React.Fragment key={index}>
+          <div className="tag">
+            <span className="tag-text">
+              <i className="mbri-cash mr-1 icon"></i>
               {data.data[key]}
-            </div>
+            </span>
           </div>
-        </div>
+        </React.Fragment>
       );
     });
   } else {
@@ -60,22 +68,28 @@ const Summary: React.FC = () => {
         <div className="col-md-6">
           <div className="summary-item mb-5">
             <label htmlFor="">Payment type</label>
-            <div className="tag">
-              <i className="mbri-mobile mr-1 icon"></i>
-              {category !== undefined ? category.name : null}
-            </div>
+            <label htmlFor="">Provider</label>
+            {keys}
           </div>
         </div>
         <div className="col-md-6">
-          <div className="summary-item mb-5">
-            <label htmlFor="">Provider</label>
+          <div className="summary-item-values mb-5">
             <div className="tag">
-              <i className="mbri-cash mr-1 icon"></i>
-              {product !== undefined ? product.name : null}
+              <span className="tag-text">
+                <i className="mbri-mobile mr-1 icon"></i>
+                {category !== undefined ? category.name : null}
+              </span>
             </div>
+            <div className="tag">
+              <span className="tag-text">
+                <i className="mbri-cash mr-1 icon"></i>
+                {product !== undefined ? product.name : null}
+              </span>
+            </div>
+            {values}
           </div>
         </div>
-        {summary}
+        {/* {summary} */}
       </div>
       <Button
         title="Continue"

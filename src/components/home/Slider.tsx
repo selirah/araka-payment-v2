@@ -35,13 +35,13 @@ const Slider: React.FC = () => {
             <div className="mt-4 customer-logos slider swiper-container reverse">
               <div className="swiper-wrapper">
                 <div className="swiper-slide">
-                  <img src={Images.caa} alt="logo" />
-                </div>
-                <div className="swiper-slide">
                   <img src={Images.ag} alt="logo" />
                 </div>
                 <div className="swiper-slide">
                   <img src={Images.congoair} alt="logo" />
+                </div>
+                <div className="swiper-slide">
+                  <img src={Images.caa} alt="logo" />
                 </div>
                 <div className="swiper-slide">
                   <img src={Images.fleu} alt="logo" />

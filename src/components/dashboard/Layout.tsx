@@ -3,7 +3,8 @@ import { Helmet } from 'react-helmet';
 import { SideBar } from './SideBar';
 import { TopNav } from './TopNav';
 import { ContentContainer } from './ContentContainer';
-import { Content } from './Content';
+import { NewUser } from './NewUser';
+// import { Content } from './Content';
 import './style.css';
 import './dashboard.css';
 
@@ -24,7 +25,7 @@ const Layout: React.FC<Props> = ({ title }) => {
             <TopNav />
             <div className="container-fluid">
               <ContentContainer title="Dashboard">
-                <Content />
+                <NewUser />
               </ContentContainer>
             </div>
           </div>

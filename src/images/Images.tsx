@@ -4,6 +4,7 @@ import ecommerce_1 from './carousel/ecommerce-1.png';
 import ecommerce_3 from './carousel/ecommerce-3.png';
 import stock_2 from './carousel/stock-2.png';
 import logo from './araka/logo_symbol.png';
+import pcesLogo from './araka/pces.png';
 
 import airtel from './logos/airtel.jpg';
 import dstv from './logos/dstv.jpg';
@@ -75,4 +76,5 @@ export {
   checkedIcon,
   loadingIcon,
   errorIcon,
+  pcesLogo,
 };

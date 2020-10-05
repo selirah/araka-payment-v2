@@ -21,9 +21,9 @@ const Description: React.FC = () => {
               <span>telecommunication providers</span> &bull;{' '}
               <span>private merchants</span> and everything in between,
             </p>
-            <div className="clients-btn-links">
+            <div className="btn-links">
               <Link to={path.register}>
-                <button className="btn">Become a merchant</button>
+                <button className="btn btn-bc-merchant">Become a merchant</button>
               </Link>
               <Link to={path.payment}>
                 <button className="btn">Start making payments</button>

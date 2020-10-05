@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { logo } from '../../images/Images';
+import { logo, pcesLogo } from '../../images/Images';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -16,11 +16,11 @@ const Footer: React.FC = () => {
                 ARAKA
               </Link>
               <address className="mt-3">
-                105 N 1st
+                3rd Floor, Opeibea House,
                 <br />
-                St #429, San Jose,
+                37 Liberation Road,
                 <br />
-                CA 95113, USA
+                Acra, Ghana
               </address>
               <ul className="list-unstyled text-white footer-social list-inline">
                 <li className="list-inline-item">
@@ -99,8 +99,8 @@ const Footer: React.FC = () => {
           </div>
           <div className="footer-note text-center">
             {t('footer.copy')}&copy;
-            {new Date().getUTCFullYear()}. ARAKA {t('footer.rights')}
-            reserved.
+            {new Date().getUTCFullYear()}. ARAKA {t('footer.rights')}. POWERED{' '}
+            BY <img src={pcesLogo} alt="logo" width="70" />
           </div>
         </footer>
       </div>

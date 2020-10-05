@@ -9,15 +9,15 @@ const SideBar: React.FC = () => {
       className="navbar-nav bg-gradient-custom sidebar sidebar-dark accordion"
       id="accordionSidebar"
     >
-      <a
+      <Link
+        to={path.home}
         className="sidebar-brand d-flex align-items-center justify-content-center"
-        href="index.html"
       >
         <div className="sidebar-brand-icon rotate-n-15">
           <img src={logo} alt="" width="40" />
         </div>
         <div className="sidebar-brand-text mx-3">ARAKA</div>
-      </a>
+      </Link>
 
       <hr className="sidebar-divider my-0"></hr>
 

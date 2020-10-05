@@ -121,7 +121,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
               {!isEmpty(singleError) ? (
                 <SingleError error={singleError} />
               ) : null}
-              <form onSubmit={onSubmit}>
+              <form onSubmit={onSubmit} className="mt-4">
                 <TextInput
                   type="text"
                   name="EmailAddress"
@@ -136,9 +136,24 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                   placeholder="Your password ..."
                   onChange={onChange}
                 />
-                <div className="row mb-3">
-                  <div className="col-6"></div>
-                  <div className="col-6 text-right">
+                <div className="row mb-5">
+                  <div className="col-12 col-md-8 text-left">
+                    <FormBoxCustomControl className="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        className="custom-control-input"
+                        onClick={() => setRememberFlag()}
+                        id="cb1"
+                      />
+                      <FormBoxCheckLabel
+                        className="custom-control-label mt-0"
+                        htmlFor="cb1"
+                      >
+                        Remember me on this device
+                      </FormBoxCheckLabel>
+                    </FormBoxCustomControl>
+                  </div>
+                  <div className="col-12 col-md-4 text-right">
                     <ForgottenLink>
                       <Link to={path.forgot}>{t('login.forgotten')}</Link>
                     </ForgottenLink>
@@ -150,32 +165,12 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                   isSubmitting={isSubmitting}
                   processTitle={t('login.processing')}
                 />
-                <div className="row">
-                  <div className="col-sm-12 d-flex">
-                    <FormBoxCustomControl className="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        className="custom-control-input"
-                        onClick={() => setRememberFlag()}
-                        id="cb1"
-                      />
-                      <FormBoxCheckLabel
-                        className="custom-control-label"
-                        htmlFor="cb1"
-                      >
-                        Remember me on this device
-                      </FormBoxCheckLabel>
-                    </FormBoxCustomControl>
-                  </div>
-                </div>
-                <TermsContainer className="row">
-                  <div className="col-sm-12 d-flex mt-2">
-                    <h4>
+                <TermsContainer className="row mt-5">
+                    <h4 className="mx-auto">
                       By continuing, you accept our{' '}
                       <Link to="#">Terms of Use</Link> and{' '}
                       <Link to="#">Privacy Policy</Link>
                     </h4>
-                  </div>
                 </TermsContainer>
               </form>
             </FormBox>

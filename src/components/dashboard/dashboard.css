@@ -45,3 +45,196 @@
   text-align: center !important;
   padding: 1rem;
 }
+
+.top-pane {
+  padding: 2rem;
+  position: relative;
+  border: 0.0625rem dashed #e0e0e0;
+}
+
+.top-pane h2 {
+  position: absolute;
+  left: 1rem;
+  top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #000;
+}
+
+.top-pane form {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  width: 30%;
+}
+
+.top-pane form input {
+  height: 1rem;
+  background: #e0e0e0;
+  color: #222;
+}
+
+.top-pane form input[type='text']:focus {
+  border-color: rgba(248, 89, 36, 0.8) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+    0 0 8px rgba(248, 89, 36, 0.6);
+  outline: 0 none;
+}
+
+.top-pane form button {
+  background: #f85924;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+
+.top-pane form button:hover {
+  background: #506077;
+  color: #fff;
+}
+
+.middle-pane {
+  padding: 2rem;
+  position: relative;
+  border: 0.0625rem dashed #e0e0e0;
+}
+
+.middle-pane h2 {
+  position: absolute;
+  left: 1rem;
+  top: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #949dac;
+}
+
+.transaction-content {
+  padding: 0.5rem;
+  position: relative;
+  border: 0.0625rem dashed #e0e0e0;
+}
+
+.transaction-content .card {
+  box-shadow: none;
+  border: none;
+  padding: 0 !important;
+}
+
+.transaction-content .card .card-header {
+  box-shadow: none;
+  border: none;
+  padding-left: 0;
+  padding: 3rem;
+  outline: 0 none;
+  background: transparent;
+  border-bottom: 0.0625rem solid #e0e0e0;
+  margin-left: 0;
+  position: relative;
+}
+
+.transaction-content .card .card-header .btn-header-link:after {
+  content: '\f107';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+  color: #222;
+}
+
+.transaction-content .card .card-header .btn-header-link.collapsed:after {
+  content: '\f106';
+  color: #222;
+}
+
+.transaction-content .card .card-header .btn-header-link {
+  outline: 0 none;
+  text-decoration: none;
+}
+
+.transaction-content .card .card-header img {
+  position: absolute;
+  left: 0.2rem;
+  top: 1rem;
+  border-radius: 50%;
+}
+
+.transaction-content .card .card-header .card-header-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  padding-top: 0.5rem;
+  padding-left: 4.3rem;
+}
+
+.transaction-content .card .card-header .card-header-content h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.75rem;
+}
+
+.transaction-content .card .card-header .card-header-content h4 {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #949dac;
+  margin-bottom: 0.3rem;
+}
+
+.transaction-content .card .card-header .card-header-content .bottom-desc {
+  position: relative;
+}
+
+.bottom-time {
+  display: block;
+}
+
+.bottom-time h6 {
+  display: inline-block;
+  padding-right: 1rem;
+  text-align: center;
+}
+
+.bottom-time h6:nth-child(1) {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #949dac;
+}
+
+.bottom-time h6:nth-child(2) {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #949dac;
+}
+
+.bottom-time h6:nth-child(2) button {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #949dac;
+  border: none;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: default;
+  outline: 0 none;
+  text-transform: capitalize;
+}
+
+.bottom-time h6:nth-child(3) {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #949dac;
+}
+
+.bottom-time h6:nth-child(3) button {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #949dac;
+  border: none;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: default;
+  outline: 0 none;
+  text-transform: capitalize;
+}

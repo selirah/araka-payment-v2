@@ -18,7 +18,7 @@ const Banner: React.FC = () => {
             </p>
             <div className="btn-links banner-text">
               <Link to={path.register}>
-                <button className="btn">{t('home.btn-merchant')}</button>
+                <button className="btn btn-bc-merchant">{t('home.btn-merchant')}</button>
               </Link>
               <Link to={path.payment}>
                 <button className="btn">{t('home.btn-payments')}</button>
