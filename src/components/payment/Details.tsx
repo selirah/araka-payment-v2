@@ -9,7 +9,7 @@ import {
 } from '../../store/payment/actions';
 import { Button } from './Button';
 import { EmptyBox } from './EmptyBox';
-import { isEmpty } from 'src/helpers/isEmpty';
+import { isEmpty } from '../../helpers/isEmpty';
 
 const Details: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -27,20 +27,18 @@ const Details: React.FC = () => {
     <React.Fragment>
       <div className="row summary justify-content-center pb-0">
         <div className="col-md-6">
-          <div className="summary-item mb-5">
+          <div className="summary-item-details mb-5">
             <label htmlFor="">Payment type</label>
             <div className="tag">
-              <i className="mbri-mobile mr-1 icon"></i>
               {/* <img className="image" /> */}
               {category !== undefined ? category.name : null}
             </div>
           </div>
         </div>
         <div className="col-md-6">
-          <div className="summary-item mb-5">
+          <div className="summary-item-details mb-5">
             <label htmlFor="">Provider</label>
             <div className="tag">
-              <i className="mbri-cash mr-1 icon"></i>
               {/* <img className="image" /> */}
               {product !== undefined ? product.name : null}
             </div>

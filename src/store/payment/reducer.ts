@@ -17,6 +17,7 @@ export const initialState: PaymentState = {
   category: undefined,
   isPerformingPayment: false,
   paymentOption: '',
+  isFormValid: false,
 };
 
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
@@ -138,12 +139,19 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         orderResponse: initialState.orderResponse,
         step: initialState.step,
         orderError: initialState.orderError,
+        isFormValid: initialState.isFormValid,
       };
 
     case PaymentActionTypes.CLEAR_ORDER_ERROR:
       return {
         ...state,
         orderError: initialState.orderError,
+      };
+
+    case PaymentActionTypes.FORM_VALID:
+      return {
+        ...state,
+        isFormValid: action.payload,
       };
 
     default:

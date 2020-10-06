@@ -49,6 +49,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
     PhoneNumber: '',
     Password: '',
     IsBusiness: false,
+    Confirm: '',
   });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isBusiness, setIsBusiness] = useState<boolean>(false);
@@ -73,14 +74,19 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
 
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
-    const payload: Register = {
-      Name: values.Name,
-      EmailAddress: values.EmailAddress,
-      PhoneNumber: phone,
-      Password: values.Password,
-      IsBusiness: isBusiness,
-    };
-    dispatch(registerRequest(payload));
+    setSingleError('');
+    if (values.Password !== values.Confirm) {
+      setSingleError('Passwords not match!');
+    } else {
+      const payload: Register = {
+        Name: values.Name,
+        EmailAddress: values.EmailAddress,
+        PhoneNumber: phone,
+        Password: values.Password,
+        IsBusiness: isBusiness,
+      };
+      dispatch(registerRequest(payload));
+    }
   };
 
   useEffect(() => {
@@ -181,6 +187,13 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   placeholder="Your password ..."
                   onChange={onChange}
                 />
+                <PasswordInput
+                  type="password"
+                  name="Confirm"
+                  value={values.Confirm}
+                  placeholder="Retype password ..."
+                  onChange={onChange}
+                />
                 <div className="text-left mt-2 mb-5">
                   <FormBoxCustomControl className="custom-control custom-checkbox">
                     <input
@@ -205,11 +218,11 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                 />
 
                 <TermsContainer className="row">
-                    <h4 className="mx-auto">
-                      By continuing, you accept our{' '}
-                      <Link to="#">Terms of Use</Link> and{' '}
-                      <Link to="#">Privacy Policy</Link>
-                    </h4>
+                  <h4 className="mx-auto">
+                    By continuing, you accept our{' '}
+                    <Link to="#">Terms of Use</Link> and{' '}
+                    <Link to="#">Privacy Policy</Link>
+                  </h4>
                 </TermsContainer>
               </form>
             </FormBox>

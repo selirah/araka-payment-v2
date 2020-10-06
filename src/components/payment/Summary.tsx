@@ -12,6 +12,8 @@ import {
 import { secure } from '../../utils/secure';
 import { isEmpty } from '../../helpers/isEmpty';
 import { EmptyBox } from './EmptyBox';
+import { filter } from '../../helpers/filter';
+import moment from 'moment';
 
 const Summary: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -39,22 +41,31 @@ const Summary: React.FC = () => {
   let values;
   if (data !== null || data !== undefined) {
     keys = Object.keys(data.data).map(function (key, index) {
+      const { value } = filter(product!, key);
+
       return (
         <React.Fragment key={index}>
-          <label htmlFor="">{key}</label>
+          {!value ? (
+            <label htmlFor="">{key.replace(/([a-z])([A-Z])/g, '$1 $2')}</label>
+          ) : null}
         </React.Fragment>
       );
     });
 
     values = Object.keys(data.data).map(function (key, index) {
+      const { value, selectLabel, isDate } = filter(product!, key);
+      let v;
+      if (isDate) {
+        v = moment(data.data[key]).format('MMMM D, YYYY (h:mm a)');
+      } else {
+        v = data.data[key];
+      }
+
       return (
         <React.Fragment key={index}>
-          <div className="tag">
-            <span className="tag-text">
-              <i className="mbri-cash mr-1 icon"></i>
-              {data.data[key]}
-            </span>
-          </div>
+          {!value ? (
+            <label htmlFor="">{selectLabel !== '' ? selectLabel : v}</label>
+          ) : null}
         </React.Fragment>
       );
     });
@@ -64,32 +75,27 @@ const Summary: React.FC = () => {
 
   return (
     <React.Fragment>
-      <div className="row summary justify-content-center mt-5">
-        <div className="col-md-6">
-          <div className="summary-item mb-5">
-            <label htmlFor="">Payment type</label>
-            <label htmlFor="">Provider</label>
-            {keys}
+      <div className="container mt-5">
+        <div className="row summary justify-content-center">
+          <div className="col-md-4">
+            <div className="summary-item mb-5">
+              <label htmlFor="">Payment Type</label>
+              <label htmlFor="">Provider</label>
+              {keys}
+            </div>
           </div>
-        </div>
-        <div className="col-md-6">
-          <div className="summary-item-values mb-5">
-            <div className="tag">
-              <span className="tag-text">
-                <i className="mbri-mobile mr-1 icon"></i>
+          <div className="col-md-4">
+            <div className="summary-item-values mb-5">
+              <label htmlFor="">
                 {category !== undefined ? category.name : null}
-              </span>
-            </div>
-            <div className="tag">
-              <span className="tag-text">
-                <i className="mbri-cash mr-1 icon"></i>
+              </label>
+              <label htmlFor="">
                 {product !== undefined ? product.name : null}
-              </span>
+              </label>
+              {values}
             </div>
-            {values}
           </div>
         </div>
-        {/* {summary} */}
       </div>
       <Button
         title="Continue"

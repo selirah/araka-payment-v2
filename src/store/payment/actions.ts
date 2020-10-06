@@ -58,3 +58,6 @@ export const resetTransaction = () =>
 
 export const clearOrderError = () =>
   action(PaymentActionTypes.CLEAR_ORDER_ERROR);
+
+export const setFormValidation = (valid: boolean) =>
+  action(PaymentActionTypes.FORM_VALID, valid);

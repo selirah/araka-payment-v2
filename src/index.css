@@ -72,7 +72,7 @@ header {
   padding-left: 1.5rem;
 }
 .dropdown-item .flag-icon {
-  margin-right:10px;
+  margin-right: 10px;
 }
 .close-icon {
   height: 52px !important;
@@ -964,16 +964,44 @@ footer .list-inline-item.mdi {
   border-radius: 20px;
 }
 
-.summary-item {
+.summary-item-details {
   position: relative;
-  text-align: left;
+  text-align: center;
 }
 
-.summary-item label {
+.summary-item-details label {
   color: rgba(66, 84, 102, 0.2);
   font-weight: 700;
   font-size: 2rem;
-  margin-bottom: -23px;
+  margin-bottom: -20px;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-bottom: 1rem;
+}
+
+.summary-item-details .tag {
+  color: rgba(66, 84, 102, 0.5);
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-bottom: -20px;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-bottom: 1rem;
+}
+
+.summary-item {
+  position: relative;
+  text-align: left;
+  /* padding: 0 10rem !important; */
+}
+
+.summary-item label {
+  color: rgba(66, 84, 102, 0.4);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: -20px;
   display: block;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -983,50 +1011,18 @@ footer .list-inline-item.mdi {
 .summary-item-values {
   position: relative;
   text-align: right;
+  /* padding: 10rem 0 !important; */
+}
+
+.summary-item-values label {
+  color: rgba(66, 84, 102, 0.4);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: -20px;
   display: block;
-  margin-top: 0.5rem;
-}
-
-.summary-item-values .tag {
-  padding: 0.2rem;
-  border-radius: 2px;
-  background: #fff;
-  display: block;
-  font-weight: 700;
-  color: rgba(66, 84, 102, 0.5);
-  margin-bottom: 0.6rem;
-}
-
-.summary-item-values .tag .tag-text {
-  border: 2px solid #f276494f;
-  padding: 0.3rem;
-}
-
-.summary-item-values .tag .icon,
-.summary-item-values .tag .image {
-  max-width: 20px;
-  line-height: 1;
-  color: #fbbd19;
-  font-weight: 700;
-}
-
-.summary-item .tag {
-  padding: 5px 10px 5px 10px;
-  /* border: 2px solid #f276494f; */
-  border-radius: 2px;
-  background: #fff;
-  display: block;
-  font-weight: 700;
-  color: #425466;
-  margin-bottom: 0.4rem;
-}
-
-.summary-item .tag .icon,
-.summary-item .tag .image {
-  max-width: 20px;
-  line-height: 1;
-  color: #fbbd19;
-  font-weight: 700;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-bottom: 1rem;
 }
 
 .option img {
@@ -1126,8 +1122,7 @@ footer .list-inline-item.mdi {
 }
 
 .summary {
-  padding: 2rem;
-  background-color: #fff;
+  padding: 1rem;
 }
 
 .borderless td {

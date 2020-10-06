@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
                 <br />
                 37 Liberation Road,
                 <br />
-                Acra, Ghana
+                Accra, Ghana
               </address>
               <ul className="list-unstyled text-white footer-social list-inline">
                 <li className="list-inline-item">

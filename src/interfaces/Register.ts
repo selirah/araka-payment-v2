@@ -4,4 +4,5 @@ export type Register = {
   EmailAddress: string;
   Password: string;
   IsBusiness: boolean;
+  Confirm?: string;
 };

@@ -4,7 +4,7 @@ import { AlertContainer } from './Styles';
 const SingleError: React.FC<{ error: any }> = ({ error }) => {
   return (
     <AlertContainer className="alert alert-danger">
-      {error.error}
+      {error.error !== undefined ? error.error : error}
     </AlertContainer>
   );
 };
