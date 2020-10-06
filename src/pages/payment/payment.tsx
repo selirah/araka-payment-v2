@@ -5,7 +5,7 @@ import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { Layout } from '../../components/payment/Layout';
 import { isEmpty } from '../../helpers/isEmpty';
-import { fetchCategories, resetTransaction } from '../../store/payment';
+import { fetchCategories /*resetTransaction*/ } from '../../store/payment';
 import { clearAuthState } from '../../store/auth';
 
 const PaymentPage: React.FC = () => {
@@ -13,7 +13,7 @@ const PaymentPage: React.FC = () => {
   const { categories, loading } = appSelector((state) => state.payment);
 
   useEffect(() => {
-    dispatch(resetTransaction());
+    // dispatch(resetTransaction());
     dispatch(clearAuthState());
     if (isEmpty(categories) && !loading) {
       dispatch(fetchCategories());
