@@ -920,7 +920,7 @@ footer .list-inline-item.mdi {
 /**-- Options --**/
 
 .display-name {
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding: 1rem;
   color: #425466;
 }
@@ -939,6 +939,14 @@ footer .list-inline-item.mdi {
   color: #949dac5e;
   font-weight: 100;
   text-transform: uppercase;
+}
+
+.display-name .valid-info {
+  color: #f27649;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 200;
+  margin-top: 1rem !important;
 }
 
 .display-options {
@@ -965,8 +973,7 @@ footer .list-inline-item.mdi {
 }
 
 .summary {
-  margin-top: 2rem;
-  padding: 1rem;
+  padding: 0;
 }
 
 .summary table {

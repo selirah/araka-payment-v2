@@ -31,6 +31,7 @@ const Layout: React.FC<Props> = ({ title }) => {
   const [mainTitle, setMainTitle] = useState<string>('');
   const [subTitle, setSubTitle] = useState<string>('');
   const [smallText, setSmallText] = useState<string>('');
+  const [className, setClassName] = useState<string>('');
   const [error, setError] = useState<string>('');
   const { t } = useTranslation();
 
@@ -44,26 +45,31 @@ const Layout: React.FC<Props> = ({ title }) => {
         setMainTitle(t('wizard.step-1.main-title'));
         setSubTitle(t('wizard.step-1.subtitle'));
         setSmallText(t('wizard.step-1.small-text'));
+        setClassName('');
         break;
       case 2:
         setMainTitle('');
         setSubTitle(t('wizard.step-2.subtitle'));
         setSmallText(t('wizard.step-2.small-text'));
+        setClassName('');
         break;
       case 3:
         setMainTitle('');
-        setSubTitle('');
+        setSubTitle('All Fields are required');
         setSmallText('');
+        setClassName('valid-info');
         break;
       case 4:
         setMainTitle('');
         setSubTitle('');
         setSmallText('');
+        setClassName('');
         break;
       case 5:
         setMainTitle('');
         setSubTitle(t('wizard.step-3.subtitle'));
         setSmallText(t('wizard.step-3.small-text'));
+        setClassName('');
         break;
     }
   }, [loading, categories, step, orderError, t]);
@@ -103,7 +109,12 @@ const Layout: React.FC<Props> = ({ title }) => {
       <PageContainer>
         {!isEmpty(error) ? <Error error={error} /> : null}
         {subTitle !== '' ? (
-          <DisplayHeader h2={mainTitle} h4={subTitle} h6={smallText} />
+          <DisplayHeader
+            h2={mainTitle}
+            h4={subTitle}
+            h6={smallText}
+            className={className}
+          />
         ) : null}
 
         {render}

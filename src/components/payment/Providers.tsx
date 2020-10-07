@@ -9,6 +9,7 @@ import {
   increasePaymentStep,
   setProduct,
   decreasePaymentStep,
+  setFormValidError,
 } from '../../store/payment';
 import { Product } from 'src/interfaces';
 import { isEmpty } from 'src/helpers/isEmpty';
@@ -18,6 +19,11 @@ const Providers: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { activeProduct, products } = appSelector((state) => state.payment);
   const [selectedProduct, setSelectedProduct] = useState<number>(activeProduct);
+
+  useEffect(() => {
+    dispatch(setFormValidError(''));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const continueProcess = (): void => {
     dispatch(increasePaymentStep());
