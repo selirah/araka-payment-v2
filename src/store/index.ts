@@ -8,18 +8,20 @@ import { authSaga } from './auth/sagas';
 
 import { PaymentState, paymentReducer } from './payment';
 import { AuthState, authReducer } from './auth';
+import { DashboardState, dashboardReducer } from './dashboard';
 import storage from 'redux-persist/lib/storage';
 
 export type ApplicationState = {
   payment: PaymentState;
   auth: AuthState;
+  dashboard: DashboardState;
   router: RouterState;
 };
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['payment', 'auth', 'router'],
+  whitelist: ['payment', 'auth', 'dashboard', 'router'],
 };
 
 export const persistingReducer = (history: History) =>
@@ -28,6 +30,7 @@ export const persistingReducer = (history: History) =>
     combineReducers({
       payment: paymentReducer,
       auth: authReducer,
+      dashboard: dashboardReducer,
       router: connectRouter(history),
     })
   );

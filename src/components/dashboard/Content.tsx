@@ -38,7 +38,11 @@ const Content: React.FC = () => {
                   data-target="#collapseOne"
                   aria-expanded="true"
                   aria-controls="collapseOne"
-                ></Link>
+                >
+                  <div className="amount">
+                    <h2>USD 20.00</h2>
+                  </div>
+                </Link>
                 <img src={'https://via.placeholder.com/50'} alt="logo" />
                 <div className="card-header-content">
                   <h2>Airtime top-up</h2>
@@ -61,22 +65,54 @@ const Content: React.FC = () => {
                 data-parent="#accordionExample"
               >
                 <div className="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                  <div className="transaction-details">
+                    <h2>Transaction Details</h2>
+
+                    <div className="receipt">
+                      <table className="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>You sent</td>
+                            <td>USD 20.00</td>
+                          </tr>
+                          <tr>
+                            <td>To</td>
+                            <td>0293489239879</td>
+                          </tr>
+                          <tr>
+                            <td>Our Fee</td>
+                            <td>USD 0.00</td>
+                          </tr>
+                          <tr>
+                            <td>Transaction ID</td>
+                            <td>#5392382983277</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="receipt-buttons">
+                      <button className="btn">Download Receipt</button>
+                      <button className="btn">Repeat this transaction</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <hr />
+            {/* <hr /> */}
             <div className="card">
               <div className="card-header" id="headingOne">
                 <Link
                   to={href}
                   className="btn-header-link"
                   data-toggle="collapse"
-                  data-target="#collapseOne"
+                  data-target="#collapseTwo"
                   aria-expanded="true"
-                  aria-controls="collapseOne"
-                ></Link>
+                  aria-controls="collapseTwo"
+                >
+                  <div className="amount">
+                    <h2>USD 10,000.00</h2>
+                  </div>
+                </Link>
                 <img src={'https://via.placeholder.com/50'} alt="logo" />
                 <div className="card-header-content">
                   <h2>School Fees Payment</h2>
@@ -93,14 +129,42 @@ const Content: React.FC = () => {
                 </div>
               </div>
               <div
-                id="collapseOne"
+                id="collapseTwo"
                 className="collapse"
-                aria-labelledby="headingOne"
+                aria-labelledby="headingTwo"
                 data-parent="#accordionExample"
               >
                 <div className="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                  <div className="transaction-details">
+                    <h2>Transaction Details</h2>
+
+                    <div className="receipt">
+                      <table className="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>You sent</td>
+                            <td>USD 10,000.00</td>
+                          </tr>
+                          <tr>
+                            <td>To</td>
+                            <td>Kinshasa University</td>
+                          </tr>
+                          <tr>
+                            <td>Our Fee</td>
+                            <td>USD 0.00</td>
+                          </tr>
+                          <tr>
+                            <td>Transaction ID</td>
+                            <td>#5392382983277</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="receipt-buttons">
+                      <button className="btn">Download Receipt</button>
+                      <button className="btn">Repeat this transaction</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

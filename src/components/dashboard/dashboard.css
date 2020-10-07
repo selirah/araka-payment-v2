@@ -1,3 +1,9 @@
+.bg-gradient-custom {
+  background-color: #425466;
+  background-image: linear-gradient(180deg, #425466 10%, #425466 100%);
+  background-size: cover;
+}
+
 .btn-custom {
   background: #f4744b !important;
   transition: all 0.5s ease-in-out !important;
@@ -5,7 +11,6 @@
   text-transform: uppercase;
   font-weight: 700 !important;
   text-align: center !important;
-  border-radius: 1.2rem !important;
 }
 
 .btn-custom:hover {
@@ -49,7 +54,7 @@
 .top-pane {
   padding: 2rem;
   position: relative;
-  border: 0.0625rem dashed #e0e0e0;
+  border-bottom: 0.0625rem solid #e0e0e0;
 }
 
 .top-pane h2 {
@@ -95,7 +100,7 @@
 .middle-pane {
   padding: 2rem;
   position: relative;
-  border: 0.0625rem dashed #e0e0e0;
+  border-bottom: 0.0625rem solid #e0e0e0;
 }
 
 .middle-pane h2 {
@@ -111,7 +116,7 @@
 .transaction-content {
   padding: 0.5rem;
   position: relative;
-  border: 0.0625rem dashed #e0e0e0;
+  /* border: 0.0625rem dashed #e0e0e0; */
 }
 
 .transaction-content .card {
@@ -130,21 +135,24 @@
   border-bottom: 0.0625rem solid #e0e0e0;
   margin-left: 0;
   position: relative;
+  margin-bottom: 1.5rem;
 }
 
 .transaction-content .card .card-header .btn-header-link:after {
-  content: '\f107';
+  content: '\f106';
   font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
+  font-weight: 700;
   position: absolute;
   right: 1rem;
   top: 2rem;
-  color: #222;
+  color: #506077;
+  cursor: pointer;
 }
 
 .transaction-content .card .card-header .btn-header-link.collapsed:after {
-  content: '\f106';
-  color: #222;
+  content: '\f107';
+  color: #506077;
+  cursor: pointer;
 }
 
 .transaction-content .card .card-header .btn-header-link {
@@ -172,7 +180,7 @@
   font-size: 0.85rem;
   text-transform: uppercase;
   font-weight: 700;
-  color: #222;
+  color: #506077;
   margin-bottom: 0.75rem;
 }
 
@@ -237,4 +245,119 @@
   cursor: default;
   outline: 0 none;
   text-transform: capitalize;
+}
+
+.card-header .amount {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+  padding-top: 2.3rem;
+  padding-right: 3.5rem;
+}
+
+.card-header .amount h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #506077;
+  margin-bottom: 0.75rem;
+}
+
+.transaction-content .card .card-body {
+  position: relative;
+  background: #f4f6f8;
+}
+
+.transaction-content .card .card-body .transaction-details {
+  /* position: absolute;
+  left: 0;
+  top: 0; */
+  padding-left: 0;
+}
+
+.transaction-content .card .card-body .transaction-details h2 {
+  font-size: 0.85rem;
+  padding-top: 0.2rem;
+  text-transform: uppercase;
+  color: #506077;
+  font-weight: 700;
+  padding-left: 3rem;
+}
+
+.transaction-content .card .card-body .transaction-details .receipt {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.transaction-details .receipt table tbody tr {
+  border-bottom: 0.0625rem dashed rgba(66, 84, 102, 0.3);
+}
+
+.transaction-details .receipt table tbody tr td:nth-child(1) {
+  text-align: left;
+  color: rgba(66, 84, 102, 0.7);
+  font-weight: 400;
+}
+
+.transaction-details .receipt table tbody tr td:nth-child(2) {
+  text-align: right;
+  color: #506077;
+  font-weight: 700;
+}
+
+.transaction-details .receipt table td {
+  color: #506077;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.transaction-details .receipt-buttons {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.receipt-buttons button:nth-child(1) {
+  text-align: left;
+  border: none;
+  border-radius: 0;
+  background: rgba(66, 84, 102, 0.8);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  transition: all 0.5s ease-in-out;
+}
+
+.receipt-buttons button:nth-child(1):hover {
+  background: rgba(66, 84, 102, 1);
+}
+
+.receipt-buttons button:nth-child(2) {
+  /* text-align: right; */
+  border: none;
+  float: right;
+  border-radius: 0;
+  background: rgba(248, 89, 36, 0.8);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  transition: all 0.5s ease-in-out;
+}
+
+.receipt-buttons button:nth-child(2):hover {
+  background: rgba(248, 89, 36, 1);
+}
+
+.sidebar .nav-item.active .nav-link {
+  font-weight: 400;
+  border-left: 0.2rem solid rgba(248, 89, 36, 1);
+  color: rgba(248, 89, 36, 1);
 }

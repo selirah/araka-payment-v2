@@ -37,40 +37,32 @@ const TopNav: React.FC = () => {
       </div>
 
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item dropdown no-arrow d-sm-none">
+        <li className="nav-item mx-1">
           <a
-            className="nav-link dropdown-toggle"
+            className="nav-link"
             href={href}
-            id="searchDropdown"
+            id="alertsDropdown"
             role="button"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <i className="fas fa-search fa-fw"></i>
+            <i className="flag-icon flag-icon-gb"></i>
           </a>
+        </li>
 
-          <div
-            className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-            aria-labelledby="searchDropdown"
+        <li className="nav-item mx-1">
+          <a
+            className="nav-link"
+            href={href}
+            id="alertsDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
-            <form className="form-inline mr-auto w-100 navbar-search">
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control bg-light border-0 small"
-                  placeholder="Search for..."
-                  aria-label="Search"
-                  aria-describedby="basic-addon2"
-                />
-                <div className="input-group-append">
-                  <button className="btn btn-primary" type="button">
-                    <i className="fas fa-search fa-sm"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+            <i className="flag-icon flag-icon-fr"></i>
+          </a>
         </li>
 
         <li className="nav-item dropdown no-arrow mx-1">
@@ -84,7 +76,7 @@ const TopNav: React.FC = () => {
             aria-expanded="false"
           >
             <i className="fas fa-bell fa-fw"></i>
-            <span className="badge badge-danger badge-counter">3+</span>
+            {/* <span className="badge badge-danger badge-counter">3+</span> */}
           </a>
           <div
             className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
