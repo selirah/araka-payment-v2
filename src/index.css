@@ -920,7 +920,7 @@ footer .list-inline-item.mdi {
 /**-- Options --**/
 
 .display-name {
-  margin-top: 1rem;
+  margin-top: 3rem;
   padding: 1rem;
   color: #425466;
 }
@@ -974,6 +974,7 @@ footer .list-inline-item.mdi {
 
 .summary {
   padding: 0;
+  margin-top: 3rem;
 }
 
 .summary table {
