@@ -1,6 +1,6 @@
 import { Product } from '../interfaces';
 
-export const filter = (product: Product, label: string): any => {
+export const filter = (product: Product, label: string, v?: any): any => {
   const form = JSON.parse(product.form);
   const { components } = form;
   let value = 0;
@@ -19,10 +19,10 @@ export const filter = (product: Product, label: string): any => {
             value = 0;
           }
           if (components[i].key === label && components[i].type === 'select') {
-            const defaultValue = components[i].defaultValue;
+            // const defaultValue = components[i].defaultValue;
             let values = components[i].data.values;
             for (let j = 0; j < values.length; j++) {
-              if (values[j].value === defaultValue) {
+              if (parseInt(values[j].value) === v) {
                 selectLabel = values[j].label;
               }
             }
@@ -39,11 +39,10 @@ export const filter = (product: Product, label: string): any => {
                 if (comp !== undefined && comp.length > 0) {
                   for (let q = 0; q < comp.length; q++) {
                     if (comp[q].type === 'select' && comp[q].key === label) {
-                      console.log(comp[q].key);
-                      const defaultValue = comp[q].defaultValue;
+                      // const defaultValue = comp[q].defaultValue;
                       let values = comp[q].data.values;
                       for (let j = 0; j < values.length; j++) {
-                        if (values[j].value === defaultValue) {
+                        if (parseInt(values[j].value) === v) {
                           selectLabel = values[j].label;
                         }
                       }

@@ -122,9 +122,11 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
           <ImageContainerLogin className="col-lg-5 col-md-5 d-none d-md-block"></ImageContainerLogin>
           <FormContainer className="col-lg-7 col-md-7">
             <FormBox className="col-sm-5 text-center">
-              <LogoContainer className="mt-0">
-                <img src={logoNav} alt="logo" width="100" />
-              </LogoContainer>
+              <Link to={path.home}>
+                <LogoContainer className="mt-0">
+                  <img src={logoNav} alt="logo" width="100" />
+                </LogoContainer>
+              </Link>
               <FormBoxHeader>
                 <h4>Welcome to ARAKA Payments</h4>
               </FormBoxHeader>

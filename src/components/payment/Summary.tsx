@@ -37,23 +37,14 @@ const Summary: React.FC = () => {
     dispatch(decreasePaymentStep());
   };
 
-  let keys;
-  let values;
+  let summary: React.ReactNode;
   if (data !== null || data !== undefined) {
-    keys = Object.keys(data.data).map(function (key, index) {
-      const { value } = filter(product!, key);
-
-      return (
-        <React.Fragment key={index}>
-          {!value ? (
-            <label htmlFor="">{key.replace(/([a-z])([A-Z])/g, '$1 $2')}</label>
-          ) : null}
-        </React.Fragment>
+    summary = Object.keys(data.data).map(function (key, index) {
+      const { value, selectLabel, isDate } = filter(
+        product!,
+        key,
+        data.data[key]
       );
-    });
-
-    values = Object.keys(data.data).map(function (key, index) {
-      const { value, selectLabel, isDate } = filter(product!, key);
       let v;
       if (isDate) {
         v = moment(data.data[key]).format('MMMM D, YYYY (h:mm a)');
@@ -64,7 +55,10 @@ const Summary: React.FC = () => {
       return (
         <React.Fragment key={index}>
           {!value ? (
-            <label htmlFor="">{selectLabel !== '' ? selectLabel : v}</label>
+            <tr>
+              <td>{key.replace(/([a-z])([A-Z])/g, '$1 $2')}</td>
+              <td>{selectLabel !== '' ? selectLabel : v}</td>
+            </tr>
           ) : null}
         </React.Fragment>
       );
@@ -75,26 +69,21 @@ const Summary: React.FC = () => {
 
   return (
     <React.Fragment>
-      <div className="container mt-5">
+      <div className="container">
         <div className="row summary justify-content-center">
-          <div className="col-md-4">
-            <div className="summary-item mb-5">
-              <label htmlFor="">Payment Type</label>
-              <label htmlFor="">Provider</label>
-              {keys}
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="summary-item-values mb-5">
-              <label htmlFor="">
-                {category !== undefined ? category.name : null}
-              </label>
-              <label htmlFor="">
-                {product !== undefined ? product.name : null}
-              </label>
-              {values}
-            </div>
-          </div>
+          <table className="table table-borderless">
+            <tbody>
+              <tr>
+                <td>Payment Type</td>
+                <td>{category !== undefined ? category.name : null}</td>
+              </tr>
+              <tr>
+                <td>Provider</td>
+                <td>{product !== undefined ? product.name : null}</td>
+              </tr>
+              {summary}
+            </tbody>
+          </table>
         </div>
       </div>
       <Button

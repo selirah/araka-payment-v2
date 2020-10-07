@@ -1,36 +1,75 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
+import { i18n } from '../../i18n';
 import { FormIO } from './Form';
 import {
   increasePaymentStep,
   decreasePaymentStep,
-} from '../../store/payment/actions';
+  setFormValidError,
+} from '../../store/payment';
 import { Button } from './Button';
 import { EmptyBox } from './EmptyBox';
 import { isEmpty } from '../../helpers/isEmpty';
+import { secure } from '../../utils/secure';
+import { Error } from '../common/Error';
 
 const Details: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { category, product } = appSelector((state) => state.payment);
+  const { category, product, isFormValidError } = appSelector(
+    (state) => state.payment
+  );
+  const locale = localStorage.getItem('i18nextLng');
+  const [formError, setFormError] = useState<string>('');
+
+  useEffect(() => {
+    localStorage.setItem('isValid', 'false');
+    dispatch(setFormValidError(''));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const continueProcess = (): void => {
-    dispatch(increasePaymentStep());
+    const isValid = localStorage.getItem('isValid');
+    if (isValid === 'true') {
+      dispatch(increasePaymentStep());
+      dispatch(setFormValidError(''));
+    } else {
+      dispatch(setFormValidError('Make sure all fields are filled'));
+    }
   };
 
   const previousProcess = (): void => {
     dispatch(decreasePaymentStep());
   };
 
+  useEffect(() => {
+    setFormError(isFormValidError);
+  }, [isFormValidError]);
+
+  const options = {
+    language: locale !== null ? locale : 'en',
+    i18n: i18n,
+    readOnly: false,
+    noAlerts: true,
+  };
+
+  const onChange = (submission: any) => {
+    if (submission.isValid) {
+      delete submission.changed;
+      secure.set('orderData', submission);
+      localStorage.setItem('isValid', submission.isValid);
+    }
+  };
+
   return (
     <React.Fragment>
+      {!isEmpty(formError) ? <Error error={formError} /> : null}
       <div className="row summary justify-content-center pb-0">
         <div className="col-md-6">
           <div className="summary-item-details mb-5">
             <label htmlFor="">Payment type</label>
             <div className="tag">
-              {/* <img className="image" /> */}
               {category !== undefined ? category.name : null}
             </div>
           </div>
@@ -39,7 +78,6 @@ const Details: React.FC = () => {
           <div className="summary-item-details mb-5">
             <label htmlFor="">Provider</label>
             <div className="tag">
-              {/* <img className="image" /> */}
               {product !== undefined ? product.name : null}
             </div>
           </div>
@@ -48,7 +86,11 @@ const Details: React.FC = () => {
       <div className="row display-options justify-content-center pt-0">
         <div className="col-sm-12">
           {product !== undefined && !isEmpty(product.form) ? (
-            <FormIO schema={JSON.parse(product.form)} />
+            <FormIO
+              schema={JSON.parse(product.form)}
+              options={options}
+              onChange={onChange}
+            />
           ) : (
             <EmptyBox />
           )}

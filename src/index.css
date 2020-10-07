@@ -964,6 +964,44 @@ footer .list-inline-item.mdi {
   border-radius: 20px;
 }
 
+.summary {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.summary table {
+  width: 25rem;
+}
+
+.table-borderless > thead > tr > th,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > tbody > tr > td,
+.table-borderless > tfoot > tr > td {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-size: 1rem;
+}
+
+.summary table tr td:nth-child(1) {
+  text-align: left;
+  color: rgba(66, 84, 102, 0.2);
+}
+
+.summary table tr td:nth-child(2) {
+  text-align: right;
+  color: rgba(66, 84, 102, 0.6);
+}
+
+.summary table td {
+  color: rgba(66, 84, 102, 0.2);
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .summary-item-details {
   position: relative;
   text-align: center;
@@ -1000,12 +1038,12 @@ footer .list-inline-item.mdi {
 .summary-item label {
   color: rgba(66, 84, 102, 0.4);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: -20px;
   display: block;
   text-overflow: ellipsis;
   overflow: hidden;
-  padding-bottom: 1rem;
+  padding-bottom: 1.5rem;
 }
 
 .summary-item-values {
@@ -1015,14 +1053,14 @@ footer .list-inline-item.mdi {
 }
 
 .summary-item-values label {
-  color: rgba(66, 84, 102, 0.4);
+  color: rgba(66, 84, 102, 0.6);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: -20px;
   display: block;
   text-overflow: ellipsis;
   overflow: hidden;
-  padding-bottom: 1rem;
+  padding-bottom: 1.5rem;
 }
 
 .option img {
@@ -1119,10 +1157,6 @@ footer .list-inline-item.mdi {
   background-color: #888888 !important;
   outline: none !important;
   color: #fff !important;
-}
-
-.summary {
-  padding: 1rem;
 }
 
 .borderless td {

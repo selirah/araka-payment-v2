@@ -104,9 +104,11 @@ const LoginForm: React.FC<Props> = ({ history }) => {
           <ImageContainerLogin className="col-lg-5 col-md-4 d-none d-md-block"></ImageContainerLogin>
           <FormContainer className="col-lg-7 col-md-7">
             <FormBox className="col-sm-5 text-center">
-              <LogoContainer className="mt-0">
-                <img src={logoNav} alt="logo" width="100" />
-              </LogoContainer>
+              <Link to={path.home}>
+                <LogoContainer className="mt-0">
+                  <img src={logoNav} alt="logo" width="100" />
+                </LogoContainer>
+              </Link>
               <React.Fragment>
                 <FormBoxHeader>
                   <h4>Welcome back</h4>
@@ -166,11 +168,11 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                   processTitle={t('login.processing')}
                 />
                 <TermsContainer className="row mt-5">
-                    <h4 className="mx-auto">
-                      By continuing, you accept our{' '}
-                      <Link to="#">Terms of Use</Link> and{' '}
-                      <Link to="#">Privacy Policy</Link>
-                    </h4>
+                  <h4 className="mx-auto">
+                    By continuing, you accept our{' '}
+                    <Link to="#">Terms of Use</Link> and{' '}
+                    <Link to="#">Privacy Policy</Link>
+                  </h4>
                 </TermsContainer>
               </form>
             </FormBox>

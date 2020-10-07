@@ -20,7 +20,7 @@ export enum PaymentActionTypes {
   SET_ACTIVE_PAY_OPTION = '@@payment/SET_ACTIVE_PAY_OPTION',
   RESET_TRANSACTION = '@@payment/RESET_TRANSACTION',
   CLEAR_ORDER_ERROR = '@@payment/CLEAR_ORDER_ERROR',
-  FORM_VALID = '@@payment/FORM_VALID',
+  FORM_VALID_ERROR = '@@payment/FORM_VALID_ERROR',
 }
 
 export type PaymentState = {
@@ -39,5 +39,5 @@ export type PaymentState = {
   readonly category: Category | undefined;
   readonly isPerformingPayment: boolean;
   readonly paymentOption: string;
-  readonly isFormValid: boolean;
+  readonly isFormValidError: string;
 };
