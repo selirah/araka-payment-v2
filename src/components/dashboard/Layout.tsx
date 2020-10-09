@@ -1,18 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+// import { useDispatch } from 'react-redux';
+import { appSelector } from '../../helpers/appSelector';
+// import { AppDispatch } from '../../helpers/appDispatch';
 import { SideBar } from './SideBar';
 import { TopNav } from './TopNav';
 import { ContentContainer } from './ContentContainer';
-// import { NewUser } from './NewUser';
+import { NewUser } from './NewUser';
 import { Content } from './Content';
-import './style.css';
+import { Account } from './Account';
+import { Recipients } from './Recipients';
+import { pageTypes } from '../../helpers/constants';
+import { Spinner } from '../common/Spinner';
+import { isEmpty } from 'src/helpers/isEmpty';
 import './dashboard.css';
 
 type Props = {
-  title: string;
+  title?: string;
 };
 
-const Layout: React.FC<Props> = ({ title }) => {
+export const Layout: React.FC<Props> = ({ title }) => {
+  // const dispatch: AppDispatch = useDispatch();
+  const { pageSwitch, transactions, loading } = appSelector(
+    (state) => state.dashboard
+  );
+  const [page, setPage] = useState<string>(pageSwitch);
+  const [transactionData, setTransactionData] = useState<any[]>(transactions);
+  const [spinner, setSpinner] = useState<boolean>(loading);
+
+  useEffect(() => {
+    setPage(pageSwitch);
+    setSpinner(loading);
+    setTransactionData(transactions);
+  }, [pageSwitch, loading, transactions]);
+
+  let render: React.ReactNode;
+
+  switch (page) {
+    case pageTypes.HOME:
+      if (spinner && isEmpty(transactionData)) {
+        render = <Spinner />;
+      } else if (!spinner && isEmpty(transactionData)) {
+        render = <NewUser />;
+      } else {
+        render = <Content />;
+      }
+      break;
+    case pageTypes.ACCOUNT:
+      render = <Account />;
+      break;
+    case pageTypes.RECIPIENTS:
+      render = <Recipients />;
+      break;
+    default:
+      if (spinner && isEmpty(transactionData)) {
+        render = <Spinner />;
+      } else if (!spinner && isEmpty(transactionData)) {
+        render = <NewUser />;
+      } else {
+        render = <Content />;
+      }
+      break;
+  }
+
   return (
     <section id="page-top">
       <div id="wrapper">
@@ -24,9 +74,9 @@ const Layout: React.FC<Props> = ({ title }) => {
           <div id="content">
             <TopNav />
             <div className="container-fluid">
-              <ContentContainer title="Dashboard">
+              <ContentContainer>
                 {/* <NewUser /> */}
-                <Content />
+                {render}
               </ContentContainer>
             </div>
           </div>
@@ -35,5 +85,3 @@ const Layout: React.FC<Props> = ({ title }) => {
     </section>
   );
 };
-
-export { Layout };

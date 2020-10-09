@@ -8,3 +8,10 @@ export const pageTypes = {
   ACCOUNT: 'ACCOUNT',
   RECIPIENTS: 'RECIPIENTS',
 };
+
+
+export const pageHeader = {
+  Home: 'Home',
+  Account: 'Account',
+  Recipients: 'Recipients'
+}

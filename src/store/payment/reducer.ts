@@ -37,7 +37,7 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        errors: action.payload,
+        error: action.payload,
       };
 
     case PaymentActionTypes.INCREASE_PAYMENT_STEP:

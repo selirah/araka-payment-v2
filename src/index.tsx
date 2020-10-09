@@ -7,6 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'flag-icon-css/css/flag-icon.min.css';
 import 'swiper/swiper-bundle.min.css';
+import './style.css';
 import './index.css';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min';

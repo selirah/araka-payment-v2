@@ -1,21 +1,93 @@
+/** SIDE BAR **/
+
 .bg-gradient-custom {
-  background-color: #425466;
-  background-image: linear-gradient(180deg, #425466 10%, #425466 100%);
+  background-color: #fff;
+  background-image: linear-gradient(180deg, #fff 10%, #fff 100%);
   background-size: cover;
 }
 
 .btn-custom {
-  background: #f4744b !important;
-  transition: all 0.5s ease-in-out !important;
+  background: rgba(66, 84, 102, 0.8) !important;
   color: #fff !important;
   text-transform: uppercase;
   font-weight: 700 !important;
   text-align: center !important;
+  transition: none !important;
+}
+
+.btn-custom .nav-link {
+  color: #fff !important;
 }
 
 .btn-custom:hover {
-  background: #f85924 !important;
+  background: rgba(66, 84, 102, 1) !important;
+  color: #fff;
 }
+
+.sidebar .nav-item .nav-link {
+  color: rgba(66, 84, 102, 0.8);
+  font-weight: 500;
+}
+
+.sidebar .sidebar-brand {
+  color: rgba(66, 84, 102, 0.8);
+}
+
+.sidebar .nav-item.active .nav-link {
+  font-weight: 700;
+  color: rgba(248, 89, 36, 1);
+  background-color: #f9f9f9;
+}
+
+.sidebar .nav-item .nav-link:hover {
+  color: rgba(248, 89, 36, 0.8);
+  background-color: #f9f9f9;
+}
+
+.sidebar .nav-item.active .nav-link i {
+  color: rgba(248, 89, 36, 0.8);
+}
+
+.sidebar .nav-item .nav-link i {
+  color: rgba(66, 84, 102, 0.8);
+}
+
+.sidebar .nav-item .nav-link:hover i {
+  color: rgba(248, 89, 36, 0.8);
+}
+
+.header {
+  color: rgba(248, 89, 36, 0.8);
+  font-weight: 700;
+}
+
+.sidebar #sidebarToggle {
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  background-color: rgba(66, 84, 102, 0.8);
+}
+
+.sidebar #sidebarToggle::after {
+  font-weight: 900;
+  content: '\f104';
+  font-family: 'Font Awesome 5 Free';
+  margin-right: 0.1rem;
+  color: #fff;
+}
+
+.sidebar #sidebarToggle:hover {
+  text-decoration: none;
+  background-color: rgba(66, 84, 102, 1);
+}
+
+.sidebar #sidebarToggle:focus {
+  outline: none;
+}
+
+/** HOME **/
 
 .new-user {
   display: block;
@@ -28,11 +100,13 @@
 .new-user .top-display {
   text-align: center;
   padding-bottom: 0.6rem;
+  color: #506077;
 }
 
 .new-user .bottom-display {
   text-align: center;
   padding-bottom: 1rem;
+  color: #506077;
 }
 
 .new-user .payment-button {
@@ -41,14 +115,18 @@
 }
 
 .new-user .btn-make-payment {
-  border-radius: 0 !important;
-  background: #f4744b !important;
-  transition: all 0.5s ease-in-out !important;
-  color: #fff !important;
+  border-radius: 0;
+  background: rgba(66, 84, 102, 0.8);
+  transition: all 0.5s ease-in-out;
+  color: #fff;
   text-transform: uppercase;
-  font-weight: 700 !important;
-  text-align: center !important;
+  font-weight: 700;
+  text-align: center;
   padding: 1rem;
+}
+
+.new-user .btn-make-payment:hover {
+  background: rgba(66, 84, 102, 1);
 }
 
 .top-pane {
@@ -71,6 +149,7 @@
   right: 1rem;
   top: 0.5rem;
   width: 30%;
+  font-size: 1rem;
 }
 
 .top-pane form input {
@@ -288,6 +367,7 @@
 .transaction-content .card .card-body .transaction-details .receipt {
   padding-left: 3rem;
   padding-right: 3rem;
+  padding-top: 1rem;
 }
 
 .transaction-details .receipt table tbody tr {
@@ -298,12 +378,16 @@
   text-align: left;
   color: rgba(66, 84, 102, 0.7);
   font-weight: 400;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .transaction-details .receipt table tbody tr td:nth-child(2) {
   text-align: right;
   color: #506077;
   font-weight: 700;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .transaction-details .receipt table td {
@@ -356,8 +440,966 @@
   background: rgba(248, 89, 36, 1);
 }
 
-.sidebar .nav-item.active .nav-link {
-  font-weight: 400;
-  border-left: 0.2rem solid rgba(248, 89, 36, 1);
+/** ACCOUNT PAGE **/
+.user-profile-photo {
+  position: relative;
+  padding: 1rem;
+  border-bottom: 0.0625rem solid #e0e0e0;
+}
+
+.user-profile-photo img {
+  width: 3.5rem;
+}
+
+.user-profile-photo button {
+  margin-left: 0.5rem;
+  color: #506077;
+  font-weight: 300;
+  transition: all 0.5s ease-in-out;
+}
+
+.user-profile-photo button:hover {
+  color: #f85924;
+}
+
+.personal-info {
+  position: relative;
+  padding: 1rem;
+  border-bottom: 0.0625rem dashed #e0e0e0;
+  padding-top: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+.personal-info h4 {
+  position: absolute;
+  font-size: 0.9rem;
+  top: 2.3rem;
+  font-weight: 700;
+}
+
+.personal-info button {
+  position: absolute;
+  right: 1rem;
+  top: 1.5rem;
+  border: none;
+  background: rgba(66, 84, 102, 0.8);
+  font-weight: 300;
+  transition: all 0.5s ease-in-out;
+  border-radius: 0;
+  color: #fff;
+}
+
+.personal-info button:hover {
+  background: rgba(66, 84, 102, 1);
+  color: #fff;
+}
+
+.personal-details {
+  position: relative;
+  padding: 1rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.personal-details .personal-details-left {
+  position: absolute;
+  padding-top: 1rem;
+  top: 0;
+  left: 1rem;
+}
+
+.personal-details .personal-details-left h2 {
+  font-size: 0.9rem;
+  padding-top: 1.5rem;
+  font-weight: 300;
+  color: rgba(66, 84, 102, 0.5);
+}
+
+.personal-details .personal-details-left h4 {
+  font-size: 0.85rem;
+  color: rgba(66, 84, 102, 1);
+}
+
+.personal-details .personal-details-right {
+  position: absolute;
+  padding-top: 1rem;
+  left: 65%;
+  top: 0;
+}
+
+.personal-details .personal-details-right h2 {
+  font-size: 0.9rem;
+  padding-top: 1.5rem;
+  padding-top: 1.5rem;
+  font-weight: 300;
+  color: rgba(66, 84, 102, 0.5);
+}
+
+.personal-details .personal-details-right h4 {
+  font-size: 0.85rem;
+  color: rgba(66, 84, 102, 1);
+}
+
+/** RECIPIENTS **/
+
+.toolbar {
+  position: relative;
+}
+
+.toolbar button {
+  margin-right: 1rem;
+}
+
+.toolbar button:nth-child(1) {
+  border: 0.0625rem solid rgba(66, 84, 102, 0.8);
+  border-radius: 0;
+  background: rgba(66, 84, 102, 0.8);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  transition: all 0.5s ease-in-out;
+}
+
+.toolbar button:nth-child(1):hover {
+  background: rgba(66, 84, 102, 1);
+}
+
+.toolbar button:nth-child(2) {
+  border: 0.0625rem solid rgba(248, 89, 36, 0.8);
+  border-radius: 0;
+  background: rgba(248, 89, 36, 0.8);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  transition: all 0.5s ease-in-out;
+}
+
+.toolbar button:nth-child(2):hover {
+  background: rgba(248, 89, 36, 1);
+}
+
+.toolbar button:nth-child(3) {
+  float: right;
+  border: 0.0625rem solid rgba(66, 84, 102, 0.8);
+  border-radius: 0;
+  background: rgba(66, 84, 102, 0.8);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  transition: all 0.5s ease-in-out;
+}
+
+.toolbar button:nth-child(3):hover {
+  background: rgba(66, 84, 102, 1);
+}
+
+.contact-header {
+  position: relative;
+  padding-top: 2rem;
+  border-bottom: 0.0625rem solid #e0e0e0;
+}
+
+.contact-header h2 {
+  font-size: 0.8rem;
+  font-weight: 300;
   color: rgba(248, 89, 36, 1);
+}
+
+.contacts-container {
+  position: relative;
+  padding: 0;
+  height: 15rem;
+  overflow-y: auto;
+}
+
+.contacts-container::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
+.contacts-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0.375rem rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 0.375rem rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  background-color: #fff;
+}
+
+.contacts-container::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  -webkit-box-shadow: inset 0 0 0.375rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 0.375rem rgba(0, 0, 0, 0.5);
+}
+
+.contact {
+  position: relative;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 0.0625rem dashed #e0e0e0;
+}
+
+.contact img {
+  width: 2.5rem;
+}
+
+.contact .contact-detail {
+  position: absolute;
+  left: 3.3rem;
+  top: 0;
+  padding-top: 1.7rem;
+}
+
+.contact-detail h4 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #506077;
+}
+
+.contact-detail h6 {
+  font-size: 0.7rem;
+  color: rgba(66, 84, 102, 0.5);
+  font-weight: 500;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .top-pane {
+    padding: 2rem;
+    position: relative;
+    border-bottom: 0.0625rem solid #e0e0e0;
+    width: 17rem;
+  }
+
+  .top-pane h2 {
+    position: absolute;
+    left: 0;
+    top: 1.5rem;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(66, 84, 102, 0.8);
+    width: 5rem;
+  }
+
+  .top-pane form {
+    position: absolute;
+    right: 0;
+    top: 0.5rem;
+    width: 10rem;
+  }
+
+  .top-pane form input {
+    height: 0.5rem;
+    background: #e0e0e0;
+    color: #222;
+    width: 1rem;
+    font-size: 0.75rem;
+  }
+
+  .middle-pane {
+    padding: 2rem;
+    position: relative;
+    border-bottom: 0.0625rem solid #e0e0e0;
+  }
+
+  .middle-pane h2 {
+    position: absolute;
+    left: 0;
+    top: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #949dac;
+  }
+
+  .transaction-content {
+    padding: 0;
+    position: relative;
+    /* border: 0.0625rem dashed #e0e0e0; */
+  }
+
+  .transaction-content .card {
+    box-shadow: none;
+    border: none;
+    padding: 0 !important;
+  }
+
+  .transaction-content .card .card-header {
+    box-shadow: none;
+    border: none;
+    padding-left: 0;
+    padding: 3rem;
+    outline: 0 none;
+    background: transparent;
+    border-bottom: 0.0625rem solid #e0e0e0;
+    margin-left: 0;
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .transaction-content .card .card-header .btn-header-link:after {
+    content: '\f106';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    position: absolute;
+    right: 1rem;
+    top: 2rem;
+    color: #506077;
+    cursor: pointer;
+  }
+
+  .transaction-content .card .card-header .btn-header-link.collapsed:after {
+    content: '\f107';
+    color: #506077;
+    cursor: pointer;
+  }
+
+  .transaction-content .card .card-header .btn-header-link {
+    outline: 0 none;
+    text-decoration: none;
+  }
+
+  .transaction-content .card .card-header img {
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    border-radius: 50%;
+  }
+
+  .transaction-content .card .card-header .card-header-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    padding-top: 1.3rem;
+    padding-left: 3.5rem;
+  }
+
+  .transaction-content .card .card-header .card-header-content h2 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #506077;
+    margin-bottom: 0.5rem;
+  }
+
+  .transaction-content .card .card-header .card-header-content h4 {
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #949dac;
+    margin-bottom: 0.3rem;
+    width: 6rem;
+  }
+
+  .transaction-content .card .card-header .card-header-content .bottom-desc {
+    position: relative;
+  }
+
+  .bottom-time {
+    display: block;
+  }
+
+  .bottom-time h6 {
+    display: none;
+  }
+
+  .bottom-time h6:nth-child(2) button {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #949dac;
+    border: none;
+    text-align: center;
+    padding: 0.5rem;
+    cursor: default;
+    outline: 0 none;
+    text-transform: capitalize;
+  }
+
+  .card-header .amount {
+    display: none;
+  }
+
+  .transaction-content .card .card-body {
+    position: relative;
+    background: #f4f6f8;
+  }
+
+  .transaction-content .card .card-body .transaction-details {
+    padding-left: 0;
+  }
+
+  .transaction-content .card .card-body .transaction-details h2 {
+    padding-left: 0;
+  }
+
+  .transaction-content .card .card-body .transaction-details .receipt {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 1rem;
+  }
+
+  .transaction-details .receipt table tbody tr {
+    border-bottom: 0.0625rem dashed rgba(66, 84, 102, 0.3);
+    display: block;
+  }
+
+  .transaction-details .receipt table tbody tr td:nth-child(1) {
+    display: block;
+    text-align: left;
+    color: rgba(66, 84, 102, 0.7);
+    font-weight: 400;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .transaction-details .receipt table tbody tr td:nth-child(2) {
+    text-align: right;
+    color: #506077;
+    font-weight: 700;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .transaction-details .receipt table td {
+    color: #506077;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .transaction-details .receipt-buttons {
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .receipt-buttons button:nth-child(1) {
+    text-align: center;
+    border: none;
+    border-radius: 0;
+    background: rgba(66, 84, 102, 0.8);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+    margin-bottom: 1.5rem;
+  }
+
+  .receipt-buttons button:nth-child(2) {
+    text-align: center;
+    border: none;
+    float: right;
+    border-radius: 0;
+    background: rgba(248, 89, 36, 0.8);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+  }
+
+  /* Account */
+  .user-profile-photo {
+    position: relative;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.0625rem solid #e0e0e0;
+  }
+
+  .user-profile-photo img {
+    width: 3.5rem;
+    position: absolute;
+    left: 0;
+    bottom: 0.5rem;
+  }
+
+  .user-profile-photo button {
+    margin-left: 3rem;
+    color: #506077;
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .personal-info {
+    position: relative;
+    padding: 1rem;
+    border-bottom: 0.0625rem dashed #e0e0e0;
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .personal-info h4 {
+    position: absolute;
+    font-size: 0.9rem;
+    top: 2.3rem;
+    left: 0;
+    font-weight: 700;
+  }
+
+  .personal-info button {
+    position: absolute;
+    right: 0;
+    top: 1.5rem;
+    border: none;
+    background: rgba(66, 84, 102, 0.8);
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0;
+    color: #fff;
+  }
+
+  .personal-details {
+    position: relative;
+    padding: 1rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .personal-details .personal-details-left {
+    position: absolute;
+    padding-top: 1rem;
+    top: 0;
+    left: 0;
+    width: 50%;
+  }
+
+  .personal-details .personal-details-left h2 {
+    font-size: 0.8rem;
+    padding-top: 1.5rem;
+    font-weight: 300;
+    color: rgba(66, 84, 102, 0.5);
+  }
+
+  .personal-details .personal-details-left h4 {
+    font-size: 0.8rem;
+    color: rgba(66, 84, 102, 1);
+    font-weight: 500;
+  }
+
+  .personal-details .personal-details-right {
+    position: absolute;
+    padding-top: 1rem;
+    left: 55%;
+    top: 0;
+    width: 50%;
+  }
+
+  .personal-details .personal-details-right h2 {
+    font-size: 0.8rem;
+    padding-top: 1.5rem;
+    padding-top: 1.5rem;
+    font-weight: 300;
+    color: rgba(66, 84, 102, 0.5);
+  }
+
+  .personal-details .personal-details-right h4 {
+    font-size: 0.8rem;
+    color: rgba(66, 84, 102, 1);
+    font-weight: 500;
+  }
+
+  /* RECIPIENTS PAGE */
+  .toolbar {
+    position: relative;
+  }
+
+  .toolbar button {
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .toolbar button:nth-child(1) {
+    border: 0.0625rem solid rgba(66, 84, 102, 0.8);
+    border-radius: 0;
+    background: rgba(66, 84, 102, 0.8);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .toolbar button:nth-child(2) {
+    border: 0.0625rem solid rgba(248, 89, 36, 0.8);
+    border-radius: 0;
+    background: rgba(248, 89, 36, 0.8);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .toolbar button:nth-child(3) {
+    border: 0.0625rem solid rgba(66, 84, 102, 0.8);
+    border-radius: 0;
+    background: rgba(66, 84, 102, 0.8);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+    display: block;
+    float: none;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .top-pane {
+    padding: 2rem;
+    position: relative;
+    border-bottom: 0.0625rem solid #e0e0e0;
+  }
+
+  .top-pane h2 {
+    position: absolute;
+    left: 0;
+    top: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: rgba(66, 84, 102, 0.8);
+    width: 5rem;
+  }
+
+  .top-pane form {
+    position: absolute;
+    right: 0;
+    top: 0.5rem;
+    width: 20rem;
+  }
+
+  .top-pane form input {
+    height: 0.5rem;
+    background: #e0e0e0;
+    color: #222;
+    width: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .middle-pane {
+    padding: 2rem;
+    position: relative;
+    border-bottom: 0.0625rem solid #e0e0e0;
+  }
+
+  .middle-pane h2 {
+    position: absolute;
+    left: 0;
+    top: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #949dac;
+  }
+
+  .transaction-content {
+    padding: 0;
+    position: relative;
+  }
+
+  .transaction-content .card {
+    box-shadow: none;
+    border: none;
+    padding: 0 !important;
+  }
+
+  .transaction-content .card .card-header {
+    box-shadow: none;
+    border: none;
+    padding-left: 0;
+    padding: 3rem;
+    outline: 0 none;
+    background: transparent;
+    border-bottom: 0.0625rem solid #e0e0e0;
+    margin-left: 0;
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .transaction-content .card .card-header .btn-header-link:after {
+    content: '\f106';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    position: absolute;
+    right: 1rem;
+    top: 2rem;
+    color: #506077;
+    cursor: pointer;
+  }
+
+  .transaction-content .card .card-header .btn-header-link.collapsed:after {
+    content: '\f107';
+    color: #506077;
+    cursor: pointer;
+  }
+
+  .transaction-content .card .card-header .btn-header-link {
+    outline: 0 none;
+    text-decoration: none;
+  }
+
+  .transaction-content .card .card-header img {
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    border-radius: 50%;
+  }
+
+  .transaction-content .card .card-header .card-header-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    padding-top: 1.3rem;
+    padding-left: 3.5rem;
+  }
+
+  .transaction-content .card .card-header .card-header-content h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #506077;
+    margin-bottom: 0.5rem;
+  }
+
+  .transaction-content .card .card-header .card-header-content h4 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #949dac;
+    margin-bottom: 0.3rem;
+  }
+
+  .transaction-content .card .card-header .card-header-content .bottom-desc {
+    position: relative;
+  }
+
+  .bottom-time {
+    display: block;
+  }
+
+  .bottom-time h6 {
+    display: inline-block;
+    padding-right: 1rem;
+    text-align: center;
+  }
+
+  .bottom-time h6:nth-child(1) {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #949dac;
+  }
+
+  .bottom-time h6:nth-child(2) {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #949dac;
+  }
+
+  .card-header .amount {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 50%;
+    padding-top: 2.3rem;
+    padding-right: 3.5rem;
+  }
+
+  .card-header .amount h2 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #506077;
+    margin-bottom: 0.75rem;
+  }
+
+  .transaction-content .card .card-body {
+    position: relative;
+    background: #f4f6f8;
+  }
+
+  .transaction-content .card .card-body .transaction-details {
+    padding-left: 0;
+  }
+
+  .transaction-content .card .card-body .transaction-details h2 {
+    padding-left: 0;
+  }
+
+  .transaction-content .card .card-body .transaction-details .receipt {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 1rem;
+  }
+
+  .transaction-details .receipt table tbody tr {
+    border-bottom: 0.0625rem dashed rgba(66, 84, 102, 0.3);
+  }
+
+  .transaction-details .receipt table tbody tr td:nth-child(1) {
+    text-align: left;
+    color: rgba(66, 84, 102, 0.7);
+    font-weight: 400;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .transaction-details .receipt table tbody tr td:nth-child(2) {
+    text-align: right;
+    color: #506077;
+    font-weight: 700;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .transaction-details .receipt table td {
+    color: #506077;
+    font-weight: 700;
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .transaction-details .receipt-buttons {
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .receipt-buttons button:nth-child(1) {
+    text-align: center;
+    border: none;
+    border-radius: 0;
+    background: rgba(66, 84, 102, 0.8);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .receipt-buttons button:nth-child(2) {
+    text-align: center;
+    border: none;
+    float: right;
+    border-radius: 0;
+    background: rgba(248, 89, 36, 0.8);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  /* Account */
+  /* Account */
+  .user-profile-photo {
+    position: relative;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.0625rem solid #e0e0e0;
+  }
+
+  .user-profile-photo img {
+    width: 3.5rem;
+    position: absolute;
+    left: 0;
+    bottom: 0.5rem;
+  }
+
+  .user-profile-photo button {
+    margin-left: 3rem;
+    color: #506077;
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .personal-info {
+    position: relative;
+    padding: 1rem;
+    border-bottom: 0.0625rem dashed #e0e0e0;
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .personal-info h4 {
+    position: absolute;
+    font-size: 0.9rem;
+    top: 2.3rem;
+    left: 0;
+    font-weight: 700;
+  }
+
+  .personal-info button {
+    position: absolute;
+    right: 0;
+    top: 1.5rem;
+    border: none;
+    background: rgba(66, 84, 102, 0.8);
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0;
+    color: #fff;
+  }
+
+  .personal-details {
+    position: relative;
+    padding: 1rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .personal-details .personal-details-left {
+    position: absolute;
+    padding-top: 1rem;
+    top: 0;
+    left: 0;
+    width: 50%;
+  }
+
+  .personal-details .personal-details-left h2 {
+    font-size: 0.9rem;
+    padding-top: 1.5rem;
+    font-weight: 300;
+    color: rgba(66, 84, 102, 0.5);
+  }
+
+  .personal-details .personal-details-left h4 {
+    font-size: 0.9rem;
+    color: rgba(66, 84, 102, 1);
+    font-weight: 500;
+  }
+
+  .personal-details .personal-details-right {
+    position: absolute;
+    padding-top: 1rem;
+    left: 65%;
+    top: 0;
+  }
+
+  .personal-details .personal-details-right h2 {
+    font-size: 0.9rem;
+    padding-top: 1.5rem;
+    padding-top: 1.5rem;
+    font-weight: 300;
+    color: rgba(66, 84, 102, 0.5);
+  }
+
+  .personal-details .personal-details-right h4 {
+    font-size: 0.9rem;
+    color: rgba(66, 84, 102, 1);
+    font-weight: 500;
+  }
 }

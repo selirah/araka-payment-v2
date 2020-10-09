@@ -1,28 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Search } from './Search';
 
 const Content: React.FC = () => {
+  const { t } = useTranslation();
   const href = '#';
+
   return (
     <div className="row">
       <div className="col-12">
         <div className="top-pane">
-          <h2>Activity</h2>
-          <form>
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control bg-light border-0 small"
-                placeholder="Search for..."
-                aria-label="Search"
-              />
-              <div className="input-group-append">
-                <button className="btn" type="submit">
-                  <i className="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+          <h2>{t('dashboard.old-user.activity')}</h2>
+          <Search />
         </div>
         <div className="middle-pane">
           <h2>September 17</h2>
@@ -66,7 +56,7 @@ const Content: React.FC = () => {
               >
                 <div className="card-body">
                   <div className="transaction-details">
-                    <h2>Transaction Details</h2>
+                    <h2>{t('dashboard.old-user.transaction-details')}</h2>
 
                     <div className="receipt">
                       <table className="table table-borderless">

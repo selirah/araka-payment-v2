@@ -71,10 +71,6 @@
       "login_note": "Sign in",
       "processing": "Processing.."
     },
-    "dashboard": {
-      "dashboard": "Dashboard",
-      "logout": "Logout"
-    },
     "wizard": {
       "payment-type": "Payment Type",
       "provider": "Provider",
@@ -119,6 +115,30 @@
         "sub3": "Airtime top-up cancelled",
         "btn": "View history",
         "btn2": "Re-try"
+      }
+    },
+    "dashboard": {
+      "top-nav": {
+        "logout": "Logout",
+        "home": "Home",
+        "account": "Account",
+        "recipients": "Recipients"
+      },
+      "side-bar": {
+        "home": "Home",
+        "account": "Account",
+        "recipients": "Recipients",
+        "make-payments": "Make Payments"
+      },
+      "new-user": {
+        "ready": "Ready to start",
+        "making-payments": "making payments?",
+        "yes": "yes, let's do it!"
+      },
+      "old-user": {
+        "activity": "Activity",
+        "search": "Search for...",
+        "transaction-details": "Transaction Details"
       }
     }
   }

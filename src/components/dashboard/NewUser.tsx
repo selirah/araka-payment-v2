@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { User } from 'src/interfaces';
 import { appSelector } from '../../helpers/appSelector';
 import { Link } from 'react-router-dom';
@@ -8,6 +9,7 @@ const NewUser: React.FC = () => {
   const { user } = appSelector((state) => state.auth);
   const [userDetails] = useState<User>(user);
   const [fname, setFname] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (userDetails !== undefined) {
@@ -25,11 +27,15 @@ const NewUser: React.FC = () => {
       <div className="container-fluid">
         <div className="row justify-content-center">
           <div className="new-user">
-            <div className="top-display">Hey {fname}!, Ready to start</div>
-            <div className="bottom-display">making payments?</div>
+            <div className="top-display">
+              Hey {fname}!, {t('dashboard.new-user.ready')}
+            </div>
+            <div className="bottom-display">
+              {t('dashboard.new-user.making-payments')}
+            </div>
             <div className="payment-button">
               <Link to={path.payment} className="btn btn-make-payment">
-                yes, let's do it!
+                {t('dashboard.new-user.yes')}
               </Link>
             </div>
           </div>

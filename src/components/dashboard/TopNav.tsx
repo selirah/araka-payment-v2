@@ -1,24 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { User } from 'src/interfaces';
 import { logout } from '../../store/auth/actions';
 import { secure } from '../../utils/secure';
-import { path } from '../../helpers/path';
 import { user as avatar } from '../../images/Images';
+import { pageTypes } from '../../helpers/constants';
 
 const TopNav: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { user } = appSelector((state) => state.auth);
+  const { topBarHeader } = appSelector((state) => state.dashboard);
   const [userDetails] = useState<User>(user);
+  const [header, setHeader] = useState<string>(topBarHeader);
+  const { t, i18n } = useTranslation();
   const href = '#';
+
+  const changeLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
+  };
 
   const logoutUser = (): void => {
     secure.removeAll();
     dispatch(logout());
   };
+
+  useEffect(() => {
+    setHeader(topBarHeader);
+  }, [topBarHeader]);
+
+  let icon: string;
+  switch (header) {
+    case pageTypes.HOME:
+      icon = 'fa-home';
+      break;
+    case pageTypes.ACCOUNT:
+      icon = 'fa-briefcase';
+      break;
+    case pageTypes.RECIPIENTS:
+      icon = 'fa-users';
+      break;
+    default:
+      icon = 'fa-home';
+      break;
+  }
 
   return (
     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -30,38 +57,29 @@ const TopNav: React.FC = () => {
       </button>
 
       <div className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
-        <h6>
+        <h6 className="header">
           {' '}
-          <i className="fa fa-home"></i> Home
+          <i className={`fa ${icon}`}></i>{' '}
+          {t(`dashboard.top-nav.${header.toLowerCase()}`)}
         </h6>
       </div>
 
       <ul className="navbar-nav ml-auto">
         <li className="nav-item mx-1">
-          <a
-            className="nav-link"
-            href={href}
-            id="alertsDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <i className="flag-icon flag-icon-gb"></i>
+          <a className="nav-link" href={href} role="button">
+            <i
+              className="flag-icon flag-icon-gb"
+              onClick={() => changeLanguage('en')}
+            ></i>
           </a>
         </li>
 
         <li className="nav-item mx-1">
-          <a
-            className="nav-link"
-            href={href}
-            id="alertsDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <i className="flag-icon flag-icon-fr"></i>
+          <a className="nav-link" href={href} role="button">
+            <i
+              className="flag-icon flag-icon-fr"
+              onClick={() => changeLanguage('fr')}
+            ></i>
           </a>
         </li>
 
@@ -244,19 +262,6 @@ const TopNav: React.FC = () => {
             className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="userDropdown"
           >
-            <a className="dropdown-item" href={href}>
-              <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-              Profile
-            </a>
-            <a className="dropdown-item" href={href}>
-              <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-              Settings
-            </a>
-            <Link className="dropdown-item" to={path.home}>
-              <i className="fas fa-building fa-sm fa-fw mr-2 text-gray-400"></i>
-              Main Page
-            </Link>
-            <div className="dropdown-divider"></div>
             <a
               className="dropdown-item"
               href={href}
@@ -265,7 +270,7 @@ const TopNav: React.FC = () => {
               onClick={() => logoutUser()}
             >
               <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-              Logout
+              {t('dashboard.top-nav.logout')}
             </a>
           </div>
         </li>

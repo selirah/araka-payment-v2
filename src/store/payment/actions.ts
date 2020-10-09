@@ -8,8 +8,8 @@ export const fetchCategories = () =>
 export const fetchCategoriesSuccess = (data: Category[]) =>
   action(PaymentActionTypes.FETCH_CATEGORIES_SUCCESS, data);
 
-export const fetchCategoriesFailure = (message: string) =>
-  action(PaymentActionTypes.FETCH_CATEGORIES_FAILURE, message);
+export const fetchCategoriesFailure = (error: any) =>
+  action(PaymentActionTypes.FETCH_CATEGORIES_FAILURE, error);
 
 export const increasePaymentStep = () =>
   action(PaymentActionTypes.INCREASE_PAYMENT_STEP);

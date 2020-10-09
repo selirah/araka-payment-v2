@@ -514,53 +514,6 @@ header {
   margin-top: 2.5rem;
 }
 
-/* .clients-section button {
-  margin-right: 2rem;
-  border-radius: 0;
-  padding: 0.6rem 1rem;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-.clients-section button:first-child {
-  background: transparent;
-  border: 1px solid #f55c29;
-  color: #f55c29;
-  border-radius: 16.8px;
-  font-size: 0.938rem;
-  transition: all 0.5s ease-in-out;
-}
-
-.clients-section button:first-child:hover,
-.clients-section button:first-child:focus {
-  background-color: transparent;
-  border-color: rgb(66, 84, 102);
-  color: rgb(66, 84, 102);
-  outline: none;
-}
-
-.clients-section button:last-child {
-  background: #f55c29;
-  border: 1px solid #f55c29;
-  color: #f4f6f8;
-  border-radius: 16.8px;
-  font-size: 0.938rem;
-  transition: all 0.5s ease-in-out;
-}
-
-.clients-section button:last-child:hover,
-.clients-section button:last-child:focus {
-  background-color: rgb(66, 84, 102);
-  border-color: rgb(66, 84, 102);
-  color: #fff;
-  outline: none;
-} */
-
-/** End Clients Section **/
-
-/** Card Section **/
-
 .card-section {
   padding-top: 7rem;
   padding-bottom: 7rem;

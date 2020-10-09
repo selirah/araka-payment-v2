@@ -1,14 +1,13 @@
 import React from 'react';
 
 type Props = {
-  title: string;
   children: React.ReactNode;
 };
 
-const ContentContainer: React.FC<Props> = ({ title, children }) => {
+const ContentContainer: React.FC<Props> = ({ children }) => {
   return (
     <div className="row">
-      <div className="col-xl-12 col-lg-11">
+      <div className="col-sm-12">
         <div className="card mb-4">
           <div className="card-body">{children}</div>
         </div>

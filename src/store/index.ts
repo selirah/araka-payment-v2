@@ -5,6 +5,7 @@ import { connectRouter, RouterState } from 'connected-react-router';
 import { History } from 'history';
 import { paymentSaga } from './payment/sagas';
 import { authSaga } from './auth/sagas';
+import { dashboardSaga } from './dashboard/sagas';
 
 import { PaymentState, paymentReducer } from './payment';
 import { AuthState, authReducer } from './auth';
@@ -36,5 +37,5 @@ export const persistingReducer = (history: History) =>
   );
 
 export function* rootSaga() {
-  yield all([fork(paymentSaga), fork(authSaga)]);
+  yield all([fork(paymentSaga), fork(authSaga), fork(dashboardSaga)]);
 }

@@ -11,7 +11,9 @@ import { callApiGet, callApiPost } from '../../utils/api';
 function* fetchCategories() {
   try {
     const res = yield call(callApiGet, 'payments/productcategories');
-    yield put(fetchCategoriesSuccess(res.data));
+    if (res.status === 200) {
+      yield put(fetchCategoriesSuccess(res.data));
+    }
   } catch (err) {
     if (err && err.response) {
       yield put(fetchCategoriesFailure(err.response.data));

@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { logo } from '../../images/Images';
 import { path } from '../../helpers/path';
 import { pageTypes } from '../../helpers/constants';
-import { setPageSwitch } from '../../store/dashboard';
+import { setPageSwitch, setTopBarHeader } from '../../store/dashboard';
 
 const SideBar: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { pageSwitch } = appSelector((state) => state.dashboard);
   const [page, setPage] = useState<string>(pageSwitch);
+  const { t } = useTranslation();
 
   const swtichPage = (page: string): void => {
     dispatch(setPageSwitch(page));
+    dispatch(setTopBarHeader(page));
   };
 
   useEffect(() => {
@@ -40,7 +43,7 @@ const SideBar: React.FC = () => {
 
       <li className="nav-item">
         <Link className="nav-link btn-custom" to={path.payment}>
-          <span>Make Payments</span>
+          <span>{t('dashboard.side-bar.make-payments')}</span>
         </Link>
       </li>
 
@@ -53,7 +56,7 @@ const SideBar: React.FC = () => {
           onClick={() => swtichPage(pageTypes.HOME)}
         >
           <i className="fas fa-fw fa-home"></i>
-          <span>Home</span>
+          <span>{t('dashboard.side-bar.home')}</span>
         </Link>
       </li>
 
@@ -66,7 +69,7 @@ const SideBar: React.FC = () => {
           onClick={() => swtichPage(pageTypes.ACCOUNT)}
         >
           <i className="fas fa-fw fa-briefcase"></i>
-          <span>Account</span>
+          <span>{t('dashboard.side-bar.account')}</span>
         </Link>
       </li>
 
@@ -81,7 +84,7 @@ const SideBar: React.FC = () => {
           onClick={() => swtichPage(pageTypes.RECIPIENTS)}
         >
           <i className="fas fa-fw fa-users"></i>
-          <span>Recipients</span>
+          <span>{t('dashboard.side-bar.recipients')}</span>
         </Link>
       </li>
 

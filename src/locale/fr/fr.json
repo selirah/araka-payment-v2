@@ -71,10 +71,6 @@
       "login_note": "S'identifier",
       "processing": "En traitement.."
     },
-    "dashboard": {
-      "dashboard": "Tableau de bord",
-      "logout": "Se déconnecter"
-    },
     "wizard": {
       "payment-type": "Type de paiement",
       "provider": "Fournisseur",
@@ -119,6 +115,30 @@
         "sub3": "Recharge de temps d'antenne annulée",
         "btn": "Voir l'historique",
         "btn2": "Recommencez"
+      }
+    },
+    "dashboard": {
+      "top-nav": {
+        "logout": "Se déconnecter",
+        "home": "Accueil",
+        "account": "Compte",
+        "recipients": "Destinataires"
+      },
+      "side-bar": {
+        "home": "Accueil",
+        "account": "Compte",
+        "recipients": "Destinataires",
+        "make-payments": "Effectuer des paiements"
+      },
+      "new-user": {
+        "ready": "Prêt à commencer",
+        "making-payments": "effectuer des paiements?",
+        "yes": "Oui, faisons-le!"
+      },
+      "old-user": {
+        "activity": "Activité",
+        "search": "Rechercher...",
+        "transaction-details": "Détails de la transaction"
       }
     }
   }

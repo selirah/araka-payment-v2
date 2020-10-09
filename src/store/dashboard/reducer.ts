@@ -3,8 +3,11 @@ import { DashboardState, DashboardTypes } from './types';
 import { pageTypes } from '../../helpers/constants';
 
 export const initialState: DashboardState = {
-  topBarHeader: '',
+  topBarHeader: pageTypes.HOME,
   pageSwitch: pageTypes.HOME,
+  transactions: [],
+  loading: false,
+  error: undefined,
 };
 
 const reducer: Reducer<DashboardState> = (state = initialState, action) => {
@@ -14,13 +17,28 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         ...state,
         topBarHeader: action.payload,
       };
-
     case DashboardTypes.PAGE_SWITCH:
       return {
         ...state,
         pageSwitch: action.payload,
       };
-
+    case DashboardTypes.GET_TRANSACTIONS:
+      return {
+        ...state,
+        loading: true,
+      };
+    case DashboardTypes.GET_TRANSACTIONS_SUCCESS:
+      return {
+        ...state,
+        transactions: action.payload,
+        loading: false,
+      };
+    case DashboardTypes.GET_TRANSACTIONS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
