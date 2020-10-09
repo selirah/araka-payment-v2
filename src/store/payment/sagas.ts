@@ -41,8 +41,11 @@ function* processOrderRequest({ payload }: { type: string; payload: any }) {
 function* processFeeRequest({ payload }: { type: string; payload: any }) {
   try {
     const res = yield call(callApiPost, 'payments/getfees', payload);
-    console.log(res);
-    yield put(postFeeSuccess(res.data));
+    if (res.status === 200) {
+      yield put(postFeeSuccess(res.data));
+    } else {
+      yield put(postFeeFailure(res.data));
+    }   
   } catch (err) {
     if (err && err.response) {
       yield put(

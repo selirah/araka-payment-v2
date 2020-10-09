@@ -88,7 +88,7 @@ const Summary: React.FC = () => {
     VATRender = <NoFee message="Could not calculate VAT" />;
   } else {
     feeRender = feeData!.fee;
-    VATRender = feeData!.VAT;
+    VATRender = feeData!.vat;
   }
 
   return (
