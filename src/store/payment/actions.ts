@@ -1,6 +1,6 @@
 import { action } from 'typesafe-actions';
 import { PaymentActionTypes } from './types';
-import { Category, Product, OrderResponse } from '../../interfaces';
+import { Category, Product, OrderResponse, Fee } from '../../interfaces';
 
 export const fetchCategories = () =>
   action(PaymentActionTypes.FETCH_CATEGORIES);
@@ -61,3 +61,12 @@ export const clearOrderError = () =>
 
 export const setFormValidError = (error: string) =>
   action(PaymentActionTypes.FORM_VALID_ERROR, error);
+
+export const postFeeRequest = (payload: any) =>
+  action(PaymentActionTypes.REQUEST_FEE, payload);
+
+export const postFeeSuccess = (data: Fee) =>
+  action(PaymentActionTypes.REQUEST_FEE_SUCCESS, data);
+
+export const postFeeFailure = (error: any) =>
+  action(PaymentActionTypes.REQUEST_FEE_FAILURE, error);

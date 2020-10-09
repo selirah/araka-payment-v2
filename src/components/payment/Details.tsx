@@ -8,6 +8,7 @@ import {
   increasePaymentStep,
   decreasePaymentStep,
   setFormValidError,
+  postFeeRequest,
 } from '../../store/payment';
 import { Button } from './Button';
 import { EmptyBox } from './EmptyBox';
@@ -31,9 +32,11 @@ const Details: React.FC = () => {
 
   const continueProcess = (): void => {
     const isValid = localStorage.getItem('isValid');
+    const orderData = secure.get('orderData');
     if (isValid === 'true') {
       dispatch(increasePaymentStep());
       dispatch(setFormValidError(''));
+      dispatch(postFeeRequest(orderData));
     } else {
       dispatch(setFormValidError('Make sure all fields are filled'));
     }

@@ -1,4 +1,4 @@
-import { Category, Product, OrderResponse } from '../../interfaces';
+import { Category, Product, OrderResponse, Fee } from '../../interfaces';
 
 export enum PaymentActionTypes {
   FETCH_CATEGORIES = '@@payment/FETCH_CATEGORIES',
@@ -21,6 +21,9 @@ export enum PaymentActionTypes {
   RESET_TRANSACTION = '@@payment/RESET_TRANSACTION',
   CLEAR_ORDER_ERROR = '@@payment/CLEAR_ORDER_ERROR',
   FORM_VALID_ERROR = '@@payment/FORM_VALID_ERROR',
+  REQUEST_FEE = '@@payment/REQUEST_FEE',
+  REQUEST_FEE_SUCCESS = '@@payment/REQUEST_FEE_SUCCESS',
+  REQUEST_FEE_FAILURE = '@@payment/REQUEST_FEE_FAILURE',
 }
 
 export type PaymentState = {
@@ -40,4 +43,7 @@ export type PaymentState = {
   readonly isPerformingPayment: boolean;
   readonly paymentOption: string;
   readonly isFormValidError: string;
+  readonly fee: Fee | undefined;
+  readonly feeError: any;
+  readonly feeLoading: boolean;
 };

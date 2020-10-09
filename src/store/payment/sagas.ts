@@ -5,6 +5,8 @@ import {
   fetchCategoriesFailure,
   processOrderSuccess,
   processOrderFailure,
+  postFeeSuccess,
+  postFeeFailure,
 } from './actions';
 import { callApiGet, callApiPost } from '../../utils/api';
 
@@ -36,6 +38,22 @@ function* processOrderRequest({ payload }: { type: string; payload: any }) {
   }
 }
 
+function* processFeeRequest({ payload }: { type: string; payload: any }) {
+  try {
+    const res = yield call(callApiPost, 'payments/getfees', payload);
+    console.log(res);
+    yield put(postFeeSuccess(res.data));
+  } catch (err) {
+    if (err && err.response) {
+      yield put(
+        postFeeFailure('An error occured when making request to server')
+      );
+    } else {
+      throw err;
+    }
+  }
+}
+
 function* watchFetchCategories() {
   yield takeEvery(PaymentActionTypes.FETCH_CATEGORIES, fetchCategories);
 }
@@ -44,8 +62,16 @@ function* watchProcessOrderRequest() {
   yield takeEvery(PaymentActionTypes.SUBMIT_ORDER_REQUEST, processOrderRequest);
 }
 
+function* watchPostFeeRequest() {
+  yield takeEvery(PaymentActionTypes.REQUEST_FEE, processFeeRequest);
+}
+
 function* paymentSaga(): Generator {
-  yield all([fork(watchFetchCategories), fork(watchProcessOrderRequest)]);
+  yield all([
+    fork(watchFetchCategories),
+    fork(watchProcessOrderRequest),
+    fork(watchPostFeeRequest),
+  ]);
 }
 
 export { paymentSaga };

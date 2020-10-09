@@ -37,6 +37,7 @@ import forwardingIcon from './transaction/forwarding.svg';
 import checkedIcon from './araka/checked.svg';
 import loadingIcon from './araka/loading.svg';
 import errorIcon from './araka/error.svg';
+import spinnerIcon from './araka/spinner.svg';
 
 export {
   logoNav,
@@ -77,4 +78,5 @@ export {
   loadingIcon,
   errorIcon,
   pcesLogo,
+  spinnerIcon,
 };

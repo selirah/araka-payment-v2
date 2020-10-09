@@ -18,6 +18,9 @@ export const initialState: PaymentState = {
   isPerformingPayment: false,
   paymentOption: '',
   isFormValidError: '',
+  fee: undefined,
+  feeError: undefined,
+  feeLoading: false,
 };
 
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
@@ -140,6 +143,8 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         step: initialState.step,
         orderError: initialState.orderError,
         isFormValidError: initialState.isFormValidError,
+        fee: initialState.fee,
+        feeError: initialState.feeError,
       };
 
     case PaymentActionTypes.CLEAR_ORDER_ERROR:
@@ -152,6 +157,27 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return {
         ...state,
         isFormValidError: action.payload,
+      };
+
+    case PaymentActionTypes.REQUEST_FEE:
+      return {
+        ...state,
+        feeError: initialState.feeError,
+        feeLoading: true,
+      };
+
+    case PaymentActionTypes.REQUEST_FEE_SUCCESS:
+      return {
+        ...state,
+        fee: action.payload,
+        feeLoading: false,
+      };
+
+    case PaymentActionTypes.REQUEST_FEE_FAILURE:
+      return {
+        ...state,
+        feeError: action.payload,
+        feeLoading: false,
       };
 
     default:
