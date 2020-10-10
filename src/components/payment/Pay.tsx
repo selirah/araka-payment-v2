@@ -45,8 +45,7 @@ const Pay: React.FC = () => {
         if (orderData !== undefined && category !== undefined && product !== undefined) {
           orderData.data.productCategoryId = category.productCategoryId;
           orderData.data.productId = product.productId;
-          console.log(orderData);
-          // dispatch(processOrderRequest(orderData));
+          dispatch(processOrderRequest(orderData));
         }
         break;
       case false:
