@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 body {
   overflow-x: hidden;
   color: #232b2b;
@@ -1675,7 +1676,7 @@ footer .list-inline-item.mdi {
 
 .display-success-failure-cancel
   .display-success-failure-cancel-buttons
-  button:first-child {
+  .btn-history {
   background: transparent;
   border-radius: 0.25rem;
   border: 0.0625rem solid rgb(66, 84, 102);
@@ -1685,14 +1686,14 @@ footer .list-inline-item.mdi {
 
 .display-success-failure-cancel
   .display-success-failure-cancel-buttons
-  button:first-child:hover {
+  .btn-history:hover {
   background: rgb(66, 84, 102);
   color: #fff;
 }
 
 .display-success-failure-cancel
   .display-success-failure-cancel-buttons
-  button:last-child {
+  .btn-new-payment {
   background: #fbbd19;
   color: #fff;
   border-radius: 0.25rem;
@@ -1703,7 +1704,7 @@ footer .list-inline-item.mdi {
 
 .display-success-failure-cancel
   .display-success-failure-cancel-buttons
-  button:last-child:hover {
+  .btn-new-payment:hover {
   background: #ffae00;
   color: #fff;
   border: 0.0625rem solid #ffae00;

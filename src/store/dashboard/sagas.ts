@@ -5,7 +5,7 @@ import { callApiGet } from '../../utils/api';
 
 function* getTransactions() {
   try {
-    const res = yield call(callApiGet, '');
+    const res = yield call(callApiGet, 'payments/transactionhistory');
     yield put(getTransactionsSuccess(res.data));
   } catch (err) {
     if (err && err.response) {

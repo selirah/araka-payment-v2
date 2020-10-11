@@ -7,17 +7,17 @@
   box-sizing: border-box;
 }
 
-html {
+/* html {
   overflow-y: scroll;
   overflow-x: hidden;
-}
+} */
 
 html::-webkit-scrollbar {
-  width: 0.5rem;
+  width: 0.1rem;
 }
 
 html::-moz-scrollbar {
-  width: 0.5rem;
+  width: 0.1rem;
 }
 
 html::-webkit-scrollbar-track {
