@@ -192,6 +192,28 @@
   color: #949dac;
 }
 
+.middle-pane button {
+  position: absolute;
+  right: 1rem;
+  top: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(66, 84, 102, 0.8);
+  border-radius: 0;
+  border: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.middle-pane button:hover,
+.middle-pane button:focus,
+.middle-pane button:active {
+  background: rgba(66, 84, 102, 1);
+  color: #fff;
+  outline: none;
+}
+
 .transaction-content {
   padding: 0.5rem;
   position: relative;
@@ -258,14 +280,14 @@
 .transaction-content .card .card-header .card-header-content h2 {
   font-size: 0.85rem;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
   color: #506077;
   margin-bottom: 0.75rem;
 }
 
 .transaction-content .card .card-header .card-header-content h4 {
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 300;
   color: #949dac;
   margin-bottom: 0.3rem;
 }
@@ -777,14 +799,14 @@
   .transaction-content .card .card-header .card-header-content h2 {
     font-size: 0.75rem;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     color: #506077;
     margin-bottom: 0.5rem;
   }
 
   .transaction-content .card .card-header .card-header-content h4 {
     font-size: 0.6rem;
-    font-weight: 500;
+    font-weight: 300;
     color: #949dac;
     margin-bottom: 0.3rem;
     width: 6rem;
@@ -1047,7 +1069,7 @@
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 768px) {
   .top-pane {
     padding: 2rem;
     position: relative;
@@ -1161,14 +1183,14 @@
   .transaction-content .card .card-header .card-header-content h2 {
     font-size: 1rem;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     color: #506077;
     margin-bottom: 0.5rem;
   }
 
   .transaction-content .card .card-header .card-header-content h4 {
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 300;
     color: #949dac;
     margin-bottom: 0.3rem;
   }

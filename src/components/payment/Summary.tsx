@@ -20,7 +20,7 @@ import { NoFee } from './NoFee';
 
 const Summary: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { category, product, feeLoading, fee } = appSelector(
+  const { category, product, feeLoading, fee, repeatTransaction, transaction } = appSelector(
     (state) => state.payment
   );
   const data: any = secure.get('orderData');
@@ -52,44 +52,57 @@ const Summary: React.FC = () => {
   let summary: React.ReactNode;
   if (data !== null || data !== undefined) {
     summary = Object.keys(data.data).map(function (key, index) {
-      const { value, selectLabel, isDate } = filter(
-        product!,
-        key,
-        data.data[key]
-      );
-      let v;
-      if (isDate) {
-        v = moment(data.data[key]).format('MMMM D, YYYY (h:mm a)');
-      } else {
-        v = data.data[key];
-      }
-
-      return (
-        <React.Fragment key={index}>
-          {!value ? (
-            <tr>
-              <td>{key.replace(/([a-z])([A-Z])/g, '$1 $2')}</td>
-              <td>{selectLabel !== '' ? selectLabel : v}</td>
-            </tr>
-          ) : null}
-        </React.Fragment>
-      );
+      // if (key !== 'productCategoryId' && key !== 'productId') 
+        const { value, selectLabel, isDate } = filter(
+          product!,
+          key,
+          data.data[key]
+        );
+        let v;
+        if (isDate) {
+          v = moment(data.data[key]).format('MMMM D, YYYY (h:mm a)');
+        } else {
+          v = data.data[key];
+        } 
+        return (
+          <React.Fragment key={index}>
+            {!value ? (
+              <tr>
+                <td>{key.replace(/([a-z])([A-Z])/g, '$1 $2')}</td>
+                <td>{selectLabel !== '' ? selectLabel : v}</td>
+              </tr>
+            ) : null}
+          </React.Fragment>
+        );
+      
     });
   } else {
     return <EmptyBox />;
   }
 
   let feeRender: React.ReactNode | number, VATRender: React.ReactNode | number;
-  if (loading && feeData === undefined) {
-    feeRender = <Spinner />;
-    VATRender = <Spinner />;
-  } else if (!loading && feeData === undefined) {
-    feeRender = <NoFee message="Could not calculate fee" />;
-    VATRender = <NoFee message="Could not calculate VAT" />;
-  } else {
-    feeRender = feeData!.fee;
-    VATRender = feeData!.vat;
+
+  switch(repeatTransaction) {
+    case true:
+      if (transaction !== undefined) {
+        feeRender = transaction.charge;
+        VATRender = transaction.vat;
+      }
+      break;
+      case false:
+        if (loading && feeData === undefined) {
+          feeRender = <Spinner />;
+          VATRender = <Spinner />;
+        } else if (!loading && feeData === undefined) {
+          feeRender = <NoFee message="Could not calculate fee" />;
+          VATRender = <NoFee message="Could not calculate VAT" />;
+        } else {
+          feeRender = feeData!.fee;
+          VATRender = feeData!.vat;
+        }
+        break;
   }
+
 
   return (
     <React.Fragment>
@@ -123,7 +136,7 @@ const Summary: React.FC = () => {
         disabled={false}
         type="button"
         onContinueProcess={continueProcess}
-        addPrevious={true}
+        addPrevious={repeatTransaction ? false : true}
         onPreviousProcess={previousProcess}
       />
     </React.Fragment>

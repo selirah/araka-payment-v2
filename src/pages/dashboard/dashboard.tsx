@@ -12,17 +12,22 @@ import {
   smoothScroll,
 } from '../../helpers/dashboard';
 import { isEmpty } from '../../helpers/isEmpty';
-import { getTransactions } from '../../store/dashboard';
+import { getTransactions, getCurrencies } from '../../store/dashboard';
+import { setRepeatTransaction } from '../../store/payment';
 import { clearAuthState } from '../../store/auth';
 
 const DashboardPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { transactions, loading } = appSelector((state) => state.dashboard);
+  const { transactions, loading, currencies, currenciesLoading } = appSelector((state) => state.dashboard);
 
   useEffect(() => {
     dispatch(clearAuthState());
+    dispatch(setRepeatTransaction(false));
     if (isEmpty(transactions) && !loading) {
       dispatch(getTransactions());
+    }
+    if (isEmpty(currencies) && !currenciesLoading) {
+      dispatch(getCurrencies())
     }
     toggleSideNav();
     resizeWindow();

@@ -1,4 +1,4 @@
-import { Category, Product, OrderResponse, Fee } from '../../interfaces';
+import { Category, Product, OrderResponse, Fee, TransactionHistory } from '../../interfaces';
 
 export enum PaymentActionTypes {
   FETCH_CATEGORIES = '@@payment/FETCH_CATEGORIES',
@@ -6,6 +6,7 @@ export enum PaymentActionTypes {
   FETCH_CATEGORIES_SUCCESS = '@@payment/FETCH_CATEGORIES_SUCCESS',
   FETCH_CATEGORIES_FAILURE = '@@payment/FETCH_CATEGORIES_FAILURE',
   INCREASE_PAYMENT_STEP = '@@payment/INCREASE_PAYMENT_STEP',
+  INCREASE_PAYMENT_STEP_CUSTOM = '@@payment/INCREASE_PAYMENT_STEP_CUSTOM',
   DECREASE_PAYMENT_STEP = '@@payment/DECREASE_PAYMENT_STEP',
   DECREASE_PAYMENT_STEP_CUSTOM = '@@payment/DECREASE_PAYMENT_STEP_CUSTOM',
   SET_ACTIVE_CATEGORY = '@@payment/SET_ACTIVE_CATEGORY',
@@ -24,6 +25,8 @@ export enum PaymentActionTypes {
   REQUEST_FEE = '@@payment/REQUEST_FEE',
   REQUEST_FEE_SUCCESS = '@@payment/REQUEST_FEE_SUCCESS',
   REQUEST_FEE_FAILURE = '@@payment/REQUEST_FEE_FAILURE',
+  REPEAT_TRANSACTION = '@@payment/REPEAT_TRANSACTION',
+  SET_TRANSACTION = '@@payment/SET_TRANSACTION',
 }
 
 export type PaymentState = {
@@ -46,4 +49,6 @@ export type PaymentState = {
   readonly fee: Fee | undefined;
   readonly feeError: any;
   readonly feeLoading: boolean;
+  readonly repeatTransaction: boolean;
+  readonly transaction: TransactionHistory | undefined;
 };

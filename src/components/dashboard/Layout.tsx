@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
-// import { AppDispatch } from '../../helpers/appDispatch';
+import { AppDispatch } from '../../helpers/appDispatch';
 import { SideBar } from './SideBar';
 import { TopNav } from './TopNav';
 import { ContentContainer } from './ContentContainer';
@@ -13,6 +13,8 @@ import { Recipients } from './Recipients';
 import { pageTypes } from '../../helpers/constants';
 import { Spinner } from '../common/Spinner';
 import { isEmpty } from 'src/helpers/isEmpty';
+import { getTransactions } from '../../store/dashboard';
+import { setRepeatTransaction } from '../../store/payment';
 import './dashboard.css';
 
 type Props = {
@@ -20,13 +22,23 @@ type Props = {
 };
 
 export const Layout: React.FC<Props> = ({ title }) => {
-  // const dispatch: AppDispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const { pageSwitch, transactions, loading } = appSelector(
     (state) => state.dashboard
   );
   const [page, setPage] = useState<string>(pageSwitch);
   const [transactionData, setTransactionData] = useState<any[]>(transactions);
   const [spinner, setSpinner] = useState<boolean>(loading);
+
+  const refresh = (): void => {
+    dispatch(getTransactions());
+  }
+
+  useEffect(() => {
+   refresh();
+   dispatch(setRepeatTransaction(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setPage(pageSwitch);
@@ -43,7 +55,7 @@ export const Layout: React.FC<Props> = ({ title }) => {
       } else if (!spinner && isEmpty(transactionData)) {
         render = <NewUser />;
       } else {
-        render = <Content />;
+        render = <Content transactions={transactionData} refresh={refresh} />;
       }
       break;
     case pageTypes.ACCOUNT:
@@ -58,7 +70,7 @@ export const Layout: React.FC<Props> = ({ title }) => {
       } else if (!spinner && isEmpty(transactionData)) {
         render = <NewUser />;
       } else {
-        render = <Content />;
+        render = <Content transactions={transactionData} refresh={refresh} />;
       }
       break;
   }
@@ -75,7 +87,6 @@ export const Layout: React.FC<Props> = ({ title }) => {
             <TopNav />
             <div className="container-fluid">
               <ContentContainer>
-                {/* <NewUser /> */}
                 {render}
               </ContentContainer>
             </div>

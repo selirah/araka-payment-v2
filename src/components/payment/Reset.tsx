@@ -1,13 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { resetTransaction } from '../../store/payment';
+import { resetTransaction, setRepeatTransaction } from '../../store/payment';
 
 const Reset: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const resetTrans = (): void => {
     dispatch(resetTransaction());
+    dispatch(setRepeatTransaction(false));
   };
 
   return (

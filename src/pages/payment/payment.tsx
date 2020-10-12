@@ -5,7 +5,7 @@ import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { Layout } from '../../components/payment/Layout';
 import { isEmpty } from '../../helpers/isEmpty';
-import { fetchCategories /*resetTransaction*/ } from '../../store/payment';
+import { fetchCategories, /*resetTransaction*/ } from '../../store/payment';
 import { clearAuthState } from '../../store/auth';
 
 const PaymentPage: React.FC = () => {

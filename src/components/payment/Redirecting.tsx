@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { resetTransaction } from '../../store/payment/actions';
+import { resetTransaction, setRepeatTransaction } from '../../store/payment';
 import { path } from '../../helpers/path';
 import { Spinner } from '../common/Spinner';
 import { SpinnerContainer } from '../auth/Styles';
@@ -22,6 +22,7 @@ const Redirecting: React.FC<Props> = ({ title }) => {
     if (orderResponse !== undefined) {
       const url = orderResponse.order.orderURL;
       dispatch(resetTransaction());
+      dispatch(setRepeatTransaction(false));
       setInterval(() => {
         window.location.href = url;
       }, 3000);

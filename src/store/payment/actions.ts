@@ -1,6 +1,6 @@
 import { action } from 'typesafe-actions';
 import { PaymentActionTypes } from './types';
-import { Category, Product, OrderResponse, Fee } from '../../interfaces';
+import { Category, Product, OrderResponse, Fee, TransactionHistory } from '../../interfaces';
 
 export const fetchCategories = () =>
   action(PaymentActionTypes.FETCH_CATEGORIES);
@@ -17,8 +17,11 @@ export const increasePaymentStep = () =>
 export const decreasePaymentStep = () =>
   action(PaymentActionTypes.DECREASE_PAYMENT_STEP);
 
+export const increasePaymentStepCustom = (step: number) =>
+  action(PaymentActionTypes.INCREASE_PAYMENT_STEP_CUSTOM, step);
+
 export const decreasePaymentStepCustom = (step: number) =>
-  action(PaymentActionTypes.DECREASE_PAYMENT_STEP, step);
+  action(PaymentActionTypes.DECREASE_PAYMENT_STEP_CUSTOM, step);
 
 export const setActiveCategory = (categoryId: number) =>
   action(PaymentActionTypes.SET_ACTIVE_CATEGORY, categoryId);
@@ -70,3 +73,9 @@ export const postFeeSuccess = (data: Fee) =>
 
 export const postFeeFailure = (error: any) =>
   action(PaymentActionTypes.REQUEST_FEE_FAILURE, error);
+
+export const setRepeatTransaction = (payload: boolean) =>
+  action(PaymentActionTypes.REPEAT_TRANSACTION, payload);
+
+export const setTransaction = (transaction: TransactionHistory) =>
+  action(PaymentActionTypes.SET_TRANSACTION, transaction);

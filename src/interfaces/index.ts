@@ -9,3 +9,5 @@ export * from './ForgottenPassword';
 export * from './Verification';
 export * from './VerificationResponse';
 export * from './Fee';
+export * from './TransactionHistory';
+export * from './Currency';

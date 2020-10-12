@@ -8,6 +8,9 @@ export const initialState: DashboardState = {
   transactions: [],
   loading: false,
   error: undefined,
+  currencies: [],
+  currenciesLoading: false,
+  currencyError: undefined
 };
 
 const reducer: Reducer<DashboardState> = (state = initialState, action) => {
@@ -38,6 +41,23 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+      case DashboardTypes.GET_CURRENCIES:
+      return {
+        ...state,
+        currenciesLoading: true,
+      };
+    case DashboardTypes.GET_CURRENCIES_SUCCESS:
+      return {
+        ...state,
+        currencies: action.payload,
+        currenciesLoading: false,
+      };
+    case DashboardTypes.GET_CURRENCIES_FAILURE:
+      return {
+        ...state,
+        currenciesLoading: false,
+        currencyError: action.payload,
       };
     default:
       return state;

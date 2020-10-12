@@ -21,6 +21,8 @@ export const initialState: PaymentState = {
   fee: undefined,
   feeError: undefined,
   feeLoading: false,
+  repeatTransaction: false,
+  transaction: undefined
 };
 
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
@@ -47,6 +49,12 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return {
         ...state,
         step: state.step + 1,
+      };
+
+    case PaymentActionTypes.INCREASE_PAYMENT_STEP_CUSTOM:
+      return {
+        ...state,
+        step: action.payload,
       };
 
     case PaymentActionTypes.DECREASE_PAYMENT_STEP:
@@ -180,6 +188,17 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         feeLoading: false,
       };
 
+    case PaymentActionTypes.REPEAT_TRANSACTION:
+      return {
+        ...state,
+        repeatTransaction: action.payload,
+      };
+
+    case PaymentActionTypes.SET_TRANSACTION:
+      return {
+        ...state,
+        transaction: action.payload,
+      };
     default:
       return state;
   }
