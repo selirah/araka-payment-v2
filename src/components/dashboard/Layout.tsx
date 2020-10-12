@@ -14,7 +14,7 @@ import { pageTypes } from '../../helpers/constants';
 import { Spinner } from '../common/Spinner';
 import { isEmpty } from 'src/helpers/isEmpty';
 import { getTransactions } from '../../store/dashboard';
-import { setRepeatTransaction } from '../../store/payment';
+import { setRepeatTransaction, fetchCategories } from '../../store/payment';
 import './dashboard.css';
 
 type Props = {
@@ -25,6 +25,9 @@ export const Layout: React.FC<Props> = ({ title }) => {
   const dispatch: AppDispatch = useDispatch();
   const { pageSwitch, transactions, loading } = appSelector(
     (state) => state.dashboard
+  );
+  const { categories } = appSelector(
+    (state) => state.payment
   );
   const [page, setPage] = useState<string>(pageSwitch);
   const [transactionData, setTransactionData] = useState<any[]>(transactions);
@@ -37,6 +40,9 @@ export const Layout: React.FC<Props> = ({ title }) => {
   useEffect(() => {
    refresh();
    dispatch(setRepeatTransaction(false));
+   if (isEmpty(categories)) {
+     dispatch(fetchCategories());
+   }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

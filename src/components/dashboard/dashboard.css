@@ -474,7 +474,7 @@
 }
 
 .user-profile-photo button {
-  margin-left: 0.5rem;
+  margin-left: 2rem;
   color: #506077;
   font-weight: 300;
   transition: all 0.5s ease-in-out;
@@ -1800,7 +1800,7 @@
   }
 
   .user-profile-photo button {
-    margin-left: 0.5rem;
+    margin-left: 3rem;
     color: #506077;
     font-weight: 300;
     transition: all 0.5s ease-in-out;
