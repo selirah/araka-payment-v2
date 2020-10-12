@@ -52,7 +52,6 @@ const Summary: React.FC = () => {
   let summary: React.ReactNode;
   if (data !== null || data !== undefined) {
     summary = Object.keys(data.data).map(function (key, index) {
-      // if (key !== 'productCategoryId' && key !== 'productId') 
         const { value, selectLabel, isDate } = filter(
           product!,
           key,
