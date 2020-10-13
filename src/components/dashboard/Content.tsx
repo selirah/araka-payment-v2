@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search } from './Search';
+import { appSelector } from '../../helpers/appSelector';
 import { TransactionHistory } from '../../interfaces';
 import { TransHistory } from './TransHistory';
 import { isEmpty } from 'src/helpers/isEmpty';
-import { appSelector } from '../../helpers/appSelector';
 import { Spinner } from '../common/Spinner';
 
 interface ContentProps {

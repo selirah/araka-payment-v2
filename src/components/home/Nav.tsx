@@ -17,7 +17,7 @@ const Nav: React.FC = () => {
   const [lang, setLang] = useState<string | null>(
     localStorage.getItem('i18nextLng')
   );
-  const [userDetails] = useState<User>(user);
+  const [userDetails] = useState<User | undefined>(user);
   const [fname, setFname] = useState('');
   const { t, i18n } = useTranslation();
 

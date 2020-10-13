@@ -3835,13 +3835,13 @@ input[type='button'].btn-block {
 }
 
 .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
-  border-color: #bac8f3;
+  border-color: #fbd5c7;
 }
 
 .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
   color: #fff;
-  background-color: #e5ebfa;
-  border-color: #e5ebfa;
+  background-color: #fbd5c7;
+  border-color: #fbd5c7;
 }
 
 .custom-control-input[disabled] ~ .custom-control-label,
@@ -10568,6 +10568,11 @@ a:focus {
 
 .topbar {
   height: 4.375rem;
+  box-shadow: 0 0.5rem 1rem rgba(255, 203, 170, 0.25) !important;
+  border: 1px solid #ffdbce;
+  border-top: 0;
+  border-bottom-right-radius: 16.8px;
+  border-bottom-left-radius: 16.8px;
 }
 
 .topbar #sidebarToggleTop {
@@ -10720,11 +10725,24 @@ a:focus {
 
 .sidebar {
   width: 6.5rem;
+  border-right: 1px solid #ffdbce;
   min-height: 100vh;
 }
 
 .sidebar .nav-item {
   position: relative;
+  margin-left: -3px;
+  border-right: 2px solid transparent;
+  font-size: 16px;
+  border-top: 1px solid #ffdbce;
+}
+
+.sidebar .nav-item:last-of-type {
+  border-bottom:1px solid #ffdbce;
+}
+
+.sidebar .nav-item.active {
+  border-right: 2px solid #ffdbce;
 }
 
 .sidebar .nav-item:last-child {
@@ -10822,6 +10840,7 @@ a:focus {
   content: '\f104';
   font-family: 'Font Awesome 5 Free';
   margin-right: 0.1rem;
+  color: #f55c29;
 }
 
 .sidebar #sidebarToggle:hover {
@@ -10846,8 +10865,8 @@ a:focus {
 .sidebar .sidebar-brand {
   height: 4.375rem;
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 800;
+  font-size: 30px;
+  font-weight: 700;
   padding: 1.5rem 1rem;
   text-align: center;
   text-transform: uppercase;
@@ -10902,7 +10921,7 @@ a:focus {
     display: block;
     width: 100%;
     text-align: left;
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 2rem;
     width: 14rem;
   }
   .sidebar .nav-item .nav-link i {
@@ -11108,7 +11127,43 @@ a:focus {
 }
 
 .sidebar-dark.toggled #sidebarToggle::after {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgb(245 92 41);
+}
+
+#content .dashboard-content > div > div > .card,
+.card .card-body.wizard-card {
+  border: 1px solid #ffdbce;
+  box-shadow: 0 0.5rem 1rem rgba(255, 203, 170, 0.25) !important;
+  border-radius: 16.5px;
+}
+
+.card .card-body.wizard-card {
+  overflow: hidden;
+}
+
+#content .dashboard-content button.btn {
+  background: transparent;
+  border: 1px solid rgb(66, 84, 102);
+  color: rgb(66, 84, 102);
+  transition: all 0.3s ease-in-out;
+  border-radius: 16.5px;
+  padding: 0.3rem 1rem;
+  text-transform: none;
+  font-size: 0.938rem;
+  font-weight: normal;
+}
+#content .dashboard-content .input-group-append button.btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-color:#ffdbce;
+}
+
+.navbar-nav li.lang-item {
+  opacity: 0.3;
+}
+
+.navbar-nav li.lang-item.active {
+  opacity: 1;
 }
 
 .btn-circle {

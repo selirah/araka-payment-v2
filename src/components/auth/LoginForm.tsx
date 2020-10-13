@@ -11,7 +11,7 @@ import {
   clearVerificationResponse,
 } from '../../store/auth/actions';
 import { ChangeLanguage } from '../common/ChangeLanguage';
-import { logoNav } from '../../images/Images';
+import { logo } from '../../images/Images';
 import { TextInput } from './TextInput';
 import { PasswordInput } from './PasswordInput';
 import { MultipleErrors } from './MultipleErrors';
@@ -23,7 +23,6 @@ import {
   ImageContainerLogin,
   FormContainer,
   FormBox,
-  FormBoxHeader,
   ForgottenLink,
   TermsContainer,
   LogoContainer,
@@ -104,15 +103,12 @@ const LoginForm: React.FC<Props> = ({ history }) => {
           <ImageContainerLogin className="col-lg-5 col-md-4 d-none d-md-block"></ImageContainerLogin>
           <FormContainer className="col-lg-7 col-md-7">
             <FormBox className="col-sm-5 text-center">
-              <Link to={path.home}>
-                <LogoContainer className="mt-0">
-                  <img src={logoNav} alt="logo" width="100" />
-                </LogoContainer>
-              </Link>
+              <LogoContainer className="mt-0">
+                <Link className="navbar-brand" to={path.home}>
+                  <img src={logo} width="40" alt="" /> Araka
+                </Link>
+              </LogoContainer>
               <React.Fragment>
-                <FormBoxHeader>
-                  <h4>Welcome back</h4>
-                </FormBoxHeader>
                 <FormBoxSubHeader>
                   <h6>
                     New to ARAKA? <Link to={path.register}>Sign Up</Link>
@@ -139,7 +135,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                   onChange={onChange}
                 />
                 <div className="row mb-5">
-                  <div className="col-12 col-md-8 text-left">
+                  <div className="col-12 col-md-8 text-left mt-1">
                     <FormBoxCustomControl className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
@@ -168,7 +164,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                   processTitle={t('login.processing')}
                 />
                 <TermsContainer className="row mt-5">
-                  <h4 className="mx-auto">
+                  <h4 className="mx-auto text-muted">
                     By continuing, you accept our{' '}
                     <Link to="#">Terms of Use</Link> and{' '}
                     <Link to="#">Privacy Policy</Link>

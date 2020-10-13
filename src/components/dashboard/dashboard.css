@@ -66,8 +66,9 @@
   height: 2.5rem;
   text-align: center;
   margin-bottom: 1rem;
-  cursor: pointer;
-  background-color: rgba(66, 84, 102, 0.8);
+  cursor: pointer;    
+  border: 1px solid #ffdbce;
+  color: #f55c29;
 }
 
 .sidebar #sidebarToggle::after {
@@ -75,12 +76,15 @@
   content: '\f104';
   font-family: 'Font Awesome 5 Free';
   margin-right: 0.1rem;
-  color: #fff;
+  color: #f55c29;
 }
 
 .sidebar #sidebarToggle:hover {
   text-decoration: none;
-  background-color: rgba(66, 84, 102, 1);
+  background-color: #f55c29;
+}
+.sidebar #sidebarToggle:hover::after {
+  color:#fff;
 }
 
 .sidebar #sidebarToggle:focus {
@@ -132,7 +136,6 @@
 .top-pane {
   padding: 2rem;
   position: relative;
-  border-bottom: 0.0625rem solid #e0e0e0;
 }
 
 .top-pane h2 {
@@ -466,7 +469,6 @@
 .user-profile-photo {
   position: relative;
   padding: 1rem;
-  border-bottom: 0.0625rem solid #e0e0e0;
 }
 
 .user-profile-photo img {
@@ -574,6 +576,92 @@
 .personal-details .personal-details-right button:hover {
   background: rgba(66, 84, 102, 1);
 }
+
+/********** EDIT FORM ***************/
+
+.personal-details-form {
+  position: relative;
+  padding: 1rem;
+  padding-top: 5rem;
+  padding-bottom: 7rem;
+}
+
+.personal-details-form .left {
+  position: absolute;
+  padding-top: 1rem;
+  top: 0;
+  left: 1rem;
+}
+
+.personal-details-form .left h2 {
+  font-size: 0.9rem;
+  padding-top: 1.5rem;
+  font-weight: 300;
+  color: rgba(66, 84, 102, 0.5);
+}
+
+.personal-details-form .left h4 {
+  font-size: 0.85rem;
+  color: rgba(66, 84, 102, 1);
+}
+
+.personal-details-form .right {
+  position: absolute;
+  padding-top: 1rem;
+  left: 65%;
+  top: 0;
+}
+
+.personal-details-form .right h2 {
+  font-size: 0.9rem;
+  padding-top: 1.5rem;
+  padding-top: 1.5rem;
+  font-weight: 300;
+  color: rgba(66, 84, 102, 0.5);
+}
+
+.personal-details-form .right h4 {
+  font-size: 0.85rem;
+  color: rgba(66, 84, 102, 1);
+}
+
+.personal-details-form .text-input {
+  height: 2rem;
+  border-radius: 0;
+  padding: 0.375rem 0.75rem;
+  color: #506077;
+  font-weight: 300;
+  font-size: 0.9rem;
+  border: 0.0625px solid #e0e0e0;
+  transition: all 0.3s ease-in-out;
+  width: 15rem;
+}
+
+.personal-details-form .text-select {
+  height: 2rem;
+  border-radius: 0;
+  padding: 0.375rem 0.75rem;
+  color: #506077;
+  font-weight: 300;
+  font-size: 0.9rem;
+  border: 0.0625px solid #e0e0e0;
+  transition: all 0.3s ease-in-out;
+  width: 15rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.personal-details-form .text-input:focus,
+.personal-details-form .text-select:focus,
+.personal-details-form .drop-style:focus {
+  border-color: rgba(248, 89, 36, 0.8) !important;
+  box-shadow: 0 1px 1px rgba(177, 140, 140, 0.075) inset,
+    0 0 8px rgba(248, 89, 36, 0.6);
+  outline: 0 none;
+}
+
+/********** END EDIT FORM ***************/
 
 /** RECIPIENTS **/
 
@@ -701,7 +789,6 @@
   .top-pane {
     padding: 2rem;
     position: relative;
-    border-bottom: 0.0625rem solid #e0e0e0;
     width: 17rem;
   }
 
@@ -957,7 +1044,6 @@
     position: relative;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 0.0625rem solid #e0e0e0;
   }
 
   .user-profile-photo img {
@@ -1052,6 +1138,101 @@
     font-weight: 500;
   }
 
+  /********** EDIT FORM ***************/
+
+  .personal-details-form {
+    position: relative;
+    padding: 1rem;
+    padding-top: 5rem;
+    padding-bottom: 7rem;
+  }
+
+  .personal-details-form .left {
+    position: absolute;
+    padding-top: 1rem;
+    top: 0;
+    left: 0;
+    width: 50%;
+    display: block;
+  }
+
+  .personal-details-form .left h2 {
+    font-size: 0.9rem;
+    padding-top: 1.5rem;
+    font-weight: 300;
+    color: rgba(66, 84, 102, 0.5);
+    display: block;
+  }
+
+  .personal-details-form .left h4 {
+    font-size: 0.85rem;
+    color: rgba(66, 84, 102, 1);
+    display: block;
+  }
+
+  .personal-details-form .right {
+    position: absolute;
+    padding-top: 1rem;
+    left: 50%;
+    top: 0;
+    width: 50%;
+    display: block;
+  }
+
+  .personal-details-form .right h2 {
+    font-size: 0.9rem;
+    padding-top: 1.5rem;
+    padding-top: 1.5rem;
+    font-weight: 300;
+    color: rgba(66, 84, 102, 0.5);
+    display: block;
+  }
+
+  .personal-details-form .right h4 {
+    font-size: 0.85rem;
+    color: rgba(66, 84, 102, 1);
+  }
+
+  .personal-details-form .text-input {
+    height: 2rem;
+    border-radius: 0;
+    padding: 0.375rem 0.75rem;
+    color: #506077;
+    font-weight: 300;
+    font-size: 0.9rem;
+    border: 0.0625px solid #e0e0e0;
+    transition: all 0.3s ease-in-out;
+    width: 15rem;
+    display: block;
+  }
+
+  .personal-details-form .text-select {
+    height: 2rem;
+    border-radius: 0;
+    padding: 0.375rem 0.75rem;
+    color: #506077;
+    font-weight: 300;
+    font-size: 0.9rem;
+    border: 0.0625px solid #e0e0e0;
+    transition: all 0.3s ease-in-out;
+    width: 15rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+  }
+
+  .personal-details-form .text-input:focus,
+  .personal-details-form .text-select:focus,
+  .personal-details-form .drop-style:focus {
+    border-color: rgba(248, 89, 36, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(177, 140, 140, 0.075) inset,
+      0 0 8px rgba(248, 89, 36, 0.6);
+    outline: 0 none;
+  }
+
+  /********** END EDIT FORM ***************/
+
   /* RECIPIENTS PAGE */
   .toolbar {
     position: relative;
@@ -1113,7 +1294,6 @@
   .top-pane {
     padding: 2rem;
     position: relative;
-    border-bottom: 0.0625rem solid #e0e0e0;
   }
 
   .top-pane h2 {
@@ -1385,7 +1565,6 @@
     position: relative;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 0.0625rem solid #e0e0e0;
   }
 
   .user-profile-photo img {
@@ -1497,7 +1676,6 @@
   .top-pane {
     padding: 2rem;
     position: relative;
-    border-bottom: 0.0625rem solid #e0e0e0;
   }
 
   .top-pane h2 {
@@ -1831,7 +2009,6 @@
   .user-profile-photo {
     position: relative;
     padding: 1rem;
-    border-bottom: 0.0625rem solid #e0e0e0;
   }
 
   .user-profile-photo img {
@@ -1938,6 +2115,92 @@
   .personal-details .personal-details-right button:hover {
     background: rgba(66, 84, 102, 1);
   }
+
+  /********** EDIT FORM ***************/
+
+  .personal-details-form {
+    position: relative;
+    padding: 1rem;
+    padding-top: 5rem;
+    padding-bottom: 7rem;
+  }
+
+  .personal-details-form .left {
+    position: absolute;
+    padding-top: 1rem;
+    top: 0;
+    left: 1rem;
+  }
+
+  .personal-details-form .left h2 {
+    font-size: 0.9rem;
+    padding-top: 1.5rem;
+    font-weight: 300;
+    color: rgba(66, 84, 102, 0.5);
+  }
+
+  .personal-details-form .left h4 {
+    font-size: 0.85rem;
+    color: rgba(66, 84, 102, 1);
+  }
+
+  .personal-details-form .right {
+    position: absolute;
+    padding-top: 1rem;
+    left: 65%;
+    top: 0;
+  }
+
+  .personal-details-form .right h2 {
+    font-size: 0.9rem;
+    padding-top: 1.5rem;
+    padding-top: 1.5rem;
+    font-weight: 300;
+    color: rgba(66, 84, 102, 0.5);
+  }
+
+  .personal-details-form .right h4 {
+    font-size: 0.85rem;
+    color: rgba(66, 84, 102, 1);
+  }
+
+  .personal-details-form .text-input {
+    height: 2rem;
+    border-radius: 0;
+    padding: 0.375rem 0.75rem;
+    color: #506077;
+    font-weight: 300;
+    font-size: 0.9rem;
+    border: 0.0625px solid #e0e0e0;
+    transition: all 0.3s ease-in-out;
+    width: 15rem;
+  }
+
+  .personal-details-form .text-select {
+    height: 2rem;
+    border-radius: 0;
+    padding: 0.375rem 0.75rem;
+    color: #506077;
+    font-weight: 300;
+    font-size: 0.9rem;
+    border: 0.0625px solid #e0e0e0;
+    transition: all 0.3s ease-in-out;
+    width: 15rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .personal-details-form .text-input:focus,
+  .personal-details-form .text-select:focus,
+  .personal-details-form .drop-style:focus {
+    border-color: rgba(248, 89, 36, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(177, 140, 140, 0.075) inset,
+      0 0 8px rgba(248, 89, 36, 0.6);
+    outline: 0 none;
+  }
+
+  /********** END EDIT FORM ***************/
 
   /** RECIPIENTS **/
 

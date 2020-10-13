@@ -1,4 +1,4 @@
-import { TransactionHistory, Currency } from '../../interfaces';
+import { TransactionHistory, Currency, Client } from '../../interfaces';
 
 export enum DashboardTypes {
   TOPBAR_HEADER = '@@dashboard/TOPBAR_HEADER',
@@ -9,6 +9,14 @@ export enum DashboardTypes {
   GET_CURRENCIES = '@@dashboard/GET_CURRENCIES',
   GET_CURRENCIES_SUCCESS = '@@dashboard/GET_CURRENCIES_SUCCESS',
   GET_CURRENCIES_FAILURE = '@@dashboard/GET_CURRENCIES_FAILURE',
+  EDIT_ACCOUNT = '@@dashboard/EDIT_ACCOUNT',
+  EDIT_ACCOUNT_REQUEST = '@@dashboard/EDIT_ACCOUNT_REQUEST',
+  EDIT_ACCOUNT_SUCCESS = '@@dashboard/EDIT_ACCOUNT_SUCCESS',
+  EDIT_ACCOUNT_FAILURE = '@@dashboard/EDIT_ACCOUNT_FAILURE',
+  DESTROY_STATES = '@@dashboard/DESTROY_STATES',
+  GET_CURRENT_USER = '@@dashboard/GET_CURRENT_USER',
+  GET_CURRENT_USER_SUCCESS = '@@dashboard/GET_CURRENT_USER_SUCCESS',
+  GET_CURRENT_USER_FAILURE = '@@dashboard/GET_CURRENT_USER_FAILURE',
 }
 
 export type DashboardState = {
@@ -20,4 +28,11 @@ export type DashboardState = {
   readonly currencies: Currency[];
   readonly currenciesLoading: boolean;
   readonly currencyError: any;
+  readonly editAccount: boolean;
+  readonly isEditing: boolean;
+  readonly editAccountError: any;
+  readonly editAccountSuccess: boolean;
+  readonly client: Client | undefined;
+  readonly clientError: any;
+  readonly clientLoading: boolean;
 };

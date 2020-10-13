@@ -22,7 +22,7 @@ export const initialState: PaymentState = {
   feeError: undefined,
   feeLoading: false,
   repeatTransaction: false,
-  transaction: undefined
+  transaction: undefined,
 };
 
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
@@ -199,6 +199,10 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         ...state,
         transaction: action.payload,
       };
+
+    case PaymentActionTypes.DESTROY_STATES:
+      return initialState;
+
     default:
       return state;
   }

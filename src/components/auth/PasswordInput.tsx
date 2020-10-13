@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   FormBoxInput,
-  FormBoxInputText,
   PassWrapper,
   IconEye,
   ErrorSpan,
@@ -33,7 +32,8 @@ const PasswordInput: React.FC<Props> = ({
     <React.Fragment>
       <FormBoxInput>
         <PassWrapper>
-          <FormBoxInputText
+          <input
+            className="form-control"
             type={showPassword ? 'text' : type}
             name={name}
             value={value}

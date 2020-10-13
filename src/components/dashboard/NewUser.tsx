@@ -7,14 +7,14 @@ import { path } from '../../helpers/path';
 
 const NewUser: React.FC = () => {
   const { user } = appSelector((state) => state.auth);
-  const [userDetails] = useState<User>(user);
+  const [userDetails] = useState<User | undefined>(user);
   const [fname, setFname] = useState('');
   const { t } = useTranslation();
 
   useEffect(() => {
     if (userDetails !== undefined) {
       let name: string[] | undefined;
-      name = userDetails.name?.split(' ');
+      name = userDetails.name!.split(' ');
       if (name !== undefined) {
         setFname(name[0]);
       }

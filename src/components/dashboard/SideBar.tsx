@@ -7,7 +7,11 @@ import { AppDispatch } from '../../helpers/appDispatch';
 import { logo } from '../../images/Images';
 import { path } from '../../helpers/path';
 import { pageTypes } from '../../helpers/constants';
-import { setPageSwitch, setTopBarHeader } from '../../store/dashboard';
+import {
+  setPageSwitch,
+  setTopBarHeader,
+  setEditAccount,
+} from '../../store/dashboard';
 
 const SideBar: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -16,6 +20,9 @@ const SideBar: React.FC = () => {
   const { t } = useTranslation();
 
   const swtichPage = (page: string): void => {
+    if (page === pageTypes.ACCOUNT) {
+      dispatch(setEditAccount(false));
+    }
     dispatch(setPageSwitch(page));
     dispatch(setTopBarHeader(page));
   };
@@ -41,11 +48,9 @@ const SideBar: React.FC = () => {
 
       <hr className="sidebar-divider my-0"></hr>
 
-      <li className="nav-item">
-        <Link className="nav-link btn-custom" to={path.payment}>
-          <span>{t('dashboard.side-bar.make-payments')}</span>
-        </Link>
-      </li>
+      <Link className="action-btn-custom" to={path.payment}>
+        <span>{t('dashboard.side-bar.make-payments')}</span>
+      </Link>
 
       <hr className="sidebar-divider my-0"></hr>
 
@@ -91,7 +96,7 @@ const SideBar: React.FC = () => {
       <hr className="sidebar-divider d-none d-md-block"></hr>
 
       <div className="text-center d-none d-md-inline">
-        <button className="rounded-circle border-0" id="sidebarToggle"></button>
+        <button className="rounded-circle" id="sidebarToggle"></button>
       </div>
     </ul>
   );

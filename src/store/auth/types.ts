@@ -25,7 +25,7 @@ export type AuthState = {
   readonly isSubmitting: boolean;
   readonly error: Error | {};
   readonly success: boolean;
-  readonly user: User | {};
+  readonly user: User | undefined;
   readonly singleError: string;
   readonly verificationResponse: VerificationResponse | undefined;
   readonly verifyError: string;

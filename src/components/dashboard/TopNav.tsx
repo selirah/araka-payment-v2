@@ -13,7 +13,7 @@ const TopNav: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { user } = appSelector((state) => state.auth);
   const { topBarHeader } = appSelector((state) => state.dashboard);
-  const [userDetails] = useState<User>(user);
+  const [userDetails] = useState<User | undefined>(user);
   const [header, setHeader] = useState<string>(topBarHeader);
   const { t, i18n } = useTranslation();
   const href = '#';
@@ -48,7 +48,7 @@ const TopNav: React.FC = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top mx-4">
       <button
         id="sidebarToggleTop"
         className="btn btn-link d-md-none rounded-circle mr-3"
@@ -65,7 +65,7 @@ const TopNav: React.FC = () => {
       </div>
 
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item mx-1">
+        <li className="nav-item lang-item p-0 mx-1 active">
           <a className="nav-link" href={href} role="button">
             <i
               className="flag-icon flag-icon-gb"
@@ -74,7 +74,7 @@ const TopNav: React.FC = () => {
           </a>
         </li>
 
-        <li className="nav-item mx-1">
+        <li className="nav-item lang-item p-0 mx-1">
           <a className="nav-link" href={href} role="button">
             <i
               className="flag-icon flag-icon-fr"
@@ -82,7 +82,7 @@ const TopNav: React.FC = () => {
             ></i>
           </a>
         </li>
-
+{/* 
         <li className="nav-item dropdown no-arrow mx-1">
           <a
             className="nav-link dropdown-toggle"
@@ -94,7 +94,7 @@ const TopNav: React.FC = () => {
             aria-expanded="false"
           >
             <i className="fas fa-bell fa-fw"></i>
-            {/* <span className="badge badge-danger badge-counter">3+</span> */}
+             <span className="badge badge-danger badge-counter">3+</span> 
           </a>
           <div
             className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -239,7 +239,7 @@ const TopNav: React.FC = () => {
               Read More Messages
             </a>
           </div>
-        </li>
+        </li> */}
         <div className="topbar-divider d-none d-sm-block"></div>
         <li className="nav-item dropdown no-arrow">
           <a
@@ -253,7 +253,7 @@ const TopNav: React.FC = () => {
           >
             <span className="mr-2 d-none d-lg-inline text-gray-600 small">
               {userDetails !== null || userDetails !== undefined
-                ? userDetails.name
+                ? userDetails!.name
                 : null}
             </span>
             <img className="img-profile rounded-circle" src={avatar} alt="" />

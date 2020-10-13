@@ -10,7 +10,14 @@ export const initialState: DashboardState = {
   error: undefined,
   currencies: [],
   currenciesLoading: false,
-  currencyError: undefined
+  currencyError: undefined,
+  editAccount: false,
+  isEditing: false,
+  editAccountError: undefined,
+  editAccountSuccess: false,
+  client: undefined,
+  clientError: undefined,
+  clientLoading: false,
 };
 
 const reducer: Reducer<DashboardState> = (state = initialState, action) => {
@@ -42,7 +49,7 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-      case DashboardTypes.GET_CURRENCIES:
+    case DashboardTypes.GET_CURRENCIES:
       return {
         ...state,
         currenciesLoading: true,
@@ -59,6 +66,50 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         currenciesLoading: false,
         currencyError: action.payload,
       };
+    case DashboardTypes.EDIT_ACCOUNT:
+      return {
+        ...state,
+        editAccount: action.payload,
+      };
+    case DashboardTypes.EDIT_ACCOUNT_REQUEST:
+      return {
+        ...state,
+        isEditing: true,
+      };
+    case DashboardTypes.EDIT_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        isEditing: false,
+        client: action.payload,
+        editAccountSuccess: true,
+      };
+    case DashboardTypes.EDIT_ACCOUNT_FAILURE:
+      return {
+        ...state,
+        isEditing: false,
+        editAccountError: action.payload,
+        editAccountSuccess: false,
+      };
+    case DashboardTypes.GET_CURRENT_USER:
+      return {
+        ...state,
+        clientLoading: true,
+      };
+    case DashboardTypes.GET_CURRENT_USER_SUCCESS:
+      return {
+        ...state,
+        clientLoading: false,
+        client: action.payload,
+      };
+    case DashboardTypes.GET_CURRENT_USER_FAILURE:
+      return {
+        ...state,
+        clientLoading: false,
+        clientError: action.payload,
+      };
+    case DashboardTypes.DESTROY_STATES:
+      return initialState;
+
     default:
       return state;
   }

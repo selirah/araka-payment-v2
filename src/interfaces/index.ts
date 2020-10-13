@@ -11,3 +11,4 @@ export * from './VerificationResponse';
 export * from './Fee';
 export * from './TransactionHistory';
 export * from './Currency';
+export * from './Client';

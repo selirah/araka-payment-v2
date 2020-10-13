@@ -78,10 +78,11 @@ header {
 .close-icon {
   height: 52px !important;
   padding: 15px !important;
-  border: 2px solid #ffdbce !important;
+  border: 2px solid #f55c29 !important;
   border-radius: 50% !important;
   text-decoration: none !important;
   float: left !important;
+  color: #f55c29;
 }
 
 .close-icon i {
@@ -102,6 +103,7 @@ header {
   color: rgb(66, 84, 102) !important;
   font-weight: 700 !important;
   font-size: 30px !important;
+  text-transform: uppercase;
 }
 
 .footer-brand:hover,
@@ -120,6 +122,10 @@ header {
   color: rgb(66, 84, 102);
   font-weight: 700;
   transition: all 0.3s ease-in-out;
+}
+
+.navbar-custom .navbar-nav .nav-link.dropdown-toggle {
+  text-transform: capitalize;
 }
 
 .navbar-custom .navbar-nav .nav-link.active,
@@ -211,6 +217,26 @@ header {
   width: 60%;
 }
 
+.action-btn-custom {
+  background: #f55c29;
+  border: 1px solid #f55c29;
+  color: #f4f6f8;
+  transition: all 0.3s ease-in-out;
+  border-radius: 16.5px;
+  padding: 0.6rem 1rem;
+  text-transform: uppercase;
+  font-size: 0.938rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 24px 20px 30px;
+  text-decoration: none;
+}
+.action-btn-custom:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: rgb(66, 84, 102);
+  border-color: rgb(66, 84, 102);
+}
 /** Banner **/
 .banner {
   position: relative;
@@ -809,6 +835,9 @@ footer .list-inline-item.mdi {
   font-size: 14px;
   text-transform: none;
 }
+.bs-wizard > .bs-wizard-step.complete .bs-wizard-info {
+  color: #f55c29;
+}
 .bs-wizard > .bs-wizard-step > .bs-wizard-dot {
   position: absolute;
   width: 1.875rem;
@@ -824,7 +853,7 @@ footer .list-inline-item.mdi {
   content: ' ';
   width: 14px;
   height: 14px;
-  background: #fbbd19;
+  background: #f55c29;
   border-radius: 50px;
   position: absolute;
   top: 8px;
@@ -840,7 +869,7 @@ footer .list-inline-item.mdi {
 .bs-wizard > .bs-wizard-step > .progress > .progress-bar {
   width: 0px;
   box-shadow: none;
-  background: #fbe8aa;
+  background: #ff8055;
 }
 .bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {
   width: 100%;
@@ -874,8 +903,8 @@ footer .list-inline-item.mdi {
 /**-- Options --**/
 
 .display-name {
-  margin-top: 3rem;
-  padding: 1rem;
+  margin-top: 0rem;
+  padding: 3rem 1rem 1rem 1rem;
   color: #425466;
 }
 
@@ -928,7 +957,7 @@ footer .list-inline-item.mdi {
 
 .summary {
   padding: 0;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .summary table {
@@ -970,9 +999,9 @@ footer .list-inline-item.mdi {
 }
 
 .summary-item-details label {
-  color: rgba(66, 84, 102, 0.2);
+  color: rgba(66, 84, 102, 0.13);
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.7rem;
   margin-bottom: -20px;
   display: block;
   text-overflow: ellipsis;
@@ -1029,6 +1058,7 @@ footer .list-inline-item.mdi {
   width: 4rem;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
+  filter: grayscale(1);
 }
 
 .option i {
@@ -1060,7 +1090,7 @@ footer .list-inline-item.mdi {
 }
 
 .option-submit {
-  margin: 3rem 0;
+  margin: 3rem 0 3rem 0;
 }
 
 .option-submit button {
@@ -1075,7 +1105,7 @@ footer .list-inline-item.mdi {
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1) !important;
   font-weight: 700 !important;
   border-radius: 5px !important;
-  background: #fbbd19 !important;
+  background: #f55c29 !important;
   color: #fff !important;
   transition: all 0.3s ease-in-out !important;
 }
@@ -1105,6 +1135,7 @@ footer .list-inline-item.mdi {
 
 .btn.option-submit-button:disabled {
   opacity: 0.15;
+  pointer-events: none;
 }
 
 .option-submit-button:hover,

@@ -9,6 +9,7 @@ import { ContentContainer } from './ContentContainer';
 import { NewUser } from './NewUser';
 import { Content } from './Content';
 import { Account } from './Account';
+import { EditAccount } from './EditAccount';
 import { Recipients } from './Recipients';
 import { pageTypes } from '../../helpers/constants';
 import { Spinner } from '../common/Spinner';
@@ -23,7 +24,7 @@ type Props = {
 
 export const Layout: React.FC<Props> = ({ title }) => {
   const dispatch: AppDispatch = useDispatch();
-  const { pageSwitch, transactions, loading } = appSelector(
+  const { pageSwitch, transactions, loading, editAccount } = appSelector(
     (state) => state.dashboard
   );
   const { categories } = appSelector((state) => state.payment);
@@ -63,7 +64,11 @@ export const Layout: React.FC<Props> = ({ title }) => {
       }
       break;
     case pageTypes.ACCOUNT:
-      render = <Account />;
+      if (!editAccount) {
+        render = <Account />;
+      } else {
+        render = <EditAccount />;
+      }
       break;
     case pageTypes.RECIPIENTS:
       render = <Recipients />;
@@ -89,7 +94,7 @@ export const Layout: React.FC<Props> = ({ title }) => {
         <div id="content-wrapper" className="d-flex flex-column">
           <div id="content">
             <TopNav />
-            <div className="container-fluid">
+            <div className="container-fluid dashboard-content">
               <ContentContainer>{render}</ContentContainer>
             </div>
           </div>

@@ -8,7 +8,7 @@ export const Search: React.FC = () => {
       <div className="input-group">
         <input
           type="text"
-          className="form-control bg-light border-0 small"
+          className="form-control bg-light small"
           placeholder={t('dashboard.old-user.search')}
           aria-label="Search"
         />

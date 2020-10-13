@@ -7,7 +7,7 @@ export const initialState: AuthState = {
   error: {},
   singleError: '',
   success: false,
-  user: {},
+  user: undefined,
   verificationResponse: undefined,
   verifyError: '',
   isVerifying: false,

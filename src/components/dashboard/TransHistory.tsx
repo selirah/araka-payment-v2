@@ -62,17 +62,14 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
   const href = '#';
   return (
     <div className="card">
-      <div
-        className="card-header"
-        id={`headingOne${transaction.transactionId}`}
-      >
+      <div className="card-header" id={`headingOne${transactionId}`}>
         <a
           href={href}
           className="btn-header-link"
           data-toggle="collapse"
-          data-target={`#collapseOne${transaction.transactionId}`}
+          data-target={`#collapseOne${transactionId}`}
           aria-expanded="true"
-          aria-controls="collapseOne"
+          aria-controls={`collapseOne${transactionId}`}
         >
           <div className="amount">
             <h2>
@@ -83,12 +80,7 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
         <img src={'https://via.placeholder.com/50'} alt="logo" />
         <div className="card-header-content">
           <h2>{getCategoryName(categories, productCategoryId)}</h2>
-          <h4>
-            {transaction.transactionDescription.replace(
-              /([a-z])([A-Z])/g,
-              '$1 $2'
-            )}
-          </h4>
+          <h4>{transactionDescription.replace(/([a-z])([A-Z])/g, '$1 $2')}</h4>
           <div className="bottom-time">
             <h6>{moment(createdAt).format('MMMM D, YYYY (h:mm a)')}</h6>
             <h6>
@@ -148,7 +140,7 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
                   </tr>
                   <tr>
                     <td>Transaction ID</td>
-                    <td>{transactionId}</td>
+                    <td># {transactionId}</td>
                   </tr>
                 </tbody>
               </table>

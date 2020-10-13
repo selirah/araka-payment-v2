@@ -1,4 +1,10 @@
-import { Category, Product, OrderResponse, Fee, TransactionHistory } from '../../interfaces';
+import {
+  Category,
+  Product,
+  OrderResponse,
+  Fee,
+  TransactionHistory,
+} from '../../interfaces';
 
 export enum PaymentActionTypes {
   FETCH_CATEGORIES = '@@payment/FETCH_CATEGORIES',
@@ -27,6 +33,7 @@ export enum PaymentActionTypes {
   REQUEST_FEE_FAILURE = '@@payment/REQUEST_FEE_FAILURE',
   REPEAT_TRANSACTION = '@@payment/REPEAT_TRANSACTION',
   SET_TRANSACTION = '@@payment/SET_TRANSACTION',
+  DESTROY_STATES = '@@payment/DESTROY_STATES',
 }
 
 export type PaymentState = {

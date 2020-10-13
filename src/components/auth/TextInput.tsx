@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormBoxInput, FormBoxInputText, ErrorSpan } from './Styles';
+import { FormBoxInput, ErrorSpan } from './Styles';
 
 type Props = {
   type: string;
@@ -22,7 +22,8 @@ const TextInput: React.FC<Props> = ({
   return (
     <React.Fragment>
       <FormBoxInput>
-        <FormBoxInputText
+        <input
+          className="form-control"
           type={type}
           name={name}
           value={value}

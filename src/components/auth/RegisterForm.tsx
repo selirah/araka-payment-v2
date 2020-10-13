@@ -11,7 +11,7 @@ import {
   clearAuthState,
 } from '../../store/auth/actions';
 import { ChangeLanguage } from '../common/ChangeLanguage';
-import { logoNav } from '../../images/Images';
+import { logo } from '../../images/Images';
 import { TextInput } from './TextInput';
 import { PasswordInput } from './PasswordInput';
 import { MultipleErrors } from './MultipleErrors';
@@ -25,7 +25,6 @@ import {
   ImageContainerLogin,
   FormContainer,
   FormBox,
-  FormBoxHeader,
   TermsContainer,
   FormBoxCustomControl,
   FormBoxCheckLabel,
@@ -121,15 +120,12 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
         <div className="row">
           <ImageContainerLogin className="col-lg-5 col-md-5 d-none d-md-block"></ImageContainerLogin>
           <FormContainer className="col-lg-7 col-md-7">
-            <FormBox className="col-sm-5 text-center">
-              <Link to={path.home}>
-                <LogoContainer className="mt-0">
-                  <img src={logoNav} alt="logo" width="100" />
-                </LogoContainer>
-              </Link>
-              <FormBoxHeader>
-                <h4>Welcome to ARAKA Payments</h4>
-              </FormBoxHeader>
+            <FormBox className="col-sm-5 text-center">              
+              <LogoContainer className="mt-0">
+                <Link className="navbar-brand" to={path.home}>
+                  <img src={logo} alt="logo" width="40" /> Araka
+                </Link>
+              </LogoContainer>
               <FormBoxSubHeader>
                 <h6>
                   Already a member? <Link to={path.login}>Log in</Link>
@@ -139,7 +135,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
               {!isEmpty(singleError) ? (
                 <SingleError error={singleError} />
               ) : null}
-              <form onSubmit={onSubmit} className="mt-5">
+              <form onSubmit={onSubmit} className="mt-4">
                 <TextInput
                   type="text"
                   name="Name"
@@ -162,18 +158,21 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   onChange={setPhoneNumber}
                   containerStyle={{ marginBottom: '0.8rem' }}
                   inputStyle={{
+                    border: '1px solid #fbd5c7',
+                    padding: '1.5rem 2.5rem 1.5rem 3.5rem',
+                    fontSize:' 1.2rem',
+                    backgroundColor:' #fff',
+                    height: '4rem',
+                    display: 'block',
                     width: '100%',
-                    border: 'none',
-                    borderRadius: '0',
-                    padding: '1.5rem',
-                    paddingLeft: '3rem',
-                    color: '#000',
-                    fontWeight: 'normal',
+                    fontWeight: 400,
+                    lineHeight: '1.5',
+                    color: '#495057'
                   }}
                   buttonStyle={{
                     border: 'none',
-                    background: '#fff',
-                    padding: '0.2rem',
+                    background: 'transparent',
+                    padding: '0.2rem 1rem',
                     borderRadius: '0',
                   }}
                   dropdownStyle={{

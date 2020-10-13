@@ -107,17 +107,20 @@ const Layout: React.FC<Props> = ({ title }) => {
         <ProcessWizard />
       </NavLayout>
       <PageContainer>
-        {!isEmpty(error) ? <Error error={error} /> : null}
-        {subTitle !== '' ? (
-          <DisplayHeader
-            h2={mainTitle}
-            h4={subTitle}
-            h6={smallText}
-            className={className}
-          />
-        ) : null}
-
-        {render}
+        <div className="card">
+          {!isEmpty(error) ? <Error error={error} /> : null}
+          <div className="card-body wizard-card my-5">
+            {subTitle !== '' ? (
+              <DisplayHeader
+                h2={mainTitle}
+                h4={subTitle}
+                h6={smallText}
+                className={className}
+              />
+            ) : null}
+            {render}
+          </div>
+        </div>
       </PageContainer>
       <Help />
       <Reset />

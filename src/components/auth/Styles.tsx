@@ -15,6 +15,8 @@ export const ImageContainerLogin = styled.div`
   background: url(${display_2}) center no-repeat;
   background-size: cover;
   min-height: 100vh;
+  border-right: 1px solid #ffdbce;
+  box-shadow: 0.5rem 0 1rem rgba(255, 203, 170, 0.25) !important;
 `;
 
 export const ImageContainerRegister = styled.div`
@@ -70,7 +72,7 @@ export const FormBoxSubHeader = styled.div`
     font-weight: 400;
     font-size: 0.95rem !important;
     color: #506077;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem 0;
 
     a {
       color: #f85924;
@@ -91,22 +93,22 @@ export const FormBoxInput = styled.div`
   position: relative;
 `;
 
-export const FormBoxInputText = styled.input`
-  width: 100%;
-  height: 3rem;
-  margin-bottom: 0.65rem;
-  border: none;
-  border-radius: 0;
-  outline: none;
-  background: #fff;
-  padding: 1rem;
-  color: #000;
-  font-weight: 400;
+// export const FormBoxInputText = styled.input`
+//   width: 100%;
+//   height: 3rem;
+//   margin-bottom: 0.65rem;
+//   border: none;
+//   border-radius: 0;
+//   outline: none;
+//   background: #fff;
+//   padding: 1rem;
+//   color: #000;
+//   font-weight: 400;
 
-  ::placeholder {
-    padding: 0;
-  }
-`;
+//   ::placeholder {
+//     padding: 0;
+//   }
+// `;
 
 export const FormBoxInputSpan = styled.span`
   position: absolute;
@@ -122,7 +124,7 @@ export const FormBoxCustomControl = styled.div`
   min-height: 1.5rem;
 
   label {
-    font-size: 0.9rem;
+    font-size: 14px;
     font-weight: 300;
     cursor: pointer;
     margin-top: 0.5rem;
@@ -130,7 +132,7 @@ export const FormBoxCustomControl = styled.div`
 
   input[type='checkbox']:not(:checked) + label:before {
     background: transparent;
-    border: 0.125rem solid #506077;
+    border: 0.125rem solid #fbd5c7;
     width: 0.8rem;
     height: 0.8rem;
     border-radius: 0;
@@ -158,7 +160,7 @@ export const ForgottenLink = styled.div`
     border-bottom: 1px solid #506077;
     padding-bottom: 0.2rem;
     transition: all 0.5s ease-in-out;
-    font-size: 0.9rem;
+    font-size: 14px;
 
     :hover {
       color: #f4744b;
@@ -187,15 +189,15 @@ export const SubmitButton = styled.div`
     width: 12rem;
     height: 2.5rem;
     border-right: 0.3125rem;
-    background-color: #506077;
+    background-color: #f4744b;
     color: #fff;
     font-weight: 700;
     transition: 0.5s;
-    border-radius: 0;
+    border-radius: 16.5px;
     text-transform: uppercase;
     margin-bottom: 2rem;
     :hover {
-      background-color: #f4744b;
+      background-color: #506077;
     }
   }
 `;
@@ -230,7 +232,7 @@ export const PassWrapper = styled.div`
 
 export const IconEye = styled.span`
   position: absolute;
-  top: 0.8rem;
+  top: 20px;
   right: 1rem;
   color: #777777;
   padding-right: 0.5rem;
@@ -269,7 +271,7 @@ export const LogoContainer = styled.div`
 
 export const TermsContainer = styled.div`
   h4 {
-    font-size: 0.75rem;
+    font-size: 12px;
     margin-top: 2rem;
 
     a {
