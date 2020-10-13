@@ -562,6 +562,19 @@
   color: rgba(66, 84, 102, 1);
 }
 
+.personal-details .personal-details-right button {
+  border: none;
+  background: rgba(66, 84, 102, 0.6);
+  font-weight: 300;
+  transition: all 0.5s ease-in-out;
+  border-radius: 0;
+  color: #fff;
+}
+
+.personal-details .personal-details-right button:hover {
+  background: rgba(66, 84, 102, 1);
+}
+
 /** RECIPIENTS **/
 
 .toolbar {
@@ -1080,6 +1093,19 @@
     display: block;
     float: none;
   }
+
+  .personal-details .personal-details-right button {
+    border: none;
+    background: rgba(66, 84, 102, 0.6);
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0;
+    color: #fff;
+  }
+
+  .personal-details .personal-details-right button:hover {
+    background: rgba(66, 84, 102, 1);
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -1451,6 +1477,19 @@
     font-size: 0.9rem;
     color: rgba(66, 84, 102, 1);
     font-weight: 500;
+  }
+
+  .personal-details .personal-details-right button {
+    border: none;
+    background: rgba(66, 84, 102, 0.6);
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0;
+    color: #fff;
+  }
+
+  .personal-details .personal-details-right button:hover {
+    background: rgba(66, 84, 102, 1);
   }
 }
 
