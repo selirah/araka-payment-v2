@@ -7,7 +7,7 @@ import countriesList from 'countries-list';
 import PhoneInput from 'react-phone-input-2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { updateUserRequest } from '../../store/dashboard';
+import { updateUserRequest, setEditAccount } from '../../store/dashboard';
 import moment from 'moment';
 
 export const EditAccount: React.FC = () => {
@@ -19,7 +19,7 @@ export const EditAccount: React.FC = () => {
   const [values, setValues] = useState<Client>({
     clientId: client!.clientId,
     fullName: client!.fullName,
-    firstName: client!.firstName !== null ? client!.fullName : '',
+    firstName: client!.firstName !== null ? client!.firstName : '',
     otherName: client!.otherName !== null ? client!.otherName : '',
     lastName: client!.lastName !== null ? client!.lastName : '',
     dateOfBirth: client!.dateOfBirth !== null ? client!.dateOfBirth : '',
@@ -31,9 +31,9 @@ export const EditAccount: React.FC = () => {
     userId: client!.userId,
     user: client?.user,
   });
-  const [phone, setPhone] = useState<string>('');
-  const [startDate, setStartDate] = useState<Date>(new Date());
-  const [newDate, setNewDate] = useState<string>('');
+  const [phone, setPhone] = useState<string>(values.phoneNumber);
+  const [startDate, setStartDate] = useState<Date>(new Date('01-01-2002'));
+  const [newDate, setNewDate] = useState<string>(values.dateOfBirth);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   let selectCountries: React.ReactNode;
@@ -69,22 +69,28 @@ export const EditAccount: React.FC = () => {
       firstName: values.firstName,
       otherName: values.otherName,
       lastName: values.lastName,
-      dateOfBirth: newDate,
+      dateOfBirth:
+        newDate === '' ? moment(startDate).format('YYYY-MM-DD') : newDate,
       address: values.address,
-      email: user!.emailAddress,
+      email: user!.username,
       country: values.country,
       city: values.city,
       phoneNumber: phone,
       userId: client!.userId,
       user: client?.user,
     };
-    // console.log(values);
+    // console.log(payload);
     dispatch(updateUserRequest(payload));
   };
 
   useEffect(() => {
     setIsSubmitting(isEditing);
-  }, [isEditing]);
+    if (editAccountSuccess) {
+      // dispatch(setEditAccount(false));
+    } else {
+      // display error here
+    }
+  }, [isEditing, editAccountSuccess, dispatch]);
 
   return (
     <div className="row">
@@ -135,9 +141,11 @@ export const EditAccount: React.FC = () => {
                 onChange={setDate}
                 className="text-input"
                 dateFormat="yyyy-MM-dd"
-                scrollableMonthYearDropdown={true}
                 showYearDropdown
                 showMonthDropdown
+                scrollableMonthYearDropdown
+                minDate={new Date('01-01-1970')}
+                maxDate={new Date('01-01-2004')}
               />
             </div>
           </div>
@@ -148,7 +156,7 @@ export const EditAccount: React.FC = () => {
             <div className="left">
               <h2>Phone number</h2>
               <PhoneInput
-                value={values.phoneNumber}
+                value={phone}
                 country="gh"
                 preferredCountries={['gh', 'cd', 'us', 'gb']}
                 onChange={setPhoneNumber}

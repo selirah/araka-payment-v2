@@ -6,6 +6,7 @@ import { user as avatar } from '../../images/Images';
 import { setEditAccount, getCurrentUser } from '../../store/dashboard';
 import { Client } from '../../interfaces';
 import { Spinner } from '../common/Spinner';
+import moment from 'moment';
 
 export const Account: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -53,15 +54,27 @@ export const Account: React.FC = () => {
             <div className="personal-details">
               <div className="personal-details-left">
                 <h2>Full legal first and middle names</h2>
-                <h4>Morty Jr.</h4>
+                <h4>
+                  {currentUser !== undefined
+                    ? `${currentUser.firstName} ${currentUser.otherName}`
+                    : null}
+                </h4>
                 <h2>Date of Birth</h2>
-                <h4>1st January, 2002</h4>
+                <h4>
+                  {currentUser !== undefined
+                    ? moment(currentUser.dateOfBirth).format('MMMM Do, YYYY')
+                    : null}
+                </h4>
               </div>
               <div className="personal-details-right">
                 <h2>Full legal last name(s)</h2>
-                <h4>Smith</h4>
+                <h4>
+                  {currentUser !== undefined ? currentUser.lastName : null}
+                </h4>
                 <h2>Phone number</h2>
-                <h4>+456 453 3543 345</h4>
+                <h4>
+                  +{currentUser !== undefined ? currentUser.phoneNumber : null}
+                </h4>
               </div>
             </div>
             <div className="personal-info">
@@ -70,13 +83,17 @@ export const Account: React.FC = () => {
             <div className="personal-details">
               <div className="personal-details-left">
                 <h2>Country</h2>
-                <h4>DRC.</h4>
+                <h4>
+                  {currentUser !== undefined ? currentUser.country : null}
+                </h4>
                 <h2>Address</h2>
-                <h4>30 Paix Street</h4>
+                <h4>
+                  {currentUser !== undefined ? currentUser.address : null}
+                </h4>
               </div>
               <div className="personal-details-right">
                 <h2>City</h2>
-                <h4>Kinshasa</h4>
+                <h4>{currentUser !== undefined ? currentUser.city : null}</h4>
                 <h2>Postal</h2>
               </div>
             </div>
@@ -86,7 +103,7 @@ export const Account: React.FC = () => {
             <div className="personal-details">
               <div className="personal-details-left">
                 <h2>Email</h2>
-                <h4>prinzeedward@gmail.com</h4>
+                <h4>{user !== undefined ? user.username : null}</h4>
               </div>
               <div className="personal-details-right">
                 <h2>Password</h2>
