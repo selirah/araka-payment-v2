@@ -26,23 +26,21 @@ export const Layout: React.FC<Props> = ({ title }) => {
   const { pageSwitch, transactions, loading } = appSelector(
     (state) => state.dashboard
   );
-  const { categories } = appSelector(
-    (state) => state.payment
-  );
+  const { categories } = appSelector((state) => state.payment);
   const [page, setPage] = useState<string>(pageSwitch);
   const [transactionData, setTransactionData] = useState<any[]>(transactions);
   const [spinner, setSpinner] = useState<boolean>(loading);
 
   const refresh = (): void => {
     dispatch(getTransactions());
-  }
+  };
 
   useEffect(() => {
-   refresh();
-   dispatch(setRepeatTransaction(false));
-   if (isEmpty(categories)) {
-     dispatch(fetchCategories());
-   }
+    refresh();
+    dispatch(setRepeatTransaction(false));
+    if (isEmpty(categories)) {
+      dispatch(fetchCategories());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -92,9 +90,7 @@ export const Layout: React.FC<Props> = ({ title }) => {
           <div id="content">
             <TopNav />
             <div className="container-fluid">
-              <ContentContainer>
-                {render}
-              </ContentContainer>
+              <ContentContainer>{render}</ContentContainer>
             </div>
           </div>
         </div>

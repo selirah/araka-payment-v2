@@ -43,6 +43,20 @@ export const Account: React.FC = () => {
             <h2>Postal</h2>
           </div>
         </div>
+        <div className="personal-info">
+          <h4>Account Information</h4>
+        </div>
+        <div className="personal-details">
+          <div className="personal-details-left">
+            <h2>Email</h2>
+            <h4>prinzeedward@gmail.com</h4>
+          </div>
+          <div className="personal-details-right">
+            <h2>Password</h2>
+            <h4>*************************</h4>
+            <button className="btn">Change Password</button>
+          </div>
+        </div>
       </div>
     </div>
   );

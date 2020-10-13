@@ -37,11 +37,15 @@ const Success: React.FC<Props> = ({ title }) => {
               {/* <h4>{t('wizard.success.sub3')}</h4> */}
             </div>
             <div className="display-success-failure-cancel-buttons">
-            <Link to={path.dashboard}>
-              <button className="btn btn-history">{t('wizard.success.btn')}</button>
+              <Link to={path.dashboard}>
+                <button className="btn btn-history">
+                  {t('wizard.success.btn')}
+                </button>
               </Link>
               <Link to={path.payment}>
-                <button className="btn btn-new-payment">{t('wizard.success.btn2')}</button>
+                <button className="btn btn-new-payment">
+                  {t('wizard.success.btn2')}
+                </button>
               </Link>
             </div>
           </div>

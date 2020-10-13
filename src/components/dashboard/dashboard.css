@@ -195,7 +195,7 @@
 .middle-pane button {
   position: absolute;
   right: 1rem;
-  top: 1.5rem;
+  top: 1rem;
   font-size: 0.95rem;
   font-weight: 300;
   text-transform: uppercase;
@@ -1521,7 +1521,7 @@
   .middle-pane button {
     position: absolute;
     right: 1rem;
-    top: 1.5rem;
+    top: 1rem;
     font-size: 0.95rem;
     font-weight: 300;
     text-transform: uppercase;
@@ -1886,6 +1886,18 @@
   .personal-details .personal-details-right h4 {
     font-size: 0.85rem;
     color: rgba(66, 84, 102, 1);
+  }
+  .personal-details .personal-details-right button {
+    border: none;
+    background: rgba(66, 84, 102, 0.6);
+    font-weight: 300;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0;
+    color: #fff;
+  }
+
+  .personal-details .personal-details-right button:hover {
+    background: rgba(66, 84, 102, 1);
   }
 
   /** RECIPIENTS **/
