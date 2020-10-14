@@ -8,11 +8,16 @@ import { modalTypes } from '../../helpers/constants';
 import { ModalContainer } from '../common/ModalContainer';
 import { Beneficiary } from '../../interfaces';
 import { RecipientForm } from './RecipientForm';
-import { addBeneficiaryRequest, getBeneficiaries } from '../../store/dashboard';
+import {
+  addBeneficiaryRequest,
+  getBeneficiaries,
+  clearAddBeneficiarySuccessFailure,
+} from '../../store/dashboard';
 import { isEmpty } from 'src/helpers/isEmpty';
 import { toast } from 'src/helpers/toaster';
 import { Recipient } from './Recipient';
-import { BeneficiaryPagination } from './BeneficiaryPagination';
+// import { BeneficiaryPagination } from './BeneficiaryPagination';
+import { EmptyRecipient } from './EmptyRecipient';
 
 export const Recipients: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -21,6 +26,8 @@ export const Recipients: React.FC = () => {
     isAddingBeneficiary,
     beneficiaryLoading,
     beneficiaries,
+    addBeneficiarySuccess,
+    addBeneficiaryError,
   } = appSelector((state) => state.dashboard);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('');
@@ -36,7 +43,7 @@ export const Recipients: React.FC = () => {
   });
   const [phone, setPhone] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(beneficiaryLoading);
-  const [recipients, setRecipients] = useState<Beneficiary[]>(beneficiaries);
+  const [recipients, setRecipients] = useState<Beneficiary[]>([]);
 
   useEffect(() => {
     if (user !== undefined && isEmpty(beneficiaries)) {
@@ -62,18 +69,18 @@ export const Recipients: React.FC = () => {
   const onCloseModal = (): void => {
     setShowModal(false);
     setModalType('');
+    dispatch(clearAddBeneficiarySuccessFailure());
   };
 
   const onSubmit = (e: React.FormEvent<EventTarget>): void => {
     e.preventDefault();
     if (
       isEmpty(values.name) ||
-      isEmpty(values.email) ||
       isEmpty(phone) ||
       (isEmpty(values.studentId) && isEmpty(values.bankAccount))
     ) {
       toast(
-        'Name, email, phone number, and student id or bank account number are required',
+        'Name, phone number, and student id or bank account number are required',
         false
       );
     } else {
@@ -92,9 +99,20 @@ export const Recipients: React.FC = () => {
 
   useEffect(() => {
     setLoading(beneficiaryLoading);
-    setIsSubmitting(isAddingBeneficiary);
     setRecipients(beneficiaries);
-  }, [isAddingBeneficiary, beneficiaryLoading, beneficiaries]);
+    setIsSubmitting(isAddingBeneficiary);
+    if (addBeneficiarySuccess) {
+      toast('Beneficiary added successfully', true);
+    } else if (addBeneficiaryError) {
+      toast('An error occured', false);
+    }
+  }, [
+    isAddingBeneficiary,
+    beneficiaryLoading,
+    beneficiaries,
+    addBeneficiarySuccess,
+    addBeneficiaryError,
+  ]);
 
   return (
     <React.Fragment>
@@ -108,10 +126,22 @@ export const Recipients: React.FC = () => {
               <h2>Beneficiaries</h2>
             </div>
             <div className="contacts-container">
-              {recipients.map((r) =>
-                !isEmpty(r.name) ? (
-                  <Recipient recipient={r} key={r.beneficiaryId} />
-                ) : null
+              {loading ? (
+                <Spinner />
+              ) : (
+                <React.Fragment>
+                  {isEmpty(recipients) ? (
+                    <EmptyRecipient message="No beneficiary has been added" />
+                  ) : (
+                    <React.Fragment>
+                      {recipients.map((r) =>
+                        !isEmpty(r.name) ? (
+                          <Recipient recipient={r} key={r.beneficiaryId} />
+                        ) : null
+                      )}
+                    </React.Fragment>
+                  )}
+                </React.Fragment>
               )}
             </div>
             {/*  */}

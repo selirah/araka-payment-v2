@@ -42,6 +42,7 @@ export const RecipientForm: React.FC<RecipientFormProps> = ({
           inputStyle={{
             paddingLeft: '3rem',
             borderRadius: '0',
+            marginLeft: '14.7rem',
           }}
           inputClass="form-input-text"
           buttonClass="form-input-drop"
@@ -49,7 +50,9 @@ export const RecipientForm: React.FC<RecipientFormProps> = ({
             border: '0.0625rem solid #e0e0e0',
             background: '#FFF',
             padding: '0.2rem',
-            borderRadius: '',
+            borderRadius: '0',
+            marginLeft: '14.7rem',
+            height: '3rem',
           }}
           dropdownClass="drop-style"
           dropdownStyle={{

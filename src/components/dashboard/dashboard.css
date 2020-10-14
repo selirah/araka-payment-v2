@@ -756,6 +756,7 @@
   padding: 0;
   height: 25rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .contacts-container::-webkit-scrollbar {
@@ -2332,6 +2333,7 @@
     padding: 0;
     height: 25rem;
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .contacts-container::-webkit-scrollbar {
@@ -2529,8 +2531,17 @@
     outline: 0 none;
   }
 
-  /* .react-tel-input {
+  .recipient-form .react-tel-input {
     margin-bottom: 0.7rem;
-    margin-left: 14.7rem;
-  } */
+  }
+
+  .empty-box {
+    margin-top: 10rem;
+  }
+
+  .empty-box h2 {
+    font-weight: 200;
+    color: #e0e0e0;
+    font-size: 2rem;
+  }
 } ;
