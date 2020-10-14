@@ -12,3 +12,4 @@ export * from './Fee';
 export * from './TransactionHistory';
 export * from './Currency';
 export * from './Client';
+export * from './Beneficiary';

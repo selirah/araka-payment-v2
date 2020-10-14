@@ -30,7 +30,7 @@ export const Account: React.FC = () => {
     }
   }, [client, clientLoading]);
 
-  const onEditAccountClick = () => {
+  const onEditAccountClick = (): void => {
     dispatch(setEditAccount(true));
   };
 

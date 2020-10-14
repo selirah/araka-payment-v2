@@ -9,9 +9,13 @@ export const pageTypes = {
   RECIPIENTS: 'RECIPIENTS',
 };
 
-
 export const pageHeader = {
   Home: 'Home',
   Account: 'Account',
-  Recipients: 'Recipients'
-}
+  Recipients: 'Recipients',
+};
+
+export const modalTypes = {
+  ADD_BENEFICIARY: 'ADD_BENEFICIARY',
+  ADD_BANK_ACCOUNT: 'ADD_BANK_ACCOUNT',
+};

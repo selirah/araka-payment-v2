@@ -1,6 +1,11 @@
 import { action } from 'typesafe-actions';
 import { DashboardTypes } from './types';
-import { TransactionHistory, Currency, Client } from '../../interfaces';
+import {
+  TransactionHistory,
+  Currency,
+  Client,
+  Beneficiary,
+} from '../../interfaces';
 
 export const setTopBarHeader = (payload: string) =>
   action(DashboardTypes.TOPBAR_HEADER, payload);
@@ -39,8 +44,26 @@ export const getCurrentUserFailure = (error: any) =>
 export const updateUserRequest = (payload: Client) =>
   action(DashboardTypes.EDIT_ACCOUNT_REQUEST, payload);
 
-export const updateUserSuccess = (data: any) =>
+export const updateUserSuccess = (data: Client) =>
   action(DashboardTypes.EDIT_ACCOUNT_SUCCESS, data);
 
 export const updateUserFailure = (error: any) =>
   action(DashboardTypes.EDIT_ACCOUNT_FAILURE, error);
+
+export const addBeneficiaryRequest = (payload: Beneficiary) =>
+  action(DashboardTypes.ADD_BENEFICIARY_REQUEST, payload);
+
+export const addBeneficiarySuccess = (data: Beneficiary) =>
+  action(DashboardTypes.ADD_BENEFICIARY_SUCCESS, data);
+
+export const addBeneficiaryFailure = (error: any) =>
+  action(DashboardTypes.ADD_BENEFICIARY_FAILURE, error);
+
+export const getBeneficiaries = (userId: number) =>
+  action(DashboardTypes.GET_BENEFICIARIES, userId);
+
+export const getBeneficiariesSuccess = (data: Beneficiary[]) =>
+  action(DashboardTypes.GET_BENEFICIARIES_SUCCESS, data);
+
+export const getBeneficiariesFailure = (error: any) =>
+  action(DashboardTypes.GET_BENEFICIARIES_FAILURE, error);

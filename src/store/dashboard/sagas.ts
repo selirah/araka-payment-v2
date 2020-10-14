@@ -9,9 +9,13 @@ import {
   getCurrentUserFailure,
   updateUserSuccess,
   updateUserFailure,
+  addBeneficiarySuccess,
+  addBeneficiaryFailure,
+  getBeneficiariesSuccess,
+  getBeneficiariesFailure,
 } from './actions';
 import { callApiGet, callApiPost } from '../../utils/api';
-import { Client } from '../../interfaces';
+import { Client, Beneficiary } from '../../interfaces';
 
 function* getTransactions() {
   try {
@@ -66,7 +70,7 @@ function* getUser({ payload }: { type: string; payload: number }) {
 
 function* updateUser({ payload }: { type: string; payload: Client }) {
   try {
-    const res = yield call(callApiPost, `payments/clientdetails`, payload);
+    const res = yield call(callApiPost, 'payments/clientdetails', payload);
     if (res.status === 200) {
       yield put(updateUserSuccess(res.data));
     } else {
@@ -77,6 +81,40 @@ function* updateUser({ payload }: { type: string; payload: Client }) {
       yield put(updateUserFailure(err.response.data));
     } else {
       yield put(updateUserFailure('An unknwon error occurred'));
+    }
+  }
+}
+
+function* addBeneficiary({ payload }: { type: string; payload: Beneficiary }) {
+  try {
+    const res = yield call(callApiPost, 'payments/addbeneficiary', payload);
+    if (res.status === 200) {
+      yield put(addBeneficiarySuccess(res.data));
+    } else {
+      yield put(addBeneficiaryFailure(res.data));
+    }
+  } catch (err) {
+    if (err && err.response) {
+      yield put(addBeneficiaryFailure(err.response.data));
+    } else {
+      yield put(addBeneficiaryFailure('An unknwon error occurred'));
+    }
+  }
+}
+
+function* getBeneficiaries({ payload }: { type: string; payload: number }) {
+  try {
+    const res = yield call(callApiGet, `payments/beneficiaries/${payload}`);
+    if (res.status === 200) {
+      yield put(getBeneficiariesSuccess(res.data));
+    } else {
+      yield put(getBeneficiariesFailure('An unknwon error occurred'));
+    }
+  } catch (err) {
+    if (err && err.response) {
+      yield put(getBeneficiariesFailure(err.response.data));
+    } else {
+      yield put(getBeneficiariesFailure('An unknwon error occurred'));
     }
   }
 }
@@ -97,12 +135,22 @@ function* watchUpdateUser() {
   yield takeEvery(DashboardTypes.EDIT_ACCOUNT_REQUEST, updateUser);
 }
 
+function* watchAddBeneficiary() {
+  yield takeEvery(DashboardTypes.ADD_BENEFICIARY_REQUEST, addBeneficiary);
+}
+
+function* watchGetBeneficiaries() {
+  yield takeEvery(DashboardTypes.GET_BENEFICIARIES, getBeneficiaries);
+}
+
 function* dashboardSaga(): Generator {
   yield all([
     fork(watchGetTransactions),
     fork(watchGetCurrencies),
     fork(watchGetUser),
     fork(watchUpdateUser),
+    fork(watchAddBeneficiary),
+    fork(watchGetBeneficiaries),
   ]);
 }
 

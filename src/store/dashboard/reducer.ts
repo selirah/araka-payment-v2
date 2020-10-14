@@ -18,6 +18,13 @@ export const initialState: DashboardState = {
   client: undefined,
   clientError: undefined,
   clientLoading: false,
+  redirect: false,
+  beneficiaries: [],
+  addBeneficiaryError: false,
+  addBeneficiarySuccess: false,
+  beneficiaryError: undefined,
+  isAddingBeneficiary: false,
+  beneficiaryLoading: false,
 };
 
 const reducer: Reducer<DashboardState> = (state = initialState, action) => {
@@ -31,6 +38,7 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
       return {
         ...state,
         pageSwitch: action.payload,
+        redirect: false,
       };
     case DashboardTypes.GET_TRANSACTIONS:
       return {
@@ -70,6 +78,7 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
       return {
         ...state,
         editAccount: action.payload,
+        redirect: false,
       };
     case DashboardTypes.EDIT_ACCOUNT_REQUEST:
       return {
@@ -82,6 +91,7 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         isEditing: false,
         client: action.payload,
         editAccountSuccess: true,
+        redirect: true,
       };
     case DashboardTypes.EDIT_ACCOUNT_FAILURE:
       return {
@@ -110,6 +120,49 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
     case DashboardTypes.DESTROY_STATES:
       return initialState;
 
+    case DashboardTypes.ADD_BENEFICIARY_REQUEST:
+      return {
+        ...state,
+        isAddingBeneficiary: true,
+      };
+
+    case DashboardTypes.ADD_BENEFICIARY_SUCCESS:
+      return {
+        ...state,
+        isAddingBeneficiary: false,
+        beneficiaries: [action.payload, ...state.beneficiaries],
+        addBeneficiarySuccess: true,
+        addBeneficiaryError: false,
+      };
+
+    case DashboardTypes.ADD_BENEFICIARY_FAILURE:
+      return {
+        ...state,
+        isAddingBeneficiary: false,
+        addBeneficiarySuccess: false,
+        addBeneficiaryError: true,
+        beneficiaryError: action.payload,
+      };
+
+    case DashboardTypes.GET_BENEFICIARIES:
+      return {
+        ...state,
+        beneficiaryLoading: true,
+      };
+
+    case DashboardTypes.GET_BENEFICIARIES_SUCCESS:
+      return {
+        ...state,
+        beneficiaryLoading: false,
+        beneficiaries: action.payload,
+      };
+
+    case DashboardTypes.GET_BENEFICIARIES_FAILURE:
+      return {
+        ...state,
+        beneficiaryLoading: false,
+        beneficiaryError: action.payload,
+      };
     default:
       return state;
   }

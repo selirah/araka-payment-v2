@@ -9,11 +9,12 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { updateUserRequest, setEditAccount } from '../../store/dashboard';
 import moment from 'moment';
+import { toast } from '../../helpers/toaster';
 
 export const EditAccount: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { user } = appSelector((state) => state.auth);
-  const { client, isEditing, editAccountSuccess } = appSelector(
+  const { client, isEditing, editAccountSuccess, redirect } = appSelector(
     (state) => state.dashboard
   );
   const [values, setValues] = useState<Client>({
@@ -32,9 +33,12 @@ export const EditAccount: React.FC = () => {
     user: client?.user,
   });
   const [phone, setPhone] = useState<string>(values.phoneNumber);
-  const [startDate, setStartDate] = useState<Date>(new Date('01-01-2002'));
+  const [startDate, setStartDate] = useState<Date>(
+    moment().subtract(18, 'years').toDate()
+  );
   const [newDate, setNewDate] = useState<string>(values.dateOfBirth);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [changeDate, setChangeDate] = useState<boolean>(false);
 
   let selectCountries: React.ReactNode;
   const { countries }: any = countriesList;
@@ -51,17 +55,18 @@ export const EditAccount: React.FC = () => {
     setValues({ ...values, [name]: value });
   };
 
-  const setPhoneNumber = (e: string) => {
+  const setPhoneNumber = (e: string): void => {
     setPhone(e);
   };
 
-  const setDate = (e: Date) => {
+  const setDate = (e: Date): void => {
     let v: string = moment(e).format('YYYY-MM-DD');
     setNewDate(v);
     setStartDate(e);
+    setChangeDate(true);
   };
 
-  const onSubmit = (e: React.FormEvent<EventTarget>) => {
+  const onSubmit = (e: React.FormEvent<EventTarget>): void => {
     e.preventDefault();
     const payload: Client = {
       clientId: client!.clientId,
@@ -85,12 +90,15 @@ export const EditAccount: React.FC = () => {
 
   useEffect(() => {
     setIsSubmitting(isEditing);
-    if (editAccountSuccess) {
-      // dispatch(setEditAccount(false));
-    } else {
-      // display error here
+    if (redirect) {
+      if (editAccountSuccess) {
+        dispatch(setEditAccount(false));
+        toast('Details updated successfully', true);
+      } else {
+        toast('Phone number is required', false);
+      }
     }
-  }, [isEditing, editAccountSuccess, dispatch]);
+  }, [isEditing, editAccountSuccess, dispatch, redirect]);
 
   return (
     <div className="row">
@@ -137,15 +145,19 @@ export const EditAccount: React.FC = () => {
               />
               <h2>Date of Birth</h2>
               <DatePicker
-                selected={startDate}
+                selected={
+                  values.dateOfBirth !== '' && !changeDate
+                    ? moment(values.dateOfBirth).toDate()
+                    : startDate
+                }
                 onChange={setDate}
                 className="text-input"
                 dateFormat="yyyy-MM-dd"
                 showYearDropdown
                 showMonthDropdown
                 scrollableMonthYearDropdown
-                minDate={new Date('01-01-1970')}
-                maxDate={new Date('01-01-2004')}
+                minDate={moment().subtract(70, 'years').toDate()}
+                maxDate={moment().subtract(18, 'years').toDate()}
               />
             </div>
           </div>
@@ -163,10 +175,10 @@ export const EditAccount: React.FC = () => {
                 inputStyle={{
                   paddingLeft: '3rem',
                 }}
-                inputClass="text-select"
+                inputClass="text-input"
                 buttonClass="drop-style"
                 buttonStyle={{
-                  border: '0.0625px solid #e0e0e0',
+                  border: '0.0625rem solid #e0e0e0',
                   background: '#FFF',
                   padding: '0.2rem',
                   borderRadius: '0',

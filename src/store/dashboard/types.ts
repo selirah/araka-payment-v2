@@ -1,4 +1,9 @@
-import { TransactionHistory, Currency, Client } from '../../interfaces';
+import {
+  TransactionHistory,
+  Currency,
+  Client,
+  Beneficiary,
+} from '../../interfaces';
 
 export enum DashboardTypes {
   TOPBAR_HEADER = '@@dashboard/TOPBAR_HEADER',
@@ -17,6 +22,12 @@ export enum DashboardTypes {
   GET_CURRENT_USER = '@@dashboard/GET_CURRENT_USER',
   GET_CURRENT_USER_SUCCESS = '@@dashboard/GET_CURRENT_USER_SUCCESS',
   GET_CURRENT_USER_FAILURE = '@@dashboard/GET_CURRENT_USER_FAILURE',
+  ADD_BENEFICIARY_REQUEST = '@@dashboard/ADD_BENEFICIARY_REQUEST',
+  ADD_BENEFICIARY_SUCCESS = '@@dashboard/ADD_BENEFICIARY_SUCCESS',
+  ADD_BENEFICIARY_FAILURE = '@@dashboard/ADD_BENEFICIARY_FAILURE',
+  GET_BENEFICIARIES = '@@dashboard/GET_BENEFICIARIES',
+  GET_BENEFICIARIES_SUCCESS = '@@dashboard/GET_BENEFICIARIES_SUCCESS',
+  GET_BENEFICIARIES_FAILURE = '@@dashboard/GET_BENEFICIARIES_FAILURE',
 }
 
 export type DashboardState = {
@@ -32,7 +43,14 @@ export type DashboardState = {
   readonly isEditing: boolean;
   readonly editAccountError: any;
   readonly editAccountSuccess: boolean;
+  readonly redirect: boolean;
   readonly client: Client | undefined;
   readonly clientError: any;
   readonly clientLoading: boolean;
+  readonly beneficiaries: Beneficiary[];
+  readonly beneficiaryLoading: boolean;
+  readonly beneficiaryError: any;
+  readonly isAddingBeneficiary: boolean;
+  readonly addBeneficiarySuccess: boolean;
+  readonly addBeneficiaryError: boolean;
 };
