@@ -22,6 +22,7 @@ import {
 import moment from 'moment';
 import { secure } from '../../utils/secure';
 import { path } from '../../helpers/path';
+import { transactionStatus } from '../../helpers/constants';
 
 interface TransHistoryProps {
   transaction: TransactionHistory;
@@ -40,6 +41,9 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
     transactionDescription,
     createdAt,
     amountPaid,
+    vat,
+    charge,
+    status,
   } = transaction;
 
   const onRepeatTransactionClick = (transaction: TransactionHistory): void => {
@@ -57,6 +61,22 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
     delete transaction.transactionDetails.data.productId;
     secure.set('orderData', transaction.transactionDetails);
     history.push(path.payment);
+  };
+
+  const setColor = (status: string): string => {
+    let color: string = '#506077';
+    switch (status) {
+      case transactionStatus.SUCCESS:
+        color = '#4bb543';
+        break;
+      case transactionStatus.DECLINED:
+        color = '#d8000c';
+        break;
+      case transactionStatus.CANCELLED:
+        color = '#506077';
+        break;
+    }
+    return color;
   };
 
   const href = '#';
@@ -82,7 +102,11 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
           <h2>{getCategoryName(categories, productCategoryId)}</h2>
           <h4>{transactionDescription.replace(/([a-z])([A-Z])/g, '$1 $2')}</h4>
           <div className="bottom-time">
-            <h6>{moment(createdAt).format('MMMM D, YYYY (h:mm a)')}</h6>
+            <h6>
+              {moment(createdAt, 'MM/DD/YYYY HH:mm:ss').format(
+                'MMMM D, YYYY (h:mm a)'
+              )}
+            </h6>
             <h6>
               <button>
                 {getProductName(categories, productCategoryId, productId)}
@@ -127,20 +151,22 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
                   <tr>
                     <td>Our Charge</td>
                     <td>
-                      {getCurrency(currencies, Currency)}{' '}
-                      {transaction.charge.toFixed(2)}
+                      {getCurrency(currencies, Currency)} {charge.toFixed(2)}
                     </td>
                   </tr>
                   <tr>
                     <td>VAT</td>
                     <td>
-                      {getCurrency(currencies, Currency)}{' '}
-                      {transaction.vat.toFixed(2)}
+                      {getCurrency(currencies, Currency)} {vat.toFixed(2)}
                     </td>
                   </tr>
                   <tr>
                     <td>Transaction ID</td>
                     <td># {transactionId}</td>
+                  </tr>
+                  <tr>
+                    <td>Status of Transaction</td>
+                    <td style={{ color: `${setColor(status)}` }}>{status}</td>
                   </tr>
                 </tbody>
               </table>

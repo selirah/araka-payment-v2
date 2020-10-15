@@ -19,3 +19,9 @@ export const modalTypes = {
   ADD_BENEFICIARY: 'ADD_BENEFICIARY',
   EDIT_BENEFICIARY: 'EDIT_BENEFICIARY',
 };
+
+export const transactionStatus = {
+  SUCCESS: 'SUCCESS',
+  DECLINED: 'DECLINED',
+  CANCELLED: 'CANCELLED',
+};

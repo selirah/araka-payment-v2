@@ -1034,6 +1034,10 @@ footer .list-inline-item.mdi {
   padding-bottom: 1.5rem;
 }
 
+label.field-required.control-label--hidden {
+  display: none;
+}
+
 .option img {
   width: 4rem;
   cursor: pointer;
@@ -1070,7 +1074,7 @@ footer .list-inline-item.mdi {
 }
 
 .option-submit {
-  margin: 3rem 0 3rem 0;
+  margin: 1rem 0 3rem 0;
 }
 
 .option-submit button {
