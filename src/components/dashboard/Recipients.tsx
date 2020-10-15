@@ -11,13 +11,14 @@ import { RecipientForm } from './RecipientForm';
 import {
   addBeneficiaryRequest,
   getBeneficiaries,
-  clearAddBeneficiarySuccessFailure,
+  clearSomeBooleans,
 } from '../../store/dashboard';
 import { isEmpty } from 'src/helpers/isEmpty';
 import { toast } from 'src/helpers/toaster';
 import { Recipient } from './Recipient';
 // import { BeneficiaryPagination } from './BeneficiaryPagination';
 import { EmptyRecipient } from './EmptyRecipient';
+import { Success } from '../common/Success';
 
 export const Recipients: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -44,6 +45,7 @@ export const Recipients: React.FC = () => {
   const [phone, setPhone] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(beneficiaryLoading);
   const [recipients, setRecipients] = useState<Beneficiary[]>([]);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   useEffect(() => {
     if (user !== undefined && isEmpty(beneficiaries)) {
@@ -69,7 +71,6 @@ export const Recipients: React.FC = () => {
   const onCloseModal = (): void => {
     setShowModal(false);
     setModalType('');
-    dispatch(clearAddBeneficiarySuccessFailure());
   };
 
   const onSubmit = (e: React.FormEvent<EventTarget>): void => {
@@ -79,10 +80,7 @@ export const Recipients: React.FC = () => {
       isEmpty(phone) ||
       (isEmpty(values.studentId) && isEmpty(values.bankAccount))
     ) {
-      toast(
-        'Name, phone number, and student id or bank account number are required',
-        false
-      );
+      toast('Student ID or Bank Account Number is required', false);
     } else {
       const payload: Beneficiary = {
         name: values.name,
@@ -101,17 +99,15 @@ export const Recipients: React.FC = () => {
     setLoading(beneficiaryLoading);
     setRecipients(beneficiaries);
     setIsSubmitting(isAddingBeneficiary);
-    if (addBeneficiarySuccess) {
-      toast('Beneficiary added successfully', true);
-    } else if (addBeneficiaryError) {
-      toast('An error occured', false);
-    }
+    setIsSuccess(addBeneficiarySuccess);
+    setTimeout(() => dispatch(clearSomeBooleans()), 5000);
   }, [
     isAddingBeneficiary,
     beneficiaryLoading,
     beneficiaries,
     addBeneficiarySuccess,
     addBeneficiaryError,
+    dispatch,
   ]);
 
   return (
@@ -122,6 +118,9 @@ export const Recipients: React.FC = () => {
       ) : (
         <div className="row">
           <div className="col-12">
+            {isSuccess ? (
+              <Success message="Beneficiary added successfully" />
+            ) : null}
             <div className="contact-header">
               <h2>Beneficiaries</h2>
             </div>

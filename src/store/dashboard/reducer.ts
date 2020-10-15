@@ -164,11 +164,12 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         beneficiaryError: action.payload,
       };
 
-    case DashboardTypes.CLEAR_ADD_BENEFICIARY_SUCCESS_FAILURE:
+    case DashboardTypes.CLEAR_SOME_BOOLEANS:
       return {
         ...state,
         addBeneficiarySuccess: false,
         addBeneficiaryError: false,
+        editAccountSuccess: false,
       };
     default:
       return state;

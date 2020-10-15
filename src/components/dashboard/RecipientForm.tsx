@@ -31,6 +31,7 @@ export const RecipientForm: React.FC<RecipientFormProps> = ({
           value={values.name}
           name="name"
           placeholder="Name"
+          required
         />
       </div>
       <div className="row justify-content-center">

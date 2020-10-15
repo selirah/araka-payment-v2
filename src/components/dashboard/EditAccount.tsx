@@ -9,7 +9,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { updateUserRequest, setEditAccount } from '../../store/dashboard';
 import moment from 'moment';
-import { toast } from '../../helpers/toaster';
+import { Error } from '../common/Error';
 
 export const EditAccount: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -39,6 +39,7 @@ export const EditAccount: React.FC = () => {
   const [newDate, setNewDate] = useState<string>(values.dateOfBirth);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [changeDate, setChangeDate] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   let selectCountries: React.ReactNode;
   const { countries }: any = countriesList;
@@ -93,9 +94,8 @@ export const EditAccount: React.FC = () => {
     if (redirect) {
       if (editAccountSuccess) {
         dispatch(setEditAccount(false));
-        toast('Details updated successfully', true);
       } else {
-        toast('Phone number is required', false);
+        setIsError(true);
       }
     }
   }, [isEditing, editAccountSuccess, dispatch, redirect]);
@@ -104,6 +104,7 @@ export const EditAccount: React.FC = () => {
     <div className="row">
       <div className="col-12">
         <form onSubmit={onSubmit}>
+          {isError ? <Error error="Phone number is required" /> : null}
           <div className="personal-info">
             <h4>Personal Information</h4>
             <button className="btn" type="submit">

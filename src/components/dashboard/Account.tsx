@@ -3,17 +3,25 @@ import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { user as avatar } from '../../images/Images';
-import { setEditAccount, getCurrentUser } from '../../store/dashboard';
+import {
+  setEditAccount,
+  getCurrentUser,
+  clearSomeBooleans,
+} from '../../store/dashboard';
 import { Client } from '../../interfaces';
 import { Spinner } from '../common/Spinner';
 import moment from 'moment';
+import { Success } from '../common/Success';
 
 export const Account: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { clientLoading, client } = appSelector((state) => state.dashboard);
+  const { clientLoading, client, editAccountSuccess } = appSelector(
+    (state) => state.dashboard
+  );
   const { user } = appSelector((state) => state.auth);
   const [currentUser, setCurrentUser] = useState<Client | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(clientLoading);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   useEffect(() => {
     // fecth current logged in user
@@ -25,10 +33,12 @@ export const Account: React.FC = () => {
 
   useEffect(() => {
     setLoading(clientLoading);
+    setIsSuccess(editAccountSuccess);
+    setTimeout(() => dispatch(clearSomeBooleans()), 5000);
     if (client !== undefined) {
       setCurrentUser(client);
     }
-  }, [client, clientLoading]);
+  }, [client, clientLoading, editAccountSuccess, dispatch]);
 
   const onEditAccountClick = (): void => {
     dispatch(setEditAccount(true));
@@ -45,6 +55,7 @@ export const Account: React.FC = () => {
           <Spinner />
         ) : (
           <React.Fragment>
+            {isSuccess ? <Success message="Updated successfully" /> : null}
             <div className="personal-info">
               <h4>Personal Information</h4>
               <button className="btn" onClick={() => onEditAccountClick()}>

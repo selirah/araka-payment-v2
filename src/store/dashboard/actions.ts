@@ -68,5 +68,5 @@ export const getBeneficiariesSuccess = (data: Beneficiary[]) =>
 export const getBeneficiariesFailure = (error: any) =>
   action(DashboardTypes.GET_BENEFICIARIES_FAILURE, error);
 
-export const clearAddBeneficiarySuccessFailure = () =>
-  action(DashboardTypes.CLEAR_ADD_BENEFICIARY_SUCCESS_FAILURE);
+export const clearSomeBooleans = () =>
+  action(DashboardTypes.CLEAR_SOME_BOOLEANS);

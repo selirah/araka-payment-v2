@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const SpinnerContainer = styled.div`
   color: #fbbd19;
@@ -32,6 +32,38 @@ export const AlertContainer = styled.div`
 
   p {
     color: #d8000c;
+    margin-bottom: 0.2rem;
+    text-transform: underlined;
+  }
+`;
+
+const Flash = keyframes`
+  14% { font-size: 24px; color: #155724; background: #d4edda; }
+  28% { font-size: 12px; color: initial; background: initial; }
+  42% { font-size: 18px; }
+  57% { font-size: 15px; }
+  71% { font-size: 16.5px; }
+  85% { font-size: 15.75px; }
+`;
+
+const FadeOut = keyframes`
+  100% { opacity: 0; }
+`;
+
+export const AlertSuccessContainer = styled.div`
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 300;
+  border-radius: 0;
+  background-color: ##d4edda;
+  color: #155724;
+  animation-name: ${Flash}, ${FadeOut};
+  animation-duration: 0.6s, 10s;
+  animation-fill-mode: both, both;
+  animation-timing-function: ease, ease-in;
+
+  p {
+    color: #155724;
     margin-bottom: 0.2rem;
     text-transform: underlined;
   }
