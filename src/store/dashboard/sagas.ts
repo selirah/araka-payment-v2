@@ -13,6 +13,8 @@ import {
   addBeneficiaryFailure,
   getBeneficiariesSuccess,
   getBeneficiariesFailure,
+  updateBeneficiarySuccess,
+  updateBeneficiaryFailure,
 } from './actions';
 import { callApiGet, callApiPost } from '../../utils/api';
 import { Client, Beneficiary } from '../../interfaces';
@@ -119,6 +121,28 @@ function* getBeneficiaries({ payload }: { type: string; payload: number }) {
   }
 }
 
+function* updateBeneficiary({
+  payload,
+}: {
+  type: string;
+  payload: Beneficiary;
+}) {
+  try {
+    const res = yield call(callApiPost, 'payments/updatebeneficiary', payload);
+    if (res.status === 200) {
+      yield put(updateBeneficiarySuccess(res.data));
+    } else {
+      yield put(updateBeneficiaryFailure(res.data));
+    }
+  } catch (err) {
+    if (err && err.response) {
+      yield put(updateBeneficiaryFailure(err.response.data));
+    } else {
+      yield put(updateBeneficiaryFailure('An unknwon error occurred'));
+    }
+  }
+}
+
 function* watchGetTransactions() {
   yield takeEvery(DashboardTypes.GET_TRANSACTIONS, getTransactions);
 }
@@ -143,6 +167,10 @@ function* watchGetBeneficiaries() {
   yield takeEvery(DashboardTypes.GET_BENEFICIARIES, getBeneficiaries);
 }
 
+function* watchUpdateBeneficiary() {
+  yield takeEvery(DashboardTypes.UPDATE_BENEFICIARY_REQUEST, updateBeneficiary);
+}
+
 function* dashboardSaga(): Generator {
   yield all([
     fork(watchGetTransactions),
@@ -151,6 +179,7 @@ function* dashboardSaga(): Generator {
     fork(watchUpdateUser),
     fork(watchAddBeneficiary),
     fork(watchGetBeneficiaries),
+    fork(watchUpdateBeneficiary),
   ]);
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Beneficiary } from '../../interfaces';
 import PhoneInput from 'react-phone-input-2';
+import { Success } from '../common/Success';
 
 interface RecipientFormProps {
   onChange(e: React.FormEvent<EventTarget>): void;
@@ -10,6 +11,9 @@ interface RecipientFormProps {
   loading: boolean;
   btnTitle: string;
   onSubmit(e: React.FormEvent<EventTarget>): void;
+  isSuccess: boolean;
+  btnIcon: string;
+  message: string;
 }
 
 export const RecipientForm: React.FC<RecipientFormProps> = ({
@@ -20,9 +24,13 @@ export const RecipientForm: React.FC<RecipientFormProps> = ({
   loading,
   btnTitle,
   onSubmit,
+  isSuccess,
+  btnIcon,
+  message,
 }) => {
   return (
     <form className="recipient-form" onSubmit={onSubmit}>
+      {isSuccess ? <Success message={message} /> : null}
       <div className="row justify-content-center">
         <input
           type="text"
@@ -44,6 +52,8 @@ export const RecipientForm: React.FC<RecipientFormProps> = ({
             paddingLeft: '3rem',
             borderRadius: '0',
             marginLeft: '14.7rem',
+            height: '3rem',
+            width: '20rem',
           }}
           inputClass="form-input-text"
           buttonClass="form-input-drop"
@@ -60,9 +70,6 @@ export const RecipientForm: React.FC<RecipientFormProps> = ({
             textAlign: 'left',
             fontSize: '0.8rem',
             fontWeight: 'normal',
-          }}
-          inputProps={{
-            required: true,
           }}
         />
       </div>
@@ -108,7 +115,7 @@ export const RecipientForm: React.FC<RecipientFormProps> = ({
       </div>
       <div className="row justify-content-center">
         <button className="btn">
-          <i className={`fa ${loading ? 'fa-spinner fa-spin' : 'fa-plus'}`}></i>{' '}
+          <i className={`fa ${loading ? 'fa-spinner fa-spin' : btnIcon}`}></i>{' '}
           {btnTitle}
         </button>
       </div>

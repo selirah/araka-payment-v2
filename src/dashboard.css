@@ -2338,6 +2338,36 @@
     font-weight: 500;
   }
 
+  .contact .edit-beneficiary {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    padding-top: 1.2rem;
+  }
+
+  .contact .edit-beneficiary i:first-child {
+    color: rgba(248, 89, 36, 0.7);
+    cursor: pointer;
+    padding-right: 0.8rem;
+    font-size: 0.85rem;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .contact .edit-beneficiary i:first-child:hover {
+    color: rgba(248, 89, 36, 1);
+  }
+
+  .contact .edit-beneficiary i:last-child {
+    color: rgba(216, 0, 12, 0.7);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .contact .edit-beneficiary i:last-child:hover {
+    color: rgba(216, 0, 12, 1);
+  }
+
   .action-btn-custom {
     background: #f55c29;
     border: 1px solid #f55c29;
@@ -2502,7 +2532,7 @@
 
   #content .dashboard-content button.btn {
     background: transparent;
-    border: 1px solid rgb(66, 84, 102);
+    border: 0.0625rem solid rgb(66, 84, 102);
     color: rgb(66, 84, 102);
     transition: all 0.3s ease-in-out;
     border-radius: 16.5px;
@@ -2515,5 +2545,81 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-color: #ffdbce;
+  }
+
+  .toolbar form {
+    position: absolute;
+    right: -1rem;
+    top: 0;
+    width: 30%;
+    font-size: 1rem;
+  }
+
+  .toolbar form input {
+    height: 0.75rem;
+    background: #e0e0e0;
+    color: #222;
+  }
+
+  .toolbar form input[type='text']:focus {
+    border-color: rgba(248, 89, 36, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+      0 0 8px rgba(248, 89, 36, 0.6);
+    outline: 0 none;
+  }
+
+  .toolbar form button {
+    background: #f85924;
+    color: #fff;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .toolbar form button:hover {
+    background: #506077;
+    color: #fff;
+  }
+
+  .pagination-container {
+    margin-top: 2rem;
+    position: relative;
+  }
+
+  .pagination-container .pagination-content .pagination .page-item .page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #f85924;
+    background-color: #fff;
+    border: 0.0625px solid #ffdbce;
+    outline: none;
+  }
+
+  .pagination-container
+    .pagination-content
+    .pagination
+    .page-item:first-child
+    .page-link {
+    border-top-left-radius: 1.03125rem;
+    border-bottom-left-radius: 1.03125rem;
+    outline: none;
+  }
+
+  .pagination-container
+    .pagination-content
+    .pagination
+    .page-item:last-child
+    .page-link {
+    border-top-right-radius: 1.03125rem;
+    border-bottom-right-radius: 1.03125rem;
+    outline: none;
+  }
+
+  .pagination-container .pagination-content .pagination .page-item .active {
+    background-color: rgba(248, 89, 36, 1);
+    color: #fff;
+    border: 0.0625px solid rgba(248, 89, 36, 1);
+    outline: none;
   }
 } ;

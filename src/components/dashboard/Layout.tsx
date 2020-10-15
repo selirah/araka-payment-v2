@@ -16,7 +16,6 @@ import { Spinner } from '../common/Spinner';
 import { isEmpty } from 'src/helpers/isEmpty';
 import { getTransactions } from '../../store/dashboard';
 import { setRepeatTransaction, fetchCategories } from '../../store/payment';
-import './dashboard.css';
 
 type Props = {
   title?: string;

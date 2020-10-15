@@ -38,12 +38,12 @@ export const AlertContainer = styled.div`
 `;
 
 const Flash = keyframes`
-  14% { font-size: 24px; color: #155724; background: #d4edda; }
-  28% { font-size: 12px; color: initial; background: initial; }
-  42% { font-size: 18px; }
-  57% { font-size: 15px; }
-  71% { font-size: 16.5px; }
-  85% { font-size: 15.75px; }
+  14% { font-size: 1rem; color: #155724; background: #d4edda; }
+  28% { font-size: 1rem; color: initial; background: initial; }
+  42% { font-size: 1rem; }
+  57% { font-size: 0.95rem; }
+  71% { font-size: 0.90rem; }
+  85% { font-size: 0.85rem; }
 `;
 
 const FadeOut = keyframes`

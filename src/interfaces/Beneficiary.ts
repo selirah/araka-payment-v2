@@ -1,9 +1,9 @@
 export type Beneficiary = {
-  beneficiaryId?: number;
+  beneficiaryId: number;
   name: string;
-  phoneNumber: string;
+  phoneNumber?: string;
   studentId?: string;
-  email: string;
+  email?: string;
   bankAccount?: string;
   additionalInfo?: string;
   userId: number;

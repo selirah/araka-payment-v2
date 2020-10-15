@@ -14,9 +14,11 @@ const NewUser: React.FC = () => {
   useEffect(() => {
     if (userDetails !== undefined) {
       let name: string[] | undefined;
-      name = userDetails.name!.split(' ');
-      if (name !== undefined) {
+      if (userDetails.name !== null) {
+        name = userDetails.name!.split(' ');
         setFname(name[0]);
+      } else {
+        setFname('Test Account');
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

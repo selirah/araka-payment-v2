@@ -17,5 +17,5 @@ export const pageHeader = {
 
 export const modalTypes = {
   ADD_BENEFICIARY: 'ADD_BENEFICIARY',
-  ADD_BANK_ACCOUNT: 'ADD_BANK_ACCOUNT',
+  EDIT_BENEFICIARY: 'EDIT_BENEFICIARY',
 };

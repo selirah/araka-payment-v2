@@ -70,3 +70,12 @@ export const getBeneficiariesFailure = (error: any) =>
 
 export const clearSomeBooleans = () =>
   action(DashboardTypes.CLEAR_SOME_BOOLEANS);
+
+export const updateBeneficiaryRequest = (payload: Beneficiary) =>
+  action(DashboardTypes.UPDATE_BENEFICIARY_REQUEST, payload);
+
+export const updateBeneficiarySuccess = (data: Beneficiary) =>
+  action(DashboardTypes.UPDATE_BENEFICIARY_SUCCESS, data);
+
+export const updateBeneficiaryFailure = (error: any) =>
+  action(DashboardTypes.UPDATE_BENEFICIARY_FAILURE, error);

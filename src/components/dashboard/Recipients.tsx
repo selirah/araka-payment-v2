@@ -14,11 +14,8 @@ import {
   clearSomeBooleans,
 } from '../../store/dashboard';
 import { isEmpty } from 'src/helpers/isEmpty';
-import { toast } from 'src/helpers/toaster';
-import { Recipient } from './Recipient';
-// import { BeneficiaryPagination } from './BeneficiaryPagination';
+import { Beneficiaries } from './Beneficiaries';
 import { EmptyRecipient } from './EmptyRecipient';
-import { Success } from '../common/Success';
 
 export const Recipients: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -28,12 +25,12 @@ export const Recipients: React.FC = () => {
     beneficiaryLoading,
     beneficiaries,
     addBeneficiarySuccess,
-    addBeneficiaryError,
   } = appSelector((state) => state.dashboard);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [values, setValues] = useState<Beneficiary>({
+    beneficiaryId: 0,
     name: '',
     phoneNumber: '',
     studentId: '',
@@ -75,24 +72,18 @@ export const Recipients: React.FC = () => {
 
   const onSubmit = (e: React.FormEvent<EventTarget>): void => {
     e.preventDefault();
-    if (
-      isEmpty(values.name) ||
-      isEmpty(phone) ||
-      (isEmpty(values.studentId) && isEmpty(values.bankAccount))
-    ) {
-      toast('Student ID or Bank Account Number is required', false);
-    } else {
-      const payload: Beneficiary = {
-        name: values.name,
-        phoneNumber: phone,
-        studentId: values.studentId,
-        email: values.email,
-        bankAccount: values.bankAccount,
-        additionalInfo: values.additionalInfo,
-        userId: values.userId,
-      };
-      dispatch(addBeneficiaryRequest(payload));
-    }
+
+    const payload: Beneficiary = {
+      beneficiaryId: 0,
+      name: values.name,
+      phoneNumber: phone,
+      studentId: values.studentId,
+      email: values.email,
+      bankAccount: values.bankAccount,
+      additionalInfo: values.additionalInfo,
+      userId: values.userId,
+    };
+    dispatch(addBeneficiaryRequest(payload));
   };
 
   useEffect(() => {
@@ -106,7 +97,6 @@ export const Recipients: React.FC = () => {
     beneficiaryLoading,
     beneficiaries,
     addBeneficiarySuccess,
-    addBeneficiaryError,
     dispatch,
   ]);
 
@@ -118,31 +108,22 @@ export const Recipients: React.FC = () => {
       ) : (
         <div className="row">
           <div className="col-12">
-            {isSuccess ? (
-              <Success message="Beneficiary added successfully" />
-            ) : null}
             <div className="contact-header">
               <h2>Beneficiaries</h2>
             </div>
-            <div className="contacts-container">
+            <React.Fragment>
               {loading ? (
                 <Spinner />
               ) : (
                 <React.Fragment>
-                  {isEmpty(recipients) ? (
+                  {isEmpty(recipients) && recipients !== [] ? (
                     <EmptyRecipient message="No beneficiary has been added" />
                   ) : (
-                    <React.Fragment>
-                      {recipients.map((r) =>
-                        !isEmpty(r.name) ? (
-                          <Recipient recipient={r} key={r.beneficiaryId} />
-                        ) : null
-                      )}
-                    </React.Fragment>
+                    <Beneficiaries beneficiaries={recipients} />
                   )}
                 </React.Fragment>
               )}
-            </div>
+            </React.Fragment>
             {/*  */}
           </div>
         </div>
@@ -154,13 +135,16 @@ export const Recipients: React.FC = () => {
           header="Add Beneficiary"
         >
           <RecipientForm
-            btnTitle="Add Recipient"
+            btnTitle="Add Beneficiary"
             loading={isSubmitting}
             onChange={onChange}
             phone={phone}
             setPhoneNumber={setPhoneNumber}
             values={values}
             onSubmit={onSubmit}
+            isSuccess={isSuccess}
+            btnIcon="fa-plus"
+            message="Beneficiary added successfully"
           />
         </ModalContainer>
       ) : null}

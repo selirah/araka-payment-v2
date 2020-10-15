@@ -26,6 +26,9 @@ export const initialState: DashboardState = {
   beneficiaryError: undefined,
   isAddingBeneficiary: false,
   beneficiaryLoading: false,
+  isUpdatingBeneficiary: false,
+  updateBeneficiarySuccess: false,
+  updateBeneficiaryError: false,
 };
 
 const reducer: Reducer<DashboardState> = (state = initialState, action) => {
@@ -171,6 +174,38 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         addBeneficiarySuccess: false,
         addBeneficiaryError: false,
         editAccountSuccess: false,
+        updateBeneficiaryError: false,
+        updateBeneficiarySuccess: false,
+      };
+
+    case DashboardTypes.UPDATE_BENEFICIARY_REQUEST:
+      return {
+        ...state,
+        isUpdatingBeneficiary: true,
+      };
+
+    case DashboardTypes.UPDATE_BENEFICIARY_SUCCESS:
+      let beneficiaries = state.beneficiaries.slice();
+      beneficiaries = beneficiaries.filter(
+        (beneficiary) =>
+          beneficiary.beneficiaryId !== action.payload.beneficiaryId
+      );
+      beneficiaries.unshift(action.payload);
+      return {
+        ...state,
+        isUpdatingBeneficiary: false,
+        beneficiaries: beneficiaries,
+        updateBeneficiarySuccess: true,
+        updateBeneficiaryError: false,
+      };
+
+    case DashboardTypes.UPDATE_BENEFICIARY_FAILURE:
+      return {
+        ...state,
+        isUpdatingBeneficiary: false,
+        updateBeneficiarySuccess: false,
+        updateBeneficiaryError: true,
+        beneficiaryError: action.payload,
       };
     default:
       return state;
