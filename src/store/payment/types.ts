@@ -33,7 +33,6 @@ export enum PaymentActionTypes {
   REQUEST_FEE_FAILURE = '@@payment/REQUEST_FEE_FAILURE',
   REPEAT_TRANSACTION = '@@payment/REPEAT_TRANSACTION',
   SET_TRANSACTION = '@@payment/SET_TRANSACTION',
-  DESTROY_STATES = '@@payment/DESTROY_STATES',
 }
 
 export type PaymentState = {

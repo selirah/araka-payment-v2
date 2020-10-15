@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { DashboardState, DashboardTypes } from './types';
+import { AuthActionTypes } from '../auth';
 import { pageTypes } from '../../helpers/constants';
 
 export const initialState: DashboardState = {
@@ -117,7 +118,7 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         clientLoading: false,
         clientError: action.payload,
       };
-    case DashboardTypes.DESTROY_STATES:
+    case AuthActionTypes.DESTROY_STATES:
       return initialState;
 
     case DashboardTypes.ADD_BENEFICIARY_REQUEST:

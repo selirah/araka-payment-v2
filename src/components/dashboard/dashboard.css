@@ -694,51 +694,6 @@
   margin-right: 1rem;
 }
 
-.toolbar button:nth-child(1) {
-  border: 0.0625rem solid rgba(66, 84, 102, 0.8);
-  border-radius: 0;
-  background: rgba(66, 84, 102, 0.8);
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 300;
-  transition: all 0.5s ease-in-out;
-}
-
-.toolbar button:nth-child(1):hover {
-  background: rgba(66, 84, 102, 1);
-}
-
-.toolbar button:nth-child(2) {
-  border: 0.0625rem solid rgba(248, 89, 36, 0.8);
-  border-radius: 0;
-  background: rgba(248, 89, 36, 0.8);
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 300;
-  transition: all 0.5s ease-in-out;
-}
-
-.toolbar button:nth-child(2):hover {
-  background: rgba(248, 89, 36, 1);
-}
-
-.toolbar button:nth-child(3) {
-  float: right;
-  border: 0.0625rem solid rgba(66, 84, 102, 0.8);
-  border-radius: 0;
-  background: rgba(66, 84, 102, 0.8);
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 300;
-  transition: all 0.5s ease-in-out;
-}
-
-.toolbar button:nth-child(3):hover {
-  background: rgba(66, 84, 102, 1);
-}
-
 .contact-header {
   position: relative;
   padding-top: 2rem;
@@ -2543,5 +2498,22 @@
     font-weight: 200;
     color: #e0e0e0;
     font-size: 2rem;
+  }
+
+  #content .dashboard-content button.btn {
+    background: transparent;
+    border: 1px solid rgb(66, 84, 102);
+    color: rgb(66, 84, 102);
+    transition: all 0.3s ease-in-out;
+    border-radius: 16.5px;
+    padding: 0.3rem 1rem;
+    text-transform: none;
+    font-size: 0.938rem;
+    font-weight: normal;
+  }
+  #content .dashboard-content .input-group-append button.btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-color: #ffdbce;
   }
 } ;

@@ -14,7 +14,6 @@ export const Toolbar: React.FC<ToolbarProps> = ({ onShowModalClick }) => {
           <button
             className="btn"
             onClick={() => onShowModalClick(modalTypes.ADD_BENEFICIARY)}
-            data-target="#staticBackdrop"
           >
             Add beneficiary
           </button>

@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { PaymentState, PaymentActionTypes } from './types';
+import { AuthActionTypes } from '../auth';
 
 export const initialState: PaymentState = {
   categories: [],
@@ -200,7 +201,7 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         transaction: action.payload,
       };
 
-    case PaymentActionTypes.DESTROY_STATES:
+    case AuthActionTypes.DESTROY_STATES:
       return initialState;
 
     default:

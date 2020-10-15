@@ -10738,7 +10738,7 @@ a:focus {
 }
 
 .sidebar .nav-item:last-of-type {
-  border-bottom:1px solid #ffdbce;
+  border-bottom: 1px solid #ffdbce;
 }
 
 .sidebar .nav-item.active {
@@ -11139,23 +11139,6 @@ a:focus {
 
 .card .card-body.wizard-card {
   overflow: hidden;
-}
-
-#content .dashboard-content button.btn {
-  background: transparent;
-  border: 1px solid rgb(66, 84, 102);
-  color: rgb(66, 84, 102);
-  transition: all 0.3s ease-in-out;
-  border-radius: 16.5px;
-  padding: 0.3rem 1rem;
-  text-transform: none;
-  font-size: 0.938rem;
-  font-weight: normal;
-}
-#content .dashboard-content .input-group-append button.btn {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-color:#ffdbce;
 }
 
 .navbar-nav li.lang-item {
