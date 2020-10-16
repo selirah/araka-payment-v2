@@ -996,34 +996,34 @@ button.close {
   border-color: #ffdbce;
 }
 
-.toolbar form {
+.toolbar .search {
   position: absolute;
-  right: -1rem;
+  right: 0;
   top: 0;
   width: 30%;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
-.toolbar form input {
+.toolbar .search input {
   height: 0.75rem;
   background: #e0e0e0;
   color: #222;
 }
 
-.toolbar form input[type='text']:focus {
+.toolbar .search input[type='text']:focus {
   border-color: rgba(248, 89, 36, 0.8) !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
     0 0 8px rgba(248, 89, 36, 0.6);
   outline: 0 none;
 }
 
-.toolbar form button {
+.toolbar .search button {
   background: #f85924;
   color: #fff;
   transition: all 0.5s ease-in-out;
 }
 
-.toolbar form button:hover {
+.toolbar .search button:hover {
   background: #506077;
   color: #fff;
 }

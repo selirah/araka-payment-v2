@@ -41,8 +41,14 @@ export const Recipients: React.FC = () => {
   });
   const [phone, setPhone] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(beneficiaryLoading);
-  const [recipients, setRecipients] = useState<Beneficiary[]>([]);
+  const [recipients, setRecipients] = useState<Beneficiary[]>(beneficiaries);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [defaultBeneficiaries, setDefaultBeneficiaries] = useState<
+    Beneficiary[]
+  >(beneficiaries);
+  const [message, setMessage] = useState<string>(
+    'No beneficiary has been added'
+  );
 
   useEffect(() => {
     if (user !== undefined && isEmpty(beneficiaries)) {
@@ -89,6 +95,7 @@ export const Recipients: React.FC = () => {
   useEffect(() => {
     setLoading(beneficiaryLoading);
     setRecipients(beneficiaries);
+    setDefaultBeneficiaries(beneficiaries);
     setIsSubmitting(isAddingBeneficiary);
     setIsSuccess(addBeneficiarySuccess);
     setTimeout(() => dispatch(clearSomeBooleans()), 5000);
@@ -100,9 +107,27 @@ export const Recipients: React.FC = () => {
     dispatch,
   ]);
 
+  const onSearch = (e: React.FormEvent<EventTarget>): void => {
+    const { value } = e.target as HTMLTextAreaElement;
+    let filteredList: Beneficiary[] = [];
+    if (value !== '') {
+      filteredList = recipients.filter((beneficiary) => {
+        const lowerCase = beneficiary.name.toLowerCase();
+        const filter = value.toLowerCase();
+        return lowerCase.includes(filter);
+      });
+      if (isEmpty(filteredList)) {
+        setMessage('The name you have entered cannot be found');
+      }
+    } else {
+      filteredList = defaultBeneficiaries;
+    }
+    setRecipients(filteredList);
+  };
+
   return (
     <React.Fragment>
-      <Toolbar onShowModalClick={onShowModalClick} />
+      <Toolbar onShowModalClick={onShowModalClick} onSearch={onSearch} />
       {loading ? (
         <Spinner />
       ) : (
@@ -117,7 +142,7 @@ export const Recipients: React.FC = () => {
               ) : (
                 <React.Fragment>
                   {isEmpty(recipients) && recipients !== [] ? (
-                    <EmptyRecipient message="No beneficiary has been added" />
+                    <EmptyRecipient message={message} />
                   ) : (
                     <Beneficiaries beneficiaries={recipients} />
                   )}
