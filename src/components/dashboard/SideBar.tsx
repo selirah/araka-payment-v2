@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import {
+  HomeOutlined,
+  BankOutlined,
+  TeamOutlined,
+  CreditCardFilled,
+} from '@ant-design/icons';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { logo } from '../../images/Images';
@@ -49,6 +55,7 @@ const SideBar: React.FC = () => {
       <hr className="sidebar-divider my-0"></hr>
 
       <Link className="action-btn-custom" to={path.payment}>
+        <CreditCardFilled className="mr-2" />
         <span>{t('dashboard.side-bar.make-payments')}</span>
       </Link>
 
@@ -60,7 +67,7 @@ const SideBar: React.FC = () => {
           to="#"
           onClick={() => swtichPage(pageTypes.HOME)}
         >
-          <i className="fas fa-fw fa-home"></i>
+          <HomeOutlined />
           <span>{t('dashboard.side-bar.home')}</span>
         </Link>
       </li>
@@ -73,7 +80,7 @@ const SideBar: React.FC = () => {
           to="#"
           onClick={() => swtichPage(pageTypes.ACCOUNT)}
         >
-          <i className="fas fa-fw fa-briefcase"></i>
+          <BankOutlined />
           <span>{t('dashboard.side-bar.account')}</span>
         </Link>
       </li>
@@ -88,7 +95,7 @@ const SideBar: React.FC = () => {
           to="#"
           onClick={() => swtichPage(pageTypes.RECIPIENTS)}
         >
-          <i className="fas fa-fw fa-users"></i>
+          <TeamOutlined />
           <span>{t('dashboard.side-bar.recipients')}</span>
         </Link>
       </li>

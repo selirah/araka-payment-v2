@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  CreditCardOutlined,
+  PhoneOutlined,
+  RocketOutlined,
+  EditOutlined,
+  DeleteOutlined,
+} from '@ant-design/icons';
 import { Beneficiary } from '../../interfaces';
 import { user as avatar } from '../../images/Images';
 import { isEmpty } from '../../helpers/isEmpty';
@@ -25,13 +32,32 @@ export const Recipient: React.FC<RecipientProps> = ({
         </h6>
       </div>
       <div className="edit-beneficiary">
-        <i
-          className="fa fa-edit"
+        {!isEmpty(beneficiary.bankAccount) ? (
+          <button className="btn btn-primary mr-2">
+            <CreditCardOutlined /> Send Money
+          </button>
+        ) : null}
+        {!isEmpty(beneficiary.phoneNumber) ? (
+          <button className="btn btn-primary mr-2">
+            <PhoneOutlined /> Topup Airtime
+          </button>
+        ) : null}
+        {!isEmpty(beneficiary.studentId) ? (
+          <button className="btn btn-primary mr-2">
+            <RocketOutlined /> Pay Fees
+          </button>
+        ) : null}
+        <button
+          className="btn btn-primary mr-2"
           onClick={() =>
             onShowModalClick(modalTypes.EDIT_BENEFICIARY, beneficiary)
           }
-        ></i>
-        <i className="fa fa-trash"></i>
+        >
+          <EditOutlined /> Edit
+        </button>
+        <button className="btn btn-primary">
+          <DeleteOutlined /> Delete
+        </button>
       </div>
     </div>
   );

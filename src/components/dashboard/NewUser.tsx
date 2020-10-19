@@ -30,10 +30,8 @@ const NewUser: React.FC = () => {
         <div className="row justify-content-center">
           <div className="new-user">
             <div className="top-display">
-              Hey {fname}!, {t('dashboard.new-user.ready')}
-            </div>
-            <div className="bottom-display">
-              {t('dashboard.new-user.making-payments')}
+              Hey {fname}! <br />
+              {t('dashboard.new-user.ready')} {t('dashboard.new-user.making-payments')}
             </div>
             <div className="payment-button">
               <Link to={path.payment} className="btn btn-make-payment">

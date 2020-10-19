@@ -59,6 +59,10 @@
 .header {
   color: rgba(248, 89, 36, 0.8);
   font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin:0;
 }
 
 .sidebar #sidebarToggle {
@@ -98,7 +102,7 @@
   justify-content: center;
   padding: 1rem;
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: normal;
 }
 
 .new-user .top-display {
@@ -114,19 +118,22 @@
 }
 
 .new-user .payment-button {
-  padding-top: 1rem;
   text-align: center;
+  margin:30px auto;
 }
 
 .new-user .btn-make-payment {
-  border-radius: 0;
-  background: rgba(66, 84, 102, 0.8);
-  transition: all 0.5s ease-in-out;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 700;
-  text-align: center;
-  padding: 1rem;
+    background: #f55c29;
+    border: 1px solid #f55c29;
+    color: #f4f6f8;
+    transition: all 0.3s ease-in-out;
+    border-radius: 16.5px;
+    padding: 0.6rem 1rem;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
 }
 
 .new-user .btn-make-payment:hover {
@@ -476,7 +483,7 @@
 }
 
 .user-profile-photo button {
-  margin-left: 3rem;
+  margin-left: 1rem;
   color: #506077;
   font-weight: 300;
   transition: all 0.5s ease-in-out;
@@ -724,7 +731,7 @@
 }
 
 .contact-header h2 {
-  font-size: 0.8rem;
+  font-size: 16px;
   font-weight: 300;
   color: rgba(248, 89, 36, 1);
 }
@@ -773,15 +780,15 @@
 }
 
 .contact-detail h4 {
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 400;
   color: #506077;
 }
 
 .contact-detail h6 {
-  font-size: 0.7rem;
+  font-size: 14px;
   color: rgba(66, 84, 102, 0.5);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .contact .edit-beneficiary {
@@ -795,7 +802,7 @@
   color: rgba(248, 89, 36, 0.7);
   cursor: pointer;
   padding-right: 0.8rem;
-  font-size: 0.85rem;
+  font-size: 16px;
   transition: all 0.5s ease-in-out;
 }
 
@@ -806,7 +813,7 @@
 .contact .edit-beneficiary i:last-child {
   color: rgba(216, 0, 12, 0.7);
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 16px;
   transition: all 0.5s ease-in-out;
 }
 
@@ -835,6 +842,20 @@
   border-color: rgb(66, 84, 102);
 }
 
+.sidebar-toggled .action-btn-custom span,
+.action-btn-custom span.anticon {
+  display:none;
+}
+
+.sidebar-toggled .action-btn-custom span.anticon {
+  display: block;
+  margin: 0 auto!important;
+}
+
+.edit-beneficiary .btn .anticon {
+  vertical-align: 0;
+}
+
 /*-- Modal --*/
 
 .modal-content {
@@ -846,9 +867,10 @@
   background-color: #fff;
   background-clip: padding-box;
   outline: 0;
-  border: 0.0625rem solid #ffdbce;
+  border: 0px solid #ffdbce;
   box-shadow: 0 0.5rem 1rem rgba(255, 203, 170, 0.25) !important;
-  border-radius: 1.03125rem;
+  border-radius: 10px;
+  text-transform: none;
 }
 
 .modal-header {
@@ -856,14 +878,14 @@
   align-items: flex-start;
   justify-content: space-between;
   padding: 1rem 1rem;
-  border: 0.0625rem solid #ffdbce;
+  border-bottom: 1px solid #ffdbce;
   box-shadow: 0 0.5rem 1rem rgba(255, 203, 170, 0.25) !important;
-  border-top-left-radius: 1.03125rem;
-  border-top-right-radius: 1.03125rem;
-  background: #ffdbce;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: transparent;
   color: rgb(66, 84, 102);
   font-weight: 300;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 button.close {
@@ -902,12 +924,16 @@ button.close {
 }
 
 .modal-footer button {
-  border: 0.0625rem solid #ffdbce;
-  border-radius: 1.03125rem;
-  background: #ffdbce;
-  color: rgb(66, 84, 102);
-  text-transform: uppercase;
-  transition: all 0.5s ease-in-out;
+  font-size: 18px;
+  height: 2.66rem;
+  padding: 0.46rem 1.33rem 0.46rem 1.2rem;
+  border-color: #6c757d;
+  font-weight: 700;
+  border-radius: 16.5px;
+  background-color: #888888 !important;
+  outline: none !important;
+  color: #fff !important;
+  transition: all 0.3s ease-in-out;
 }
 
 .recipient-form .form-input-text {
@@ -940,15 +966,18 @@ button.close {
 }
 
 .recipient-form button {
-  border: 0.0625rem solid #ffdbce;
-  border-radius: 1.03125rem;
-  background: #ffdbce;
-  color: rgb(66, 84, 102);
-  text-transform: uppercase;
-  transition: all 0.5s ease-in-out;
-  padding: 0.8rem;
-  outline: none;
-  margin-bottom: 0.5rem;
+  background: #f55c29;
+  border: 1px solid #f55c29;
+  color: #f4f6f8;
+  transition: all 0.3s ease-in-out;
+  border-radius: 16.5px;
+  padding: 0.6rem 1rem;
+  text-transform: none;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 24px 20px 30px;
+  text-decoration: none;
 }
 
 .recipient-form button:focus,
@@ -1082,4 +1111,4 @@ button.close {
 
 /* Medium devices (desktop 960px and up) */
 @media only screen and (min-width: 960px) {
-} ;
+}

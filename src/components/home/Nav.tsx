@@ -65,7 +65,7 @@ const Nav: React.FC = () => {
               className="collapse navbar-collapse navbar-collapse-alt"
               id="navbarResponsive"
             >
-              <ul className="navbar-nav ml-auto">
+              <ul className="navbar-nav ml-auto website-navigation">
                 <li className="nav-item">
                   <Link to="#" className="nav-link">
                     {t('nav-links.merchants')}
@@ -139,12 +139,12 @@ const Nav: React.FC = () => {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      {t('nav-links.welcome')}, {fname}{' '}
+                      {t('nav-links.welcome')} &bull; {fname}{' '}
                       <img
                         className="thumbnail-image"
                         src={avatar}
                         alt="user pic"
-                        width="22"
+                        width="42"
                       />
                     </a>
                     <div

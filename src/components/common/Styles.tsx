@@ -24,11 +24,14 @@ export const DropdownToggle = styled.a`
 `;
 export const AlertContainer = styled.div`
   text-align: left;
-  font-size: 0.65rem;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: normal;
   border-radius: 0;
   background-color: #ffbaba;
   color: #d8000c;
+  display: table;
+  margin: 1rem auto;
+  float: none;
 
   p {
     color: #d8000c;

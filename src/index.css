@@ -133,11 +133,15 @@ header {
   color: #f4744b;
 }
 
+.payment-app .navbar-nav > li > .dropdown-menu {
+  top:63px;
+}
+
 .navbar-nav > li > .dropdown-menu {
   background-color: #ffffff;
   font-size: 0.75rem;
   font-weight: 700;
-  top: 60px;
+  top: 72px;
   right: 0;
   left: auto;
   text-transform: uppercase;
@@ -147,10 +151,20 @@ header {
   transition: all 0.3s ease-in-out;
 }
 
+.navbar-nav > li > .dropdown-menu.user-dropdown {
+  top: 67px
+}
+
 .navbar-nav > li > .dropdown-menu :hover {
   color: #f4744b;
 }
 
+#navbarDropdown .thumbnail-image {
+  margin-left: 20px;
+}
+.navbar-custom .navbar-nav.website-navigation li.nav-item .nav-link {
+  line-height: 44px;
+}
 .btn-custom {
   color: #f4f6f8;
   background-color: #f4744b;
@@ -164,6 +178,10 @@ header {
 .btn-custom:hover {
   color: #f4f6f8;
   background-color: #f85924;
+}
+
+.nav-item .btn-outline-custom {
+  margin-top: 16px;
 }
 
 .btn-outline-custom {
@@ -884,7 +902,7 @@ footer .list-inline-item.mdi {
 
 .display-name {
   margin-top: 0rem;
-  padding: 3rem 1rem 1rem 1rem;
+  padding: 2rem 1rem 1rem 1rem;
   color: #425466;
 }
 
@@ -913,13 +931,16 @@ footer .list-inline-item.mdi {
 }
 
 .display-options {
-  padding: 2rem;
+  padding: 2rem calc(2rem - 0.75rem);
   background-color: #fff;
-  min-height: 40vh;
   max-height: 40vh;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: blue orange;
+  scrollbar-color: #fbbd19 orange;
+  border: 1px dashed #ffdbce;
+  box-shadow: inset 0 0 20px 5px rgba(255, 219, 206, 0.37);;
+  margin: 0 15px;
+  border-radius: 16.5px 0 0 16.5px;
 }
 
 /* Works on Chrome/Edge/Safari */
@@ -928,11 +949,11 @@ footer .list-inline-item.mdi {
 }
 .display-options::-webkit-scrollbar-track {
   background: rgba(255, 166, 0, 0.199);
-  border-radius: 20px;
+  border-radius: 0px;
 }
 .display-options::-webkit-scrollbar-thumb {
-  background-color: #fbbd19;
-  border-radius: 20px;
+  background-color: #f55c29;
+  border-radius: 0px;
 }
 
 .summary {
@@ -1074,7 +1095,7 @@ label.field-required.control-label--hidden {
 }
 
 .option-submit {
-  margin: 1rem 0 3rem 0;
+  margin: 1.5rem 0 3rem 0;
 }
 
 .option-submit button {
@@ -1114,6 +1135,9 @@ label.field-required.control-label--hidden {
   border-color: #6c757d;
   font-weight: 700;
   border-radius: 5px;
+  background-color: #888888 !important;
+  outline: none !important;
+  color: #fff !important;
   transition: all 0.3s ease-in-out;
 }
 

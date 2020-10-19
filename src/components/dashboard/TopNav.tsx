@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { HomeOutlined, BankOutlined, TeamOutlined } from '@ant-design/icons';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { User } from 'src/interfaces';
@@ -31,16 +32,16 @@ const TopNav: React.FC = () => {
     setHeader(topBarHeader);
   }, [topBarHeader]);
 
-  let icon: string;
+  let icon: any;
   switch (header) {
     case pageTypes.HOME:
-      icon = 'fa-home';
+      icon = <HomeOutlined className="mr-2" />;
       break;
     case pageTypes.ACCOUNT:
-      icon = 'fa-briefcase';
+      icon = <BankOutlined className="mr-2" />;
       break;
     case pageTypes.RECIPIENTS:
-      icon = 'fa-users';
+      icon = <TeamOutlined className="mr-2" />;
       break;
     default:
       icon = 'fa-home';
@@ -58,9 +59,8 @@ const TopNav: React.FC = () => {
 
       <div className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
         <h6 className="header">
-          {' '}
-          <i className={`fa ${icon}`}></i>{' '}
-          {t(`dashboard.top-nav.${header.toLowerCase()}`)}
+          {icon}
+          <span>{t(`dashboard.top-nav.${header.toLowerCase()}`)}</span>
         </h6>
       </div>
 
@@ -102,7 +102,7 @@ const TopNav: React.FC = () => {
             <img className="img-profile rounded-circle" src={avatar} alt="" />
           </a>
           <div
-            className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+            className="dropdown-menu dropdown-menu-right animated--grow-in user-dropdown"
             aria-labelledby="userDropdown"
           >
             <a

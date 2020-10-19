@@ -86,7 +86,7 @@ const Details: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="row display-options justify-content-center pt-0">
+      <div className="row display-options justify-content-center">
         <div className="col-sm-12">
           {product !== undefined && !isEmpty(product.form) ? (
             <FormIO
