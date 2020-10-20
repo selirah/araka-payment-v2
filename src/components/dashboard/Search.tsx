@@ -1,23 +1,22 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const Search: React.FC = () => {
+interface SearchProps {
+  onSearch(e: React.FormEvent<EventTarget>): void;
+}
+
+export const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const { t } = useTranslation();
   return (
-    <form>
+    <div className="search">
       <div className="input-group">
         <input
           type="text"
           className="form-control bg-light small"
           placeholder={t('dashboard.old-user.search')}
-          aria-label="Search"
+          onChange={onSearch}
         />
-        <div className="input-group-append">
-          <button className="btn" type="submit">
-            <i className="fas fa-search fa-sm"></i>
-          </button>
-        </div>
       </div>
-    </form>
+    </div>
   );
 };

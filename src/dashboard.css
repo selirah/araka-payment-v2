@@ -62,7 +62,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin:0;
+  margin: 0;
 }
 
 .sidebar #sidebarToggle {
@@ -119,21 +119,21 @@
 
 .new-user .payment-button {
   text-align: center;
-  margin:30px auto;
+  margin: 30px auto;
 }
 
 .new-user .btn-make-payment {
-    background: #f55c29;
-    border: 1px solid #f55c29;
-    color: #f4f6f8;
-    transition: all 0.3s ease-in-out;
-    border-radius: 16.5px;
-    padding: 0.6rem 1rem;
-    text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: 700;
-    text-align: center;
-    text-decoration: none;
+  background: #f55c29;
+  border: 1px solid #f55c29;
+  color: #f4f6f8;
+  transition: all 0.3s ease-in-out;
+  border-radius: 16.5px;
+  padding: 0.6rem 1rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
 }
 
 .new-user .btn-make-payment:hover {
@@ -154,7 +154,7 @@
   color: #000;
 }
 
-.top-pane form {
+.top-pane .search {
   position: absolute;
   right: 1rem;
   top: 0.5rem;
@@ -162,26 +162,26 @@
   font-size: 1rem;
 }
 
-.top-pane form input {
+.top-pane .search input {
   height: 1rem;
   background: #e0e0e0;
   color: #222;
 }
 
-.top-pane form input[type='text']:focus {
+.top-pane .search input[type='text']:focus {
   border-color: rgba(248, 89, 36, 0.8) !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
     0 0 8px rgba(248, 89, 36, 0.6);
   outline: 0 none;
 }
 
-.top-pane form button {
+.top-pane .search button {
   background: #f85924;
   color: #fff;
   transition: all 0.5s ease-in-out;
 }
 
-.top-pane form button:hover {
+.top-pane .search button:hover {
   background: #506077;
   color: #fff;
 }
@@ -844,12 +844,12 @@
 
 .sidebar-toggled .action-btn-custom span,
 .action-btn-custom span.anticon {
-  display:none;
+  display: none;
 }
 
 .sidebar-toggled .action-btn-custom span.anticon {
   display: block;
-  margin: 0 auto!important;
+  margin: 0 auto !important;
 }
 
 .edit-beneficiary .btn .anticon {
@@ -1004,6 +1004,16 @@ button.close {
 
 .empty-box h2 {
   font-weight: 200;
+  color: hsl(0, 0%, 88%);
+  font-size: 3rem;
+}
+
+.empty-box-transaction {
+  margin-top: 5rem;
+}
+
+.empty-box-transaction h2 {
+  font-weight: 300;
   color: #e0e0e0;
   font-size: 2rem;
 }
@@ -1025,34 +1035,34 @@ button.close {
   border-color: #ffdbce;
 }
 
-.toolbar .search {
+.toolbar form {
   position: absolute;
-  right: 0;
+  right: -1rem;
   top: 0;
   width: 30%;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
-.toolbar .search input {
+.toolbar form input {
   height: 0.75rem;
   background: #e0e0e0;
   color: #222;
 }
 
-.toolbar .search input[type='text']:focus {
+.toolbar form input[type='text']:focus {
   border-color: rgba(248, 89, 36, 0.8) !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
     0 0 8px rgba(248, 89, 36, 0.6);
   outline: 0 none;
 }
 
-.toolbar .search button {
+.toolbar form button {
   background: #f85924;
   color: #fff;
   transition: all 0.5s ease-in-out;
 }
 
-.toolbar .search button:hover {
+.toolbar form button:hover {
   background: #506077;
   color: #fff;
 }
