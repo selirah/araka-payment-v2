@@ -18,9 +18,13 @@ const TopNav: React.FC = () => {
   const [header, setHeader] = useState<string>(topBarHeader);
   const { t, i18n } = useTranslation();
   const href = '#';
+  const [active, setActive] = useState<string | null>(
+    localStorage.getItem('i18nextLng')
+  );
 
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
+    setActive(lang);
   };
 
   const logoutUser = (): void => {
@@ -32,7 +36,7 @@ const TopNav: React.FC = () => {
     setHeader(topBarHeader);
   }, [topBarHeader]);
 
-  let icon: any;
+  let icon: React.ReactNode;
   switch (header) {
     case pageTypes.HOME:
       icon = <HomeOutlined className="mr-2" />;
@@ -44,7 +48,7 @@ const TopNav: React.FC = () => {
       icon = <TeamOutlined className="mr-2" />;
       break;
     default:
-      icon = 'fa-home';
+      icon = <HomeOutlined className="mr-2" />;
       break;
   }
 
@@ -65,7 +69,11 @@ const TopNav: React.FC = () => {
       </div>
 
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item lang-item p-0 mx-1 active">
+        <li
+          className={`nav-item lang-item p-0 mx-1 ${
+            active === 'en' ? 'active' : null
+          }`}
+        >
           <a className="nav-link" href={href} role="button">
             <i
               className="flag-icon flag-icon-gb"
@@ -74,7 +82,11 @@ const TopNav: React.FC = () => {
           </a>
         </li>
 
-        <li className="nav-item lang-item p-0 mx-1">
+        <li
+          className={`nav-item lang-item p-0 mx-1 ${
+            active === 'fr' ? 'active' : null
+          }`}
+        >
           <a className="nav-link" href={href} role="button">
             <i
               className="flag-icon flag-icon-fr"

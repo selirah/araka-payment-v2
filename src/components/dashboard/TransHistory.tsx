@@ -92,14 +92,16 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
           aria-controls={`collapseOne${transactionId}`}
         >
           <div className="amount">
-            <h2>
+            <h2 style={{ color: `${setColor(status)}` }}>
               {getCurrency(currencies, Currency)} {amountPaid.toFixed(2)}
             </h2>
           </div>
         </a>
         <img src={'https://via.placeholder.com/50'} alt="logo" />
         <div className="card-header-content">
-          <h2>{getCategoryName(categories, productCategoryId)}</h2>
+          <h2 style={{ color: `${setColor(status)}` }}>
+            {getCategoryName(categories, productCategoryId)}
+          </h2>
           <h4>{transactionDescription.replace(/([a-z])([A-Z])/g, '$1 $2')}</h4>
           <div className="bottom-time">
             <h6>

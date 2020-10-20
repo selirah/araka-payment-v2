@@ -1035,6 +1035,25 @@ button.close {
   border-color: #ffdbce;
 }
 
+#content .dashboard-content > div > div > .card,
+.card .card-body.wizard-card {
+  border: 1px solid #ffdbce;
+  box-shadow: 0 0.5rem 1rem rgba(255, 203, 170, 0.25) !important;
+  border-radius: 16.5px;
+}
+
+.card .card-body.wizard-card {
+  overflow: hidden;
+}
+
+.navbar-nav li.lang-item {
+  opacity: 0.3;
+}
+
+.navbar-nav li.lang-item.active {
+  opacity: 1;
+}
+
 .toolbar form {
   position: absolute;
   right: -1rem;

@@ -2122,7 +2122,7 @@ textarea.form-control {
 }
 
 .formio-component-hidden.form-group {
-  margin:0;
+  margin: 0;
 }
 
 .form-text {
@@ -10760,7 +10760,7 @@ a:focus {
   text-align: center;
   padding: 0.75rem 1rem;
   width: 6.5rem;
-  display: flex!important;
+  display: flex !important;
   flex-direction: row;
   align-items: center;
 }
@@ -10772,7 +10772,7 @@ a:focus {
 
 .sidebar .nav-item .nav-link span:nth-of-type(1) {
   margin-right: 10px;
-} 
+}
 
 .sidebar .nav-item.active .nav-link {
   font-weight: 400;
@@ -11147,25 +11147,6 @@ a:focus {
 
 .sidebar-dark.toggled #sidebarToggle::after {
   color: rgb(245 92 41);
-}
-
-#content .dashboard-content > div > div > .card,
-.card .card-body.wizard-card {
-  border: 1px solid #ffdbce;
-  box-shadow: 0 0.5rem 1rem rgba(255, 203, 170, 0.25) !important;
-  border-radius: 16.5px;
-}
-
-.card .card-body.wizard-card {
-  overflow: hidden;
-}
-
-.navbar-nav li.lang-item {
-  opacity: 0.3;
-}
-
-.navbar-nav li.lang-item.active {
-  opacity: 1;
 }
 
 .btn-circle {
