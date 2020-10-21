@@ -5,14 +5,14 @@ import { Link, useHistory } from 'react-router-dom';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { appSelector } from '../../helpers/appSelector';
 import {
-  forgottenPasswordRequest,
   resetErrorState,
+  resetPasswordRequest,
 } from '../../store/auth/actions';
 import { ChangeLanguage } from '../common/ChangeLanguage';
 import { logo } from '../../images/Images';
-import { TextInput } from './TextInput';
+import { PasswordInput } from './PasswordInput';
 import { Button } from './Button';
-import { ForgottenPassword } from '../../interfaces';
+import { ResetPassword } from '../../interfaces';
 import {
   ContainerFluid,
   ImageContainerLogin,
@@ -20,65 +20,80 @@ import {
   FormBox,
   FormBoxHeader,
   LogoContainer,
-  FormBoxSubHeader,
   TermsContainer,
 } from './Styles';
-import { path } from '../../helpers/path';
-import { Success } from '../common/Success';
+import { isEmpty } from 'src/helpers/isEmpty';
+import { path } from 'src/helpers/path';
 import { SingleError } from './SingleError';
 
-const ForgottenPasswordForm: React.FC = () => {
+type Props = {
+  processId: string | null;
+};
+
+const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
   const dispatch: AppDispatch = useDispatch();
   const history = useHistory();
   const auth = appSelector((state) => state.auth);
   const { t } = useTranslation();
-  const [values, setValues] = useState<ForgottenPassword>({
-    EmailAddress: '',
+  const [values, setValues] = useState<ResetPassword>({
+    Password: '',
+    ProcessId: processId === null ? '' : processId,
+    Confirm: '',
   });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [isSccess, setIsSuccess] = useState<boolean>(false);
+  const [singleError, setSingleError] = useState<string>('');
+  // const [isSccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-
-  useEffect(() => {
-    const { isAuthenticated } = auth;
-    if (isAuthenticated) {
-      history.push(path.home);
-    }
-    dispatch(resetErrorState());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const onChange = (e: React.FormEvent<EventTarget>): void => {
     const { name, value } = e.target as HTMLTextAreaElement;
     setValues({ ...values, [name]: value });
   };
 
+  useEffect(() => {
+    dispatch(resetErrorState());
+    const { isAuthenticated } = auth;
+    if (isAuthenticated) {
+      history.push(path.home);
+    }
+    if (isEmpty(processId)) {
+      history.push(path.login);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
-    const payload: ForgottenPassword = {
-      EmailAddress: values.EmailAddress,
-    };
-    setEmail(values.EmailAddress);
-    dispatch(forgottenPasswordRequest(payload));
+    setIsError(false);
+    setSingleError('');
+    if (values.Password !== values.Confirm) {
+      setIsError(true);
+      setSingleError('Passwords not match!');
+    } else {
+      const payload: ResetPassword = {
+        Password: values.Password,
+        ProcessId: values.ProcessId,
+      };
+      dispatch(resetPasswordRequest(payload));
+    }
   };
 
   useEffect(() => {
     const {
-      isForgottenPassword,
-      forgottenPasswordSuccess,
-      forgottenPasswordError,
-      forgottenError,
+      isResettingPassword,
+      resetPasswordSuccess,
+      resetPasswordError,
+      resetError,
     } = auth;
-    if (forgottenPasswordSuccess) {
-      setValues({ EmailAddress: '' });
+    setIsSubmitting(isResettingPassword);
+    if (resetPasswordSuccess) {
+      history.push(path.login);
     }
-    setIsSubmitting(isForgottenPassword);
-    setIsSuccess(forgottenPasswordSuccess);
-    setIsError(forgottenPasswordError);
-    setErrorMessage(forgottenError);
-  }, [auth]);
+    if (resetPasswordError) {
+      setIsError(resetPasswordError);
+      setSingleError(resetError);
+    }
+  }, [auth, history]);
 
   return (
     <React.Fragment>
@@ -95,25 +110,23 @@ const ForgottenPasswordForm: React.FC = () => {
               <FormBoxHeader>
                 <h4>Reset your password</h4>
               </FormBoxHeader>
-              <FormBoxSubHeader>
-                <h6>
-                  Remembered password? <Link to={path.login}>Log in</Link>
-                </h6>
-              </FormBoxSubHeader>
-              {isSccess ? (
-                <Success
-                  message={`An email has been sent to '${email}' for further instructions`}
-                />
-              ) : null}
-              {isError ? <SingleError error={errorMessage} /> : null}
+              {isError ? <SingleError error={singleError} /> : null}
               <form onSubmit={onSubmit}>
-                <TextInput
-                  type="email"
-                  name="EmailAddress"
-                  value={values.EmailAddress}
-                  placeholder="Your email"
+                <PasswordInput
+                  type="password"
+                  name="Password"
+                  value={values.Password}
+                  placeholder="Your password ..."
                   onChange={onChange}
                 />
+                <PasswordInput
+                  type="password"
+                  name="Confirm"
+                  value={values.Confirm}
+                  placeholder="Retype password ..."
+                  onChange={onChange}
+                />
+
                 <Button
                   type="submit"
                   title={t('forgotten.btn_title')}
@@ -139,4 +152,4 @@ const ForgottenPasswordForm: React.FC = () => {
   );
 };
 
-export { ForgottenPasswordForm };
+export { ResetPasswordForm };

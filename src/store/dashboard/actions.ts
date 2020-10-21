@@ -79,3 +79,12 @@ export const updateBeneficiarySuccess = (data: Beneficiary) =>
 
 export const updateBeneficiaryFailure = (error: any) =>
   action(DashboardTypes.UPDATE_BENEFICIARY_FAILURE, error);
+
+export const deleteBeneficiaryRequest = (benefiaryId: number) =>
+  action(DashboardTypes.DELETE_BENEFICIARY_REQUEST, benefiaryId);
+
+export const deleteBeneficiarySuccess = (benefiaryId: number) =>
+  action(DashboardTypes.DELETE_BENEFICIARY_SUCCESS, benefiaryId);
+
+export const deleteBeneficiaryFailure = (error: any) =>
+  action(DashboardTypes.DELETE_BENEFICIARY_FAILURE, error);

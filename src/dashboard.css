@@ -1054,34 +1054,34 @@ button.close {
   opacity: 1;
 }
 
-.toolbar form {
+.toolbar .search {
   position: absolute;
-  right: -1rem;
+  right: 0;
   top: 0;
   width: 30%;
   font-size: 1rem;
 }
 
-.toolbar form input {
+.toolbar .search input {
   height: 0.75rem;
   background: #e0e0e0;
   color: #222;
 }
 
-.toolbar form input[type='text']:focus {
+.toolbar .search input[type='text']:focus {
   border-color: rgba(248, 89, 36, 0.8) !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
     0 0 8px rgba(248, 89, 36, 0.6);
   outline: 0 none;
 }
 
-.toolbar form button {
+.toolbar .search button {
   background: #f85924;
   color: #fff;
   transition: all 0.5s ease-in-out;
 }
 
-.toolbar form button:hover {
+.toolbar .search button:hover {
   background: #506077;
   color: #fff;
 }
@@ -1128,6 +1128,62 @@ button.close {
   color: #fff;
   border: 0.0625px solid rgba(248, 89, 36, 1);
   outline: none;
+}
+
+.delete-beneficary {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.delete-beneficary h2 {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: #506077;
+  padding-bottom: 1rem;
+}
+
+.delete-beneficary button {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: #506077;
+  margin-right: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.delete-beneficary img {
+  width: 6rem;
+}
+
+.delete-beneficary .delete-btn {
+  border: 0.0625rem solid rgba(229, 57, 53, 0.8);
+  background: rgba(229, 57, 53, 0.8);
+  color: #fff;
+  border-radius: 16.5px;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.delete-beneficary .delete-btn:hover {
+  border: 0.0625rem solid rgba(229, 57, 53, 1);
+  background: rgba(229, 57, 53, 1);
+  color: #fff;
+}
+
+.delete-beneficary .cancel-btn {
+  border: 0.0625rem solid rgba(66, 84, 102, 0.8);
+  background: rgba(255, 255, 255, 0.8);
+  color: #506077;
+  border-radius: 16.5px;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.delete-beneficary .cancel-btn:hover {
+  border: 0.0625rem solid rgba(66, 84, 102, 1);
+  background: rgba(66, 84, 102, 1);
+  color: #fff;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

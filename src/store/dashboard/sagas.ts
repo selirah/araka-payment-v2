@@ -15,6 +15,8 @@ import {
   getBeneficiariesFailure,
   updateBeneficiarySuccess,
   updateBeneficiaryFailure,
+  deleteBeneficiarySuccess,
+  deleteBeneficiaryFailure,
 } from './actions';
 import { callApiGet, callApiPost } from '../../utils/api';
 import { Client, Beneficiary } from '../../interfaces';
@@ -143,6 +145,25 @@ function* updateBeneficiary({
   }
 }
 
+function* deleteBeneficiary({ payload }: { type: string; payload: number }) {
+  try {
+    const res = yield call(callApiPost, `payments/deletebeneficiary`, {
+      beneficiaryId: payload,
+    });
+    if (res.status === 200) {
+      yield put(deleteBeneficiarySuccess(payload));
+    } else {
+      yield put(deleteBeneficiaryFailure(res.data));
+    }
+  } catch (err) {
+    if (err && err.response) {
+      yield put(deleteBeneficiaryFailure(err.response.data));
+    } else {
+      yield put(deleteBeneficiaryFailure('An unknwon error occurred'));
+    }
+  }
+}
+
 function* watchGetTransactions() {
   yield takeEvery(DashboardTypes.GET_TRANSACTIONS, getTransactions);
 }
@@ -171,6 +192,10 @@ function* watchUpdateBeneficiary() {
   yield takeEvery(DashboardTypes.UPDATE_BENEFICIARY_REQUEST, updateBeneficiary);
 }
 
+function* watchDeleteBeneficiary() {
+  yield takeEvery(DashboardTypes.DELETE_BENEFICIARY_REQUEST, deleteBeneficiary);
+}
+
 function* dashboardSaga(): Generator {
   yield all([
     fork(watchGetTransactions),
@@ -180,6 +205,7 @@ function* dashboardSaga(): Generator {
     fork(watchAddBeneficiary),
     fork(watchGetBeneficiaries),
     fork(watchUpdateBeneficiary),
+    fork(watchDeleteBeneficiary),
   ]);
 }
 

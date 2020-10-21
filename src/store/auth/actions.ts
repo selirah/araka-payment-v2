@@ -6,6 +6,8 @@ import {
   User,
   Verification,
   VerificationResponse,
+  ForgottenPassword,
+  ResetPassword,
 } from '../../interfaces';
 import { AuthActionTypes } from './types';
 
@@ -52,3 +54,21 @@ export const logVerifyError = (error: string) =>
   action(AuthActionTypes.VERIFY_ERROR, error);
 
 export const clearAuthState = () => action(AuthActionTypes.CLEAR_AUTH_STATES);
+
+export const forgottenPasswordRequest = (payload: ForgottenPassword) =>
+  action(AuthActionTypes.FORGOTTEN_PASSWORD_REQUEST, payload);
+
+export const forgottenPasswordSuccess = (response: any) =>
+  action(AuthActionTypes.FORGOTTEN_PASSWORD_SUCCESS, response);
+
+export const forgottenPasswordFailure = (error: any) =>
+  action(AuthActionTypes.FORGOTTEN_PASSWORD_FAILURE, error);
+
+export const resetPasswordRequest = (payload: ResetPassword) =>
+  action(AuthActionTypes.RESET_PASSWORD_REQUEST, payload);
+
+export const resetPasswordSuccess = (response: any) =>
+  action(AuthActionTypes.RESET_PASSWORD_SUCCESS, response);
+
+export const resetPasswordFailure = (error: any) =>
+  action(AuthActionTypes.RESET_PASSWORD_FAILURE, error);

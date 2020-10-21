@@ -1,15 +1,15 @@
 import React from 'react';
 import { withRouter, useLocation } from 'react-router-dom';
-import { EmailVerification } from '../../components/auth/EmailVerification';
+import { ResetPasswordForm } from '../../components/auth/ResetPasswordForm';
 
-const EmailVerificationPage: React.FC = () => {
+const ResetPasswordPage: React.FC = () => {
   const query = new URLSearchParams(useLocation().search);
   const processId = query.get('PID');
   return (
     <React.Fragment>
-      <EmailVerification processId={processId} />
+      <ResetPasswordForm processId={processId} />
     </React.Fragment>
   );
 };
 
-export default withRouter(EmailVerificationPage);
+export default withRouter(ResetPasswordPage);

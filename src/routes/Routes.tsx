@@ -12,6 +12,7 @@ import RegisterPage from '../pages/auth/register';
 import RegisterSuccessPage from '../pages/auth/register-success';
 import EmailVerificationPage from '../pages/auth/email-verification';
 import ForgottenPasswordPage from '../pages/auth/forgotten-password';
+import ResetPasswordPage from '../pages/auth/reset-password';
 import DashboardPage from '../pages/dashboard/dashboard';
 import NotFoundPage from '../pages/_404';
 import { path } from '../helpers/path';
@@ -31,6 +32,7 @@ const Routes: React.FC = () => {
         />
         <Route exact path={path.verify} component={EmailVerificationPage} />
         <Route exact path={path.forgot} component={ForgottenPasswordPage} />
+        <Route exact path={path.reset} component={ResetPasswordPage} />
 
         <PrivateRoute exact path={path.dashboard} component={DashboardPage} />
         <PrivateRoute exact path={path.success} component={SuccessPage} />

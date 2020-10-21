@@ -16,6 +16,7 @@ import { TextInput } from './TextInput';
 import { PasswordInput } from './PasswordInput';
 import { MultipleErrors } from './MultipleErrors';
 import { SingleError } from './SingleError';
+import { Success } from '../common/Success';
 import { Button } from './Button';
 import { Login, Error } from '../../interfaces';
 import {
@@ -54,6 +55,8 @@ const LoginForm: React.FC<Props> = ({ history }) => {
   const [error, setError] = useState<Error | {}>({});
   const [singleError, setSingleError] = useState<string>('');
   const [remember, setRemember] = useState<boolean>(false);
+  const [isResetSuccess, setIsResetSuccess] = useState<boolean>(false);
+  const [resetPasswordMessage, setResetPasswordMessage] = useState<string>('');
 
   useEffect(() => {
     const { isAuthenticated } = auth;
@@ -75,6 +78,9 @@ const LoginForm: React.FC<Props> = ({ history }) => {
 
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
+    dispatch(resetErrorState());
+    setResetPasswordMessage('');
+    setIsResetSuccess(false);
     const payload: Login = {
       EmailAddress: values.EmailAddress,
       Password: values.Password,
@@ -83,7 +89,13 @@ const LoginForm: React.FC<Props> = ({ history }) => {
   };
 
   useEffect(() => {
-    const { isSubmitting, error, singleError, isAuthenticated } = auth;
+    const {
+      isSubmitting,
+      error,
+      singleError,
+      isAuthenticated,
+      resetPasswordSuccess,
+    } = auth;
     setIsSubmitting(isSubmitting);
     setError(error);
     setSingleError(singleError);
@@ -93,6 +105,12 @@ const LoginForm: React.FC<Props> = ({ history }) => {
     } else if (isAuthenticated && !isPerformingPayment) {
       dispatch(clearVerificationResponse());
       history.push(path.dashboard);
+    }
+    if (resetPasswordSuccess) {
+      setIsResetSuccess(resetPasswordSuccess);
+      setResetPasswordMessage(
+        'Your password has been reset successfully. Proceed to Login'
+      );
     }
   }, [auth, isPerformingPayment, history, dispatch]);
 
@@ -118,6 +136,9 @@ const LoginForm: React.FC<Props> = ({ history }) => {
               {!isEmpty(error) ? <MultipleErrors error={error} /> : null}
               {!isEmpty(singleError) ? (
                 <SingleError error={singleError} />
+              ) : null}
+              {isResetSuccess ? (
+                <Success message={resetPasswordMessage} />
               ) : null}
               <form onSubmit={onSubmit} className="mt-4">
                 <TextInput

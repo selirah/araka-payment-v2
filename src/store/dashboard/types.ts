@@ -31,6 +31,10 @@ export enum DashboardTypes {
   UPDATE_BENEFICIARY_REQUEST = '@@dashboard/UPDATE_BENEFICIARY_REQUEST',
   UPDATE_BENEFICIARY_SUCCESS = '@@dashboard/UPDATE_BENEFICIARY_SUCCESS',
   UPDATE_BENEFICIARY_FAILURE = '@@dashboard/UPDATE_BENEFICIARY_FAILURE',
+
+  DELETE_BENEFICIARY_REQUEST = '@@dashboard/DELETE_BENEFICIARY_REQUEST',
+  DELETE_BENEFICIARY_SUCCESS = '@@dashboard/DELETE_BENEFICIARY_SUCCESS',
+  DELETE_BENEFICIARY_FAILURE = '@@dashboard/DELETE_BENEFICIARY_FAILURE',
 }
 
 export type DashboardState = {
@@ -59,4 +63,6 @@ export type DashboardState = {
   readonly isUpdatingBeneficiary: boolean;
   readonly updateBeneficiarySuccess: boolean;
   readonly updateBeneficiaryError: boolean;
+  readonly isDeletingBeneficiary: boolean;
+  readonly deletedBeneficiary: boolean;
 };

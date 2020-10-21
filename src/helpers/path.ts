@@ -6,6 +6,7 @@ export const path = {
   registerSuccess: '/auth/register-success',
   verify: '/auth/email-verification',
   forgot: '/auth/forgotten-password',
+  reset: '/auth/reset-password',
   dashboard: '/dashboard',
   success: '/transaction/success',
   cancelled: '/transaction/cancelled',

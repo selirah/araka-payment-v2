@@ -29,6 +29,8 @@ export const initialState: DashboardState = {
   isUpdatingBeneficiary: false,
   updateBeneficiarySuccess: false,
   updateBeneficiaryError: false,
+  isDeletingBeneficiary: false,
+  deletedBeneficiary: false,
 };
 
 const reducer: Reducer<DashboardState> = (state = initialState, action) => {
@@ -176,6 +178,7 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         editAccountSuccess: false,
         updateBeneficiaryError: false,
         updateBeneficiarySuccess: false,
+        deletedBeneficiary: false,
       };
 
     case DashboardTypes.UPDATE_BENEFICIARY_REQUEST:
@@ -206,6 +209,31 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         updateBeneficiarySuccess: false,
         updateBeneficiaryError: true,
         beneficiaryError: action.payload,
+      };
+
+    case DashboardTypes.DELETE_BENEFICIARY_REQUEST:
+      return {
+        ...state,
+        isDeletingBeneficiary: true,
+      };
+
+    case DashboardTypes.DELETE_BENEFICIARY_SUCCESS:
+      return {
+        ...state,
+        isDeletingBeneficiary: false,
+        deletedBeneficiary: true,
+        error: undefined,
+        beneficiaries: state.beneficiaries.filter(
+          (beneficiary) => beneficiary.beneficiaryId !== action.payload
+        ),
+      };
+
+    case DashboardTypes.DELETE_BENEFICIARY_FAILURE:
+      return {
+        ...state,
+        isDeletingBeneficiary: false,
+        deletedBeneficiary: false,
+        error: action.payload,
       };
     default:
       return state;

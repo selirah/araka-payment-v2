@@ -14,11 +14,13 @@ import { modalTypes } from 'src/helpers/constants';
 interface RecipientProps {
   beneficiary: Beneficiary;
   onShowModalClick(type: string, beneficiary: Beneficiary): void;
+  onDeleteBenefiaryClick(type: string, beneficiaryId: number): void;
 }
 
 export const Recipient: React.FC<RecipientProps> = ({
   beneficiary,
   onShowModalClick,
+  onDeleteBenefiaryClick,
 }) => {
   return (
     <div className="contact">
@@ -55,7 +57,15 @@ export const Recipient: React.FC<RecipientProps> = ({
         >
           <EditOutlined /> Edit
         </button>
-        <button className="btn btn-primary">
+        <button
+          className="btn btn-primary"
+          onClick={() =>
+            onDeleteBenefiaryClick(
+              modalTypes.DELETE_BENEFICIARY,
+              beneficiary.beneficiaryId
+            )
+          }
+        >
           <DeleteOutlined /> Delete
         </button>
       </div>

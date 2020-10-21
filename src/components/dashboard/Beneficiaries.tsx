@@ -12,7 +12,9 @@ import { RecipientForm } from './RecipientForm';
 import {
   updateBeneficiaryRequest,
   clearSomeBooleans,
+  deleteBeneficiaryRequest,
 } from '../../store/dashboard';
+import { checkedIcon } from '../../images/Images';
 
 interface BeneficiariesProps {
   beneficiaries: Beneficiary[];
@@ -23,9 +25,12 @@ export const Beneficiaries: React.FC<BeneficiariesProps> = ({
 }) => {
   const dispatch: AppDispatch = useDispatch();
   const { user } = appSelector((state) => state.auth);
-  const { isUpdatingBeneficiary, updateBeneficiarySuccess } = appSelector(
-    (state) => state.dashboard
-  );
+  const {
+    isUpdatingBeneficiary,
+    updateBeneficiarySuccess,
+    isDeletingBeneficiary,
+    deletedBeneficiary,
+  } = appSelector((state) => state.dashboard);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [perPage] = useState<number>(10);
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -43,6 +48,10 @@ export const Beneficiaries: React.FC<BeneficiariesProps> = ({
   });
   const [phone, setPhone] = useState<string>('');
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
+  const [deleted, setDeleted] = useState<boolean>(false);
+  const [id, setId] = useState<number>(0);
+  const [name, setName] = useState<string>('this beneficiary');
 
   const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
@@ -105,11 +114,39 @@ export const Beneficiaries: React.FC<BeneficiariesProps> = ({
     dispatch(updateBeneficiaryRequest(payload));
   };
 
+  const onDeleteBeneficiaryClick = (
+    type: string,
+    beneficiaryId: number
+  ): void => {
+    setId(beneficiaryId);
+    setShowModal(true);
+    setModalType(type);
+    const b = beneficiaries.find((b) => b.beneficiaryId === beneficiaryId);
+    if (b !== undefined) {
+      setName(b.name);
+    }
+  };
+
+  const deleteBeneficiary = (): void => {
+    dispatch(deleteBeneficiaryRequest(id));
+  };
+
   useEffect(() => {
     setIsSubmitting(isUpdatingBeneficiary);
     setIsSuccess(updateBeneficiarySuccess);
-    setTimeout(() => dispatch(clearSomeBooleans()), 5000);
-  }, [isUpdatingBeneficiary, updateBeneficiarySuccess, dispatch]);
+    setIsDeleting(isDeletingBeneficiary);
+    setDeleted(deletedBeneficiary);
+    setTimeout(() => {
+      dispatch(clearSomeBooleans());
+      onCloseModal();
+    }, 5000);
+  }, [
+    isUpdatingBeneficiary,
+    updateBeneficiarySuccess,
+    dispatch,
+    isDeletingBeneficiary,
+    deletedBeneficiary,
+  ]);
 
   return (
     <React.Fragment>
@@ -120,6 +157,7 @@ export const Beneficiaries: React.FC<BeneficiariesProps> = ({
               beneficiary={beneficiary}
               key={beneficiary.beneficiaryId}
               onShowModalClick={onShowModalClick}
+              onDeleteBenefiaryClick={onDeleteBeneficiaryClick}
             />
           ) : null
         )}
@@ -150,6 +188,46 @@ export const Beneficiaries: React.FC<BeneficiariesProps> = ({
             btnIcon="fa-save"
             message="Beneficiary updated successfully"
           />
+        </ModalContainer>
+      ) : null}
+
+      {showModal && modalType === modalTypes.DELETE_BENEFICIARY ? (
+        <ModalContainer
+          show={showModal}
+          onClose={onCloseModal}
+          header="Delete Beneficiary"
+        >
+          <div className="row justify-content-center">
+            <div className="delete-beneficary">
+              {deleted ? (
+                <React.Fragment>
+                  <h2>Beneficiary Deleted Successfully</h2>
+                  <img src={checkedIcon} alt="success" className="success" />
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  <h2>Do you really want to delete {name}?</h2>
+                  <button
+                    className="btn delete-btn"
+                    onClick={() => deleteBeneficiary()}
+                  >
+                    <i
+                      className={`fa ${
+                        !isDeleting ? 'fa-trash' : 'fa-spinner fa-spin'
+                      }`}
+                    ></i>{' '}
+                    Yes, Delete
+                  </button>
+                  <button
+                    className="btn cancel-btn"
+                    onClick={() => onCloseModal()}
+                  >
+                    <i className="fa fa-times"></i> Cancel
+                  </button>
+                </React.Fragment>
+              )}
+            </div>
+          </div>
         </ModalContainer>
       ) : null}
     </React.Fragment>

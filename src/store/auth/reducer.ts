@@ -12,6 +12,14 @@ export const initialState: AuthState = {
   verifyError: '',
   isVerifying: false,
   isVerified: false,
+  isForgottenPassword: false,
+  forgottenPasswordSuccess: false,
+  forgottenPasswordError: false,
+  forgottenError: undefined,
+  isResettingPassword: false,
+  resetError: undefined,
+  resetPasswordSuccess: false,
+  resetPasswordError: false,
 };
 
 const reducer: Reducer<AuthState> = (state = initialState, action) => {
@@ -71,6 +79,12 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         ...state,
         error: {},
         isSubmitting: false,
+        forgottenPasswordError: false,
+        forgottenPasswordSuccess: false,
+        forgottenError: undefined,
+        resetError: undefined,
+        resetPasswordSuccess: false,
+        resetPasswordError: false,
       };
     case AuthActionTypes.SET_USER:
       return {
@@ -124,6 +138,57 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         verifyError: initialState.verifyError,
         error: initialState.error,
         isSubmitting: initialState.isSubmitting,
+        forgottenPasswordError: initialState.forgottenPasswordError,
+        forgottenPasswordSuccess: initialState.forgottenPasswordSuccess,
+      };
+    case AuthActionTypes.FORGOTTEN_PASSWORD_REQUEST:
+      return {
+        ...state,
+        isForgottenPassword: true,
+        forgottenPasswordSuccess: initialState.forgottenPasswordSuccess,
+        forgottenPasswordError: initialState.forgottenPasswordError,
+        forgottenError: initialState.forgottenError,
+      };
+    case AuthActionTypes.FORGOTTEN_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isForgottenPassword: initialState.isForgottenPassword,
+        forgottenPasswordSuccess: true,
+        forgottenPasswordError: initialState.forgottenPasswordError,
+        forgottenError: initialState.forgottenError,
+      };
+    case AuthActionTypes.FORGOTTEN_PASSWORD_FAILURE:
+      return {
+        ...state,
+        isForgottenPassword: initialState.isForgottenPassword,
+        forgottenPasswordSuccess: initialState.forgottenPasswordSuccess,
+        forgottenPasswordError: true,
+        forgottenError: action.payload,
+      };
+
+    case AuthActionTypes.RESET_PASSWORD_REQUEST:
+      return {
+        ...state,
+        isResettingPassword: true,
+        resetPasswordSuccess: initialState.resetPasswordSuccess,
+        resetPasswordError: initialState.resetPasswordError,
+        resetError: initialState.resetError,
+      };
+    case AuthActionTypes.RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isResettingPassword: initialState.isResettingPassword,
+        resetPasswordSuccess: true,
+        resetPasswordError: initialState.resetPasswordError,
+        resetError: initialState.resetError,
+      };
+    case AuthActionTypes.RESET_PASSWORD_FAILURE:
+      return {
+        ...state,
+        isResettingPassword: initialState.isResettingPassword,
+        resetPasswordSuccess: initialState.resetPasswordSuccess,
+        resetPasswordError: true,
+        resetError: action.payload,
       };
     case AuthActionTypes.DESTROY_STATES:
       return initialState;

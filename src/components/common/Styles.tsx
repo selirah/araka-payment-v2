@@ -41,22 +41,22 @@ export const AlertContainer = styled.div`
 `;
 
 const Flash = keyframes`
-  14% { font-size: 1rem; color: #155724; background: #d4edda; }
-  28% { font-size: 1rem; color: initial; background: initial; }
-  42% { font-size: 1rem; }
-  57% { font-size: 0.95rem; }
-  71% { font-size: 0.90rem; }
-  85% { font-size: 0.85rem; }
+  14% { font-size: 0.65rem; color: #155724; background: #d4edda; }
+  28% { font-size: 0.65rem; color: initial; background: initial; }
+  42% { font-size: 0.65rem; }
+  57% { font-size: 0.65rem; }
+  71% { font-size: 0.65rem; }
+  85% { font-size: 0.65rem; }
 `;
 
 const FadeOut = keyframes`
-  100% { opacity: 0; }
+  100% { opacity: 1; }
 `;
 
 export const AlertSuccessContainer = styled.div`
   text-align: left;
-  font-size: 0.8rem;
-  font-weight: 300;
+  font-size: 0.65rem;
+  font-weight: 700;
   border-radius: 0;
   background-color: ##d4edda;
   color: #155724;

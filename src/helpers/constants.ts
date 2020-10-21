@@ -18,6 +18,7 @@ export const pageHeader = {
 export const modalTypes = {
   ADD_BENEFICIARY: 'ADD_BENEFICIARY',
   EDIT_BENEFICIARY: 'EDIT_BENEFICIARY',
+  DELETE_BENEFICIARY: 'DELETE_BENEFICIARY',
 };
 
 export const transactionStatus = {

@@ -18,6 +18,12 @@ export enum AuthActionTypes {
   CLEAR_VERIFICATION_RESPONSE = '@@auth/CLEAR_VERIFICATION_RESPONSE',
   VERIFY_ERROR = '@@auth/VERIFY_ERROR',
   CLEAR_AUTH_STATES = '@@auth/CLEAR_AUTH_STATES',
+  FORGOTTEN_PASSWORD_REQUEST = '@@auth/FORGOTTEN_PASSWORD_REQUEST',
+  FORGOTTEN_PASSWORD_SUCCESS = '@@auth/FORGOTTEN_PASSWORD_SUCCESS',
+  FORGOTTEN_PASSWORD_FAILURE = '@@auth/FORGOTTEN_PASSWORD_FAILURE',
+  RESET_PASSWORD_REQUEST = '@@auth/RESET_PASSWORD_REQUEST',
+  RESET_PASSWORD_SUCCESS = '@@auth/RESET_PASSWORD_SUCCESS',
+  RESET_PASSWORD_FAILURE = '@@auth/RESET_PASSWORD_FAILURE',
 }
 
 export type AuthState = {
@@ -31,4 +37,14 @@ export type AuthState = {
   readonly verifyError: string;
   readonly isVerifying: boolean;
   readonly isVerified: boolean;
+
+  readonly isForgottenPassword: boolean;
+  readonly forgottenPasswordSuccess: boolean;
+  readonly forgottenPasswordError: boolean;
+  readonly forgottenError: any;
+
+  readonly isResettingPassword: boolean;
+  readonly resetPasswordSuccess: boolean;
+  readonly resetPasswordError: boolean;
+  readonly resetError: any;
 };
