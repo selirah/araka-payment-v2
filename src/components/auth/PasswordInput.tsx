@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-  FormBoxInput,
-  PassWrapper,
-  IconEye,
-  ErrorSpan,
-} from './Styles';
+import { FormBoxInput, PassWrapper, IconEye, ErrorSpan } from './Styles';
 
 type Props = {
   type: string;
@@ -13,6 +8,7 @@ type Props = {
   placeholder: string;
   error?: string;
   onChange(e: React.FormEvent<EventTarget>): void;
+  required?: boolean;
 };
 const PasswordInput: React.FC<Props> = ({
   type,
@@ -21,6 +17,7 @@ const PasswordInput: React.FC<Props> = ({
   placeholder,
   error,
   onChange,
+  required = false,
 }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -39,6 +36,7 @@ const PasswordInput: React.FC<Props> = ({
             value={value}
             placeholder={placeholder}
             onChange={onChange}
+            required={required}
           />
           <IconEye>
             <i

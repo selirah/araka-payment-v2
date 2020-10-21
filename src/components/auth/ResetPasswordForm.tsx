@@ -118,6 +118,7 @@ const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
                   value={values.Password}
                   placeholder="Your password ..."
                   onChange={onChange}
+                  required={true}
                 />
                 <PasswordInput
                   type="password"
@@ -125,6 +126,7 @@ const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
                   value={values.Confirm}
                   placeholder="Retype password ..."
                   onChange={onChange}
+                  required={true}
                 />
 
                 <Button
