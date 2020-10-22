@@ -28,7 +28,6 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
   const [active, setActive] = useState<number>(0);
   const [defaultCategories] = useState<Category[]>(categories);
   const [cats, setCats] = useState<Category[]>(categories);
-  const [close, setClose] = useState<boolean>(true);
 
   const onSearch = (e: React.FormEvent<EventTarget>): void => {
     const { value } = e.target as HTMLTextAreaElement;
@@ -108,7 +107,6 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
     } else {
       setCats(defaultCategories);
     }
-    setClose(false);
   };
 
   const paymentOptions = cats.map((c) => (
@@ -122,14 +120,8 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
     </Link>
   ));
 
-  const closeDropDown = (): void => {
-    if (showDropDown && close) {
-      setShowDropDown(false);
-    }
-  };
-
   return (
-    <div className="row" onClick={() => closeDropDown()}>
+    <div className="row">
       <div className="col-12">
         {/* <div className="top-pane">
           <h2>{t('dashboard.old-user.activity')}</h2>
@@ -154,7 +146,6 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
                   id="myInput"
                   className="search-category"
                   onChange={onSearchCategory}
-                  onFocus={() => setClose(false)}
                 />
                 <Link
                   key={0}
