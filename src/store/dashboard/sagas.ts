@@ -21,7 +21,7 @@ import {
   downloadReceiptFailure,
 } from './actions';
 import { callApiGet, callApiPost } from '../../utils/api';
-import { Client, Beneficiary } from '../../interfaces';
+import { Client, Beneficiary, DataStream } from '../../interfaces';
 
 function* getTransactions() {
   try {
@@ -177,9 +177,14 @@ function* getDownloadReceiptStream({
       callApiGet,
       `payments/gettransactionreciept/${payload}`
     );
-    console.log(res.data);
     if (res.status === 200) {
       yield put(downloadReceiptSuccess(res.data));
+
+      let file: DataStream = res.data;
+      const link = document.createElement('a');
+      link.href = `data:application/pdf;base64,${file.fileContents}`;
+      link.download = file.fileDownloadName;
+      link.click();
     }
   } catch (err) {
     if (err && err.response) {

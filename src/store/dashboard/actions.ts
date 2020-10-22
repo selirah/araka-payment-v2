@@ -5,6 +5,7 @@ import {
   Currency,
   Client,
   Beneficiary,
+  DataStream,
 } from '../../interfaces';
 
 export const setTopBarHeader = (payload: string) =>
@@ -92,7 +93,7 @@ export const deleteBeneficiaryFailure = (error: any) =>
 export const downloadReceiptRequest = (transactionId: number) =>
   action(DashboardTypes.DOWNLOAD_RECEIPT_REQUEST, transactionId);
 
-export const downloadReceiptSuccess = (data: any) =>
+export const downloadReceiptSuccess = (data: DataStream) =>
   action(DashboardTypes.DOWNLOAD_RECEIPT_SUCCESS, data);
 
 export const downloadReceiptFailure = (error: any) =>

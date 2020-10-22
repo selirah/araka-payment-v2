@@ -3,6 +3,7 @@ import {
   Currency,
   Client,
   Beneficiary,
+  DataStream,
 } from '../../interfaces';
 
 export enum DashboardTypes {
@@ -70,6 +71,6 @@ export type DashboardState = {
   readonly isRequestingDownload: boolean;
   readonly downloadRecieptSuccess: boolean;
   readonly downloadRecieptError: boolean;
-  readonly downloadReceiptStream: any;
+  readonly downloadReceiptStream: DataStream | undefined;
   readonly downloadError: any;
 };
