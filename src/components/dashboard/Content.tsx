@@ -121,8 +121,14 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
     </Link>
   ));
 
+  const closeDropDown = (): void => {
+    if (showDropDown) {
+      setShowDropDown(false);
+    }
+  };
+
   return (
-    <div className="row">
+    <div className="row" onClick={() => closeDropDown()}>
       <div className="col-12">
         <div className="top-pane">
           <h2>{t('dashboard.old-user.activity')}</h2>
