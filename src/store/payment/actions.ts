@@ -1,6 +1,12 @@
 import { action } from 'typesafe-actions';
 import { PaymentActionTypes } from './types';
-import { Category, Product, OrderResponse, Fee, TransactionHistory } from '../../interfaces';
+import {
+  Category,
+  Product,
+  OrderResponse,
+  Fee,
+  TransactionHistory,
+} from '../../interfaces';
 
 export const fetchCategories = () =>
   action(PaymentActionTypes.FETCH_CATEGORIES);

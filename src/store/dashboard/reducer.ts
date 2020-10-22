@@ -31,6 +31,11 @@ export const initialState: DashboardState = {
   updateBeneficiaryError: false,
   isDeletingBeneficiary: false,
   deletedBeneficiary: false,
+  downloadReceiptStream: undefined,
+  downloadRecieptError: false,
+  downloadRecieptSuccess: false,
+  isRequestingDownload: false,
+  downloadError: undefined,
 };
 
 const reducer: Reducer<DashboardState> = (state = initialState, action) => {
@@ -179,6 +184,10 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         updateBeneficiaryError: false,
         updateBeneficiarySuccess: false,
         deletedBeneficiary: false,
+        downloadRecieptSuccess: initialState.downloadRecieptSuccess,
+        downloadRecieptError: initialState.downloadRecieptError,
+        downloadReceiptStream: initialState.downloadReceiptStream,
+        downloadError: initialState.downloadError,
       };
 
     case DashboardTypes.UPDATE_BENEFICIARY_REQUEST:
@@ -234,6 +243,32 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         isDeletingBeneficiary: false,
         deletedBeneficiary: false,
         error: action.payload,
+      };
+
+    case DashboardTypes.DOWNLOAD_RECEIPT_REQUEST:
+      return {
+        ...state,
+        isRequestingDownload: true,
+      };
+
+    case DashboardTypes.DOWNLOAD_RECEIPT_SUCCESS:
+      return {
+        ...state,
+        isRequestingDownload: false,
+        downloadReceiptStream: action.payload,
+        downloadRecieptError: false,
+        downloadRecieptSuccess: true,
+        downloadError: undefined,
+      };
+
+    case DashboardTypes.DOWNLOAD_RECEIPT_FAILURE:
+      return {
+        ...state,
+        isRequestingDownload: false,
+        downloadReceiptStream: undefined,
+        downloadRecieptError: true,
+        downloadRecieptSuccess: false,
+        downloadError: action.payload,
       };
     default:
       return state;

@@ -45,7 +45,7 @@ function* processFeeRequest({ payload }: { type: string; payload: any }) {
       yield put(postFeeSuccess(res.data));
     } else {
       yield put(postFeeFailure(res.data));
-    }   
+    }
   } catch (err) {
     if (err && err.response) {
       yield put(

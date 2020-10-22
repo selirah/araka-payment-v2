@@ -22,7 +22,7 @@ export const modalTypes = {
 };
 
 export const transactionStatus = {
-  SUCCESS: 'SUCCESS',
+  APPROVED: 'APPROVED',
   DECLINED: 'DECLINED',
   CANCELLED: 'CANCELLED',
 };

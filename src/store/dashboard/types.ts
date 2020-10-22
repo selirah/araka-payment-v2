@@ -31,10 +31,12 @@ export enum DashboardTypes {
   UPDATE_BENEFICIARY_REQUEST = '@@dashboard/UPDATE_BENEFICIARY_REQUEST',
   UPDATE_BENEFICIARY_SUCCESS = '@@dashboard/UPDATE_BENEFICIARY_SUCCESS',
   UPDATE_BENEFICIARY_FAILURE = '@@dashboard/UPDATE_BENEFICIARY_FAILURE',
-
   DELETE_BENEFICIARY_REQUEST = '@@dashboard/DELETE_BENEFICIARY_REQUEST',
   DELETE_BENEFICIARY_SUCCESS = '@@dashboard/DELETE_BENEFICIARY_SUCCESS',
   DELETE_BENEFICIARY_FAILURE = '@@dashboard/DELETE_BENEFICIARY_FAILURE',
+  DOWNLOAD_RECEIPT_REQUEST = '@@payment/DOWNLOAD_RECEIPT_REQUEST',
+  DOWNLOAD_RECEIPT_SUCCESS = '@@payment/DOWNLOAD_RECEIPT_SUCCESS',
+  DOWNLOAD_RECEIPT_FAILURE = '@@payment/DOWNLOAD_RECEIPT_FAILURE',
 }
 
 export type DashboardState = {
@@ -65,4 +67,9 @@ export type DashboardState = {
   readonly updateBeneficiaryError: boolean;
   readonly isDeletingBeneficiary: boolean;
   readonly deletedBeneficiary: boolean;
+  readonly isRequestingDownload: boolean;
+  readonly downloadRecieptSuccess: boolean;
+  readonly downloadRecieptError: boolean;
+  readonly downloadReceiptStream: any;
+  readonly downloadError: any;
 };

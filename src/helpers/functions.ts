@@ -72,3 +72,14 @@ export const filterCategories = (
   });
   return filteredList;
 };
+
+export const filterCategoriesById = (
+  categories: Category[],
+  id: number
+): Category | undefined => {
+  const category = categories.find((c) => c.productCategoryId === id);
+  if (category === undefined) {
+    return undefined;
+  }
+  return category;
+};

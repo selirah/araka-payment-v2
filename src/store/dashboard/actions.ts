@@ -88,3 +88,12 @@ export const deleteBeneficiarySuccess = (benefiaryId: number) =>
 
 export const deleteBeneficiaryFailure = (error: any) =>
   action(DashboardTypes.DELETE_BENEFICIARY_FAILURE, error);
+
+export const downloadReceiptRequest = (transactionId: number) =>
+  action(DashboardTypes.DOWNLOAD_RECEIPT_REQUEST, transactionId);
+
+export const downloadReceiptSuccess = (data: any) =>
+  action(DashboardTypes.DOWNLOAD_RECEIPT_SUCCESS, data);
+
+export const downloadReceiptFailure = (error: any) =>
+  action(DashboardTypes.DOWNLOAD_RECEIPT_FAILURE, error);

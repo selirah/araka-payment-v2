@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -19,6 +19,7 @@ import {
   setRepeatTransaction,
   setTransaction,
 } from '../../store/payment';
+import { downloadReceiptRequest } from '../../store/dashboard';
 import moment from 'moment';
 import { secure } from '../../utils/secure';
 import { path } from '../../helpers/path';
@@ -31,7 +32,9 @@ interface TransHistoryProps {
 export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
   const dispatch: AppDispatch = useDispatch();
   const history = useHistory();
-  const { currencies } = appSelector((state) => state.dashboard);
+  const { currencies, isRequestingDownload } = appSelector(
+    (state) => state.dashboard
+  );
   const { categories } = appSelector((state) => state.payment);
   const { t } = useTranslation();
   const { productCategoryId, productId } = transaction.transactionDetails.data;
@@ -45,6 +48,7 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
     charge,
     status,
   } = transaction;
+  const [loading, setLoading] = useState<boolean>(false);
 
   const onRepeatTransactionClick = (transaction: TransactionHistory): void => {
     // update states and send user to summary page
@@ -66,7 +70,7 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
   const setColor = (status: string): string => {
     let color: string = '#506077';
     switch (status) {
-      case transactionStatus.SUCCESS:
+      case transactionStatus.APPROVED:
         color = '#4bb543';
         break;
       case transactionStatus.DECLINED:
@@ -77,6 +81,14 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
         break;
     }
     return color;
+  };
+
+  useEffect(() => {
+    setLoading(isRequestingDownload);
+  }, [isRequestingDownload]);
+
+  const onDownloadReceiptClick = (transactionId: number): void => {
+    dispatch(downloadReceiptRequest(transactionId));
   };
 
   const href = '#';
@@ -174,7 +186,17 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
               </table>
             </div>
             <div className="receipt-buttons">
-              <button className="btn">Download Receipt</button>
+              <button
+                className="btn"
+                onClick={() => onDownloadReceiptClick(transactionId)}
+              >
+                <i
+                  className={`fa ${
+                    !loading ? 'fa-download' : 'fa-spinner fa-spin'
+                  }`}
+                ></i>{' '}
+                Download Receipt
+              </button>
               <button
                 className="btn"
                 onClick={() => onRepeatTransactionClick(transaction)}
