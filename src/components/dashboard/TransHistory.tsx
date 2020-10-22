@@ -7,8 +7,8 @@ import { TransactionHistory } from '../../interfaces';
 import { appSelector } from '../../helpers/appSelector';
 import {
   getCurrency,
-  getCategoryName,
-  getProductName,
+  // getCategoryName,
+  // getProductName,
   getCategory,
   getProduct,
 } from '../../helpers/functions';
@@ -37,7 +37,7 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
   );
   const { categories } = appSelector((state) => state.payment);
   const { t } = useTranslation();
-  const { productCategoryId, productId } = transaction.transactionDetails.data;
+  // const { productCategoryId, productId } = transaction.transactionDetails.data;
   const { Currency } = transaction.transactionDetails.data;
   const {
     transactionId,
@@ -94,45 +94,37 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
   const href = '#';
   return (
     <div className="card">
-      <div className="card-header" id={`headingOne${transactionId}`}>
-        <a
-          href={href}
-          className="btn-header-link"
-          data-toggle="collapse"
-          data-target={`#collapseOne${transactionId}`}
-          aria-expanded="true"
-          aria-controls={`collapseOne${transactionId}`}
-        >
-          <div className="amount">
-            <h2 style={{ color: `${setColor(status)}` }}>
-              {getCurrency(currencies, Currency)} {amountPaid.toFixed(2)}
-            </h2>
+      <div className="card-header p-0" id={`headingOne${transactionId}`}>
+        <div className="row">
+          <div className="col-12 col-md-2 data py-3">
+            {moment(createdAt, 'MM/DD/YYYY HH:mm:ss').format('DD/MM/YYYY')}
           </div>
-        </a>
-        <img src={'https://via.placeholder.com/50'} alt="logo" />
-        <div className="card-header-content">
-          <h2 style={{ color: `${setColor(status)}` }}>
-            {getCategoryName(categories, productCategoryId)}
-          </h2>
-          <h4>{transactionDescription.replace(/([a-z])([A-Z])/g, '$1 $2')}</h4>
-          <div className="bottom-time">
-            <h6>
-              {moment(createdAt, 'MM/DD/YYYY HH:mm:ss').format(
-                'MMMM D, YYYY (h:mm a)'
-              )}
-            </h6>
-            <h6>
-              <button>
-                {getProductName(categories, productCategoryId, productId)}
-              </button>
-            </h6>
-            <h6>
-              <button>card payment</button>
-            </h6>
+          <div className="col-12 col-md-2 data py-3">{transactionId}</div>
+          <div className="col-12 col-md-3 data py-3 text-left">
+            {transactionDescription.replace(/([a-z])([A-Z])/g, '$1 $2')}
+          </div>
+          <div className="col-12 col-md-2 data py-3">
+            <span style={{ color: `${setColor(status)}` }}>
+              {getCurrency(currencies, Currency)} {amountPaid.toFixed(2)}
+            </span>
+          </div>
+          <div className="col-12 col-md-2 data py-3">
+            <span style={{ color: `${setColor(status)}` }}>{status}</span>
+          </div>
+          <div className="col-12 col-md-1 data py-3">
+            <a
+              href={href}
+              className="btn-header-link"
+              data-toggle="collapse"
+              data-target={`#collapseOne${transactionId}`}
+              aria-expanded="true"
+              aria-controls={`collapseOne${transactionId}`}
+            >
+              <i className="fa fa-plus"></i>
+            </a>
           </div>
         </div>
       </div>
-
       <div
         id={`collapseOne${transactionId}`}
         className="collapse"

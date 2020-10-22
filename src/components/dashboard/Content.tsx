@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Search } from './Search';
 import { appSelector } from '../../helpers/appSelector';
@@ -21,13 +21,14 @@ interface ContentProps {
 const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
   const { loading } = appSelector((state) => state.dashboard);
   const { categories } = appSelector((state) => state.payment);
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [trans, setTrans] = useState<TransactionHistory[]>(transactions);
   const [defaultTransactions] = useState<TransactionHistory[]>(transactions);
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
   const [active, setActive] = useState<number>(0);
   const [defaultCategories] = useState<Category[]>(categories);
   const [cats, setCats] = useState<Category[]>(categories);
+  const [close, setClose] = useState<boolean>(true);
 
   const onSearch = (e: React.FormEvent<EventTarget>): void => {
     const { value } = e.target as HTMLTextAreaElement;
@@ -58,7 +59,6 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
     }
   };
 
-  // const dropDownRef = React.createRef();
   const dropDownList = (): void => {
     setShowDropDown(!showDropDown);
     setCats(defaultCategories);
@@ -108,6 +108,7 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
     } else {
       setCats(defaultCategories);
     }
+    setClose(false);
   };
 
   const paymentOptions = cats.map((c) => (
@@ -122,7 +123,7 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
   ));
 
   const closeDropDown = (): void => {
-    if (showDropDown) {
+    if (showDropDown && close) {
       setShowDropDown(false);
     }
   };
@@ -130,12 +131,12 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
   return (
     <div className="row" onClick={() => closeDropDown()}>
       <div className="col-12">
-        <div className="top-pane">
+        {/* <div className="top-pane">
           <h2>{t('dashboard.old-user.activity')}</h2>
-          <Search onSearch={onSearch} />
-        </div>
+        </div> */}
         <div className="middle-pane">
           <h2>Transaction History</h2>
+          <Search onSearch={onSearch} />
           <div className="drop-down">
             <button className="btn btn-filter" onClick={() => dropDownList()}>
               Filter Payment Type{' '}
@@ -153,6 +154,7 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
                   id="myInput"
                   className="search-category"
                   onChange={onSearchCategory}
+                  onFocus={() => setClose(false)}
                 />
                 <Link
                   key={0}
@@ -179,18 +181,32 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
               {isEmpty(trans) ? (
                 <EmptyTransaction />
               ) : (
-                <div className="accordion" id="accordionExample">
-                  {trans.map((transaction) =>
-                    !isEmpty(transaction.transactionDetails.data) &&
-                    !isEmpty(
-                      transaction.transactionDetails.data.productCategoryId
-                    ) ? (
-                      <TransHistory
-                        transaction={transaction}
-                        key={transaction.transactionId}
-                      />
-                    ) : null
-                  )}
+                <div className="history-table">
+                  <div className="row history-bg-dark text-center">
+                    <div className="col-12 col-md-2 py-3 heading">Date</div>
+                    <div className="col-12 col-md-2 py-3 heading">
+                      Transaction ID
+                    </div>
+                    <div className="col-12 col-md-3 py-3 heading">
+                      Description
+                    </div>
+                    <div className="col-12 col-md-2 py-3 heading">Amount</div>
+                    <div className="col-12 col-md-2 py-3 heading">Status</div>
+                    <div className="col-12 col-md-1 py-3 heading">Details</div>
+                  </div>
+                  <div className="accordion" id="accordionExample">
+                    {trans.map((transaction) =>
+                      !isEmpty(transaction.transactionDetails.data) &&
+                      !isEmpty(
+                        transaction.transactionDetails.data.productCategoryId
+                      ) ? (
+                        <TransHistory
+                          transaction={transaction}
+                          key={transaction.transactionId}
+                        />
+                      ) : null
+                    )}
+                  </div>
                 </div>
               )}
             </React.Fragment>
