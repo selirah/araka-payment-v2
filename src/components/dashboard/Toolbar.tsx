@@ -17,7 +17,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
       <div className="col-12">
         <div className="toolbar">
           <button
-            className="btn"
+            className="btn add-beneficiary"
             onClick={() => onShowModalClick(modalTypes.ADD_BENEFICIARY)}
           >
             Add beneficiary

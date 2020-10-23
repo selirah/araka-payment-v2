@@ -9,7 +9,7 @@ type Props = {
 
 const DisplayHeader: React.FC<Props> = ({ h2, h4, h6, className }) => (
   <React.Fragment>
-    <div className="display-name text-center">
+    <div className="display-name text-left">
       {h2 !== undefined ? <h2>{h2}</h2> : null}
       {h4 !== undefined ? <h4 className={className}>{h4}</h4> : null}
       {h6 !== undefined ? <h6>{h6}</h6> : null}

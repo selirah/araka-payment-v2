@@ -24,9 +24,9 @@ const Layout: React.FC<Props> = ({ title }) => (
     <Background />
     <Nav />
     <Banner />
-    <Slider />
     <Description />
     <Card />
+    <Slider />
     <Footer />
   </section>
 );

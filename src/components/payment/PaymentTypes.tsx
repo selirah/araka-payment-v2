@@ -57,7 +57,7 @@ const PaymentTypes: React.FC<Props> = ({ categories }) => {
 
   return (
     <React.Fragment>
-      <div className="row display-options justify-content-center">
+      <div className="row display-options justify-content-center all-listings">
         {!isEmpty(categories) ? (
           categories.map((category) => (
             <PaymentType
