@@ -23,7 +23,7 @@ type Props = {
 
 const Providers: React.FC<Props> = ({ products }) => {
   const dispatch: AppDispatch = useDispatch();
-  const { activeProduct, categories, category } = appSelector(
+  const { activeProduct, categories, category /*, products*/ } = appSelector(
     (state) => state.payment
   );
   const [selectedProduct, setSelectedProduct] = useState<number>(activeProduct);

@@ -590,7 +590,7 @@ header {
 }
 
 .card .card-body.wizard-card {
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .wizard-card ul.nav .search-nav input.form-control {

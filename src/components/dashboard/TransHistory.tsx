@@ -59,7 +59,7 @@ export const TransHistory: React.FC<TransHistoryProps> = ({ transaction }) => {
     dispatch(setCategory(getCategory(categories, productCategoryId)));
     dispatch(setProduct(getProduct(categories, productCategoryId, productId)));
     dispatch(setTransaction(transaction));
-    dispatch(increasePaymentStepCustom(4));
+    dispatch(increasePaymentStepCustom(3));
     dispatch(setRepeatTransaction(true));
     delete transaction.transactionDetails.data.productCategoryId;
     delete transaction.transactionDetails.data.productId;
