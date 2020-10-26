@@ -589,6 +589,54 @@ header {
   border-radius: 0 !important;
 }
 
+.card .card-body.wizard-card {
+  overflow-y: auto;
+}
+
+.wizard-card ul.nav .search-nav input.form-control {
+  border-color: #425466;
+  height: 16px;
+  font-size: 16px;
+  border-radius: 16.5px;
+  padding: 20px;
+}
+
+.wizard-card ul.nav.wizard-nav li {
+  display: flex;
+  width: 100%;
+}
+
+.wizard-card ul.nav.wizard-nav li:not(.search-nav) {
+  margin-right: -39px;
+  padding: 10px 25px;
+  border: 1px dashed #fff;
+  border-right: 0 none;
+  border-radius: 10px;
+}
+
+.wizard-card ul.nav.wizard-nav li.search-nav {
+  margin-bottom: 17px;
+}
+
+.wizard-card ul.nav.wizard-nav li a {
+  text-decoration: none;
+  color: #425466;
+}
+
+.wizard-card ul.nav.wizard-nav li.active {
+  background-color: #f55c29;
+  border-color: #ffdbce;
+}
+
+.wizard-card ul.nav.wizard-nav li.active a {
+  color: #fff;
+}
+
+.wizard-card .nav.wizard-nav {
+  margin-top: 60px;
+  max-height: 40vh;
+}
+
 /** End Card Section **/
 
 @keyframes moveInLeft {
@@ -932,7 +980,8 @@ footer .list-inline-item.mdi {
 }
 
 .display-options {
-  padding: 2rem calc(2rem - 0.75rem);
+  padding-left: 1rem;
+  padding-right: 1rem;
   background-color: #fff;
   max-height: 40vh;
   overflow-y: auto;

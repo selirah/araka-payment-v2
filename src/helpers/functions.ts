@@ -83,3 +83,16 @@ export const filterCategoriesById = (
   }
   return category;
 };
+
+export const filterProducts = (categories: Category[]): Product[] => {
+  // check if user wants all products
+  let products: Product[] = [];
+  for (let i = 0; i < categories.length; i++) {
+    const prods = categories[i].products;
+    for (let j = 0; j < prods.length; j++) {
+      products.push(prods[j]);
+    }
+  }
+
+  return products;
+};

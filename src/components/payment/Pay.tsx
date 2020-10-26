@@ -17,9 +17,14 @@ import { secure } from '../../utils/secure';
 const Pay: React.FC = () => {
   const history = useHistory();
   const dispatch: AppDispatch = useDispatch();
-  const { paymentOption, orderData, isSubmit, orderResponse, category, product } = appSelector(
-    (state) => state.payment
-  );
+  const {
+    paymentOption,
+    orderData,
+    isSubmit,
+    orderResponse,
+    category,
+    product,
+  } = appSelector((state) => state.payment);
   const { isAuthenticated } = appSelector((state) => state.auth);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [option, setOption] = useState<string>('');
@@ -42,7 +47,11 @@ const Pay: React.FC = () => {
   const onSubmit = () => {
     switch (isAuthenticated) {
       case true:
-        if (orderData !== undefined && category !== undefined && product !== undefined) {
+        if (
+          orderData !== undefined &&
+          category !== undefined &&
+          product !== undefined
+        ) {
           orderData.data.productCategoryId = category.productCategoryId;
           orderData.data.productId = product.productId;
           dispatch(processOrderRequest(orderData));

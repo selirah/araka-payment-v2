@@ -13,7 +13,6 @@ const ProcessWizard: React.FC = () => {
   const [secondProcess, setSecondProcess] = useState<string>('disabled');
   const [thirdProcess, setThirdProcess] = useState<string>('disabled');
   const [fourthProcess, setFourthProcess] = useState<string>('disabled');
-  const [fifthProcess, setFifthProcess] = useState<string>('disabled');
   const { t } = useTranslation();
 
   const href = '#';
@@ -26,13 +25,11 @@ const ProcessWizard: React.FC = () => {
           setSecondProcess('disabled');
           setThirdProcess('disabled');
           setFourthProcess('disabled');
-          setFifthProcess('disabled');
         } else if (step > 2) {
           setFirstProcess('complete');
-          setSecondProcess('disabled');
+          setSecondProcess('active');
           setThirdProcess('disabled');
           setFourthProcess('disabled');
-          setFifthProcess('disabled');
         }
         break;
       case 2:
@@ -41,19 +38,16 @@ const ProcessWizard: React.FC = () => {
           setSecondProcess('active');
           setThirdProcess('disabled');
           setFourthProcess('disabled');
-          setFifthProcess('disabled');
         } else if (step < 2) {
           setFirstProcess('active');
           setSecondProcess('disabled');
           setThirdProcess('disabled');
           setFourthProcess('disabled');
-          setFifthProcess('disabled');
         } else if (step > 2) {
           setFirstProcess('complete');
           setSecondProcess('complete');
-          setThirdProcess('disabled');
+          setThirdProcess('active');
           setFourthProcess('disabled');
-          setFifthProcess('disabled');
         }
         break;
       case 3:
@@ -62,17 +56,14 @@ const ProcessWizard: React.FC = () => {
           setSecondProcess('complete');
           setThirdProcess('active');
           setFourthProcess('disabled');
-          setFifthProcess('disabled');
         } else if (step < 3) {
           setFirstProcess('complete');
           setSecondProcess('active');
           setThirdProcess('disabled');
           setFourthProcess('disabled');
-          setFifthProcess('disabled');
         } else if (step > 3) {
           setThirdProcess('complete');
           setFourthProcess('disabled');
-          setFifthProcess('disabled');
         }
         break;
       case 4:
@@ -81,34 +72,11 @@ const ProcessWizard: React.FC = () => {
           setSecondProcess('complete');
           setThirdProcess('complete');
           setFourthProcess('active');
-          setFifthProcess('disabled');
         } else if (step < 4) {
           setFirstProcess('complete');
           setSecondProcess('complete');
           setThirdProcess('active');
           setFourthProcess('disabled');
-          setFifthProcess('disabled');
-        } else if (step > 4) {
-          setFirstProcess('complete');
-          setSecondProcess('complete');
-          setThirdProcess('complete');
-          setFourthProcess('complete');
-          setFifthProcess('disabled');
-        }
-        break;
-      case 5:
-        if (step === 5) {
-          setFirstProcess('complete');
-          setSecondProcess('complete');
-          setThirdProcess('complete');
-          setFourthProcess('complete');
-          setFifthProcess('active');
-        } else if (step < 5) {
-          setFirstProcess('complete');
-          setSecondProcess('complete');
-          setThirdProcess('complete');
-          setFourthProcess('active');
-          setFifthProcess('disabled');
         }
         break;
     }
@@ -146,25 +114,13 @@ const ProcessWizard: React.FC = () => {
         </div>
         <Link
           className="bs-wizard-dot"
-          onClick={() => previousStep(2)}
-          style={{ cursor: 'pointer' }}
-          to={href}
-        ></Link>
-        <div className="bs-wizard-info text-center">{t('wizard.provider')}</div>
-      </div>
-      <div className={`col-sm-2 bs-wizard-step text-center ${thirdProcess}`}>
-        <div className="progress">
-          <div className="progress-bar"></div>
-        </div>
-        <Link
-          className="bs-wizard-dot"
           onClick={() => previousStep(3)}
           style={{ cursor: 'pointer' }}
           to={href}
         ></Link>
         <div className="bs-wizard-info text-center">{t('wizard.details')}</div>
       </div>
-      <div className={`col-sm-2 bs-wizard-step text-center ${fourthProcess}`}>
+      <div className={`col-sm-2 bs-wizard-step text-center ${thirdProcess}`}>
         <div className="progress">
           <div className="progress-bar"></div>
         </div>
@@ -176,7 +132,7 @@ const ProcessWizard: React.FC = () => {
         ></Link>
         <div className="bs-wizard-info text-center">{t('wizard.summary')}</div>
       </div>
-      <div className={`col-sm-2 bs-wizard-step text-center ${fifthProcess}`}>
+      <div className={`col-sm-2 bs-wizard-step text-center ${fourthProcess}`}>
         <div className="progress">
           <div className="progress-bar"></div>
         </div>

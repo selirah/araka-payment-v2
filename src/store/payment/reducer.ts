@@ -142,7 +142,7 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
     case PaymentActionTypes.RESET_TRANSACTION:
       return {
         ...state,
-        paymentOption: initialState.isPerformingPayment,
+        paymentOption: initialState.paymentOption,
         product: initialState.product,
         category: initialState.category,
         activeCategory: initialState.activeCategory,

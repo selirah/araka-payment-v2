@@ -10,14 +10,22 @@ import {
   setProduct,
   decreasePaymentStep,
   setFormValidError,
+  setActiveCategory,
+  setCategory,
 } from '../../store/payment';
-import { Product } from 'src/interfaces';
+import { Category, Product } from 'src/interfaces';
 import { isEmpty } from 'src/helpers/isEmpty';
 import { EmptyBox } from './EmptyBox';
 
-const Providers: React.FC = () => {
+type Props = {
+  products: Product[];
+};
+
+const Providers: React.FC<Props> = ({ products }) => {
   const dispatch: AppDispatch = useDispatch();
-  const { activeProduct, products } = appSelector((state) => state.payment);
+  const { activeProduct, categories, category } = appSelector(
+    (state) => state.payment
+  );
   const [selectedProduct, setSelectedProduct] = useState<number>(activeProduct);
 
   useEffect(() => {
@@ -36,6 +44,19 @@ const Providers: React.FC = () => {
   const updateSelectedProduct = (productId: number, product: Product): void => {
     dispatch(setActiveProduct(productId));
     dispatch(setProduct(product));
+    let cat: Category | undefined = undefined;
+    if (category === undefined) {
+      for (let i = 0; i < categories.length; i++) {
+        const prods = categories[i].products;
+        for (let j = 0; j < prods.length; j++) {
+          if (prods[j].productId === product.productId) {
+            cat = categories[i];
+          }
+        }
+      }
+      dispatch(setActiveCategory(cat!.productCategoryId));
+      dispatch(setCategory(cat!));
+    }
   };
 
   useEffect(() => {
@@ -63,7 +84,7 @@ const Providers: React.FC = () => {
         disabled={selectedProduct === 0 ? true : false}
         type="button"
         onContinueProcess={continueProcess}
-        addPrevious={true}
+        addPrevious={false}
         onPreviousProcess={previousProcess}
       />
     </React.Fragment>
