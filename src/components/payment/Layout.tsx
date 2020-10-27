@@ -37,6 +37,7 @@ const Layout: React.FC<Props> = ({ title }) => {
   const [subTitle, setSubTitle] = useState<string>('');
   const [smallText, setSmallText] = useState<string>('');
   const [className, setClassName] = useState<string>('');
+  const [textAlign, setTextAlign] = useState<string>('');
   const [error, setError] = useState<string>('');
   const { t } = useTranslation();
   const [active, setActive] = useState<number>(0);
@@ -55,24 +56,28 @@ const Layout: React.FC<Props> = ({ title }) => {
         setMainTitle('');
         setSubTitle(t('wizard.step-2.subtitle'));
         setSmallText(t('wizard.step-2.small-text'));
+        setTextAlign('text-left');
         setClassName('');
         break;
       case 2:
         setMainTitle('');
         setSubTitle('All Fields are required');
         setSmallText('');
+        setTextAlign('text-center');
         setClassName('valid-info');
         break;
       case 3:
         setMainTitle('');
         setSubTitle('');
         setSmallText('');
+        setTextAlign('');
         setClassName('');
         break;
       case 4:
         setMainTitle('');
         setSubTitle(t('wizard.step-3.subtitle'));
         setSmallText(t('wizard.step-3.small-text'));
+        setTextAlign('text-center');
         setClassName('');
         break;
     }
@@ -192,6 +197,7 @@ const Layout: React.FC<Props> = ({ title }) => {
                     h2={mainTitle}
                     h4={subTitle}
                     h6={smallText}
+                    textAlign={textAlign}
                     className={className}
                   />
                 ) : null}

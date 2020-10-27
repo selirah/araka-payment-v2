@@ -87,7 +87,7 @@ const Pay: React.FC = () => {
         </div>
         <div
           className="col-sm-6 text-center option"
-          onClick={() => selectOption(payOption.MPESA)}
+          // onClick={() => selectOption(payOption.MPESA)}
         >
           <div
             className={`selectable-item ${

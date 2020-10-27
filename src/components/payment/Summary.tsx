@@ -110,6 +110,7 @@ const Summary: React.FC = () => {
     <React.Fragment>
       <div className="container">
         <div className="row summary justify-content-center">
+          <h2>Please Review Your Payment Details</h2>
           <table className="table table-borderless">
             <tbody>
               <tr>

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { Button } from './Button';
+// import { Button } from './Button';
 import { Provider } from './Provider';
 import {
   setActiveProduct,
   increasePaymentStep,
   setProduct,
-  decreasePaymentStep,
+  /*decreasePaymentStep*/
   setFormValidError,
   setActiveCategory,
   setCategory,
@@ -37,9 +37,9 @@ const Providers: React.FC<Props> = ({ products }) => {
     dispatch(increasePaymentStep());
   };
 
-  const previousProcess = (): void => {
-    dispatch(decreasePaymentStep());
-  };
+  // const previousProcess = (): void => {
+  //   dispatch(decreasePaymentStep());
+  // };
 
   const updateSelectedProduct = (productId: number, product: Product): void => {
     dispatch(setActiveProduct(productId));
@@ -56,6 +56,9 @@ const Providers: React.FC<Props> = ({ products }) => {
       }
       dispatch(setActiveCategory(cat!.productCategoryId));
       dispatch(setCategory(cat!));
+    }
+    if (selectedProduct !== 0) {
+      continueProcess();
     }
   };
 
@@ -79,14 +82,14 @@ const Providers: React.FC<Props> = ({ products }) => {
           <EmptyBox />
         )}
       </div>
-      <Button
+      {/* <Button
         title="Continue"
         disabled={selectedProduct === 0 ? true : false}
         type="button"
         onContinueProcess={continueProcess}
         addPrevious={false}
         onPreviousProcess={previousProcess}
-      />
+      /> */}
     </React.Fragment>
   );
 };
