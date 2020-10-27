@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { Beneficiary, Recipient as R } from '../../interfaces';
@@ -16,6 +17,7 @@ import {
 } from '../../store/dashboard';
 import { setRecipientValues } from '../../store/payment';
 import { checkedIcon } from '../../images/Images';
+import { path } from '../../helpers/path';
 
 interface BeneficiariesProps {
   beneficiaries: Beneficiary[];
@@ -25,6 +27,7 @@ export const Beneficiaries: React.FC<BeneficiariesProps> = ({
   beneficiaries,
 }) => {
   const dispatch: AppDispatch = useDispatch();
+  const history = useHistory();
   const { user } = appSelector((state) => state.auth);
   const {
     isUpdatingBeneficiary,
@@ -155,6 +158,7 @@ export const Beneficiaries: React.FC<BeneficiariesProps> = ({
       value: value,
     };
     dispatch(setRecipientValues(payload));
+    history.push(path.payment);
   };
 
   return (

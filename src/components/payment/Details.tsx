@@ -26,25 +26,20 @@ const Details: React.FC = () => {
   } = appSelector((state) => state.payment);
   const locale = localStorage.getItem('i18nextLng');
   const [formError, setFormError] = useState<string>('');
+  const [initialValues, setInitialValues] = useState<any>({});
 
   useEffect(() => {
     localStorage.setItem('isValid', 'false');
     dispatch(setFormValidError(''));
+    if (!isEmpty(setRecipientValues) && setRecipientValues !== undefined) {
+      setInitialValues({
+        BeneficiaryPhoneNumber: setRecipientValues.value,
+        StudentId: setRecipientValues.value,
+        StudentName: setRecipientValues.name,
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const setInitialValues = () => {
-    return {
-      data: {
-        BeneficiaryPhoneNumber:
-          setRecipientValues !== undefined ? setRecipientValues.value : '',
-        StudentId:
-          setRecipientValues !== undefined ? setRecipientValues.value : '',
-        StudentName:
-          setRecipientValues !== undefined ? setRecipientValues.name : '',
-      },
-    };
-  };
 
   const continueProcess = (): void => {
     const isValid = localStorage.getItem('isValid');
@@ -111,7 +106,7 @@ const Details: React.FC = () => {
               schema={JSON.parse(product.form)}
               options={options}
               onChange={onChange}
-              // initialValue={setInitialValues}
+              initialValues={initialValues}
             />
           ) : (
             <EmptyBox />
