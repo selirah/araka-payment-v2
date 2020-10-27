@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { Beneficiary } from '../../interfaces';
+import { Beneficiary, Recipient as R } from '../../interfaces';
 import { Recipient } from './Recipient';
 import { isEmpty } from '../../helpers/isEmpty';
 import { Pagination } from './Pagination';
@@ -14,6 +14,7 @@ import {
   clearSomeBooleans,
   deleteBeneficiaryRequest,
 } from '../../store/dashboard';
+import { setRecipientValues } from '../../store/payment';
 import { checkedIcon } from '../../images/Images';
 
 interface BeneficiariesProps {
@@ -148,6 +149,14 @@ export const Beneficiaries: React.FC<BeneficiariesProps> = ({
     deletedBeneficiary,
   ]);
 
+  const setBeneficiaryValue = (name: string, value: string): void => {
+    const payload: R = {
+      name: name,
+      value: value,
+    };
+    dispatch(setRecipientValues(payload));
+  };
+
   return (
     <React.Fragment>
       <div className="contacts-container">
@@ -158,6 +167,7 @@ export const Beneficiaries: React.FC<BeneficiariesProps> = ({
               key={beneficiary.beneficiaryId}
               onShowModalClick={onShowModalClick}
               onDeleteBenefiaryClick={onDeleteBeneficiaryClick}
+              setBeneficiaryValue={setBeneficiaryValue}
             />
           ) : null
         )}

@@ -16,7 +16,7 @@ const Button: React.FC<Props> = ({
 }) => {
   return (
     <React.Fragment>
-      <SubmitButton className="text-left row  justify-content-center">
+      <SubmitButton className="text-left row mt-4 justify-content-center">
         <button type={type} className="btn" disabled={isSubmitting}>
           {isSubmitting ? (
             <React.Fragment>

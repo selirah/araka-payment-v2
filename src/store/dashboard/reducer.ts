@@ -16,6 +16,7 @@ export const initialState: DashboardState = {
   isEditing: false,
   editAccountError: undefined,
   editAccountSuccess: false,
+  editAccountFailure: false,
   client: undefined,
   clientError: undefined,
   clientLoading: false,
@@ -95,6 +96,8 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
       return {
         ...state,
         isEditing: true,
+        editAccountSuccess: false,
+        editAccountFailure: false,
       };
     case DashboardTypes.EDIT_ACCOUNT_SUCCESS:
       return {
@@ -103,6 +106,7 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         client: action.payload,
         editAccountSuccess: true,
         redirect: true,
+        editAccountFailure: false,
       };
     case DashboardTypes.EDIT_ACCOUNT_FAILURE:
       return {
@@ -110,6 +114,7 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         isEditing: false,
         editAccountError: action.payload,
         editAccountSuccess: false,
+        editAccountFailure: true,
       };
     case DashboardTypes.GET_CURRENT_USER:
       return {

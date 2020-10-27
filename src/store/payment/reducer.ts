@@ -24,6 +24,7 @@ export const initialState: PaymentState = {
   feeLoading: false,
   repeatTransaction: false,
   transaction: undefined,
+  setRecipientValues: undefined,
 };
 
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
@@ -154,6 +155,7 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         isFormValidError: initialState.isFormValidError,
         fee: initialState.fee,
         feeError: initialState.feeError,
+        setRecipientValues: initialState.setRecipientValues,
       };
 
     case PaymentActionTypes.CLEAR_ORDER_ERROR:
@@ -199,6 +201,12 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return {
         ...state,
         transaction: action.payload,
+      };
+
+    case PaymentActionTypes.SET_RECIPIENT_VALUES:
+      return {
+        ...state,
+        setRecipientValues: action.payload,
       };
 
     case AuthActionTypes.DESTROY_STATES:

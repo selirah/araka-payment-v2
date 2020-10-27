@@ -29,6 +29,7 @@ a {
   position: absolute;
   transform: rotate(45deg) translate(4%, -41%);
   width: 80%;
+  z-index: -1;
 }
 /*-- Navbar --*/
 
@@ -272,6 +273,7 @@ header {
 
 .banner .btn-links {
   margin-top: 2.5rem;
+  margin-bottom: 5rem;
 }
 
 .btn-links button {

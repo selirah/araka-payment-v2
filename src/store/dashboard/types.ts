@@ -35,9 +35,9 @@ export enum DashboardTypes {
   DELETE_BENEFICIARY_REQUEST = '@@dashboard/DELETE_BENEFICIARY_REQUEST',
   DELETE_BENEFICIARY_SUCCESS = '@@dashboard/DELETE_BENEFICIARY_SUCCESS',
   DELETE_BENEFICIARY_FAILURE = '@@dashboard/DELETE_BENEFICIARY_FAILURE',
-  DOWNLOAD_RECEIPT_REQUEST = '@@payment/DOWNLOAD_RECEIPT_REQUEST',
-  DOWNLOAD_RECEIPT_SUCCESS = '@@payment/DOWNLOAD_RECEIPT_SUCCESS',
-  DOWNLOAD_RECEIPT_FAILURE = '@@payment/DOWNLOAD_RECEIPT_FAILURE',
+  DOWNLOAD_RECEIPT_REQUEST = '@@dashboard/DOWNLOAD_RECEIPT_REQUEST',
+  DOWNLOAD_RECEIPT_SUCCESS = '@@dashboard/DOWNLOAD_RECEIPT_SUCCESS',
+  DOWNLOAD_RECEIPT_FAILURE = '@@dashboard/DOWNLOAD_RECEIPT_FAILURE',
 }
 
 export type DashboardState = {
@@ -53,6 +53,7 @@ export type DashboardState = {
   readonly isEditing: boolean;
   readonly editAccountError: any;
   readonly editAccountSuccess: boolean;
+  readonly editAccountFailure: boolean;
   readonly redirect: boolean;
   readonly client: Client | undefined;
   readonly clientError: any;

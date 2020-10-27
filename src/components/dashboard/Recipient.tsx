@@ -15,12 +15,14 @@ interface RecipientProps {
   beneficiary: Beneficiary;
   onShowModalClick(type: string, beneficiary: Beneficiary): void;
   onDeleteBenefiaryClick(type: string, beneficiaryId: number): void;
+  setBeneficiaryValue(name: string, value: string | undefined): void;
 }
 
 export const Recipient: React.FC<RecipientProps> = ({
   beneficiary,
   onShowModalClick,
   onDeleteBenefiaryClick,
+  setBeneficiaryValue,
 }) => {
   return (
     <div className="contact">
@@ -40,12 +42,22 @@ export const Recipient: React.FC<RecipientProps> = ({
           </button>
         ) : null}
         {!isEmpty(beneficiary.phoneNumber) ? (
-          <button className="btn btn-primary mr-2">
+          <button
+            className="btn btn-primary mr-2"
+            onClick={() =>
+              setBeneficiaryValue(beneficiary.name, beneficiary.phoneNumber)
+            }
+          >
             <PhoneOutlined /> Topup Airtime
           </button>
         ) : null}
         {!isEmpty(beneficiary.studentId) ? (
-          <button className="btn btn-primary mr-2">
+          <button
+            className="btn btn-primary mr-2"
+            onClick={() =>
+              setBeneficiaryValue(beneficiary.name, beneficiary.studentId)
+            }
+          >
             <RocketOutlined /> Pay Fees
           </button>
         ) : null}

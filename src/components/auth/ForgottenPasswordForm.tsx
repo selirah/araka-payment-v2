@@ -84,9 +84,9 @@ const ForgottenPasswordForm: React.FC = () => {
     <React.Fragment>
       <ContainerFluid>
         <div className="row">
-          <ImageContainerLogin className="col-lg-5 col-md-4 d-none d-md-block"></ImageContainerLogin>
-          <FormContainer className="col-lg-7 col-md-7">
-            <FormBox className="col-sm-5 text-center">
+          <ImageContainerLogin className="col-lg-6 col-md-6 d-none d-md-block"></ImageContainerLogin>
+          <FormContainer className="col-lg-6 col-md-6">
+            <FormBox className="col-sm-7 text-center">
               <LogoContainer className="mt-0">
                 <Link className="navbar-brand" to={path.home}>
                   <img src={logo} width="40" alt="" /> Araka
@@ -121,7 +121,7 @@ const ForgottenPasswordForm: React.FC = () => {
                   processTitle={t('forgotten.processing')}
                 />
                 <TermsContainer className="row">
-                  <div className="col-sm-12 d-flex mt-2">
+                  <div className="col-sm-12 text-center mt-2">
                     <h4>
                       By continuing, you accept our{' '}
                       <Link to="#">Terms of Use</Link> and{' '}

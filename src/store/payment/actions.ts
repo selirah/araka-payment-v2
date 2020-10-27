@@ -6,6 +6,7 @@ import {
   OrderResponse,
   Fee,
   TransactionHistory,
+  Recipient,
 } from '../../interfaces';
 
 export const fetchCategories = () =>
@@ -85,3 +86,6 @@ export const setRepeatTransaction = (payload: boolean) =>
 
 export const setTransaction = (transaction: TransactionHistory) =>
   action(PaymentActionTypes.SET_TRANSACTION, transaction);
+
+export const setRecipientValues = (value: Recipient) =>
+  action(PaymentActionTypes.SET_RECIPIENT_VALUES, value);

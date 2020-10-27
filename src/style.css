@@ -636,12 +636,19 @@ pre code {
 }
 
 @media (min-width: 1200px) {
+  .payment-app .container,
+  .payment-app .container-sm,
+  .payment-app .container-md,
+  .payment-app .container-lg,
+  .payment-app .container-xl {
+    max-width: 1500px;
+  }
   .container,
   .container-sm,
   .container-md,
   .container-lg,
   .container-xl {
-    max-width: 1500px;
+    max-width: 1140px;
   }
 }
 

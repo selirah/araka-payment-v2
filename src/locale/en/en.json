@@ -42,7 +42,7 @@
       "email": "Email",
       "password": "Password",
       "remember": "Remember Me",
-      "forgotten": "Forgotten Password",
+      "forgotten": "Forgotten Password?",
       "btn_title": "Login",
       "note": "Don't have an account?",
       "register_note": "Register here",

@@ -118,9 +118,9 @@ const LoginForm: React.FC<Props> = ({ history }) => {
     <React.Fragment>
       <ContainerFluid>
         <div className="row">
-          <ImageContainerLogin className="col-lg-5 col-md-4 d-none d-md-block"></ImageContainerLogin>
-          <FormContainer className="col-lg-7 col-md-7">
-            <FormBox className="col-sm-5 text-center">
+          <ImageContainerLogin className="col-lg-6 col-md-6 d-none d-md-block"></ImageContainerLogin>
+          <FormContainer className="col-lg-6 col-md-6">
+            <FormBox className="col-sm-7 text-center">
               <LogoContainer className="mt-0">
                 <Link className="navbar-brand" to={path.home}>
                   <img src={logo} width="40" alt="" /> Araka

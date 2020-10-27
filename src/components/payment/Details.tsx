@@ -18,9 +18,12 @@ import { Error } from '../common/Error';
 
 const Details: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { category, product, isFormValidError } = appSelector(
-    (state) => state.payment
-  );
+  const {
+    category,
+    product,
+    isFormValidError,
+    setRecipientValues,
+  } = appSelector((state) => state.payment);
   const locale = localStorage.getItem('i18nextLng');
   const [formError, setFormError] = useState<string>('');
 
@@ -29,6 +32,19 @@ const Details: React.FC = () => {
     dispatch(setFormValidError(''));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const setInitialValues = () => {
+    return {
+      data: {
+        BeneficiaryPhoneNumber:
+          setRecipientValues !== undefined ? setRecipientValues.value : '',
+        StudentId:
+          setRecipientValues !== undefined ? setRecipientValues.value : '',
+        StudentName:
+          setRecipientValues !== undefined ? setRecipientValues.name : '',
+      },
+    };
+  };
 
   const continueProcess = (): void => {
     const isValid = localStorage.getItem('isValid');
@@ -58,6 +74,8 @@ const Details: React.FC = () => {
   };
 
   const onChange = (submission: any) => {
+    submission.data.BeneficiaryPhoneNumber = '1515151515';
+    console.log(submission);
     if (submission.isValid) {
       delete submission.changed;
       secure.set('orderData', submission);
@@ -93,6 +111,7 @@ const Details: React.FC = () => {
               schema={JSON.parse(product.form)}
               options={options}
               onChange={onChange}
+              // initialValue={setInitialValues}
             />
           ) : (
             <EmptyBox />

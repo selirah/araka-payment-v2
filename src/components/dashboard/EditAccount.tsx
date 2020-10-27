@@ -14,9 +14,13 @@ import { Error } from '../common/Error';
 export const EditAccount: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { user } = appSelector((state) => state.auth);
-  const { client, isEditing, editAccountSuccess, redirect } = appSelector(
-    (state) => state.dashboard
-  );
+  const {
+    client,
+    isEditing,
+    editAccountSuccess,
+    redirect,
+    editAccountFailure,
+  } = appSelector((state) => state.dashboard);
   const [values, setValues] = useState<Client>({
     clientId: client!.clientId,
     fullName: client!.fullName,
@@ -68,25 +72,30 @@ export const EditAccount: React.FC = () => {
   };
 
   const onSubmit = (e: React.FormEvent<EventTarget>): void => {
+    setIsError(false);
     e.preventDefault();
-    const payload: Client = {
-      clientId: client!.clientId,
-      fullName: `${values.firstName} ${values.otherName} ${values.lastName}`,
-      firstName: values.firstName,
-      otherName: values.otherName,
-      lastName: values.lastName,
-      dateOfBirth:
-        newDate === '' ? moment(startDate).format('YYYY-MM-DD') : newDate,
-      address: values.address,
-      email: user!.username,
-      country: values.country,
-      city: values.city,
-      phoneNumber: phone,
-      userId: client!.userId,
-      user: client?.user,
-    };
-    // console.log(payload);
-    dispatch(updateUserRequest(payload));
+    if (phone.length < 10) {
+      setIsError(true);
+    } else {
+      const payload: Client = {
+        clientId: client!.clientId,
+        fullName: `${values.firstName} ${values.otherName} ${values.lastName}`,
+        firstName: values.firstName,
+        otherName: values.otherName,
+        lastName: values.lastName,
+        dateOfBirth:
+          newDate === '' ? moment(startDate).format('YYYY-MM-DD') : newDate,
+        address: values.address,
+        email: user!.username,
+        country: values.country,
+        city: values.city,
+        phoneNumber: phone,
+        userId: client!.userId,
+        user: client?.user,
+      };
+      // console.log(payload);
+      dispatch(updateUserRequest(payload));
+    }
   };
 
   useEffect(() => {
@@ -94,11 +103,12 @@ export const EditAccount: React.FC = () => {
     if (redirect) {
       if (editAccountSuccess) {
         dispatch(setEditAccount(false));
-      } else {
-        setIsError(true);
       }
     }
-  }, [isEditing, editAccountSuccess, dispatch, redirect]);
+    if (editAccountFailure) {
+      setIsError(editAccountFailure);
+    }
+  }, [isEditing, editAccountSuccess, dispatch, redirect, editAccountFailure]);
 
   return (
     <div className="row">
@@ -190,9 +200,9 @@ export const EditAccount: React.FC = () => {
                   fontSize: '0.8rem',
                   fontWeight: 'normal',
                 }}
-                inputProps={{
-                  required: true,
-                }}
+                // inputProps={{
+                //   required: true,
+                // }}
               />
               <h2>Country</h2>
               <select

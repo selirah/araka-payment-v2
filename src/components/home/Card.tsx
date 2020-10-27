@@ -53,6 +53,7 @@ const Card: React.FC = () => {
                   Get up and running with <span>ARAKA</span> in as little as 10
                   minutes
                 </p>
+                <br />
                 <button className="btn btn-outline-custom-alt">
                   API Reference
                 </button>

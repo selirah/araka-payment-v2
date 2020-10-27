@@ -12,10 +12,9 @@ export const ContainerFluid = styled.div`
 `;
 
 export const ImageContainerLogin = styled.div`
-  background: url(${display_2}) center no-repeat;
-  background-size: cover;
+  background: url(${display_2}) center no-repeat #fff;
+  background-size: contain;
   min-height: 100vh;
-  border-right: 1px solid #ffdbce;
   box-shadow: 0.5rem 0 1rem rgba(255, 203, 170, 0.25) !important;
 `;
 
@@ -44,7 +43,7 @@ export const ImageRegisterSuccessful = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  background-color: #f4f6f8;
+  background-color: #f2f2f2;
   display: flex;
   justify-content: center;
 `;

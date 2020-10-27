@@ -4,6 +4,7 @@ import {
   OrderResponse,
   Fee,
   TransactionHistory,
+  Recipient,
 } from '../../interfaces';
 
 export enum PaymentActionTypes {
@@ -33,6 +34,7 @@ export enum PaymentActionTypes {
   REQUEST_FEE_FAILURE = '@@payment/REQUEST_FEE_FAILURE',
   REPEAT_TRANSACTION = '@@payment/REPEAT_TRANSACTION',
   SET_TRANSACTION = '@@payment/SET_TRANSACTION',
+  SET_RECIPIENT_VALUES = '@@payment/SET_RECIPIENT_VALUES',
 }
 
 export type PaymentState = {
@@ -57,4 +59,5 @@ export type PaymentState = {
   readonly feeLoading: boolean;
   readonly repeatTransaction: boolean;
   readonly transaction: TransactionHistory | undefined;
+  readonly setRecipientValues: Recipient | undefined;
 };
