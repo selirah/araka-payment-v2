@@ -18,7 +18,7 @@ const Button: React.FC<Props> = ({
   onPreviousProcess,
 }) => {
   return (
-    <div className="row justify-content-end option-submit">
+    <div className="row justify-content-center option-submit">
       {addPrevious ? (
         <button
           type={type}

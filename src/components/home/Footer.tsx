@@ -6,12 +6,12 @@ import { logo, pcesLogo } from '../../images/Images';
 const Footer: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <section className="">
+    <section>
       <div className="container">
         <footer>
           <div className="row">
             <div className="col-md-4">
-              <Link className="footer-brand" to="index.html">
+              <Link className="footer-brand" to="/">
                 <img src={logo} width="40" alt="" />
                 ARAKA
               </Link>

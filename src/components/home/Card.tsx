@@ -12,6 +12,7 @@ const Card: React.FC = () => {
               </div>
               <div className="creative-testi-desc pt-3">
                 <h5 className="my-3">Ready to get Started</h5>
+                <hr />
                 <p className="mb-0 text-muted pb-4">
                   Explore <span>ARAKA</span>, or create an account instantly and
                   start accepting payments
@@ -29,6 +30,7 @@ const Card: React.FC = () => {
               </div>
               <div className="creative-testi-desc pt-3">
                 <h5 className="my-3">Always know what you pay</h5>
+                <hr />
                 <p className="mb-0 text-muted pb-4">
                   Integrated per transaction. No hidden fees
                 </p>
@@ -46,11 +48,11 @@ const Card: React.FC = () => {
               </div>
               <div className="creative-testi-desc pt-3">
                 <h5 className="my-3">Start your integration</h5>
+                <hr />
                 <p className="mb-0 text-muted pb-4">
                   Get up and running with <span>ARAKA</span> in as little as 10
                   minutes
                 </p>
-                <br />
                 <button className="btn btn-outline-custom-alt">
                   API Reference
                 </button>

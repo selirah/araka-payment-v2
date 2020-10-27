@@ -26,7 +26,8 @@ const Providers: React.FC<Props> = ({ products }) => {
   const { activeProduct, categories, category /*, products*/ } = appSelector(
     (state) => state.payment
   );
-  const [selectedProduct, setSelectedProduct] = useState<number>(activeProduct);
+  // const [selectedProduct, setSelectedProduct] = useState<number>(activeProduct);
+  const [, setSelectedProduct] = useState<number>(activeProduct);
 
   useEffect(() => {
     dispatch(setFormValidError(''));
@@ -57,9 +58,7 @@ const Providers: React.FC<Props> = ({ products }) => {
       dispatch(setActiveCategory(cat!.productCategoryId));
       dispatch(setCategory(cat!));
     }
-    if (selectedProduct !== 0) {
-      continueProcess();
-    }
+    continueProcess();
   };
 
   useEffect(() => {
@@ -68,7 +67,7 @@ const Providers: React.FC<Props> = ({ products }) => {
 
   return (
     <React.Fragment>
-      <div className="row display-options justify-content-center">
+      <div className="row display-options">
         {!isEmpty(products) ? (
           products.map((product) => (
             <Provider
