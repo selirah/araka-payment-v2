@@ -85,7 +85,6 @@
     ]
   },
   "devDependencies": {
-    "@types/chart.js": "^2.9.24",
     "redux-devtools-extension": "^2.13.8"
   }
 }

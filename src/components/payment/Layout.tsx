@@ -41,15 +41,20 @@ const Layout: React.FC<Props> = ({ title }) => {
   const [error, setError] = useState<string>('');
   const { t } = useTranslation();
   const [active, setActive] = useState<number>(0);
-  const [products, setProducts] = useState<Product[]>(
-    filterProducts(categoryData)
-  );
+  const [products, setProducts] = useState<Product[]>([]);
   const [defaultCategories] = useState<Category[]>(categories);
+
+  useEffect(() => {
+    const prods = filterProducts(categories);
+    setProducts(prods);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setSpinner(loading);
     setCategoryData(categories);
     setError(orderError);
+    setProducts(filterProducts(categories));
 
     switch (step) {
       case 1:

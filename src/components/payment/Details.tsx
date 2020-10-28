@@ -69,8 +69,6 @@ const Details: React.FC = () => {
   };
 
   const onChange = (submission: any) => {
-    submission.data.BeneficiaryPhoneNumber = '1515151515';
-    console.log(submission);
     if (submission.isValid) {
       delete submission.changed;
       secure.set('orderData', submission);
