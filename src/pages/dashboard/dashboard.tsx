@@ -18,7 +18,13 @@ import { clearAuthState } from '../../store/auth';
 
 const DashboardPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { transactions, loading, currencies, currenciesLoading } = appSelector((state) => state.dashboard);
+  const {
+    transactions,
+    loading,
+    currencies,
+    currenciesLoading,
+    reloadTransaction,
+  } = appSelector((state) => state.dashboard);
 
   useEffect(() => {
     dispatch(clearAuthState());
@@ -26,8 +32,11 @@ const DashboardPage: React.FC = () => {
     if (isEmpty(transactions) && !loading) {
       dispatch(getTransactions());
     }
+    if (reloadTransaction) {
+      dispatch(getTransactions());
+    }
     if (isEmpty(currencies) && !currenciesLoading) {
-      dispatch(getCurrencies())
+      dispatch(getCurrencies());
     }
     toggleSideNav();
     resizeWindow();

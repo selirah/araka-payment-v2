@@ -37,6 +37,7 @@ export const initialState: DashboardState = {
   downloadRecieptSuccess: false,
   isRequestingDownload: false,
   downloadError: undefined,
+  reloadTransaction: false,
 };
 
 const reducer: Reducer<DashboardState> = (state = initialState, action) => {
@@ -62,12 +63,14 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         ...state,
         transactions: action.payload,
         loading: false,
+        reloadTransaction: false,
       };
     case DashboardTypes.GET_TRANSACTIONS_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload,
+        reloadTransaction: false,
       };
     case DashboardTypes.GET_CURRENCIES:
       return {
@@ -193,6 +196,7 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         downloadRecieptError: initialState.downloadRecieptError,
         downloadReceiptStream: initialState.downloadReceiptStream,
         downloadError: initialState.downloadError,
+        reloadTransaction: initialState.reloadTransaction,
       };
 
     case DashboardTypes.UPDATE_BENEFICIARY_REQUEST:
@@ -274,6 +278,11 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         downloadRecieptError: true,
         downloadRecieptSuccess: false,
         downloadError: action.payload,
+      };
+    case DashboardTypes.RELOAD_TRANSACTIONS:
+      return {
+        ...state,
+        reloadTransaction: action.payload,
       };
     default:
       return state;

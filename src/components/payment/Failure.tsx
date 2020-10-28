@@ -1,19 +1,30 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../helpers/appDispatch';
 import { Help } from './Help';
 import { NavLayout } from './NavLayout';
 import { PageContainer } from './PageContainer';
 import { failedIcon } from '../../images/Images';
 import { path } from '../../helpers/path';
+import { reloadTransactions } from '../../store/dashboard';
 
 type Props = {
   title?: string;
 };
 
 const Failure: React.FC<Props> = ({ title }) => {
+  const dispatch: AppDispatch = useDispatch();
+  const history = useHistory();
   const { t } = useTranslation();
+
+  const viewHistory = () => {
+    dispatch(reloadTransactions(true));
+    history.push(path.dashboard);
+  };
+
   return (
     <section>
       <Helmet>
@@ -36,11 +47,9 @@ const Failure: React.FC<Props> = ({ title }) => {
               {/* <h4>{t('wizard.failure.sub3')}</h4> */}
             </div>
             <div className="display-success-failure-cancel-buttons">
-              <Link to={path.dashboard}>
-                <button className="btn btn-history">
-                  {t('wizard.failure.btn')}
-                </button>
-              </Link>
+              <button className="btn btn-history" onClick={() => viewHistory()}>
+                {t('wizard.failure.btn')}
+              </button>
               <Link to={path.payment}>
                 <button className="btn btn-new-payment">
                   {t('wizard.failure.btn2')}

@@ -38,6 +38,7 @@ export enum DashboardTypes {
   DOWNLOAD_RECEIPT_REQUEST = '@@dashboard/DOWNLOAD_RECEIPT_REQUEST',
   DOWNLOAD_RECEIPT_SUCCESS = '@@dashboard/DOWNLOAD_RECEIPT_SUCCESS',
   DOWNLOAD_RECEIPT_FAILURE = '@@dashboard/DOWNLOAD_RECEIPT_FAILURE',
+  RELOAD_TRANSACTIONS = '@@dashboard/RELOAD_TRANSACTIONS',
 }
 
 export type DashboardState = {
@@ -74,4 +75,5 @@ export type DashboardState = {
   readonly downloadRecieptError: boolean;
   readonly downloadReceiptStream: DataStream | undefined;
   readonly downloadError: any;
+  readonly reloadTransaction: boolean;
 };

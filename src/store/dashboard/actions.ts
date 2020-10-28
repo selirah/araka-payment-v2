@@ -98,3 +98,6 @@ export const downloadReceiptSuccess = (data: DataStream) =>
 
 export const downloadReceiptFailure = (error: any) =>
   action(DashboardTypes.DOWNLOAD_RECEIPT_FAILURE, error);
+
+export const reloadTransactions = (reload: boolean) =>
+  action(DashboardTypes.RELOAD_TRANSACTIONS, reload);
