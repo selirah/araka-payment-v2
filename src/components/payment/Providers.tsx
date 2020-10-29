@@ -23,7 +23,7 @@ type Props = {
 
 const Providers: React.FC<Props> = ({ products }) => {
   const dispatch: AppDispatch = useDispatch();
-  const { activeProduct, categories, category /*, products*/ } = appSelector(
+  const { activeProduct, categories /*, products*/ } = appSelector(
     (state) => state.payment
   );
   // const [selectedProduct, setSelectedProduct] = useState<number>(activeProduct);
@@ -46,18 +46,16 @@ const Providers: React.FC<Props> = ({ products }) => {
     dispatch(setActiveProduct(productId));
     dispatch(setProduct(product));
     let cat: Category | undefined = undefined;
-    if (category === undefined) {
-      for (let i = 0; i < categories.length; i++) {
-        const prods = categories[i].products;
-        for (let j = 0; j < prods.length; j++) {
-          if (prods[j].productId === product.productId) {
-            cat = categories[i];
-          }
+    for (let i = 0; i < categories.length; i++) {
+      const prods = categories[i].products;
+      for (let j = 0; j < prods.length; j++) {
+        if (prods[j].productId === product.productId) {
+          cat = categories[i];
         }
       }
-      dispatch(setActiveCategory(cat!.productCategoryId));
-      dispatch(setCategory(cat!));
     }
+    dispatch(setActiveCategory(cat!.productCategoryId));
+    dispatch(setCategory(cat!));
     continueProcess();
   };
 
