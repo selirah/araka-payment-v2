@@ -5540,6 +5540,10 @@ a.badge-dark.focus {
   transition: width 0.6s ease;
 }
 
+.active .progress-bar {
+  transition: width .6s ease .5s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .progress-bar {
     transition: none;

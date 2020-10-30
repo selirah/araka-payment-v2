@@ -1130,10 +1130,9 @@ label.field-required.control-label--hidden {
 }
 
 .option img {
-  width: 4rem;
+  max-width: 9rem;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  filter: grayscale(1);
 }
 
 .option i {
@@ -1252,6 +1251,7 @@ label.field-required.control-label--hidden {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   transition: all .2s ease-out;
+  cursor: pointer;
 }
 
 .selectable-item.selected,

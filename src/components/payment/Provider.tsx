@@ -19,10 +19,11 @@ const Provider: React.FC<Prop> = ({
           className={`selectable-item ${
             activeProduct === product.productId ? 'selected' : null
           }`}
+          onClick={() => updateSelectedProduct(product.productId, product)}
         >
           <div
             className="image-placeholder"
-            onClick={() => updateSelectedProduct(product.productId, product)}
+            
             style={{
               backgroundImage: `url(data:image/jpeg;base64,${product.image})`,
               cursor: 'pointer',
@@ -33,7 +34,7 @@ const Provider: React.FC<Prop> = ({
             alt=""
             onClick={() => updateSelectedProduct(product.productId, product)}
           /> */}
-          <h2 onClick={() => updateSelectedProduct(product.productId, product)}>
+          <h2>
             {product.name}
           </h2>
         </div>

@@ -185,7 +185,6 @@ export const SubmitButton = styled.div`
     cursor: pointer;
     padding-left: 2rem;
     padding-right: 2rem;
-    width: 12rem;
     height: 2.5rem;
     border-right: 0.3125rem;
     background-color: #f4744b;

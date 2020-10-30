@@ -174,16 +174,16 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
               ) : (
                 <div className="history-table">
                   <div className="row history-bg-dark text-center">
-                    <div className="col-12 col-md-2 py-3 heading">Date</div>
-                    <div className="col-12 col-md-2 py-3 heading">
+                    <div className="col-12 col-md-2 py-3 px-1 heading">Date</div>
+                    <div className="col-12 col-md-2 py-3 px-1 heading">
                       Transaction ID
                     </div>
-                    <div className="col-12 col-md-3 py-3 heading">
+                    <div className="col-12 col-md-3 py-3 px-1 heading">
                       Description
                     </div>
-                    <div className="col-12 col-md-2 py-3 heading">Amount</div>
-                    <div className="col-12 col-md-2 py-3 heading">Status</div>
-                    <div className="col-12 col-md-1 py-3 heading">Details</div>
+                    <div className="col-12 col-md-2 py-3 px-1 heading">Amount</div>
+                    <div className="col-12 col-md-2 py-3 px-1 heading">Status</div>
+                    <div className="col-12 col-md-1 py-3 px-1 heading">Details</div>
                   </div>
                   <div className="accordion" id="accordionExample">
                     {trans.map((transaction) =>

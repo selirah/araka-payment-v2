@@ -6,6 +6,7 @@ import { AppDispatch } from '../../helpers/appDispatch';
 import { setPayOption } from '../../store/payment/actions';
 import { payOption } from '../../helpers/constants';
 import { path } from '../../helpers/path';
+import { creditDebitCards, mobileWallets } from '../../images/Images';
 import {
   processOrderRequest,
   decreasePaymentStep,
@@ -71,16 +72,9 @@ const Pay: React.FC = () => {
     <React.Fragment>
       <div className="row display-options justify-content-center">
         <div className="col-sm-6 text-center option">
-          <div
-            className={`selectable-item ${
-              option === payOption.CREDIT_CARD ? 'selected' : null
-            }`}
-          >
-            <i
-              className="mbri-mobile mb-3 text-custom"
-              onClick={() => selectOption(payOption.CREDIT_CARD)}
-            ></i>
-            <h2 onClick={() => selectOption(payOption.CREDIT_CARD)}>
+          <div className={`selectable-item ${option === payOption.CREDIT_CARD ? 'selected' : null}`} onClick={() => selectOption(payOption.CREDIT_CARD)}>
+            <img src={creditDebitCards} alt="Pay with credit or debit card" />
+            <h2>
               Credit/Debit Card
             </h2>
           </div>
@@ -92,14 +86,11 @@ const Pay: React.FC = () => {
           <div
             className={`selectable-item ${
               option === payOption.MPESA ? 'selected' : null
-            }`}
+            }`} /*onClick={() => selectOption(payOption.CREDIT_CARD)} */
           >
-            <i
-              className="mbri-cash mb-3 text-custom"
-              // onClick={() => selectOption(payOption.CREDIT_CARD)}
-            ></i>
-            <h2 /*onClick={() => selectOption(payOption.CREDIT_CARD)} */>
-              mPesa
+            <img src={mobileWallets} alt="Pay with mobile wallet" />
+            <h2>
+              Mobile Wallets
             </h2>
           </div>
         </div>

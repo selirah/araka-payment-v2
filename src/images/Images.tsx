@@ -13,6 +13,8 @@ import vodacom from './logos/vodacom.jpg';
 import mpesa from './logos/mpesa.jpg';
 import orange from './logos/orangemoney.jpg';
 import airtelMoney from './logos/airtelmoney.jpg';
+import creditDebitCards from './logos/visa-master-card.jpg';
+import mobileWallets from './logos/mobile-wallets.jpg';
 import user from './user.svg';
 import successIcon from './transaction/success.svg';
 import failedIcon from './transaction/reject-failed.svg';
@@ -54,6 +56,8 @@ export {
   airtelMoney,
   logo,
   user,
+  creditDebitCards,
+  mobileWallets,
   successIcon,
   failedIcon,
   cancelledIcon,
