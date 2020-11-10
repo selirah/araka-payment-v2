@@ -139,13 +139,13 @@ const Nav: React.FC = () => {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      {t('nav-links.welcome')} &bull; {fname}{' '}
                       <img
                         className="thumbnail-image"
                         src={avatar}
                         alt="user pic"
                         width="42"
                       />
+                      {t('nav-links.welcome')} &bull; {fname}{' '}
                     </a>
                     <div
                       className="dropdown-menu animate slideIn"

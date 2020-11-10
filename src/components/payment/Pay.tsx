@@ -72,11 +72,14 @@ const Pay: React.FC = () => {
     <React.Fragment>
       <div className="row display-options justify-content-center">
         <div className="col-sm-6 text-center option">
-          <div className={`selectable-item ${option === payOption.CREDIT_CARD ? 'selected' : null}`} onClick={() => selectOption(payOption.CREDIT_CARD)}>
+          <div
+            className={`selectable-item ${
+              option === payOption.CREDIT_CARD ? 'selected' : null
+            }`}
+            onClick={() => selectOption(payOption.CREDIT_CARD)}
+          >
             <img src={creditDebitCards} alt="Pay with credit or debit card" />
-            <h2>
-              Credit/Debit Card
-            </h2>
+            <h2>Credit/Debit Card</h2>
           </div>
         </div>
         <div
@@ -89,9 +92,7 @@ const Pay: React.FC = () => {
             }`} /*onClick={() => selectOption(payOption.CREDIT_CARD)} */
           >
             <img src={mobileWallets} alt="Pay with mobile wallet" />
-            <h2>
-              Mobile Wallets
-            </h2>
+            <h2>Mobile Wallets</h2>
           </div>
         </div>
       </div>

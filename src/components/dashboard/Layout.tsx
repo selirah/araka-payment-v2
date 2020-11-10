@@ -16,6 +16,7 @@ import { Spinner } from '../common/Spinner';
 import { isEmpty } from 'src/helpers/isEmpty';
 import { getTransactions } from '../../store/dashboard';
 import { setRepeatTransaction, fetchCategories } from '../../store/payment';
+import { TransactionHistory } from '../../interfaces';
 
 type Props = {
   title?: string;
@@ -28,7 +29,9 @@ export const Layout: React.FC<Props> = ({ title }) => {
   );
   const { categories } = appSelector((state) => state.payment);
   const [page, setPage] = useState<string>(pageSwitch);
-  const [transactionData, setTransactionData] = useState<any[]>(transactions);
+  const [transactionData, setTransactionData] = useState<TransactionHistory[]>(
+    transactions
+  );
   const [spinner, setSpinner] = useState<boolean>(loading);
 
   const refresh = (): void => {
