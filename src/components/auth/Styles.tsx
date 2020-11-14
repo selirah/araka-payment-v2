@@ -13,7 +13,7 @@ export const ContainerFluid = styled.div`
 
 export const ImageContainerLogin = styled.div`
   background: url(${display_2}) center no-repeat #fff;
-  background-size: contain;
+  background-size: cover;
   min-height: 100vh;
   box-shadow: 0.5rem 0 1rem rgba(255, 203, 170, 0.25) !important;
 `;

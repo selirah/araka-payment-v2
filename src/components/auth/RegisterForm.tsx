@@ -153,8 +153,8 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                 <PhoneInput
                   placeholder="Your phone number ..."
                   value={phone}
-                  country="gh"
-                  preferredCountries={['gh', 'cd', 'us', 'gb']}
+                  country="cd"
+                  preferredCountries={['cd', 'gh', 'us', 'gb']}
                   onChange={setPhoneNumber}
                   containerStyle={{ marginBottom: '0.8rem' }}
                   inputStyle={{
