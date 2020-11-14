@@ -16,11 +16,10 @@ const Footer: React.FC = () => {
                 ARAKA
               </Link>
               <address className="mt-3">
-                3rd Floor, Opeibea House,
-                <br />
-                37 Liberation Road,
-                <br />
-                Accra, Ghana
+                6529/9 avenue du plateau<br />
+                Commune de la Gombe<br />
+                Ville Kinshasa<br />
+                Province Kinshasa
               </address>
               <ul className="list-unstyled text-white footer-social list-inline">
                 <li className="list-inline-item">
