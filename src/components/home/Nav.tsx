@@ -145,7 +145,7 @@ const Nav: React.FC = () => {
                         alt="user pic"
                         width="42"
                       />
-                      {t('nav-links.welcome')} &bull; {fname}{' '}
+                      {t('nav-links.welcome')} {fname}{' '}
                     </a>
                     <div
                       className="dropdown-menu animate slideIn"

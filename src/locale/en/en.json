@@ -29,8 +29,10 @@
       "rights": "All rights reserved"
     },
     "home": {
-      "banner-header": "Fast and secure payment platform for the internet",
-      "banner-text": "is a payment platform that allows any registered user makes the payment for goods and services, it also allows merchants registered on it to accept online payments for goods and services with cards and mobile money wallets",
+      "banner-header": "A fast and secure payment platform for the internet",
+      "banner-text": "is a payment platform that allows its registered users to make payment for goods and services – it also works as a market place that allows its registered merchants to accept payments for their goods and services.",
+      "banner-text-a" : "users have the freedom to choose from a wide range of payment methods, from mobile money through",
+      "banner-text-b" : "to bankcards.",
       "and": "and",
       "btn-merchant": "Become a merchant",
       "btn-payments": "Start making payments",

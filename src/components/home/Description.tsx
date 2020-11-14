@@ -15,15 +15,11 @@ const Description: React.FC = () => {
         <div className="row">
           <div className="col-sm-12">
             <p className="lead">
-              We bring together everything that is required to make and accept
-              payments and send payouts globally. <span>Araka</span> powers
-              payments for <span>utility providers</span> &bull;{' '}
-              <span>telecommunication providers</span> &bull;{' '}
-              <span>private merchants</span> and everything in between. We are
-              equipped to assist you begin transacting your business online. We
-              help merchants &bull; <span>beat fraud</span> &bull;{' '}
-              <span>send invoices</span> &bull; create quick{' '}
-              <span>payment pages</span> and som much more!
+              We bring together everything that is required to make and accept payment and payouts globally.
+              <span>Araka</span> powers payments for <span>utility providers</span>; <span>telecommunication providers</span>; <span>merchants</span> and
+              everything in between. We are equipped to assist your business to start transacting online by
+              providing a set of APIs that a very easy to implement. Through Araka, you will <span>beat fraud</span>, <span>send invoices</span>; 
+              create quick <span>payment pages</span> and so much more!
             </p>
             <div className="btn-links">
               <Link to={path.register}>
