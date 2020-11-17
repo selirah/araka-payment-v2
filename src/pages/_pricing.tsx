@@ -60,7 +60,10 @@ const PricingPage: React.FC<PricingProps> = () => {
                                 <span>Araka Users</span>
                               </div>
                             </div>
-                            <div className="generic_price_tag clearfix">
+                            <div
+                              className="generic_price_tag clearfix"
+                              style={{ margin: '50px' }}
+                            >
                               <span className="price">
                                 <span className="currency">3%</span>
                                 <p>on all debit/credit card payments</p>
@@ -96,7 +99,10 @@ const PricingPage: React.FC<PricingProps> = () => {
                               </div>
                             </div>
 
-                            <div className="generic_price_tag clearfix">
+                            <div
+                              className="generic_price_tag clearfix"
+                              style={{ margin: '50px' }}
+                            >
                               <span className="price">
                                 <span className="currency">3%</span>
                                 <p>on all debit/credit card payments</p>
@@ -147,10 +153,23 @@ const PricingPage: React.FC<PricingProps> = () => {
 
                       <div className="col-md-6">
                         <div className="generic_content active clearfix">
-                          <div className="generic_head_price clearfix">
+                          <div
+                            className="generic_head_price clearfix"
+                            style={{
+                              background: '#f55c29',
+                            }}
+                          >
                             <div className="generic_head_content clearfix">
                               <div className="head">
-                                <span>If your customer pays</span>
+                                <span
+                                  style={{
+                                    color: '#fff',
+                                    fontSize: '2rem',
+                                    fontWeight: 300,
+                                  }}
+                                >
+                                  If your customer pays
+                                </span>
                               </div>
                             </div>
 
