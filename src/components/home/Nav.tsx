@@ -67,17 +67,22 @@ const Nav: React.FC = () => {
             >
               <ul className="navbar-nav ml-auto website-navigation">
                 <li className="nav-item">
-                  <Link to="#" className="nav-link">
+                  <a
+                    href="https://araka-merchant.herokuapp.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nav-link"
+                  >
                     {t('nav-links.merchants')}
-                  </Link>
+                  </a>
                 </li>
                 <li className="nav-item">
-                  <Link to="#" className="nav-link">
+                  <Link to={path.pricing} className="nav-link">
                     {t('nav-links.pricing')}
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="#" className="nav-link">
+                  <Link to={path.about} className="nav-link">
                     {t('nav-links.about')}
                   </Link>
                 </li>

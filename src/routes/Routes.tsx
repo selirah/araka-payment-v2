@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 import IndexPage from '../pages/_index';
+import PricingPage from '../pages/_pricing';
+import AboutPage from '../pages/_about';
 import PaymentPage from '../pages/payment/payment';
 import SuccessPage from '../pages/payment/success';
 import FailurePage from '../pages/payment/failure';
@@ -22,6 +24,8 @@ const Routes: React.FC = () => {
     <React.Fragment>
       <Switch>
         <Route exact path={path.home} component={IndexPage} />
+        <Route exact path={path.pricing} component={PricingPage} />
+        <Route exact path={path.about} component={AboutPage} />
         <Route exact path={path.payment} component={PaymentPage} />
         <Route exact path={path.login} component={LoginPage} />
         <Route exact path={path.register} component={RegisterPage} />
