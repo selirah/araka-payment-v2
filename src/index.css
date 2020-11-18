@@ -2344,6 +2344,36 @@ label.field-required.control-label--hidden {
   height: 8rem;
 }
 
+.about-araka h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: rgb(66, 84, 102);
+}
+
+.about-araka p {
+  font-size: 1rem;
+  color: #949dac;
+  font-weight: 500;
+}
+
+.araka-mission {
+  margin-top: 5rem;
+}
+
+.araka-mission h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: rgb(66, 84, 102);
+}
+
+.araka-mission p {
+  font-size: 1rem;
+  color: #949dac;
+  font-weight: 500;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
   .btn-lg {

@@ -12,6 +12,7 @@ import {
   filterCategoriesById,
 } from '../../helpers/functions';
 import { EmptyTransaction } from './EmptyTransaction';
+import { Pagination } from './Pagination';
 
 interface ContentProps {
   transactions: TransactionHistory[];
@@ -28,6 +29,18 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
   const [active, setActive] = useState<number>(0);
   const [defaultCategories] = useState<Category[]>(categories);
   const [cats, setCats] = useState<Category[]>(categories);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [perPage] = useState<number>(10);
+
+  const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
+
+  // Get current beneficiaries
+  const indexOfLastTransaction = currentPage * perPage;
+  const indexOfFirstTransaction = indexOfLastTransaction - perPage;
+  const currrentTransactions: TransactionHistory[] = trans.slice(
+    indexOfFirstTransaction,
+    indexOfLastTransaction
+  );
 
   const onSearch = (e: React.FormEvent<EventTarget>): void => {
     const { value } = e.target as HTMLTextAreaElement;
@@ -174,19 +187,27 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
               ) : (
                 <div className="history-table">
                   <div className="row history-bg-dark text-center">
-                    <div className="col-12 col-md-2 py-3 px-1 heading">Date</div>
+                    <div className="col-12 col-md-2 py-3 px-1 heading">
+                      Date
+                    </div>
                     <div className="col-12 col-md-2 py-3 px-1 heading">
                       Transaction ID
                     </div>
                     <div className="col-12 col-md-3 py-3 px-1 heading">
                       Description
                     </div>
-                    <div className="col-12 col-md-2 py-3 px-1 heading">Amount</div>
-                    <div className="col-12 col-md-2 py-3 px-1 heading">Status</div>
-                    <div className="col-12 col-md-1 py-3 px-1 heading">Details</div>
+                    <div className="col-12 col-md-2 py-3 px-1 heading">
+                      Amount
+                    </div>
+                    <div className="col-12 col-md-2 py-3 px-1 heading">
+                      Status
+                    </div>
+                    <div className="col-12 col-md-1 py-3 px-1 heading">
+                      Details
+                    </div>
                   </div>
                   <div className="accordion" id="accordionExample">
-                    {trans.map((transaction) =>
+                    {currrentTransactions.map((transaction) =>
                       !isEmpty(transaction.transactionDetails.data) &&
                       !isEmpty(
                         transaction.transactionDetails.data.productCategoryId
@@ -197,6 +218,14 @@ const Content: React.FC<ContentProps> = ({ transactions, refresh }) => {
                         />
                       ) : null
                     )}
+                  </div>
+                  <div className="pagination-container">
+                    <Pagination
+                      perPage={perPage}
+                      total={trans.length}
+                      paginate={paginate}
+                      active={currentPage}
+                    />
                   </div>
                 </div>
               )}

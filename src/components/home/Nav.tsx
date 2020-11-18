@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { logo } from '../../images/Images';
 import { path } from '../../helpers/path';
 import { logout } from '../../store/auth/actions';
@@ -20,6 +20,7 @@ const Nav: React.FC = () => {
   const [userDetails] = useState<User | undefined>(user);
   const [fname, setFname] = useState('');
   const { t, i18n } = useTranslation();
+  const location = useLocation().pathname;
 
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
@@ -44,6 +45,8 @@ const Nav: React.FC = () => {
     secure.removeAll();
     dispatch(logout());
   };
+
+  console.log(path.pricing);
 
   return (
     <header>
@@ -77,12 +80,22 @@ const Nav: React.FC = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <Link to={path.pricing} className="nav-link">
+                  <Link
+                    to={path.pricing}
+                    className={`nav-link ${
+                      location === path.pricing ? 'active' : null
+                    }`}
+                  >
                     {t('nav-links.pricing')}
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={path.about} className="nav-link">
+                  <Link
+                    to={path.about}
+                    className={`nav-link ${
+                      location === path.about ? 'active' : null
+                    }`}
+                  >
                     {t('nav-links.about')}
                   </Link>
                 </li>

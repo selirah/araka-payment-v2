@@ -44,6 +44,7 @@ const Details: React.FC = () => {
   const continueProcess = (): void => {
     const isValid = localStorage.getItem('isValid');
     const orderData = secure.get('orderData');
+    console.log(isValid);
     if (isValid === 'true') {
       dispatch(increasePaymentStep());
       dispatch(setFormValidError(''));
