@@ -23,6 +23,7 @@ const Details: React.FC = () => {
     product,
     isFormValidError,
     setRecipientValues,
+    repeatTransaction,
   } = appSelector((state) => state.payment);
   const locale = localStorage.getItem('i18nextLng');
   const [formError, setFormError] = useState<string>('');
@@ -44,7 +45,6 @@ const Details: React.FC = () => {
   const continueProcess = (): void => {
     const isValid = localStorage.getItem('isValid');
     const orderData = secure.get('orderData');
-    console.log(isValid);
     if (isValid === 'true') {
       dispatch(increasePaymentStep());
       dispatch(setFormValidError(''));
@@ -106,6 +106,7 @@ const Details: React.FC = () => {
               options={options}
               onChange={onChange}
               initialValues={initialValues}
+              isRepeat={repeatTransaction}
             />
           ) : (
             <EmptyBox />

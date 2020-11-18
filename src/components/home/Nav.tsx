@@ -46,8 +46,6 @@ const Nav: React.FC = () => {
     dispatch(logout());
   };
 
-  console.log(path.pricing);
-
   return (
     <header>
       <div className="container">
