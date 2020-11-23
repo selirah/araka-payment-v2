@@ -1,11 +1,11 @@
 import React from 'react';
 import { Form } from 'react-formio';
 
-const FormIO = ({ schema, options, onChange, initialValues, isRepeat }) => {
+const FormIO = ({ schema, options, onChange, initialValues }) => {
   return (
     <React.Fragment>
       {
-        isRepeat ? <Form form={schema} options={options} onChange={onChange} submission={{ data: initialValues }} /> : <Form form={schema} options={options} onChange={onChange} /> 
+        initialValues !== undefined ? <Form form={schema} options={options} onChange={onChange} submission={{ data: initialValues }} /> : <Form form={schema} options={options} onChange={onChange} /> 
       }
       
     </React.Fragment>

@@ -23,11 +23,10 @@ const Details: React.FC = () => {
     product,
     isFormValidError,
     setRecipientValues,
-    repeatTransaction,
   } = appSelector((state) => state.payment);
   const locale = localStorage.getItem('i18nextLng');
   const [formError, setFormError] = useState<string>('');
-  const [initialValues, setInitialValues] = useState<any>({});
+  const [initialValues, setInitialValues] = useState<any>(undefined);
 
   useEffect(() => {
     localStorage.setItem('isValid', 'false');
@@ -106,7 +105,6 @@ const Details: React.FC = () => {
               options={options}
               onChange={onChange}
               initialValues={initialValues}
-              isRepeat={repeatTransaction}
             />
           ) : (
             <EmptyBox />
