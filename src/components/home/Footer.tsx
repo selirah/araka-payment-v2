@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { logo, pcesLogo } from '../../images/Images';
+import { logo /*pcesLogo*/ } from '../../images/Images';
+import { path } from '../../helpers/path';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -16,9 +17,12 @@ const Footer: React.FC = () => {
                 ARAKA
               </Link>
               <address className="mt-3">
-                6529/9 avenue du plateau<br />
-                Commune de la Gombe<br />
-                Ville Kinshasa<br />
+                6529/9 avenue du plateau
+                <br />
+                Commune de la Gombe
+                <br />
+                Ville Kinshasa
+                <br />
                 Province Kinshasa
               </address>
               <ul className="list-unstyled text-white footer-social list-inline">
@@ -68,11 +72,11 @@ const Footer: React.FC = () => {
                     <Link to="">{t('footer.contact')}</Link>
                   </li>
                   <li>
-                    <Link to="">{t('footer.terms')}</Link>
+                    <Link to={path.terms}>{t('footer.terms')}</Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="">{t('footer.privacy-policy')}</Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link to="faq">{t('footer.faq')}</Link>
                   </li>
@@ -98,8 +102,9 @@ const Footer: React.FC = () => {
           </div>
           <div className="footer-note text-center">
             {t('footer.copy')}&copy;
-            {new Date().getUTCFullYear()}. ARAKA {t('footer.rights')}. POWERED{' '}
-            BY <img src={pcesLogo} alt="logo" width="70" />
+            {new Date().getUTCFullYear()}. ARAKA {t('footer.rights')}.
+            {/* POWERED{' '}
+            BY <img src={pcesLogo} alt="logo" width="70" /> */}
           </div>
         </footer>
       </div>

@@ -2114,6 +2114,30 @@ label.field-required.control-label--hidden {
   text-align: right;
 }
 
+.terms {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.terms h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  color: rgba(255, 118, 0, 0.95);
+  margin-bottom: 1rem;
+}
+
+.terms h4 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: rgba(255, 118, 0, 0.95);
+  margin-bottom: 1rem;
+}
+
+.terms p {
+  font-size: 0.95rem;
+  color: rgba(66, 84, 102, 0.8);
+}
+
 @media (min-width: 640px) {
   .choices__list--dropdown .choices__item--selectable {
     padding-right: 100px;
