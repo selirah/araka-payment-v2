@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import { SubmitButton, SmallIcon } from './Styles';
 
@@ -35,41 +34,3 @@ const Button: React.FC<Props> = ({
 };
 
 export { Button };
-=======
-import React from 'react';
-import { SubmitButton, SmallIcon } from './Styles';
-
-type Props = {
-  type: any;
-  title: string;
-  isSubmitting: boolean;
-  processTitle: string;
-};
-
-const Button: React.FC<Props> = ({
-  type,
-  title,
-  isSubmitting,
-  processTitle,
-}) => {
-  return (
-    <React.Fragment>
-      <SubmitButton className="text-left row mt-4 justify-content-center">
-        <button type={type} className="btn" disabled={isSubmitting}>
-          {isSubmitting ? (
-            <React.Fragment>
-              <span>{processTitle}</span>
-              <SmallIcon className="fa fa-spinner fa-spin fa-3x fa-fw"></SmallIcon>
-              <span className="sr-only">Loading...</span>
-            </React.Fragment>
-          ) : (
-            <span>{title}</span>
-          )}
-        </button>
-      </SubmitButton>
-    </React.Fragment>
-  );
-};
-
-export { Button };
->>>>>>> 7377281ff8e73210f80e181cbf2709b917949157
