@@ -37,7 +37,30 @@
       "btn-merchant": "Become a merchant",
       "btn-payments": "Start making payments",
       "get_started_paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lectus libero, molestie non vulputate et, tempor id nibh. Sedultrices nec urna sed vestibulum.",
-      "language": "Language"
+      "language": "Language",
+      "terms": {
+        "conditions": "Terms & Conditions",
+        "intro": "We, PROXY PAY, are committed to protecting your privacy and security. Any information you as user on the platform provide is received, stored and managed by us in line with our Privacy and Security policies detailed below. By using our platform, you are agreeing to this policy and the use of cookies in line with the terms in this policy.",
+        "privacy": "Privacy",
+        "privacy_paragraph_1": "This Privacy Policy explains how PROXY PAY collects, stores and uses your personal data when you use PROXY PAY's platform and when you provide us with your personal data. Please read this Privacy Policy carefully.",
+        "privacy_paragraph_2": "By accessing and using the platform, you confirm that you have read, understood and agreed to this Privacy Policy. If you do not agree with any part of this Privacy Policy, you must not use the platform.",
+        "privacy_paragraph_3": "Proxypay SARL, created 28/07/2020, RCCM: KNG/RCCM/20. B.01485, ID nat 01. K6500.N63557S",
+        "privacy_paragraph_4": "We respect your right to privacy and are committed to maintaining it.",
+        "privacy_paragraph_5": "Personal data is only collected if you sign up or register on the platform. This data is only used for the settlement, send invoice and the execution of your enquiries. After the complete settlement of the contract and the complete payment of the services, your data is saved considering storage periods in terms of commercial and tax legislation.",
+        "privacy_paragraph_6": "After the contract settlement, your mobile number and email address is only used for showing the transaction history, newsletter and future sign in. You are able to unsubscribe from the newsletter at any time via the link in the newsletter. We will immediately delete your email address after receiving such notification.",
+        "privacy_paragraph_7": "We only share your information in these circumstances: with agents (including credit reference agencies, credit card clearing agencies transport/logistics companies and our third party customer services provider), if and when our company is ever sold or purchased by another company, or with outside research agencies for research about our own goods and services. We will never pass your data on to a third party for marketing purposes.",
+        "privacy_paragraph_8": "If you choose or are provided with a password, you must treat such information as confidential and you are responsible for any activities that occur. We shall not be liable for any loss or damage which may arise as a result of any failure by you to keep your password or other important information confidential.",
+        "information": "Access to your Information",
+        "information_paragraph_1": "You have the right to view and correct the data we hold on you.",
+        "information_paragraph_2": "You also have the right to stop the collection of this information on you and delete any information we hold on you. If you have any further questions concerning the collection, execution or usage of your personal data, do not hesitate to contact us (info@proxypay.africa). The same applies for correction desires concerning your personal data and for revocation of agreed consents. For our contact details see the imprint page.",
+        "security": "Security",
+        "security_paragraph_1": "At PROXY PAY, we take your online security very seriously. Full details on how we protect the information you provide us with are given below.",
+        "security_paragraph_2": "Our platform uses the latest technologies to provide a safe, secure site for electronic commerce transactions, including secure socket layer (SSL) technology for payment transactions 3DS. SSL is a method for establishing a link between one computer and another safe one.",
+        "security_paragraph_3": "E-mail correspondence is not a secure means of communication as it is a free format text and cannot be encrypted. Although we use advanced security measures to protect your information against loss, misuse and alterations, because of the nature of the internet we cannot guarantee the security of your information provided to us over the internet and cannot be held responsible for this.",
+        "consent": "Your Consent",
+        "consent_paragraph": "By submitting your information, you consent to the use of that information as set out in this Policy. If we change our Privacy Policy we will post the changes on this page, and may place notices on other pages of the website, so that you may be aware of the information we collect and how we use it at all times. Continued use of the service will signify that you agree to any such changes."
+
+      }
     },
     "login": {
       "header": "Login To Your Account",

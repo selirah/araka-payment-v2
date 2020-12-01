@@ -3,5 +3,5 @@ export type Currency = {
   name: string;
   code: string;
   description: null;
-  numericCode: number
+  numericCode: number;
 };

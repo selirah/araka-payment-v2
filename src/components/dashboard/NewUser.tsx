@@ -31,7 +31,8 @@ const NewUser: React.FC = () => {
           <div className="new-user">
             <div className="top-display">
               Hey {fname}! <br />
-              {t('dashboard.new-user.ready')} {t('dashboard.new-user.making-payments')}
+              {t('dashboard.new-user.ready')}{' '}
+              {t('dashboard.new-user.making-payments')}
             </div>
             <div className="payment-button">
               <Link to={path.payment} className="btn btn-make-payment">

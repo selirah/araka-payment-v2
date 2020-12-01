@@ -12,13 +12,17 @@ const Banner: React.FC = () => {
           <div className="col-sm-6">
             <h2 className="banner-text">{t('home.banner-header')}</h2>
             <p className="banner-text">
-              <span>Araka</span> {t('home.banner-text')} <span>Araka</span> {t('home.banner-text-a')} <span>M-PESA</span>{', '}
+              <span>Araka</span> {t('home.banner-text')} <span>Araka</span>{' '}
+              {t('home.banner-text-a')} <span>M-PESA</span>
+              {', '}
               <span>Airtel Money</span> {t('home.and')}{' '}
               <span>Orange Money</span> {t('home.banner-text-b')}
             </p>
             <div className="btn-links banner-text">
               <Link to={path.register}>
-                <button className="btn btn-bc-merchant">{t('home.btn-merchant')}</button>
+                <button className="btn btn-bc-merchant">
+                  {t('home.btn-merchant')}
+                </button>
               </Link>
               <Link to={path.payment}>
                 <button className="btn">{t('home.btn-payments')}</button>

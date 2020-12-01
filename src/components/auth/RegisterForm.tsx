@@ -120,7 +120,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
         <div className="row">
           <ImageContainerLogin className="col-lg-6 col-md-6 d-none d-md-block"></ImageContainerLogin>
           <FormContainer className="col-lg-6 col-md-6">
-            <FormBox className="col-sm-7 text-center">              
+            <FormBox className="col-sm-7 text-center">
               <LogoContainer className="mt-0">
                 <Link className="navbar-brand" to={path.home}>
                   <img src={logo} alt="logo" width="40" /> Araka
@@ -160,14 +160,14 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   inputStyle={{
                     border: '1px solid #fbd5c7',
                     padding: '1.5rem 2.5rem 1.5rem 3.5rem',
-                    fontSize:' 1.2rem',
-                    backgroundColor:' #fff',
+                    fontSize: ' 1.2rem',
+                    backgroundColor: ' #fff',
                     height: '4rem',
                     display: 'block',
                     width: '100%',
                     fontWeight: 400,
                     lineHeight: '1.5',
-                    color: '#495057'
+                    color: '#495057',
                   }}
                   buttonStyle={{
                     border: 'none',
