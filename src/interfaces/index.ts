@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export * from './Category';
 export * from './Product';
 export * from './OrderResponse';
@@ -16,3 +17,23 @@ export * from './Client';
 export * from './Beneficiary';
 export * from './DataStream';
 export * from './Recipient';
+=======
+export * from './Category';
+export * from './Product';
+export * from './OrderResponse';
+export * from './User';
+export * from './Error';
+export * from './Register';
+export * from './Login';
+export * from './ForgottenPassword';
+export * from './ResetPassword';
+export * from './Verification';
+export * from './VerificationResponse';
+export * from './Fee';
+export * from './TransactionHistory';
+export * from './Currency';
+export * from './Client';
+export * from './Beneficiary';
+export * from './DataStream';
+export * from './Recipient';
+>>>>>>> 7377281ff8e73210f80e181cbf2709b917949157

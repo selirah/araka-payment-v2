@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { modalTypes } from '../../helpers/constants';
 import { useTranslation } from 'react-i18next';
@@ -37,3 +38,44 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     </div>
   );
 };
+=======
+import React from 'react';
+import { modalTypes } from '../../helpers/constants';
+import { useTranslation } from 'react-i18next';
+
+interface ToolbarProps {
+  onShowModalClick(type: string): void;
+  onSearch(e: React.FormEvent<EventTarget>): void;
+}
+
+export const Toolbar: React.FC<ToolbarProps> = ({
+  onShowModalClick,
+  onSearch,
+}) => {
+  const { t } = useTranslation();
+  return (
+    <div className="row">
+      <div className="col-12">
+        <div className="toolbar">
+          <button
+            className="btn add-beneficiary"
+            onClick={() => onShowModalClick(modalTypes.ADD_BENEFICIARY)}
+          >
+            Add beneficiary
+          </button>
+          <div className="search">
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control bg-light small"
+                placeholder={t('dashboard.old-user.search')}
+                onChange={onSearch}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+>>>>>>> 7377281ff8e73210f80e181cbf2709b917949157

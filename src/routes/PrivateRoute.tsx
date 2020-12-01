@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { appSelector } from '../helpers/appSelector';
@@ -24,3 +25,31 @@ const PrivateRoute: React.FC<any> = ({ component: Component, ...rest }) => {
 };
 
 export { PrivateRoute };
+=======
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { appSelector } from '../helpers/appSelector';
+import { path } from '../helpers/path';
+
+const PrivateRoute: React.FC<any> = ({ component: Component, ...rest }) => {
+  const auth = appSelector((state) => state.auth);
+  const { isAuthenticated } = auth;
+
+  return (
+    <React.Fragment>
+      <Route
+        {...rest}
+        render={(props) =>
+          isAuthenticated ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to={path.home} />
+          )
+        }
+      />
+    </React.Fragment>
+  );
+};
+
+export { PrivateRoute };
+>>>>>>> 7377281ff8e73210f80e181cbf2709b917949157

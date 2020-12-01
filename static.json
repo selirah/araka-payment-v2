@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "root": "build/",
   "clean_urls": false,
@@ -5,3 +6,12 @@
     "/**": "index.html"
   }
 }
+=======
+{
+  "root": "build/",
+  "clean_urls": false,
+  "routes": {
+    "/**": "index.html"
+  }
+}
+>>>>>>> 7377281ff8e73210f80e181cbf2709b917949157
