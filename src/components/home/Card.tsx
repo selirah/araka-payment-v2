@@ -50,8 +50,7 @@ const Card: React.FC = () => {
                 <h5 className="my-3">Start your integration</h5>
                 <hr />
                 <p className="mb-0 text-muted pb-4">
-                  Get up and running with <span>ARAKA</span> in as little as 10
-                  minutes
+                  Get up and running with <span>ARAKA</span> in just 24 hours!
                 </p>
                 <br />
                 <button className="btn btn-outline-custom-alt">

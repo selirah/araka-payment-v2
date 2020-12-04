@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
                 <br />
                 Ville Kinshasa
                 <br />
-                Province Kinshasa
+                RDC.
               </address>
               <ul className="list-unstyled text-white footer-social list-inline">
                 <li className="list-inline-item">
