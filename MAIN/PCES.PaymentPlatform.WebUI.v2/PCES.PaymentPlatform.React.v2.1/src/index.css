@@ -1353,7 +1353,7 @@ footer .list-inline-item.mdi {
   footer {
     text-align: center;
   }
-  /* 
+
   .btn-links button {
     border-radius: 16.5px;
     padding: 1rem;
@@ -1361,7 +1361,7 @@ footer .list-inline-item.mdi {
     font-size: 0.9rem;
     font-weight: 700;
     width: 100% !important;
-  } */
+  }
 }
 
 /*** WIZARD ******/
@@ -2173,14 +2173,14 @@ label.field-required.control-label--hidden {
     left: 10px;
   }
 
-  .btn-links button {
+  /* .btn-links button {
     border-radius: 16.5px;
     padding: 1rem;
     text-transform: uppercase;
     font-size: 0.9rem;
     font-weight: 700;
     width: 100% !important;
-  }
+  } */
 }
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
