@@ -1353,7 +1353,6 @@ footer .list-inline-item.mdi {
   footer {
     text-align: center;
   }
-<<<<<<< HEAD
 
   .btn-links button {
     border-radius: 16.5px;
@@ -1363,8 +1362,6 @@ footer .list-inline-item.mdi {
     font-weight: 700;
     width: 100% !important;
   }
-=======
->>>>>>> 6f8336e98d310ebf9c640cc190816a3ba4dc6a50
 }
 
 /*** WIZARD ******/
@@ -2175,7 +2172,6 @@ label.field-required.control-label--hidden {
     right: auto;
     left: 10px;
   }
-<<<<<<< HEAD
 
   /* .btn-links button {
     border-radius: 16.5px;
@@ -2185,8 +2181,6 @@ label.field-required.control-label--hidden {
     font-weight: 700;
     width: 100% !important;
   } */
-=======
->>>>>>> 6f8336e98d310ebf9c640cc190816a3ba4dc6a50
 }
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
@@ -2443,7 +2437,6 @@ label.field-required.control-label--hidden {
     margin-bottom: 1rem;
     width: 20vw;
   }
-<<<<<<< HEAD
 
   .btn-links button {
     border-radius: 16.5px;
@@ -2453,8 +2446,6 @@ label.field-required.control-label--hidden {
     font-weight: 700;
     width: 100% !important;
   }
-=======
->>>>>>> 6f8336e98d310ebf9c640cc190816a3ba4dc6a50
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
