@@ -1,0 +1,99 @@
+<template>
+    <div class="page" data-name="account">
+        <div class="page-content accountPage display-flex flex-direction-column">
+            <div class="justify-content-start">
+                <div class="w-30-block block avatar-block text-align-center mx-auto">
+                    <img src={{img}} alt="">
+                </div>
+                {{#js_if "this.userData && this.isLoggedIn"}}
+                <div class="block-title text-align-center text-uppercase">
+                    {{userData.name}}
+                </div>
+                {{ else }}
+                <div class="block-title text-align-center">
+                    Please Login
+                </div>
+                {{/js_if}}
+                <div class="w-80 block mx-auto">
+                    <button class="button button-fill color-denied accountButton">
+                        Araka Personal Account <i class="icon f7-icons">arrow_down</i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="justify-content-center mb-auto">
+                <div class="block-title">Account Services</div>
+                <div class="list servicesList">
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">Pay for Services</div>
+                                </div>
+                                <div class="item-media">
+                                    <i class="icon f7-icons">checkmark_circle</i>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">Money Transfers</div>
+                                </div>
+                                <div class="item-media">
+                                    <i class="icon f7-icons">checkmark_circle</i>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">Receive Payments</div>
+                                </div>
+                                <div class="item-media">
+                                    <i class="icon f7-icons">xmark_circle</i>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">Customer Insights</div>
+                                </div>
+                                <div class="item-media">
+                                    <i class="icon f7-icons">xmark_circle</i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="justify-content-end mb-auto">
+                <div class="w-80 block text-align-center bg-color-brown mx-auto padding-vertical padding-horizontal">
+                    <p class="merchantPromo">
+                        Become a merchant today<br />
+                        and unlock more features
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    import accountImg from '../../images/user.png';
+    import app from '../../js/app.js';
+    import $$ from 'dom7';
+    import axios from 'axios';
+    import dayjs from 'dayjs'; 
+
+    export default {
+        data() {
+            return {
+                img: accountImg,
+                userData: localStorage.getItem('loginData') ? JSON.parse(localStorage.getItem('loginData')) : null,
+                isLoggedIn: localStorage.getItem('isLoggedIn') ? localStorage.getItem('isLoggedIn') : false,
+            }
+        },
+    }
+</script>

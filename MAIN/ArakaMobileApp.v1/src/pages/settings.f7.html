@@ -1,0 +1,137 @@
+<template>
+    <div class="page no-toolbar" data-name="settings">
+        <div class="page-content settingsPage display-flex flex-direction-column">
+
+            <div class="justify-content-start">
+                <div class="display-flex flex-direction-row">
+                    <div class="display-flex flex-direction row mr-auto">
+                        <div class="justify-content-start mb-auto margin-top-30">
+                            <a class="link back setting-container-2 padding-left padding-right elevation-2"
+                                data-transition="f7-push" href="#">
+                                <i class="icon icon-back"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="display-flex flex-direction-column w-50-flex h-12 bg-color-brown ml-auto margin-right margin-top-30 border-radius-10">
+                        <div class="justify-content-center my-auto text-align-center settings-avatar">
+                            <img src={{avatar}} alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="justify-content-center">
+                <div class="display-flex flex-direction-column">
+                    <div class="margin-top block no-margin-bottom">
+                        <div class="card elevation-6 padding-vertical border-radius-10 user-info">
+                            <div class="card-content">
+                                <div class="list no-hairlines-md">
+                                    <ul>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input type="text" placeholder="Username" name="username" id="username" class="padding-vertical">
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input type="text" placeholder="Email" name="email" id="email" class="padding-vertical">
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block no-margin-bottom no-margin-top">
+                        <div class="card elevation-6 border-radius-10 user-account-plan">
+                            <div class="card-content card-content-padding">
+                                <h3 class="no-margin-vertical">ARAKA BASIC</h3>
+                                <p>BECOME AN ARAKA MERCHANT</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="margin-top block no-margin-bottom">
+                        <div class="card elevation-6 border-radius-10 user-auth-type padding-bottom-half">
+                            <div class="card-content card-content-padding">
+                                <div class="list">
+                                    <ul>
+                                        <li class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">
+                                                    <h3 class="item-header no-margin-bottom">DISABLED</h3>
+                                                    <span>BIOMETRIC PASSCODE</span>
+                                                </div>
+                                                <div class="item-after">
+                                                    <i class="icon f7-icons margin-right">lock_circle</i>
+                                                    <label class="toggle toggle-init">
+                                                        <input type="checkbox" name="" id="">
+                                                        <span class="toggle-icon"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="margin-top block">
+                        <div class="card elevation-6 border-radius-10 user-theme-select padding-bottom-half">
+                            <div class="card-content card-content-padding">
+                                <div class="list">
+                                    <ul>
+                                        <li class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">
+                                                    <h3 class="item-header no-margin-bottom">DISABLED</h3>
+                                                    <span>DARK MODE</span>
+                                                </div>
+                                                <div class="item-after">
+                                                    <i class="icon f7-icons margin-right">light_max</i>
+                                                    <label class="toggle toggle-init">
+                                                        <input type="checkbox" name="" id="">
+                                                        <span class="toggle-icon"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="justify-content-end mb-auto margin-bottom">
+                <div class="w-40 mx-auto">
+                    <a href="" class="button button-fill button-round button-raised color-red elevation-6">SIGN OUT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    import avatar from '../images/avatar.png';
+    import app from '../js/app.js';
+    export default {
+        data() {
+            return {
+                avatar: avatar,
+                userData: localStorage.getItem('loginData') ? JSON.parse(localStorage.getItem('loginData')) : null,
+                isLoggedIn: localStorage.getItem('isLoggedIn') ? localStorage.getItem('isLoggedIn') : false,
+            }
+        }
+    }
+</script>

@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCES.PaymentPlatform.DomainClasses", "PCES.PaymentPlatform.DomainClasses\PCES.PaymentPlatform.DomainClasses.csproj", "{30471D83-3057-4A62-9981-77E6FAA190CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCES.PaymentPlatform.Repository", "PCES.PaymentPlatform.Repository\PCES.PaymentPlatform.Repository.csproj", "{A3B8DB14-AE01-4DC4-9091-E6533B3DC7FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCES.PaymentPlatform.Database", "PCES.PaymentPlatform.Database\PCES.PaymentPlatform.Database.csproj", "{2D62DD04-8628-4D42-AE3E-DB2E11CAAC6E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCES.PaymentPlatform.WebAPI", "PCES.PaymentPlatform.WebAPI\PCES.PaymentPlatform.WebAPI.csproj", "{77E2650A-1686-4F06-A6A3-57A9ACAED9A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCES.PaymentPlatform.Quipu", "PCES.PaymentPlatform.Quipu\PCES.PaymentPlatform.Quipu.csproj", "{38744B89-CA23-4C69-978B-0161D5112E6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCES.PaymentPlatform.Utility", "PCES.PaymentPlatform.Utility\PCES.PaymentPlatform.Utility.csproj", "{0FACAC39-0E67-40B1-8F0C-D92D152455D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentPlatform.PaymentHubProxy", "PaymentPlatform.PaymentHubProxy\PaymentPlatform.PaymentHubProxy.csproj", "{CEC4F9BB-CFD4-4E8E-AD77-8A50FBF31B09}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentPlatform.Contracts", "PaymentPlatform.Contracts\PaymentPlatform.Contracts.csproj", "{873B5D7B-A507-44DC-953B-3CBC50DD8624}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30471D83-3057-4A62-9981-77E6FAA190CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30471D83-3057-4A62-9981-77E6FAA190CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30471D83-3057-4A62-9981-77E6FAA190CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30471D83-3057-4A62-9981-77E6FAA190CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3B8DB14-AE01-4DC4-9091-E6533B3DC7FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3B8DB14-AE01-4DC4-9091-E6533B3DC7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3B8DB14-AE01-4DC4-9091-E6533B3DC7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3B8DB14-AE01-4DC4-9091-E6533B3DC7FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D62DD04-8628-4D42-AE3E-DB2E11CAAC6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D62DD04-8628-4D42-AE3E-DB2E11CAAC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D62DD04-8628-4D42-AE3E-DB2E11CAAC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D62DD04-8628-4D42-AE3E-DB2E11CAAC6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77E2650A-1686-4F06-A6A3-57A9ACAED9A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E2650A-1686-4F06-A6A3-57A9ACAED9A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E2650A-1686-4F06-A6A3-57A9ACAED9A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E2650A-1686-4F06-A6A3-57A9ACAED9A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38744B89-CA23-4C69-978B-0161D5112E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38744B89-CA23-4C69-978B-0161D5112E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38744B89-CA23-4C69-978B-0161D5112E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38744B89-CA23-4C69-978B-0161D5112E6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FACAC39-0E67-40B1-8F0C-D92D152455D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FACAC39-0E67-40B1-8F0C-D92D152455D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FACAC39-0E67-40B1-8F0C-D92D152455D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FACAC39-0E67-40B1-8F0C-D92D152455D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEC4F9BB-CFD4-4E8E-AD77-8A50FBF31B09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEC4F9BB-CFD4-4E8E-AD77-8A50FBF31B09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEC4F9BB-CFD4-4E8E-AD77-8A50FBF31B09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEC4F9BB-CFD4-4E8E-AD77-8A50FBF31B09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{873B5D7B-A507-44DC-953B-3CBC50DD8624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{873B5D7B-A507-44DC-953B-3CBC50DD8624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{873B5D7B-A507-44DC-953B-3CBC50DD8624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{873B5D7B-A507-44DC-953B-3CBC50DD8624}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADC461A0-81BD-477C-A01F-62CDC0B80452}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/pcesltd
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PCES.PaymentPlatform.DomainClasses\\PCES.PaymentPlatform.DomainClasses.csproj
+		SccProjectName1 = PCES.PaymentPlatform.DomainClasses
+		SccLocalPath1 = PCES.PaymentPlatform.DomainClasses
+		SccProjectUniqueName2 = PCES.PaymentPlatform.Repository\\PCES.PaymentPlatform.Repository.csproj
+		SccProjectName2 = PCES.PaymentPlatform.Repository
+		SccLocalPath2 = PCES.PaymentPlatform.Repository
+		SccProjectUniqueName3 = PCES.PaymentPlatform.Database\\PCES.PaymentPlatform.Database.csproj
+		SccProjectName3 = PCES.PaymentPlatform.Database
+		SccLocalPath3 = PCES.PaymentPlatform.Database
+		SccProjectUniqueName4 = PCES.PaymentPlatform.WebAPI\\PCES.PaymentPlatform.WebAPI.csproj
+		SccProjectName4 = PCES.PaymentPlatform.WebAPI
+		SccLocalPath4 = PCES.PaymentPlatform.WebAPI
+		SccProjectUniqueName5 = PCES.PaymentPlatform.Quipu\\PCES.PaymentPlatform.Quipu.csproj
+		SccProjectName5 = PCES.PaymentPlatform.Quipu
+		SccLocalPath5 = PCES.PaymentPlatform.Quipu
+		SccProjectUniqueName6 = PCES.PaymentPlatform.Utility\\PCES.PaymentPlatform.Utility.csproj
+		SccProjectName6 = PCES.PaymentPlatform.Utility
+		SccLocalPath6 = PCES.PaymentPlatform.Utility
+		SccProjectUniqueName7 = PaymentPlatform.PaymentHubProxy\\PaymentPlatform.PaymentHubProxy.csproj
+		SccProjectName7 = PaymentPlatform.PaymentHubProxy
+		SccLocalPath7 = PaymentPlatform.PaymentHubProxy
+		SccProjectUniqueName8 = PaymentPlatform.Contracts\\PaymentPlatform.Contracts.csproj
+		SccProjectName8 = PaymentPlatform.Contracts
+		SccLocalPath8 = PaymentPlatform.Contracts
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,124 @@
+<template>
+    <div class="page no-toolbar" data-name="newaccount" id="newAccount">
+        <!-- Top Navbar -->
+        <div class="navbar navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back text-color-brown"></i>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Scrollable page content-->
+        <div class="page-content newAccountPage display-flex flex-direction-column">
+            <div class="text-align-center justify-content-start">
+                <img src={{img}} alt="" class='img-fluid-header'>
+                <p>Awesome, lets get your <br />
+                    account set up!</p>
+            </div>
+
+            <div class="text-align-center justify-content-center">
+                <form class="list form-store-data" id="newUserAccount">
+                    <ul>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-input-wrap">
+                                    <input type="email" name="userEmail" id="userEmail"
+                                        placeholder="johndoe@email.com" class="text-align-center" required validate data-error-message="Please provide a valid email">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-input-wrap">
+                                    <input type="text" name="userPhone" id="userPhone" placeholder="243xxxxxx"
+                                        class="text-align-center" required validate data-error-message="We need your phone number, please!">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-input-wrap">
+                                    <input type="password" name="userPassword" id="userPassword"
+                                        placeholder="[PASSWORD ... ]" class="text-align-center" required validate data-error-message="Please provide a valid email address">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
+            <div class="text-align-center justify-content-end mt-auto mb-auto">
+                <div class="list">
+                    <ul>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-input-wrap">
+                                    <button id="acctButton" class="w-40 button button-large button-round button-fill continue-onboarding mx-auto elevation-10 elevation-pressed-20 elevation-transition ripple disabled" @click="registerAccount">CONTINUE</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    import img from '../images/welcome_araka-alt.png';
+    import app from '../js/app.js';
+    import $$ from 'dom7';
+    import axios from 'axios';
+
+    $$(document).on('page:init', '.page[data-name="newaccount"]', function(e) {
+        $$('input').on('change', function(e) {
+            $$('button#acctButton').removeClass('disabled');
+        });
+    });
+
+    export default {
+        data() {
+            return {
+                img: img,
+            }
+        },
+        methods: {
+            registerAccount() {
+                app.preloader.show('orange');
+                var formData = app.form.convertToData('#newUserAccount');
+                var userName = JSON.parse(localStorage.getItem('f7form-onboardUser'));
+                var registerData = {
+                    Name: userName.userName,
+                    PhoneNumber: formData.userPhone,
+                    EmailAddress: formData.userEmail,
+                    Password: formData.userPassword,
+                    IsBusiness: false
+                };
+                // debugger;
+                axios.post(app.data.apiUrl + 'api/login/register', JSON.stringify(registerData), { headers: { 'Content-Type': 'application/json' } })
+                    .then(function(response) {
+                        console.log(response);
+                        app.preloader.hide();
+                        // localStorage.setItem('')
+                        app.form.removeFormData('#newUserAccount');
+                        app.views.main.router.navigate('/home/');
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                        app.preloader.hide();
+                        app.form.removeFormData('#newUserAccount');
+                        var errToast = app.toast.create({
+                            text: 'Sorry, we could not create your account. Please try again',
+                            closeButton: true,
+                            closeButtonText: 'TRY AGAIN'
+                        });
+                        errToast.open();
+                    })
+
+            }
+        }
+    }
+</script>

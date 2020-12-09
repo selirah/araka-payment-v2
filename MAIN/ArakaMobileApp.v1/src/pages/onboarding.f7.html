@@ -1,0 +1,175 @@
+<template>
+    <div class="page no-toolbar" data-name="onboarding">
+        <!-- Top Navbar -->
+        <!-- <div class="navbar navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link" data-transition="f7-push" href="/welcome/">
+                        <i class="icon icon-back text-color-white"></i>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+            </div>
+        </div> -->
+        <div class="page-content onboarding">
+            <div class="justify-content-start mb-auto margin-top">
+                <a class="link padding-left padding-right"
+                    data-transition="f7-push" href="/welcome/">
+                    <i class="icon icon-back text-color-white"></i>
+                </a>
+            </div>
+            <div data-pagination='{"el": ".swiper-pagination"}' class='swiper-container swiper-init onboarding-swiper padding-top'>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-wrapper">
+                    <div class='swiper-slide'>
+                        <div class="onboarding-1 display-flex flex-direction-column">
+                            <div class="text-align-center justify-content-start">
+                                <img src={{img}} alt="" class='rounded-img'>
+                                <p>So nice to meet you! What do your friends <br />
+                                call you?</p>
+                            </div>
+                            <div class="text-align-center justify-content-center mt-auto">
+                                <form class="list form-store-data" id="onboardUser">
+                                    <ul>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input type="text" name="userName" id="userName" placeholder="[DISPLAY NAME HERE]" class="text-align-center">
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                            <div class="text-align-center justify-content-end mt-auto">
+                                <div class="list">
+                                    <ul>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <button class="w-40 button button-large button-round button-fill color-white text-color-brown continue-onboarding mx-auto  elevation-12 elevation-pressed-22 elevation-transition ripple" @click="continueNav">CONTINUE</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="onboarding-2 display-flex flex-direction-column">
+                            <div class="text-align-center justify-content-start mt-auto">
+                                <img src={{img}} alt="" class='rounded-img'>
+                                <p>Payments, <span class="userName"></span> ! <br />
+                                Which would you like to perform?</p>
+                                <p class="do-later">CAN BE DONE LATER IN HOME</p>
+                            </div>
+                            <div class="text-align-center justify-content-center">
+                                <div class="list">
+                                    <ul>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <button class="button button-large button-raised button-fill color-white text-color-brown ripple actvButton" data-activity="airtime">AIRTIME TOP-UP</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <button class="button button-large button-raised button-fill color-white text-color-brown ripple actvButton" data-activity="transfer">MONEY TRANSFERS</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <button class="button button-large button-raised button-fill color-white text-color-brown ripple actvButton" data-activity="tv">TV SUBSCRIPTIONS</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <button class="button button-large button-raised button-fill color-white text-color-brown ripple actvButton" data-activity="fees">PAY SCHOOL FEES</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="list">
+                                    <ul>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <button class="w-40 button button-round button-fill button-skip mx-auto elevation-12 elevation-pressed-22 elevation-transition ripple" @click="skipNav">SKIP</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="onboarding-3 display-flex flex-direction-column">
+                            <div class="text-align-center justify-content-center mt-auto mb-auto">
+                                <img src={{img}} alt="" class='rounded-img margin-bottom'>
+                                <div class="card">
+                                    <div class="card-content bg-color-white text-color-black padding-vertical padding-horizontal">
+                                        <div class="card-header">Finally, you'll need to create an account to secure your operations</div>
+                                        <div class="card-content-padding">
+                                            <p>
+                                                Creating an account will also give you quick access to your favorite operations, faster transaction times and so much more.
+                                            </p>
+                                            <button class="button button-large button-fill button-round elevation-12 elevation-pressed-22 elevation-transition ripple" @click="gotoAccount">Let's Go</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    import img from '../images/welcome_araka.png';
+    import app from '../js/app.js';
+    import $$ from 'dom7';
+
+    $$(document).on('click', 'button.button.actvButton', function(e) {
+        var activity = $$(this).data('activity');
+        localStorage.setItem('onboardActivity', activity);
+        let swiper = app.swiper.get('.swiper-container');
+        swiper.slideNext();
+        // console.log(app);
+    });
+    export default {
+        data () {
+            return {
+                img: img,
+                user: app.form.getFormData('onboardUser'), 
+            }
+        },
+        methods: {
+            continueNav() {
+                let swiper = this.$f7.swiper.get('.swiper-container');
+                let formData = app.form.getFormData('onboardUser');
+                $$('.userName').text(formData.userName);
+                // console.log(swiper);
+                swiper.slideNext();
+            },
+            skipNav() {
+                let swiper = this.$f7.swiper.get('.swiper-container');
+                swiper.slideNext();
+            },
+            gotoAccount() {
+                app.views.main.router.navigate('/newaccount/')
+            }
+        }
+    };
+</script>

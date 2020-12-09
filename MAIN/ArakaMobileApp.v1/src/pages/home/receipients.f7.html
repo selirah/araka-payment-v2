@@ -1,0 +1,180 @@
+<template>
+    <div class="page" data-name="receipients">
+        <div class="page-content receipientsPage display-flex flex-direction-column">
+
+            <div class="justify-content-start">
+                <div class="block header-content">
+                    <div class="float-left">
+                        <h5 class="pageHeader">Receipients/Beneficiaries</h5>
+                    </div>
+                    <!-- <div class="float-right">
+                        <i class="icon f7-icons">search_circle_fill</i>
+                        <i class="icon f7-icons" @click="newBeneficiary">person_badge_plus_fill</i>
+                    </div> -->
+                </div>
+            </div>
+            <div class="justify-content-center mb-auto">
+                <div class="block-title">Beneficiaries</div>
+                {{#js_if "this.beneficiaries.length > 0"}}
+                <div class="list beneficiariesList">
+                    <ul>
+                        {{#beneficiaries}}
+                        <li class="swipeout">
+                            <div class="swipeout-content">
+                                <div class="item-content">
+                                    <div class="item-media">
+                                        <i class="icon f7-icons">person_fill</i>
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title">
+                                            {{name}}
+                                            <div class="item-header">{{phoneNumber}}</div>
+                                            <div class="item-header">{{email}}</div>
+                                        </div>
+                                        <div class="item-after"><i class="icon f7-icons">money_dollar</i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swipeout-actions-right">
+                               {{#js_if "this.bankAccount"}}
+                                <a class="bg-color-brown text-color-white" @click="loadBankTransfer" data-serviceid={{bankAccount}}><i class="icon f7-icons text-color-white">money_dollar_circle</i> Money Transfer</a>
+                               {{/js_if}}
+                               {{#js_if "this.phoneNumber"}}
+                               <a class="bg-color-brown text-color-white" @click="loadTopup" data-serviceid={{phoneNumber}}><i class="icon f7-icons text-color-white">phone_fill</i> Airtime Topup</a>
+                               {{/js_if}}
+                               {{#js_if "this.studentId"}}
+                               <a class="bg-color-brown text-color-white" @click="loadFees" data-serviceid={{studentId}}><i class="icon f7-icons text-color-white">person_crop_circle</i> School Fees</a>
+                               {{/js_if}}
+                            </div>
+                        </li>
+                        {{/beneficiaries}}
+                    </ul>
+                </div>
+                {{else}}
+                {{#js_if "this.beneficiaries == 'Error: Request failed with status code 401'"}}
+                <div class="justify-content-end mb-auto">
+                    <div class="padding-horizontal">
+                        <div class="card tipsCard mx-auto w-80">
+                            <div class="card-content bg-color-red card-content-padding tipsTricks">
+                                <i class="icon f7-icons">bolt_slash</i>
+                                <h5>Session Terminated</h5>
+                                <p>Please login <a href="#" @click="loginUser">here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{else}}
+                <div class="justify-content-end mb-auto">
+                    <div class="padding-horizontal">
+                        <div class="card tipsCard mx-auto">
+                            <div class="card-content bg-color-red card-content-padding tipsTricks">
+                                <i class="icon f7-icons">bolt_slash</i>
+                                <h5>No Beneficiaries</h5>
+                                <p>Please create a beneficiary <a href="#" @click="newBeneficiary">here</a> or start a
+                                    new transaction <a href="#" @click="newTransaction">here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/js_if}}
+                {{/js_if}}
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    import app from '../../js/app.js';
+    import $$ from 'dom7';
+    import axios from 'axios';
+    import dayjs from 'dayjs';
+    import logo from '../../images/welcome_araka-alt.png';
+    import { Formio } from 'formiojs';
+
+    const getBeneficiaries = async () => {
+        app.preloader.show('orange');
+        let userData = JSON.parse(localStorage.getItem('loginData'));
+        try {
+            const resp = await axios.get(app.data.apiUrl + 'api/payments/beneficiaries/' + userData.userId, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('sessionToken') } });
+            app.preloader.hide();
+            console.log(resp.data);
+            return resp.data
+        } catch (err) {
+            app.preloader.hide();
+            return err;
+        }
+    };
+
+    export default {
+        async data() {
+            return {
+                userData: localStorage.getItem('loginData') ? JSON.parse(localStorage.getItem('loginData')) : null,
+                isLoggedIn: localStorage.getItem('isLoggedIn') ? localStorage.getItem('isLoggedIn') : false,
+                logo: logo,
+                beneficiaries: await getBeneficiaries(),
+            }
+        },
+        methods: {
+            loginUser() {
+                app.views.main.router.navigate('/login-screen/');
+            },
+            newBeneficiary() {
+                app.views.main.router.navigate('/new-beneficiary/');
+            },
+            newTransaction(e) {
+                e.preventDefault();
+                console.log('show action sheet');
+                let payActions = app.actions.create({
+                    buttons: [
+                        {
+                            text: 'School Fees Payment',
+                            onClick: function () {
+                                app.views.main.router.navigate('/fees/')
+                            }
+                        },
+                        {
+                            text: 'TV Subscriptions',
+                            onClick: function () {
+                                app.views.main.router.navigate('/subscriptions/')
+                            }
+                        },
+                        {
+                            text: 'Money Transfers',
+                            onClick: function () {
+                                app.views.main.router.navigate('/transfers/')
+                            }
+                        },
+                        {
+                            text: 'Airtime Topup',
+                            onClick: function () {
+                                app.views.main.router.navigate('/airtime/')
+                            }
+                        },
+                    ]
+                });
+                payActions.open();
+            },
+            loadBankTransfer(e) {
+                e.preventDefault();
+                var serviceId = $$(e.target).data('serviceid');
+                localStorage.setItem('isBeneficiary', true);
+                localStorage.setItem('accountNumber', serviceId);
+                app.views.main.router.navigate('/transfers/')
+
+            },
+            loadTopup(e) {
+                e.preventDefault();
+                var serviceId = $$(e.target).data('serviceid');
+                localStorage.setItem('isBeneficiary', true);
+                localStorage.setItem('phoneNumber', serviceId);
+                app.views.main.router.navigate('/airtime/')
+            },
+            loadFees(e) {
+                e.preventDefault();
+                var serviceId = $$(e.target).data('serviceid');
+                localStorage.setItem('isBeneficiary', true);
+                localStorage.setItem('schoolId', serviceId);
+                app.views.main.router.navigate('/fees/')
+            }
+        }
+    }
+</script>

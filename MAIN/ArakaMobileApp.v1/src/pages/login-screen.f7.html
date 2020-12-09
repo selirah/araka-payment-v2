@@ -1,0 +1,117 @@
+<template>
+    <div class="page no-toolbar login-screen-page" data-name="login-screen-page">
+        <!-- <div class="preloader">
+            <span class="preloader-inner">
+              <span class="preloader-inner-gap"></span>
+              <span class="preloader-inner-left">
+                  <span class="preloader-inner-half-circle"></span>
+              </span>
+              <span class="preloader-inner-right">
+                  <span class="preloader-inner-half-circle"></span>
+              </span>
+            </span>
+          </div> -->
+        <!-- topbar nav for back button -->
+        <div class="navbar navbar-transparent">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back text-color-brown"></i>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- page-content has additional login-screen content -->
+        <div class="page-content login-screen-content">
+            <div class="text-align-center">
+                <img src={{img}} alt="" class='text-align-center img-fluid-header'>
+            </div>
+            <div class="login-screen-title">Welcome!</div>
+            <p class="text-align-center">Let's get you logged in!</p>
+            <!-- Login form -->
+            <form id="loginForm" class="form-store-data">
+                <div class="list">
+                    <ul>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <!-- <div class="item-title item-label">Email</div> -->
+                                <div class="item-input-wrap">
+                                    <input type="email" name="EmailAddress" placeholder="Email" class="text-align-center" required validate data-error-message="Please enter valid email">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <!-- <div class="item-title item-label">Password</div> -->
+                                <div class="item-input-wrap">
+                                    <input type="password" name="Password" placeholder="Password" class="text-align-center" required data-error-message="Please a password to proceed">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+            <div class="list">
+                <ul>
+                    <li class="">
+                        <a id="loginButton" href="" class="w-40 mx-auto button button-raised button-round button-large button-fill elevation-12 elevation-pressed-20 elevation-transition disabled" @click="userLogin">Sign
+                            In</a>
+                    </li>
+                </ul>
+                <div class="block-footer">
+                    By signing in, you are agreeing to our <br />
+                    <strong>Terms of Service</strong> and <strong>Privacy Policy</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    import img from '../images/welcome_araka-alt.png';
+    import app from '../js/app.js';
+    import $$ from 'dom7';
+    import axios from 'axios';
+
+    $$(document).on('page:init', '.page[data-name="login-screen-page"]', function(e) {
+        $$('input').on('change', function(e) {
+            $$('a#loginButton').removeClass('disabled');
+        });
+    });
+
+    export default {
+        data () {
+            return {
+                img: img,
+            }
+        },
+        methods: {
+            userLogin() {
+                app.preloader.show('orange');
+                var formData = app.form.convertToData('#loginForm');
+                axios.post(app.data.apiUrl + 'api/login/', JSON.stringify(formData), { headers: { 'Content-Type': 'application/json' } })
+                    .then(function(response) {
+                        var userData = response.data;
+                        localStorage.setItem('loginData', JSON.stringify(userData));
+                        var sessionToken = userData.token;
+                        localStorage.setItem('sessionToken', sessionToken);
+                        localStorage.setItem('isLoggedIn', true);
+                        app.preloader.hide();
+                        app.views.main.router.navigate('/home/');
+                    }).catch(function(err) {
+                        app.preloader.hide();
+                        app.form.removeFormData('#loginForm');
+                        var errToast = app.toast.create({
+                            text: 'We could not log you in. Please try again',
+                            closeButton: true,
+                            closeButtonText: 'TRY AGAIN'
+                        });
+                        errToast.open();
+                    })
+            }
+        }
+    }
+</script>
