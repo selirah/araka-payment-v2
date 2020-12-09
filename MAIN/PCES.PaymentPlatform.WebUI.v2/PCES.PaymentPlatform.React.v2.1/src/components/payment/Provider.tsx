@@ -23,7 +23,6 @@ const Provider: React.FC<Prop> = ({
         >
           <div
             className="image-placeholder"
-            
             style={{
               backgroundImage: `url(data:image/jpeg;base64,${product.image})`,
               cursor: 'pointer',
@@ -34,9 +33,7 @@ const Provider: React.FC<Prop> = ({
             alt=""
             onClick={() => updateSelectedProduct(product.productId, product)}
           /> */}
-          <h2>
-            {product.name}
-          </h2>
+          <h2>{product.name}</h2>
         </div>
       </div>
     </React.Fragment>
