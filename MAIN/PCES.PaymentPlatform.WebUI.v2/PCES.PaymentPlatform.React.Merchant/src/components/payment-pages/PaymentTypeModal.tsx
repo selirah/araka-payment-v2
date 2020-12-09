@@ -38,7 +38,7 @@ export const PaymentTypeModal: React.FC<PaymentTypeModalProps> = ({
           <span>
             Create a page to sell one or more products from your inventory
           </span>
-          <Button onClick={() => choosePaymentPage()}>Choose</Button>
+          <Button>Choose</Button>
         </div>
       ),
     },

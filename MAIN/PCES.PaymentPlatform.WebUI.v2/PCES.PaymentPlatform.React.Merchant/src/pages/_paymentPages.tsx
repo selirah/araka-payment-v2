@@ -16,6 +16,7 @@ import { FilterMenu } from '../components/payment-pages/FilterMenu';
 import { EmptyBox } from '../components/payment-pages/EmptyBox';
 import { PaymentTypeModal } from '../components/payment-pages/PaymentTypeModal';
 import { FormModal } from '../components/payment-pages/FormModal';
+import { PaymentPage } from '../interfaces';
 
 interface PaymentPagesProps {}
 
@@ -26,16 +27,20 @@ const PaymentPages: React.FC<PaymentPagesProps> = () => {
   const [showFormModal, setShowFormModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
-  const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
-  const [values, setValues] = useState([{ data: '' }]);
-
-  const toggleAdvancedOptions = () => {
-    setShowAdvancedOptions(!showAdvancedOptions);
-  };
-
-  const addField = () => {
-    setValues([...values, { data: '' }]);
-  };
+  const [values] = useState<PaymentPage>({
+    Amount: '',
+    CustomUrl: '',
+    Description: '',
+    EmailAddress: '',
+    Logo: '',
+    PageName: '',
+    PhoneNumber: '',
+    RedirectUrl: '',
+    SuccessMessage: '',
+  });
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [isAmount, setIsAmount] = useState(false);
+  const [isPhone, setIsPhone] = useState(false);
 
   const onTogglePaymentTypeModal = () => {
     setShowPaymentTypeModal(!showPaymentTypeModal);
@@ -44,13 +49,19 @@ const PaymentPages: React.FC<PaymentPagesProps> = () => {
   const onToggleFormModal = () => {
     setShowFormModal(!showFormModal);
     setImageUrl(null);
-    setValues([{ data: '' }]);
-    setShowAdvancedOptions(false);
   };
 
   const choosePaymentPage = () => {
     onTogglePaymentTypeModal();
     onToggleFormModal();
+  };
+
+  const toggleAmount = () => {
+    setIsAmount(!isAmount);
+  };
+
+  const togglePhone = () => {
+    setIsPhone(!isPhone);
   };
 
   const beforeUpload = (file: File): boolean => {
@@ -92,6 +103,10 @@ const PaymentPages: React.FC<PaymentPagesProps> = () => {
       <div className="ant-upload-text">Choose a file</div>
     </div>
   );
+
+  const onSubmit = (values: PaymentPage) => {
+    console.log(values);
+  };
 
   return (
     <Content
@@ -157,10 +172,13 @@ const PaymentPages: React.FC<PaymentPagesProps> = () => {
             onChange={handleChange}
             imageUrl={imageUrl}
             uploadButton={uploadButton}
-            showAdvancedOptions={showAdvancedOptions}
-            toggleAdvancedOptions={toggleAdvancedOptions}
             values={values}
-            addField={addField}
+            onSubmit={onSubmit}
+            isSubmit={isSubmit}
+            isAmount={isAmount}
+            isPhone={isPhone}
+            toggleAmount={toggleAmount}
+            togglePhone={togglePhone}
           />
         </Col>
       </Row>

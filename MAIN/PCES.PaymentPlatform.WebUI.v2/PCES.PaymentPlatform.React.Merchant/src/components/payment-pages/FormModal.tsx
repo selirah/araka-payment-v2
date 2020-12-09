@@ -1,10 +1,7 @@
 import React from 'react';
 import { Modal, Form, Row, Col, Input, Upload, Checkbox, Button } from 'antd';
-import {
-  CaretUpOutlined,
-  CaretDownOutlined,
-  PlusOutlined,
-} from '@ant-design/icons';
+import { PlusOutlined, LoadingOutlined } from '@ant-design/icons';
+import { PaymentPage } from '../../interfaces';
 
 interface FormModalProps {
   showFormModal: boolean;
@@ -13,10 +10,13 @@ interface FormModalProps {
   onChange(info: any): void;
   imageUrl: any;
   uploadButton: React.ReactNode;
-  showAdvancedOptions: boolean;
-  toggleAdvancedOptions(): void;
-  values: any;
-  addField(): void;
+  values: PaymentPage;
+  onSubmit(values: PaymentPage): void;
+  isSubmit: boolean;
+  isAmount: boolean;
+  isPhone: boolean;
+  toggleAmount(): void;
+  togglePhone(): void;
 }
 
 export const FormModal: React.FC<FormModalProps> = ({
@@ -26,74 +26,48 @@ export const FormModal: React.FC<FormModalProps> = ({
   onChange,
   imageUrl,
   uploadButton,
-  showAdvancedOptions,
-  toggleAdvancedOptions,
   values,
-  addField,
+  onSubmit,
+  isSubmit,
+  isAmount,
+  isPhone,
+  toggleAmount,
+  togglePhone,
 }) => {
   const { TextArea } = Input;
-
-  const advancedOptions: React.ReactNode = (
-    <Col span={24}>
-      <Form.Item name="customLink" label="Use your custom link">
-        <Input addonBefore="https://araka.com/pay/" placeholder="[your-url]" />
-      </Form.Item>
-      <Form.Item name="redirectLink" label="Redirect after payment">
-        <Input placeholder="http://redirect-link" />
-      </Form.Item>
-      <Form.Item name="successMessage" label="Success Message">
-        <Input placeholder="Message to show after payment" />
-      </Form.Item>
-      <Form.Item name="emailAddress" label="Send Notifications To">
-        <p style={{ fontSize: '12px', color: '#d9d9d9' }}>
-          If provided, this email address will get transaction notices
-        </p>
-        <Input placeholder="Email address" />
-      </Form.Item>
-      <p style={{ fontWeight: 'bold', fontSize: '14px' }}>
-        Do you want to collect any extra information?
-      </p>
-      {values.map((item: any, i: number) => {
-        return (
-          <Form.Item name="customLink" label={null} key={i}>
-            <Input
-              addonBefore="Name of field"
-              placeholder="e.g ID Number"
-              value={item.data}
-            />
-          </Form.Item>
-        );
-      })}
-      <p
-        style={{
-          textAlign: 'center',
-          fontSize: '12px',
-          fontWeight: 'normal',
-          color: '#1890ff',
-          cursor: 'pointer',
-        }}
-        onClick={() => addField()}
-      >
-        <PlusOutlined /> Add another field
-      </p>
-    </Col>
-  );
-
   return (
     <Modal
       title="New Payment Page"
       maskClosable={false}
       centered
       visible={showFormModal}
-      okText="Create"
-      onOk={() => onToggleFormModal()}
-      onCancel={() => onToggleFormModal()}
+      footer={[
+        <Button
+          form="paymentPageForm"
+          key="submit"
+          htmlType="submit"
+          type="primary"
+          icon={isSubmit ? <LoadingOutlined /> : <PlusOutlined />}
+          disabled={isSubmit ? true : false}
+        >
+          Create Page
+        </Button>,
+        <Button type="default" key="cancel" onClick={() => onToggleFormModal()}>
+          Cancel
+        </Button>,
+      ]}
     >
-      <Form layout="vertical">
+      <Form
+        layout="vertical"
+        name="basic"
+        initialValues={values}
+        onFinish={onSubmit}
+        id="paymentPageForm"
+      >
         <Row>
           <Col span={24}>
             <Form.Item
-              name="pagename"
+              name="PageName"
               label="Page name"
               rules={[{ required: true }]}
             >
@@ -102,7 +76,7 @@ export const FormModal: React.FC<FormModalProps> = ({
           </Col>
           <Col span={24}>
             <Form.Item
-              name="description"
+              name="Description"
               label="Description"
               rules={[{ required: true }]}
             >
@@ -110,13 +84,13 @@ export const FormModal: React.FC<FormModalProps> = ({
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item name="seoimage" label="SEO Image (Optional)">
+            <Form.Item label="SEO Image (Optional)">
               <span>
                 This image will show when the page is shared on social media. We
                 recommend a 1024 x 512 pixel JPG or PNG, under 1 MB in size.
               </span>
               <Upload
-                name="seo"
+                name="Logo"
                 listType="picture-card"
                 className="seo-uploader"
                 showUploadList={false}
@@ -133,31 +107,55 @@ export const FormModal: React.FC<FormModalProps> = ({
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item name="fixedPayment" label={null}>
-              <Checkbox checked>
-                I want a fixed payment amount on this page
-              </Checkbox>
-            </Form.Item>
-            <Form.Item name="collectPhoneNumbers" label={null}>
-              <Checkbox checked>Collect phone numbers on this page</Checkbox>
-            </Form.Item>
+            <Checkbox onChange={toggleAmount}>
+              I want a fixed payment amount on this page
+            </Checkbox>
           </Col>
+          {isAmount ? (
+            <Col span={24}>
+              <Form.Item name="Amount" label="Amount">
+                <Input placeholder="Enter amount" />
+              </Form.Item>
+            </Col>
+          ) : null}
+
           <Col span={24}>
-            <div style={{ textAlign: 'center' }}>
-              <Button onClick={() => toggleAdvancedOptions()}>
-                {showAdvancedOptions ? (
-                  <React.Fragment>
-                    <CaretUpOutlined /> Hide advanced options
-                  </React.Fragment>
-                ) : (
-                  <React.Fragment>
-                    <CaretDownOutlined /> Show advanced options
-                  </React.Fragment>
-                )}
-              </Button>
-            </div>
+            <Checkbox onChange={togglePhone}>
+              Collect phone number on this page
+            </Checkbox>
           </Col>
-          {showAdvancedOptions ? advancedOptions : null}
+          {isPhone ? (
+            <Col span={24}>
+              <Form.Item name="PhoneNumber" label="Phone number">
+                <Input placeholder="Enter phone number" />
+              </Form.Item>
+            </Col>
+          ) : null}
+          <Col span={24}>
+            <Form.Item name="EmailAddress" label="Email address">
+              <Input placeholder="Enter email address" />
+            </Form.Item>
+          </Col>
+
+          <Col span={24}>
+            <Form.Item
+              name="RedirectUrl"
+              label="Redirect after payment"
+              rules={[{ required: true, message: 'Enter a redirect url' }]}
+            >
+              <Input placeholder="http://redirect-link" />
+            </Form.Item>
+            <Form.Item name="CustomUrl" label="Use your custom link">
+              <Input
+                addonBefore="https://araka.com/pay/"
+                placeholder="[your-url]"
+              />
+            </Form.Item>
+
+            <Form.Item name="SuccessMessage" label="Success Message">
+              <Input placeholder="Message to show after payment" />
+            </Form.Item>
+          </Col>
         </Row>
       </Form>
     </Modal>

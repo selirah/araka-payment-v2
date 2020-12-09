@@ -4,6 +4,7 @@ export * from './Error';
 export * from './TransactionHistory';
 export * from './Currency';
 export * from './TransactionTable';
+export * from './PaymentPage';
 export * from './Category';
 export * from './Product';
 export * from './Merchant';
