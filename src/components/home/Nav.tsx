@@ -21,6 +21,7 @@ const Nav: React.FC = () => {
   const [fname, setFname] = useState('');
   const { t, i18n } = useTranslation();
   const location = useLocation().pathname;
+  const MERCHANT_URL = process.env.REACT_APP_MERCHANT_URL;
 
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
@@ -53,6 +54,9 @@ const Nav: React.FC = () => {
           <div className="container">
             <Link className="navbar-brand" to={path.home}>
               <img src={logo} width="40" alt="" /> Araka
+              <div className="proxy">
+                <small className="proxy-pay">by ProxyPay</small>
+              </div>
             </Link>
             <button
               className="navbar-toggler custom-toggler"
@@ -69,7 +73,7 @@ const Nav: React.FC = () => {
               <ul className="navbar-nav ml-auto website-navigation">
                 <li className="nav-item">
                   <a
-                    href="https://araka-merchant.herokuapp.com"
+                    href={`${MERCHANT_URL}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="nav-link"

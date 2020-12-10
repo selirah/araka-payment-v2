@@ -16,3 +16,4 @@ export * from './Client';
 export * from './Beneficiary';
 export * from './DataStream';
 export * from './Recipient';
+export * from './ChangePassword';

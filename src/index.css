@@ -107,6 +107,30 @@ header {
   text-transform: uppercase;
 }
 
+.navbar-brand .proxy {
+  position: absolute;
+  top: 1.8rem;
+  left: 7rem;
+}
+
+.navbar-brand .proxy-pay {
+  font-size: 0.7rem;
+  text-transform: none;
+  font-weight: 700;
+}
+
+.footer-brand .proxy {
+  position: absolute;
+  top: 1rem;
+  left: 5rem;
+}
+
+.footer-brand .proxy-pay {
+  font-size: 0.7rem;
+  text-transform: none;
+  font-weight: 700;
+}
+
 .footer-brand:hover,
 .navbar-brand:hover {
   color: rgb(66, 84, 102);
@@ -1362,6 +1386,17 @@ footer .list-inline-item.mdi {
     font-weight: 700;
     width: 100% !important;
   }
+
+  .navbar-brand .proxy {
+    position: absolute;
+    top: 1.8rem;
+    left: 5rem;
+  }
+  .footer-brand .proxy {
+    position: absolute;
+    top: 5rem;
+    left: 8rem;
+  }
 }
 
 /*** WIZARD ******/
@@ -2445,6 +2480,18 @@ label.field-required.control-label--hidden {
     font-size: 0.9rem;
     font-weight: 700;
     width: 100% !important;
+  }
+
+  .navbar-brand .proxy {
+    position: absolute;
+    top: 1.8rem;
+    left: 5rem;
+  }
+
+  .footer-brand .proxy {
+    position: absolute;
+    top: 1rem;
+    left: 8rem;
   }
 }
 

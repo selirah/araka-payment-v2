@@ -6,6 +6,7 @@ import {
   Client,
   Beneficiary,
   DataStream,
+  ChangePassword,
 } from '../../interfaces';
 
 export const setTopBarHeader = (payload: string) =>
@@ -101,3 +102,12 @@ export const downloadReceiptFailure = (error: any) =>
 
 export const reloadTransactions = (reload: boolean) =>
   action(DashboardTypes.RELOAD_TRANSACTIONS, reload);
+
+export const changePasswordRequest = (payload: ChangePassword) =>
+  action(DashboardTypes.CHANGE_PASSWORD_REQUEST, payload);
+
+export const changePasswordSuccess = () =>
+  action(DashboardTypes.CHANGE_PASSWORD_SUCCESS);
+
+export const changePasswordFailure = (error: any) =>
+  action(DashboardTypes.CHANGE_PASSWORD_FAILURE, error);
