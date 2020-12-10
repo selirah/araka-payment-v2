@@ -45,8 +45,8 @@ export const RecipientForm: React.FC<RecipientFormProps> = ({
       <div className="row justify-content-center">
         <PhoneInput
           value={phone}
-          country="gh"
-          preferredCountries={['gh', 'cd', 'us', 'gb']}
+          country="cd"
+          preferredCountries={['cd', 'gh', 'us', 'gb']}
           onChange={setPhoneNumber}
           inputStyle={{
             paddingLeft: '3rem',

@@ -38,6 +38,9 @@ export const initialState: DashboardState = {
   isRequestingDownload: false,
   downloadError: undefined,
   reloadTransaction: false,
+  isSubmitting: false,
+  success: false,
+  failure: false,
 };
 
 const reducer: Reducer<DashboardState> = (state = initialState, action) => {
@@ -197,6 +200,9 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         downloadReceiptStream: initialState.downloadReceiptStream,
         downloadError: initialState.downloadError,
         reloadTransaction: initialState.reloadTransaction,
+        success: false,
+        isSubmitting: false,
+        failure: false,
       };
 
     case DashboardTypes.UPDATE_BENEFICIARY_REQUEST:
@@ -284,6 +290,30 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         ...state,
         reloadTransaction: action.payload,
       };
+
+    case DashboardTypes.CHANGE_PASSWORD_REQUEST:
+      return {
+        ...state,
+        isSubmitting: true,
+      };
+
+    case DashboardTypes.CHANGE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isSubmitting: false,
+        success: true,
+        failure: false,
+      };
+
+    case DashboardTypes.CHANGE_PASSWORD_FAILURE:
+      return {
+        ...state,
+        isSubmitting: false,
+        error: action.payload,
+        success: false,
+        failure: true,
+      };
+
     default:
       return state;
   }

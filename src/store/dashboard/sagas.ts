@@ -19,9 +19,16 @@ import {
   deleteBeneficiaryFailure,
   downloadReceiptSuccess,
   downloadReceiptFailure,
+  changePasswordSuccess,
+  changePasswordFailure,
 } from './actions';
 import { callApiGet, callApiPost } from '../../utils/api';
-import { Client, Beneficiary, DataStream } from '../../interfaces';
+import {
+  Client,
+  Beneficiary,
+  DataStream,
+  ChangePassword,
+} from '../../interfaces';
 
 function* getTransactions() {
   try {
@@ -195,6 +202,28 @@ function* getDownloadReceiptStream({
   }
 }
 
+function* changePassword({
+  payload,
+}: {
+  type: string;
+  payload: ChangePassword;
+}) {
+  try {
+    const res = yield call(callApiPost, 'login/changepassword', payload);
+    if (res.status === 200) {
+      yield put(changePasswordSuccess());
+    } else {
+      yield put(changePasswordSuccess());
+    }
+  } catch (err) {
+    if (err && err.response) {
+      yield put(changePasswordFailure(err.response.data));
+    } else {
+      yield put(changePasswordFailure('An unknwon error occurred'));
+    }
+  }
+}
+
 function* watchGetTransactions() {
   yield takeEvery(DashboardTypes.GET_TRANSACTIONS, getTransactions);
 }
@@ -234,6 +263,10 @@ function* watchFetchGetDownloadReceiptStream() {
   );
 }
 
+function* watchChangePassword() {
+  yield takeEvery(DashboardTypes.CHANGE_PASSWORD_REQUEST, changePassword);
+}
+
 function* dashboardSaga(): Generator {
   yield all([
     fork(watchGetTransactions),
@@ -245,6 +278,7 @@ function* dashboardSaga(): Generator {
     fork(watchUpdateBeneficiary),
     fork(watchDeleteBeneficiary),
     fork(watchFetchGetDownloadReceiptStream),
+    fork(watchChangePassword),
   ]);
 }
 
