@@ -383,3 +383,18 @@ Response
   entityTag: null;
   enableRangeProcessing: boolean;
 }
+
+17. CHANGE PASSWORD
+/login/changepassword
+
+Request
+-------
+POST
+{
+  OldPassword: string;
+  NewPassword: string;
+}
+
+Response
+--------
+200
