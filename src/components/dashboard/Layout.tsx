@@ -14,15 +14,15 @@ import { Recipients } from './Recipients';
 import { pageTypes } from '../../helpers/constants';
 import { Spinner } from '../common/Spinner';
 import { isEmpty } from 'src/helpers/isEmpty';
-import { getTransactions } from '../../store/dashboard';
 import { setRepeatTransaction, fetchCategories } from '../../store/payment';
 import { TransactionHistory } from '../../interfaces';
 
 type Props = {
   title?: string;
+  refresh(): void;
 };
 
-export const Layout: React.FC<Props> = ({ title }) => {
+export const Layout: React.FC<Props> = ({ title, refresh }) => {
   const dispatch: AppDispatch = useDispatch();
   const { pageSwitch, transactions, loading, editAccount } = appSelector(
     (state) => state.dashboard
@@ -34,12 +34,7 @@ export const Layout: React.FC<Props> = ({ title }) => {
   );
   const [spinner, setSpinner] = useState<boolean>(loading);
 
-  const refresh = (): void => {
-    dispatch(getTransactions());
-  };
-
   useEffect(() => {
-    refresh();
     dispatch(setRepeatTransaction(false));
     if (isEmpty(categories)) {
       dispatch(fetchCategories());
