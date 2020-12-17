@@ -41,7 +41,15 @@ const Cancelled: React.FC<Props> = ({ title }) => {
               <img
                 src={cancelledIcon}
                 width="100"
+<<<<<<< HEAD
                 alt="cancelled"
+=======
+<<<<<<< HEAD
+                alt="cancelled"
+=======
+                alt="failure"
+>>>>>>> master
+>>>>>>> main
                 className="icon-failure"
               />
               {/* <h4>{t('wizard.cancelled.sub3')}</h4> */}

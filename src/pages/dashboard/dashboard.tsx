@@ -26,6 +26,10 @@ const DashboardPage: React.FC = () => {
     reloadTransaction,
   } = appSelector((state) => state.dashboard);
 
+  const refresh = (): void => {
+    dispatch(getTransactions());
+  };
+
   useEffect(() => {
     dispatch(clearAuthState());
     dispatch(setRepeatTransaction(false));
@@ -46,7 +50,7 @@ const DashboardPage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <Layout title="Araka | Dashboard" />;
+  return <Layout title="Araka | Dashboard" refresh={refresh} />;
 };
 
 export default withRouter(DashboardPage);
