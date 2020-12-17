@@ -31,16 +31,6 @@ import * as serviceWorker from './serviceWorker';
 
 const history = createBrowserHistory();
 
-const { host, protocol } = window.location;
-
-if (host !== 'localhost:3000') {
-  if (protocol === 'http:') {
-    window.location.href = window.location.href.replace('http:', 'https:');
-  } else if (protocol === 'https:') {
-    console.log('you are accessing us via our secure HTTPS protocol.');
-  }
-}
-
 declare global {
   interface Window {
     INITIAL_REDUX_STATE: any;
