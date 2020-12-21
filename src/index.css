@@ -27,14 +27,18 @@ a {
 }
 .wireframe {
   position: absolute;
-  transform: rotate(45deg) translate(4%, -41%);
-  width: 80%;
+  transform: rotate(45deg) translate(-57%, 1%);
+  width: 1800px;
   z-index: -1;
 }
 /*-- Navbar --*/
 
 header {
   background: #fff;
+}
+
+.home-page header {
+  background-color: transparent;
 }
 
 .navbar-alt {
@@ -266,8 +270,9 @@ header {
 /** Banner **/
 .banner {
   position: relative;
-  min-height: 65vh;
-  background-size: cover;
+  min-height: 55vh;
+  background-size: center;
+  background-repeat: no-repeat;
   background-position: center;
   padding: 7rem 0 0 0;
 }
@@ -277,8 +282,7 @@ header {
   color: #4a4a4a;
   margin-bottom: 0;
   font-weight: 700;
-  letter-spacing: -1.9px;
-  line-height: 54px;
+  line-height: 1.2;
 }
 
 .banner p {
@@ -297,7 +301,11 @@ header {
 
 .banner .btn-links {
   margin-top: 2.5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
+}
+
+.coming-soon {
+  margin-bottom: 3rem;
 }
 
 .btn-links button {
@@ -615,6 +623,7 @@ header {
 .more-features-box {
   padding: 2rem;
   box-shadow: 0 2px 10px 0 rgba(255, 96, 0, 0.06);
+  margin-bottom: 20px;
 }
 
 .more-features-box i {
@@ -696,6 +705,7 @@ header {
   border: 1px solid #ffdbce;
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(255, 203, 170, 0.25) !important;
+  margin-bottom: 35px;
 }
 
 #generic_price_table .generic_content .generic_head_price {
@@ -2457,10 +2467,6 @@ label.field-required.control-label--hidden {
     font-size: 1.8rem;
   }
 
-  .banner h2 {
-    font-size: 2rem;
-  }
-
   .btn-links button {
     display: block;
     margin-bottom: 1rem;
@@ -2468,9 +2474,7 @@ label.field-required.control-label--hidden {
   }
 
   .clients-section button {
-    display: block;
     margin-bottom: 1rem;
-    width: 20vw;
   }
 
   .btn-links button {
@@ -2496,23 +2500,43 @@ label.field-required.control-label--hidden {
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 771px) {
+  .wireframe {
+    display: none;
+  }
+  .banner {
+    background-image: none;
+  }
+  .navbar-custom {
+    height: auto;
+  }
+  .navbar-custom .btn-outline-custom {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .navbar-custom .navbar-nav.website-navigation .nav-link.dropdown-toggle {
+    float: left;
+  }
+  .navbar-custom .navbar-nav.website-navigation .nav-link.dropdown-toggle + div {
+    border: 0;
+    position: relative;
+    top: 0;
+    right: auto;
+    float: left;
+  }
+  .banner {
+    min-height: auto;
+  }
   .btn-lg {
     font-size: 1.8rem;
   }
   .banner h2 {
-    font-size: 2rem;
+    font-size: 44px;
   }
-
   .btn-links button {
-    display: block;
     margin-bottom: 1rem;
-    width: 20vw;
   }
-
   .clients-section button {
-    display: block;
     margin-bottom: 1rem;
-    width: 20vw;
   }
 }

@@ -5,7 +5,7 @@ const Card: React.FC = () => {
     <section className="card-section">
       <div className="container">
         <div className="row vertical-content">
-          <div className="col-sm-4">
+          <div className="col-sm-12 col-md-4">
             <div className="more-features-box features-border bg-white rounded text-left p-4">
               <div className="more-features-icon">
                 <i className="mbri-speed h1 mb-3 text-custom"></i>
@@ -23,7 +23,7 @@ const Card: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-12 col-md-4">
             <div className="more-features-box features-border bg-white rounded text-left p-4">
               <div className="more-features-icon">
                 <i className="mbri-cust-feedback h1 mb-3 text-custom"></i>
@@ -41,7 +41,7 @@ const Card: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-12 col-md-4">
             <div className="more-features-box features-border bg-white rounded text-left p-4">
               <div className="more-features-icon">
                 <i className="mbri-timer h1 mb-3 text-custom"></i>
