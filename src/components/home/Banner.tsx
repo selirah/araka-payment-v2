@@ -2,6 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { path } from '../../helpers/path';
+import { phone } from '../../images/Images';
+import { comingSoonPlayStore } from '../../images/Images';
 
 const Banner: React.FC = () => {
   const { t } = useTranslation();
@@ -9,7 +11,7 @@ const Banner: React.FC = () => {
     <section className="banner">
       <div className="container">
         <div className="row">
-          <div className="col-sm-6">
+          <div className="col-sm-12 col-md-8">
             <h2 className="banner-text">{t('home.banner-header')}</h2>
             <p className="banner-text">
               <span>Araka</span> {t('home.banner-text')} <span>Araka</span>{' '}
@@ -28,8 +30,13 @@ const Banner: React.FC = () => {
                 <button className="btn">{t('home.btn-payments')}</button>
               </Link>
             </div>
+            <div className="coming-soon">
+              <img src={comingSoonPlayStore}  className="comingSoon" width="400" alt="Coming soon on App Play Store" />
+            </div>
           </div>
-          <div className="col-sm-6"></div>
+          <div className="col-sm-12 col-md-4 d-none-sm">
+            <img src={phone} className="wireframe" alt="" />
+          </div>
         </div>
       </div>
     </section>

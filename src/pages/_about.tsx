@@ -21,27 +21,24 @@ const AboutPage: React.FC<AboutProps> = () => {
         <div className="container">
           <div className="row vertical-content">
             <div className="col-12">
-              <div className="col-6 mx-auto">
-                <div className="about-araka text-center">
-                  <h2>About ARAKA</h2>
-                  <p>
-                    We are a Congolese based multi-application and multi-channel
-                    electronic payment platform of the notch customer experience
-                    via our easy to use customer and enterprise interface
-                  </p>
-                  <p>
-                    We specialize in the aggregation of payment systems and
-                    offer a unique electronic KYC platform that allows merchants
-                    to onboard themselves in very few steps. We are proud to be
-                    participating in finacial inclusion by providing affordable
-                    services to our partners and users.
-                  </p>
-                </div>
+              <div className="about-araka text-left">
+                <h2>About ARAKA</h2>
+                <p>
+                  We are a Congolese based multi-application and multi-channel
+                  electronic payment platform of the notch customer experience
+                  via our easy to use customer and enterprise interface
+                </p>
+                <p>
+                  We specialize in the aggregation of payment systems and
+                  offer a unique electronic KYC platform that allows merchants
+                  to onboard themselves in very few steps. We are proud to be
+                  participating in finacial inclusion by providing affordable
+                  services to our partners and users.
+                </p>
               </div>
             </div>
             <div className="col-12">
-              <div className="col-6 mx-auto">
-                <div className="araka-mission text-center">
+              <div className="araka-mission text-left">
                   <h2>Our Mission</h2>
                   <p>
                     is to become the best and most affordable payment and
@@ -50,7 +47,6 @@ const AboutPage: React.FC<AboutProps> = () => {
                     easy to use customer and experience interface.
                   </p>
                 </div>
-              </div>
             </div>
           </div>
         </div>
