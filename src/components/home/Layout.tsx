@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Nav } from './Nav';
-import { Background } from './Background';
 import { Banner } from './Banner';
 import { Slider } from './Slider';
 import { Description } from './Description';
@@ -21,7 +20,6 @@ const Layout: React.FC<Props> = ({ title }) => (
     <Helmet>
       <title>{title}</title>
     </Helmet>
-    <Background />
     <Nav />
     <Banner />
     <Description />
