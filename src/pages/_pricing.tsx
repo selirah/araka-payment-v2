@@ -72,12 +72,13 @@ const PricingPage: React.FC<PricingProps> = () => {
                           </div>
 
                           <div className="generic_feature_list">
+                            <p>For mobile money payments,</p>
                             <ul>
                               <li>
-                                <span>2%</span> on all mobile money payments
+                                <span>3%</span>	C2B (customer to business) 
                               </li>
                               <li>
-                                <span>1%</span> on all EFT payments
+                                <span>1.5%</span> B2C (business to customer)
                               </li>
                             </ul>
                           </div>
@@ -111,12 +112,13 @@ const PricingPage: React.FC<PricingProps> = () => {
                           </div>
 
                           <div className="generic_feature_list">
+                            <p>For mobile money payments,</p>
                             <ul>
                               <li>
-                                <span>2%</span> on all mobile money payments
+                                <span>3%</span>	C2B (customer to business) 
                               </li>
                               <li>
-                                <span>1%</span> on all EFT payments
+                                <span>1.5%</span> B2C (business to customer)
                               </li>
                             </ul>
                           </div>

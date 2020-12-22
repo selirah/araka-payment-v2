@@ -124,8 +124,8 @@ const ForgottenPasswordForm: React.FC = () => {
                   <div className="col-sm-12 text-center mt-2">
                     <h4>
                       By continuing, you accept our{' '}
-                      <Link to="#">Terms of Use</Link> and{' '}
-                      <Link to="#">Privacy Policy</Link>
+                      <Link to={path.terms}>Terms of Use</Link> and{' '}
+                      <Link to={path.terms}>Privacy Policy</Link>
                     </h4>
                   </div>
                 </TermsContainer>
