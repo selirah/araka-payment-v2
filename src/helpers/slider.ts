@@ -24,6 +24,9 @@ const slider = () => {
     let bannerTextTimeline = gsap.timeline({
       defaults: { duration: 1, delay: 1 },
     });
+    let comingSoonTimeline = gsap.timeline({
+      defaults : { duration: .8, delay: 3} ,
+    });
     let wireframeTimeline = gsap.timeline({
       defaults: { duration: 0.7, ease: Back.easeOut.config(2), opacity: 0 },
     });
@@ -69,6 +72,11 @@ const slider = () => {
       opacity: 0,
       y: 30,
       stagger: 0.5,
+    });
+    comingSoonTimeline.from('.comingSoon', {
+      opacity: 0,
+      y: 40,
+      stagger: 2.5,
     });
   }
 };

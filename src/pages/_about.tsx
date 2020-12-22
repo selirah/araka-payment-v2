@@ -21,8 +21,7 @@ const AboutPage: React.FC<AboutProps> = () => {
         <div className="container">
           <div className="row vertical-content">
             <div className="col-12">
-              <div className="col-6 mx-auto">
-                <div className="about-araka text-center">
+                <div className="about-araka text-left">
                   <h2>About ARAKA</h2>
                   <p>
                     We are a Congolese based multi-application and multi-channel
@@ -37,19 +36,16 @@ const AboutPage: React.FC<AboutProps> = () => {
                     services to our partners and users.
                   </p>
                 </div>
-              </div>
             </div>
             <div className="col-12">
-              <div className="col-6 mx-auto">
-                <div className="araka-mission text-center">
-                  <h2>Our Mission</h2>
-                  <p>
-                    is to become the best and most affordable payment and
-                    aggregation service provider in DRC with the aim of
-                    providing a top of the notch customer experience via our
-                    easy to use customer and experience interface.
-                  </p>
-                </div>
+              <div className="araka-mission text-left">
+                <h2>Our Mission</h2>
+                <p>
+                  is to become the best and most affordable payment and
+                  aggregation service provider in DRC with the aim of
+                  providing a top of the notch customer experience via our
+                  easy to use customer and experience interface.
+                </p>
               </div>
             </div>
           </div>

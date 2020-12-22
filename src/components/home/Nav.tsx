@@ -101,9 +101,6 @@ const Nav: React.FC = () => {
                     {t('nav-links.about')}
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link to="#" className="nav-link"></Link>
-                </li>
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
