@@ -314,6 +314,12 @@ const reducer: Reducer<DashboardState> = (state = initialState, action) => {
         failure: true,
       };
 
+    case DashboardTypes.CLEAR_TRANSACTIONS:
+      return {
+        ...state,
+        transactions: [],
+      };
+
     default:
       return state;
   }

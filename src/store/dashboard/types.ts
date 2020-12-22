@@ -42,6 +42,7 @@ export enum DashboardTypes {
   CHANGE_PASSWORD_REQUEST = '@@dashboard/CHANGE_PASSWORD_REQUEST',
   CHANGE_PASSWORD_SUCCESS = '@@dashboard/CHANGE_PASSWORD_SUCCESS',
   CHANGE_PASSWORD_FAILURE = '@@dashboard/CHANGE_PASSWORD_FAILURE',
+  CLEAR_TRANSACTIONS = '@@dashboard/CLEAR_TRANSACTIONS',
 }
 
 export type DashboardState = {

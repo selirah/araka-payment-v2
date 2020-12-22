@@ -25,7 +25,10 @@ const slider = () => {
       defaults: { duration: 1, delay: 1 },
     });
     let comingSoonTimeline = gsap.timeline({
-      defaults : { duration: .8, delay: 3} ,
+      defaults: { duration: 0.8, delay: 3 },
+    });
+    let wireframeTimeline = gsap.timeline({
+      defaults: { duration: 0.7, ease: Back.easeOut.config(2), opacity: 0 },
     });
 
     bannerTextTimeline.from('.banner-text', {
