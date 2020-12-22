@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
               <div className="mt-4">
                 <ul className="list-unstyled footer-list">
                   <li>
-                    <Link to="">{t('footer.about-us')}</Link>
+                    <Link to={path.about}>{t('footer.about-us')}</Link>
                   </li>
                   <li>
                     <Link to="">{t('footer.pricing')}</Link>

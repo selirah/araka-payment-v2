@@ -187,8 +187,8 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                 <TermsContainer className="row mt-5">
                   <h4 className="mx-auto text-muted">
                     By continuing, you accept our{' '}
-                    <Link to="#">Terms of Use</Link> and{' '}
-                    <Link to="#">Privacy Policy</Link>
+                    <Link to={path.terms}>Terms of Use</Link> and{' '}
+                    <Link to={path.terms}>Privacy Policy</Link>
                   </h4>
                 </TermsContainer>
               </form>
