@@ -1,5 +1,5 @@
 import Swiper, { SwiperOptions } from 'swiper';
-import gsap from 'gsap';
+import gsap, { Back } from 'gsap';
 
 const slider = () => {
   if (document.querySelector('.home-page') !== null) {
