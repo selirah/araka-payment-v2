@@ -12,7 +12,11 @@ import {
   smoothScroll,
 } from '../../helpers/dashboard';
 import { isEmpty } from '../../helpers/isEmpty';
-import { getTransactions, getCurrencies } from '../../store/dashboard';
+import {
+  getTransactions,
+  getCurrencies,
+  clearTransactions,
+} from '../../store/dashboard';
 import { setRepeatTransaction } from '../../store/payment';
 import { clearAuthState } from '../../store/auth';
 
@@ -27,6 +31,7 @@ const DashboardPage: React.FC = () => {
   } = appSelector((state) => state.dashboard);
 
   const refresh = (): void => {
+    dispatch(clearTransactions());
     dispatch(getTransactions());
   };
 

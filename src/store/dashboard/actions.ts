@@ -111,3 +111,6 @@ export const changePasswordSuccess = () =>
 
 export const changePasswordFailure = (error: any) =>
   action(DashboardTypes.CHANGE_PASSWORD_FAILURE, error);
+
+export const clearTransactions = () =>
+  action(DashboardTypes.CLEAR_TRANSACTIONS);
