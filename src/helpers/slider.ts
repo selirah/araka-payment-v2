@@ -27,7 +27,7 @@ const slider = () => {
     let comingSoonTimeline = gsap.timeline({
       defaults: { duration: 0.8, delay: 3 },
     });
-    let wireframeTimeline = gsap.timeline({
+    gsap.timeline({
       defaults: { duration: 0.7, ease: Back.easeOut.config(2), opacity: 0 },
     });
 
