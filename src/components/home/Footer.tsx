@@ -59,10 +59,10 @@ const Footer: React.FC = () => {
                     <Link to={path.about}>{t('footer.about-us')}</Link>
                   </li>
                   <li>
-                    <Link to="">{t('footer.pricing')}</Link>
+                    <Link to={path.pricing}>{t('footer.pricing')}</Link>
                   </li>
                   <li>
-                    <Link to="">{t('footer.get-onboarded')}</Link>
+                    <Link to={path.register}>{t('footer.get-onboarded')}</Link>
                   </li>
                 </ul>
               </div>
@@ -72,17 +72,17 @@ const Footer: React.FC = () => {
               <div className="mt-4">
                 <ul className="list-unstyled text-white footer-list">
                   <li>
-                    <Link to="">{t('footer.contact')}</Link>
+                    <a href={path.contact}>{t('footer.contact')}</a>
                   </li>
                   <li>
                     <Link to={path.terms}>{t('footer.terms')}</Link>
                   </li>
                   {/* <li>
                     <Link to="">{t('footer.privacy-policy')}</Link>
-                  </li> */}
+                  </li> 
                   <li>
                     <Link to="faq">{t('footer.faq')}</Link>
-                  </li>
+                  </li>*/}
                 </ul>
               </div>
             </div>

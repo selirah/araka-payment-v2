@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { path } from '../../helpers/path';
 
 const Card: React.FC = () => {
   return (
@@ -17,9 +19,11 @@ const Card: React.FC = () => {
                   Explore <span>ARAKA</span>, or create an account instantly and
                   start accepting payments
                 </p>
-                <button className="btn btn-outline-custom-alt">
-                  Start Now
-                </button>
+                <Link to={path.register}>
+                  <button className="btn btn-outline-custom-alt">
+                    Start Now
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -35,9 +39,11 @@ const Card: React.FC = () => {
                   Integrated per transaction. No hidden fees
                 </p>
                 <br />
-                <button className="btn btn-outline-custom-alt">
-                  See Pricing
-                </button>
+                <Link to={path.pricing}>
+                  <button className="btn btn-outline-custom-alt">
+                    See Pricing
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
