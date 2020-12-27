@@ -27,7 +27,7 @@ a {
 }
 .wireframe {
   position: absolute;
-  transform: rotate(45deg) translate(-57%, 1%);
+  transform: rotate(45deg) translate(-52%, -4%);
   width: 1800px;
   z-index: -1;
 }
@@ -217,6 +217,16 @@ header {
   margin-top: 16px;
 }
 
+.nav-item .btn.btn-pay {
+  margin-top: 16px;
+  border-radius: 16.5px;
+  font-weight: bold;
+  background: #f55c29;
+  border: 1px solid #f55c29;
+  color: #f4f6f8;
+  transition: all 0.3s ease-in-out;
+}
+
 .btn-outline-custom {
   color: rgb(66, 84, 102) !important;
   background-color: transparent !important;
@@ -293,6 +303,7 @@ header {
   padding-bottom: 1rem;
   line-height: 28px;
   letter-spacing: 0.2px;
+  text-align: justify;
 }
 
 .banner span {
@@ -305,7 +316,7 @@ header {
 }
 
 .coming-soon {
-  margin-bottom: 3rem;
+  margin-bottom: 7rem;
 }
 
 .btn-links button {
@@ -575,6 +586,7 @@ header {
   color: rgb(66, 84, 102);
   letter-spacing: 0.2px;
   margin-bottom: 20px;
+  text-align: justify;
 }
 
 .lead span {
@@ -591,6 +603,20 @@ header {
   padding-bottom: 5rem;
 }
 
+.about-section.card-section {
+  min-height: calc(100vh - 425px);
+}
+.about-section.card-section p {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(66, 84, 102, 0.8);
+}
+.about-section.card-section h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  color: rgba(255, 118, 0, 0.95);
+  margin-bottom: 1rem;
+}
 .vertical-content {
   display: -webkit-flex;
   display: -moz-flex;
@@ -2461,6 +2487,14 @@ label.field-required.control-label--hidden {
   font-weight: 500;
 }
 
+.banner-info {
+  text-align: justify;
+}
+
+.lead {
+  text-align: justify;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
   .btn-lg {
@@ -2517,7 +2551,10 @@ label.field-required.control-label--hidden {
   .navbar-custom .navbar-nav.website-navigation .nav-link.dropdown-toggle {
     float: left;
   }
-  .navbar-custom .navbar-nav.website-navigation .nav-link.dropdown-toggle + div {
+  .navbar-custom
+    .navbar-nav.website-navigation
+    .nav-link.dropdown-toggle
+    + div {
     border: 0;
     position: relative;
     top: 0;

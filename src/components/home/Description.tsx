@@ -17,10 +17,10 @@ const Description: React.FC = () => {
             <p className="lead">
               We bring together everything that is required to make and accept
               payment and payouts globally. <span>Araka</span> powers payments
-              for <span>utility providers</span>{' '}
-              <span>telecommunication providers</span>, <span>merchants</span>{' '}
+              for <span>utility providers</span>{', '}
+              <span>telecoms</span>, <span>merchants</span>{' '}
               and everything in between. We are equipped to assist your business
-              to start transacting online by providing a set of APIs that a very
+              to start transacting online by providing a set of APIs that are very
               easy to implement. Through Araka, you will <span>beat fraud</span>
               , <span>send invoices</span>; create quick{' '}
               <span>payment pages</span> and so much more!

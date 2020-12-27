@@ -100,44 +100,11 @@ const Nav: React.FC = () => {
                   >
                     {t('nav-links.about')}
                   </Link>
-                </li>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href={href}
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    {lang === 'en' ? (
-                      <i className="flag-icon flag-icon-gb"></i>
-                    ) : (
-                      <i className="flag-icon flag-icon-fr"></i>
-                    )}
-                  </a>
-                  <div
-                    className="dropdown-menu animate slideIn"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <a
-                      className="dropdown-item"
-                      href={href}
-                      onClick={() => changeLanguage('en')}
-                    >
-                      <i className="flag-icon flag-icon-gb"></i>{' '}
-                      {t('nav-links.english')}
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      href={href}
-                      onClick={() => changeLanguage('fr')}
-                    >
-                      <i className="flag-icon flag-icon-fr"></i>{' '}
-                      {t('nav-links.french')}
-                    </a>
-                  </div>
+                </li>  
+                <li className="nav-item">
+                  <Link to={path.payment} className="btn btn-pay">
+                    {t('home.btn-nav-pay')}
+                  </Link>
                 </li>
                 {!isAuthenticated ? (
                   <li className="nav-item">
@@ -183,6 +150,44 @@ const Nav: React.FC = () => {
                     </div>
                   </li>
                 )}
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href={href}
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {lang === 'en' ? (
+                      <i className="flag-icon flag-icon-gb"></i>
+                    ) : (
+                      <i className="flag-icon flag-icon-fr"></i>
+                    )}
+                  </a>
+                  <div
+                    className="dropdown-menu animate slideIn"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <a
+                      className="dropdown-item"
+                      href={href}
+                      onClick={() => changeLanguage('en')}
+                    >
+                      <i className="flag-icon flag-icon-gb"></i>{' '}
+                      {t('nav-links.english')}
+                    </a>
+                    <a
+                      className="dropdown-item"
+                      href={href}
+                      onClick={() => changeLanguage('fr')}
+                    >
+                      <i className="flag-icon flag-icon-fr"></i>{' '}
+                      {t('nav-links.french')}
+                    </a>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
