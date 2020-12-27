@@ -15,6 +15,20 @@ const slider = () => {
       slidesPerView: 6,
       spaceBetween: 30,
       centeredSlides: true,
+      breakpoints: {
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        720: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        940: {
+          slidesPerView: 6,
+          spaceBetween: 30,
+        }
+      }
     };
 
     new Swiper('.swiper-container.forward', swiperOptions);
