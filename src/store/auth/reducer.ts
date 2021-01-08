@@ -85,6 +85,7 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         resetError: undefined,
         resetPasswordSuccess: false,
         resetPasswordError: false,
+        singleError: '',
       };
     case AuthActionTypes.SET_USER:
       return {

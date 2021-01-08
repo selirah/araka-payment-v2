@@ -9,6 +9,7 @@ type Props = {
   error?: string;
   id?: string;
   onChange(e: React.FormEvent<EventTarget>): void;
+  required?: boolean;
 };
 const TextInput: React.FC<Props> = ({
   type,
@@ -18,6 +19,7 @@ const TextInput: React.FC<Props> = ({
   error,
   onChange,
   id,
+  required = false,
 }) => {
   return (
     <React.Fragment>
@@ -30,6 +32,7 @@ const TextInput: React.FC<Props> = ({
           placeholder={placeholder}
           onChange={onChange}
           id={id}
+          required={required}
         />
         <ErrorSpan>
           <span>{error}</span>

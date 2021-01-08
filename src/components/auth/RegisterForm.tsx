@@ -30,9 +30,12 @@ import {
   FormBoxCheckLabel,
   LogoContainer,
   FormBoxSubHeader,
+  FormBoxInput,
 } from './Styles';
 import { isEmpty } from '../../helpers/isEmpty';
 import { path } from '../../helpers/path';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { SITE_KEY } from '../../helpers/constants';
 
 interface Props {
   history: History;
@@ -55,8 +58,12 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
   const [error, setError] = useState<Error | {}>({});
   const [singleError, setSingleError] = useState<string>('');
   const [phone, setPhone] = useState('');
+  const ref = React.createRef<ReCAPTCHA>();
+  const [recaptchaValue, setRecaptchaValue] = useState('');
 
   useEffect(() => {
+    setSingleError('');
+    setRecaptchaValue('');
     dispatch(clearAuthState());
     const { isAuthenticated } = auth;
     if (isAuthenticated) {
@@ -74,18 +81,27 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
     setSingleError('');
+
     if (values.Password !== values.Confirm) {
       setSingleError('Passwords not match!');
     } else {
-      const payload: Register = {
-        Name: values.Name,
-        EmailAddress: values.EmailAddress,
-        PhoneNumber: phone,
-        Password: values.Password,
-        IsBusiness: isBusiness,
-      };
-      dispatch(registerRequest(payload));
+      if (isEmpty(recaptchaValue)) {
+        setSingleError('Please verify that you are not a robot!');
+      } else {
+        const payload: Register = {
+          Name: values.Name,
+          EmailAddress: values.EmailAddress,
+          PhoneNumber: phone,
+          Password: values.Password,
+          IsBusiness: isBusiness,
+        };
+        dispatch(registerRequest(payload));
+      }
     }
+  };
+
+  const onHandleRecaptcha = (value: any) => {
+    setRecaptchaValue(value);
   };
 
   useEffect(() => {
@@ -142,6 +158,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   value={values.Name}
                   placeholder="Your full name or merchant name ..."
                   onChange={onChange}
+                  required={true}
                 />
                 <TextInput
                   type="email"
@@ -149,6 +166,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   value={values.EmailAddress}
                   placeholder="Your email address ..."
                   onChange={onChange}
+                  required={true}
                 />
                 <PhoneInput
                   placeholder="Your phone number ..."
@@ -187,6 +205,7 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   value={values.Password}
                   placeholder="Your password ..."
                   onChange={onChange}
+                  required={true}
                 />
                 <PasswordInput
                   type="password"
@@ -195,6 +214,14 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   placeholder="Retype password ..."
                   onChange={onChange}
                 />
+                <FormBoxInput>
+                  <ReCAPTCHA
+                    sitekey={SITE_KEY}
+                    onChange={onHandleRecaptcha}
+                    ref={ref}
+                    theme="light"
+                  />
+                </FormBoxInput>
                 <div className="text-left mt-2 mb-5">
                   <FormBoxCustomControl className="custom-control custom-checkbox">
                     <input

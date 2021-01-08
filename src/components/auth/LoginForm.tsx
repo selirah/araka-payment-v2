@@ -30,9 +30,12 @@ import {
   FormBoxSubHeader,
   FormBoxCustomControl,
   FormBoxCheckLabel,
+  FormBoxInput,
 } from './Styles';
 import { isEmpty } from '../../helpers/isEmpty';
+import { SITE_KEY } from '../../helpers/constants';
 import { path } from '../../helpers/path';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 type Props = {
   history: History;
@@ -57,8 +60,12 @@ const LoginForm: React.FC<Props> = ({ history }) => {
   const [remember, setRemember] = useState<boolean>(false);
   const [isResetSuccess, setIsResetSuccess] = useState<boolean>(false);
   const [resetPasswordMessage, setResetPasswordMessage] = useState<string>('');
+  const ref = React.createRef<ReCAPTCHA>();
+  const [recaptchaValue, setRecaptchaValue] = useState('');
 
   useEffect(() => {
+    setRecaptchaValue('');
+    setSingleError('');
     const { isAuthenticated } = auth;
     if (isAuthenticated) {
       history.push(path.home);
@@ -78,14 +85,19 @@ const LoginForm: React.FC<Props> = ({ history }) => {
 
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
-    dispatch(resetErrorState());
-    setResetPasswordMessage('');
-    setIsResetSuccess(false);
-    const payload: Login = {
-      EmailAddress: values.EmailAddress,
-      Password: values.Password,
-    };
-    dispatch(loginRequest(payload));
+    setSingleError('');
+    if (isEmpty(recaptchaValue)) {
+      setSingleError('Please verify that you are not a robot!');
+    } else {
+      dispatch(resetErrorState());
+      setResetPasswordMessage('');
+      setIsResetSuccess(false);
+      const payload: Login = {
+        EmailAddress: values.EmailAddress,
+        Password: values.Password,
+      };
+      dispatch(loginRequest(payload));
+    }
   };
 
   useEffect(() => {
@@ -113,6 +125,10 @@ const LoginForm: React.FC<Props> = ({ history }) => {
       );
     }
   }, [auth, isPerformingPayment, history, dispatch]);
+
+  const onHandleRecaptcha = (value: any) => {
+    setRecaptchaValue(value);
+  };
 
   return (
     <React.Fragment>
@@ -147,6 +163,7 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                   value={values.EmailAddress}
                   placeholder="Your email address ..."
                   onChange={onChange}
+                  required={true}
                 />
                 <PasswordInput
                   type="password"
@@ -155,6 +172,14 @@ const LoginForm: React.FC<Props> = ({ history }) => {
                   placeholder="Your password ..."
                   onChange={onChange}
                 />
+                <FormBoxInput>
+                  <ReCAPTCHA
+                    sitekey={SITE_KEY}
+                    onChange={onHandleRecaptcha}
+                    ref={ref}
+                    theme="light"
+                  />
+                </FormBoxInput>
                 <div className="row mb-5">
                   <div className="col-12 col-md-8 text-left mt-1">
                     <FormBoxCustomControl className="custom-control custom-checkbox">
