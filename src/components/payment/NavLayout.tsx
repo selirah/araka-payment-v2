@@ -27,7 +27,7 @@ const NavLayout: React.FC<Props> = ({ children }) => {
       <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-md navbar-custom shadow mx-4">
           <Link className="navbar-brand" to={path.home}>
-            <img src={logo} width="40" alt="" /> ARAKA
+            <img src={logo} height="60" alt="Araka by ProxyPay" title="Araka by ProxyPay" />
           </Link>
           {children}
           <button

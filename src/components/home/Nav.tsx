@@ -53,10 +53,7 @@ const Nav: React.FC = () => {
         <nav className="navbar navbar-alt navbar-expand-md navbar-custom shadow">
           <div className="container">
             <Link className="navbar-brand" to={path.home}>
-              <img src={logo} width="40" alt="" /> Araka
-              <div className="proxy">
-                <small className="proxy-pay">by ProxyPay</small>
-              </div>
+              <img src={logo} height="60" alt="Araka by ProxyPay" title="Araka by ProxyPay" />
             </Link>
             <button
               className="navbar-toggler custom-toggler"

@@ -13,11 +13,7 @@ const Footer: React.FC = () => {
           <div className="row">
             <div className="col-md-4">
               <Link className="footer-brand" to="/">
-                <img src={logo} width="40" alt="" />
-                ARAKA{' '}
-                <div className="proxy">
-                  <small className="proxy-pay">by ProxyPay</small>
-                </div>
+                <img src={logo} height="62" alt="Araka by ProxyPay" title="Araka by ProxyPay" />
               </Link>
               <address className="mt-3">
                 6529/9 avenue du plateau
