@@ -139,7 +139,12 @@ const LoginForm: React.FC<Props> = ({ history }) => {
             <FormBox className="col-sm-7 text-center">
               <LogoContainer className="mt-0">
                 <Link className="navbar-brand" to={path.home}>
-                  <img src={logo} height="60" alt="Araka by ProxyPay" title="Araka by ProxyPay" />
+                  <img
+                    src={logo}
+                    height="60"
+                    alt="Araka by ProxyPay"
+                    title="Araka by ProxyPay"
+                  />
                 </Link>
               </LogoContainer>
               <React.Fragment>

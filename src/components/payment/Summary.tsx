@@ -57,27 +57,41 @@ const Summary: React.FC = () => {
   let summary: React.ReactNode;
   if (data !== null || data !== undefined) {
     summary = Object.keys(data.data).map(function (key, index) {
-      const { value, selectLabel, isDate } = filter(
-        product!,
-        key,
-        data.data[key]
-      );
-      let v;
-      if (isDate) {
-        v = moment(data.data[key]).format('MMMM D, YYYY (h:mm a)');
+      // console.log(key, data.data[key]);
+      if (
+        key !== 'PricingInfo' &&
+        key !== 'SubscriberAccountInfo' &&
+        key !== 'processId' &&
+        key !== 'Authorization' &&
+        key !== 'package' &&
+        key !== 'customerNumberInfo' &&
+        key !== 'CustomerNumber'
+      ) {
+        const { value, selectLabel, isDate } = filter(
+          product!,
+          key,
+          data.data[key]
+        );
+        let v;
+        if (isDate) {
+          v = moment(data.data[key]).format('MMMM D, YYYY (h:mm a)');
+        } else {
+          v = data.data[key];
+        }
+
+        return (
+          <React.Fragment key={index}>
+            {!value ? (
+              <tr>
+                <td>{key.replace(/([a-z])([A-Z])/g, '$1 $2')}</td>
+                <td>{selectLabel !== '' ? selectLabel : v}</td>
+              </tr>
+            ) : null}
+          </React.Fragment>
+        );
       } else {
-        v = data.data[key];
+        return null;
       }
-      return (
-        <React.Fragment key={index}>
-          {!value ? (
-            <tr>
-              <td>{key.replace(/([a-z])([A-Z])/g, '$1 $2')}</td>
-              <td>{selectLabel !== '' ? selectLabel : v}</td>
-            </tr>
-          ) : null}
-        </React.Fragment>
-      );
     });
   } else {
     return <EmptyBox />;
