@@ -8,6 +8,7 @@ import {
   performingPayment,
   saveOrderData,
   decreasePaymentStep,
+  repopulateForm,
 } from '../../store/payment/actions';
 import { secure } from '../../utils/secure';
 import { isEmpty } from '../../helpers/isEmpty';
@@ -47,6 +48,7 @@ const Summary: React.FC = () => {
 
   const previousProcess = (): void => {
     dispatch(decreasePaymentStep());
+    dispatch(repopulateForm());
   };
 
   useEffect(() => {

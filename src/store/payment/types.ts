@@ -35,6 +35,7 @@ export enum PaymentActionTypes {
   REPEAT_TRANSACTION = '@@payment/REPEAT_TRANSACTION',
   SET_TRANSACTION = '@@payment/SET_TRANSACTION',
   SET_RECIPIENT_VALUES = '@@payment/SET_RECIPIENT_VALUES',
+  REPOPULATE_FORM = '@@payment/REPOPULATE_FORM',
 }
 
 export type PaymentState = {
@@ -60,4 +61,5 @@ export type PaymentState = {
   readonly repeatTransaction: boolean;
   readonly transaction: TransactionHistory | undefined;
   readonly setRecipientValues: Recipient | undefined;
+  readonly repopulateForm: boolean;
 };

@@ -89,3 +89,5 @@ export const setTransaction = (transaction: TransactionHistory) =>
 
 export const setRecipientValues = (value: Recipient) =>
   action(PaymentActionTypes.SET_RECIPIENT_VALUES, value);
+
+export const repopulateForm = () => action(PaymentActionTypes.REPOPULATE_FORM);
