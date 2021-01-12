@@ -36,6 +36,22 @@ const Summary: React.FC = () => {
   useEffect(() => {
     const data: any = secure.get('orderData');
     if (!isEmpty(data) && data !== undefined) {
+      // eslint-disable-next-line array-callback-return
+      Object.keys(data.data).map((key, index) => {
+        if (
+          key !== 'PricingInfo' &&
+          key !== 'SubscriberAccountInfo' &&
+          key !== 'package' &&
+          key !== 'CurrencyInfo' &&
+          key !== 'CustomerNumberInfo'
+        ) {
+          delete data.data.PricingInfo;
+          delete data.data.SubscriberAccountInfo;
+          delete data.data.package;
+          delete data.data.CurrencyInfo;
+          delete data.data.CustomerNumberInfo;
+        }
+      });
       dispatch(saveOrderData(data));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
