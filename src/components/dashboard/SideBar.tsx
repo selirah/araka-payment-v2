@@ -46,10 +46,9 @@ const SideBar: React.FC = () => {
         to={path.home}
         className="sidebar-brand d-flex align-items-center justify-content-center"
       >
-        <div className="sidebar-brand-icon rotate-n-15">
-          <img src={logo} alt="" width="40" />
+        <div className="sidebar-brand-icon">
+          <img src={logo} alt="" width="150" />
         </div>
-        <div className="sidebar-brand-text mx-3">ARAKA</div>
       </Link>
 
       <hr className="sidebar-divider my-0"></hr>

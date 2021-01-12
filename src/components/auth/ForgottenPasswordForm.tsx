@@ -22,10 +22,14 @@ import {
   LogoContainer,
   FormBoxSubHeader,
   TermsContainer,
+  FormBoxInput,
 } from './Styles';
 import { path } from '../../helpers/path';
 import { Success } from '../common/Success';
 import { SingleError } from './SingleError';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { SITE_KEY } from '../../helpers/constants';
+import { isEmpty } from 'src/helpers/isEmpty';
 
 const ForgottenPasswordForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -40,8 +44,13 @@ const ForgottenPasswordForm: React.FC = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+  const ref = React.createRef<ReCAPTCHA>();
+  const [recaptchaValue, setRecaptchaValue] = useState('');
 
   useEffect(() => {
+    setErrorMessage('');
+    setRecaptchaValue('');
+    setIsError(false);
     const { isAuthenticated } = auth;
     if (isAuthenticated) {
       history.push(path.home);
@@ -57,11 +66,22 @@ const ForgottenPasswordForm: React.FC = () => {
 
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
-    const payload: ForgottenPassword = {
-      EmailAddress: values.EmailAddress,
-    };
-    setEmail(values.EmailAddress);
-    dispatch(forgottenPasswordRequest(payload));
+    setIsError(false);
+    setErrorMessage('');
+    if (isEmpty(recaptchaValue)) {
+      setIsError(true);
+      setErrorMessage('Please verify that you are not a robot!');
+    } else {
+      const payload: ForgottenPassword = {
+        EmailAddress: values.EmailAddress,
+      };
+      setEmail(values.EmailAddress);
+      dispatch(forgottenPasswordRequest(payload));
+    }
+  };
+
+  const onHandleRecaptcha = (value: any) => {
+    setRecaptchaValue(value);
   };
 
   useEffect(() => {
@@ -113,7 +133,16 @@ const ForgottenPasswordForm: React.FC = () => {
                   value={values.EmailAddress}
                   placeholder="Your email"
                   onChange={onChange}
+                  required={true}
                 />
+                <FormBoxInput>
+                  <ReCAPTCHA
+                    sitekey={SITE_KEY}
+                    onChange={onHandleRecaptcha}
+                    ref={ref}
+                    theme="light"
+                  />
+                </FormBoxInput>
                 <Button
                   type="submit"
                   title={t('forgotten.btn_title')}

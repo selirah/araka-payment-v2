@@ -23,6 +23,7 @@ const Details: React.FC = () => {
     product,
     isFormValidError,
     setRecipientValues,
+    repopulateForm,
   } = appSelector((state) => state.payment);
   const locale = localStorage.getItem('i18nextLng');
   const [formError, setFormError] = useState<string>('');
@@ -105,6 +106,8 @@ const Details: React.FC = () => {
               options={options}
               onChange={onChange}
               initialValues={initialValues}
+              repopulateForm={repopulateForm}
+              data={secure.get('orderData')}
             />
           ) : (
             <EmptyBox />

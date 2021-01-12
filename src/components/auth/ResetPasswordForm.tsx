@@ -21,10 +21,13 @@ import {
   FormBoxHeader,
   LogoContainer,
   TermsContainer,
+  FormBoxInput,
 } from './Styles';
 import { isEmpty } from 'src/helpers/isEmpty';
 import { path } from 'src/helpers/path';
 import { SingleError } from './SingleError';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { SITE_KEY } from '../../helpers/constants';
 
 type Props = {
   processId: string | null;
@@ -44,6 +47,8 @@ const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
   const [singleError, setSingleError] = useState<string>('');
   // const [isSccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const ref = React.createRef<ReCAPTCHA>();
+  const [recaptchaValue, setRecaptchaValue] = useState('');
 
   const onChange = (e: React.FormEvent<EventTarget>): void => {
     const { name, value } = e.target as HTMLTextAreaElement;
@@ -51,6 +56,9 @@ const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
   };
 
   useEffect(() => {
+    setSingleError('');
+    setRecaptchaValue('');
+    setIsError(false);
     dispatch(resetErrorState());
     const { isAuthenticated } = auth;
     if (isAuthenticated) {
@@ -70,12 +78,21 @@ const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
       setIsError(true);
       setSingleError('Passwords not match!');
     } else {
-      const payload: ResetPassword = {
-        Password: values.Password,
-        ProcessId: values.ProcessId,
-      };
-      dispatch(resetPasswordRequest(payload));
+      if (isEmpty(recaptchaValue)) {
+        setIsError(true);
+        setSingleError('Please verify that you are not a robot!');
+      } else {
+        const payload: ResetPassword = {
+          Password: values.Password,
+          ProcessId: values.ProcessId,
+        };
+        dispatch(resetPasswordRequest(payload));
+      }
     }
+  };
+
+  const onHandleRecaptcha = (value: any) => {
+    setRecaptchaValue(value);
   };
 
   useEffect(() => {
@@ -128,7 +145,14 @@ const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
                   onChange={onChange}
                   required={true}
                 />
-
+                <FormBoxInput>
+                  <ReCAPTCHA
+                    sitekey={SITE_KEY}
+                    onChange={onHandleRecaptcha}
+                    ref={ref}
+                    theme="light"
+                  />
+                </FormBoxInput>
                 <Button
                   type="submit"
                   title={t('forgotten.btn_title')}

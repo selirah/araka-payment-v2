@@ -11,6 +11,7 @@ export const filter = (product: Product, label: string, v?: any): any => {
     let columns = components[a].columns;
     for (let b = 0; b < columns.length; b++) {
       let components = columns[b].components;
+      // console.log(components);
       if (components !== undefined && components.length > 0) {
         for (let i = 0; i < components.length; i++) {
           if (components[i].key === label && components[i].type === 'hidden') {
@@ -21,9 +22,13 @@ export const filter = (product: Product, label: string, v?: any): any => {
           if (components[i].key === label && components[i].type === 'select') {
             // const defaultValue = components[i].defaultValue;
             let values = components[i].data.values;
-            for (let j = 0; j < values.length; j++) {
-              if (parseInt(values[j].value) === v) {
-                selectLabel = values[j].label;
+            // console.log(values);
+            if (values !== undefined) {
+              for (let j = 0; j < values.length; j++) {
+                if (parseInt(values[j].value) === v) {
+                  console.log(values[j].label);
+                  selectLabel = values[j].label;
+                }
               }
             }
           } else if (
