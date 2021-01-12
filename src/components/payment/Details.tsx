@@ -45,6 +45,22 @@ const Details: React.FC = () => {
   const continueProcess = (): void => {
     const isValid = localStorage.getItem('isValid');
     const orderData = secure.get('orderData');
+    // eslint-disable-next-line array-callback-return
+    Object.keys(orderData.data).map((key, index) => {
+      if (
+        key !== 'PricingInfo' &&
+        key !== 'SubscriberAccountInfo' &&
+        key !== 'package' &&
+        key !== 'CurrencyInfo' &&
+        key !== 'CustomerNumberInfo'
+      ) {
+        delete orderData.data.PricingInfo;
+        delete orderData.data.SubscriberAccountInfo;
+        delete orderData.data.package;
+        delete orderData.data.CurrencyInfo;
+        delete orderData.data.CustomerNumberInfo;
+      }
+    });
     if (isValid === 'true') {
       dispatch(increasePaymentStep());
       dispatch(setFormValidError(''));
