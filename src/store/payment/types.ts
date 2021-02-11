@@ -36,6 +36,7 @@ export enum PaymentActionTypes {
   SET_TRANSACTION = '@@payment/SET_TRANSACTION',
   SET_RECIPIENT_VALUES = '@@payment/SET_RECIPIENT_VALUES',
   REPOPULATE_FORM = '@@payment/REPOPULATE_FORM',
+  FLUSH_CATEGORIES = '@@payment/FLUSH_CATEGORIES',
 }
 
 export type PaymentState = {

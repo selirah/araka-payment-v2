@@ -217,6 +217,12 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         repopulateForm: true,
       };
 
+    case PaymentActionTypes.FLUSH_CATEGORIES:
+      return {
+        ...state,
+        categories: [],
+      };
+
     case AuthActionTypes.DESTROY_STATES:
       return initialState;
 
