@@ -23,6 +23,7 @@ const Details: React.FC = () => {
     product,
     isFormValidError,
     setRecipientValues,
+    repopulateForm,
   } = appSelector((state) => state.payment);
   const locale = localStorage.getItem('i18nextLng');
   const [formError, setFormError] = useState<string>('');
@@ -44,6 +45,22 @@ const Details: React.FC = () => {
   const continueProcess = (): void => {
     const isValid = localStorage.getItem('isValid');
     const orderData = secure.get('orderData');
+    // eslint-disable-next-line array-callback-return
+    Object.keys(orderData.data).map((key, index) => {
+      if (
+        key !== 'PricingInfo' &&
+        key !== 'SubscriberAccountInfo' &&
+        key !== 'package' &&
+        key !== 'CurrencyInfo' &&
+        key !== 'CustomerNumberInfo'
+      ) {
+        delete orderData.data.PricingInfo;
+        delete orderData.data.SubscriberAccountInfo;
+        delete orderData.data.package;
+        delete orderData.data.CurrencyInfo;
+        delete orderData.data.CustomerNumberInfo;
+      }
+    });
     if (isValid === 'true') {
       dispatch(increasePaymentStep());
       dispatch(setFormValidError(''));
@@ -105,6 +122,8 @@ const Details: React.FC = () => {
               options={options}
               onChange={onChange}
               initialValues={initialValues}
+              repopulateForm={repopulateForm}
+              data={secure.get('orderData')}
             />
           ) : (
             <EmptyBox />

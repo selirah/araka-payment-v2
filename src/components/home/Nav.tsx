@@ -53,10 +53,7 @@ const Nav: React.FC = () => {
         <nav className="navbar navbar-alt navbar-expand-md navbar-custom shadow">
           <div className="container">
             <Link className="navbar-brand" to={path.home}>
-              <img src={logo} width="40" alt="" /> Araka
-              <div className="proxy">
-                <small className="proxy-pay">by ProxyPay</small>
-              </div>
+              <img src={logo} height="60" alt="Araka by ProxyPay" title="Araka by ProxyPay" />
             </Link>
             <button
               className="navbar-toggler custom-toggler"
@@ -100,44 +97,11 @@ const Nav: React.FC = () => {
                   >
                     {t('nav-links.about')}
                   </Link>
-                </li>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href={href}
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    {lang === 'en' ? (
-                      <i className="flag-icon flag-icon-gb"></i>
-                    ) : (
-                      <i className="flag-icon flag-icon-fr"></i>
-                    )}
-                  </a>
-                  <div
-                    className="dropdown-menu animate slideIn"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <a
-                      className="dropdown-item"
-                      href={href}
-                      onClick={() => changeLanguage('en')}
-                    >
-                      <i className="flag-icon flag-icon-gb"></i>{' '}
-                      {t('nav-links.english')}
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      href={href}
-                      onClick={() => changeLanguage('fr')}
-                    >
-                      <i className="flag-icon flag-icon-fr"></i>{' '}
-                      {t('nav-links.french')}
-                    </a>
-                  </div>
+                </li>  
+                <li className="nav-item">
+                  <Link to={path.payment} className="btn btn-pay">
+                    {t('home.btn-nav-pay')}
+                  </Link>
                 </li>
                 {!isAuthenticated ? (
                   <li className="nav-item">
@@ -183,6 +147,44 @@ const Nav: React.FC = () => {
                     </div>
                   </li>
                 )}
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href={href}
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {lang === 'en' ? (
+                      <i className="flag-icon flag-icon-gb"></i>
+                    ) : (
+                      <i className="flag-icon flag-icon-fr"></i>
+                    )}
+                  </a>
+                  <div
+                    className="dropdown-menu animate slideIn"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <a
+                      className="dropdown-item"
+                      href={href}
+                      onClick={() => changeLanguage('en')}
+                    >
+                      <i className="flag-icon flag-icon-gb"></i>{' '}
+                      {t('nav-links.english')}
+                    </a>
+                    <a
+                      className="dropdown-item"
+                      href={href}
+                      onClick={() => changeLanguage('fr')}
+                    >
+                      <i className="flag-icon flag-icon-fr"></i>{' '}
+                      {t('nav-links.french')}
+                    </a>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>

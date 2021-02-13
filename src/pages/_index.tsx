@@ -4,7 +4,11 @@ import { appSelector } from '../helpers/appSelector';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../helpers/appDispatch';
 import { Layout } from '../components/home/Layout';
-import { fetchCategories, resetTransaction } from '../store/payment';
+import {
+  fetchCategories,
+  resetTransaction,
+  flushCategories,
+} from '../store/payment';
 import { clearAuthState } from '../store/auth';
 import { slider } from '../helpers/slider';
 import { isEmpty } from 'src/helpers/isEmpty';
@@ -16,7 +20,10 @@ const IndexPage: React.FC = () => {
   useEffect(() => {
     dispatch(resetTransaction());
     dispatch(clearAuthState());
-    if (isEmpty(categories)) {
+    if (!isEmpty(categories)) {
+      dispatch(flushCategories());
+      dispatch(fetchCategories());
+    } else {
       dispatch(fetchCategories());
     }
     slider();

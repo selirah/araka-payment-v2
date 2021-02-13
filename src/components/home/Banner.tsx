@@ -13,7 +13,7 @@ const Banner: React.FC = () => {
         <div className="row">
           <div className="col-sm-12 col-md-8">
             <h2 className="banner-text">{t('home.banner-header')}</h2>
-            <p className="banner-text">
+            <p className="banner-text banner-info">
               <span>Araka</span> {t('home.banner-text')} <span>Araka</span>{' '}
               {t('home.banner-text-a')} <span>M-PESA</span>
               {', '}
@@ -31,7 +31,12 @@ const Banner: React.FC = () => {
               </Link>
             </div>
             <div className="coming-soon">
-              <img src={comingSoonPlayStore}  className="comingSoon" width="400" alt="Coming soon on App Play Store" />
+              <img
+                src={comingSoonPlayStore}
+                className="comingSoon"
+                width="400"
+                alt="Coming soon on App Play Store"
+              />
             </div>
           </div>
           <div className="col-sm-12 col-md-4 d-none-sm">

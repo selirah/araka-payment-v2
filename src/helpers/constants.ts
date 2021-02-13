@@ -27,3 +27,5 @@ export const transactionStatus = {
   DECLINED: 'DECLINED',
   CANCELLED: 'CANCELLED',
 };
+
+export const SITE_KEY = '6Lf00SUaAAAAAJbCW3lrIe7duzL0-FuOvNfsk2jY';

@@ -22,10 +22,14 @@ import {
   LogoContainer,
   FormBoxSubHeader,
   TermsContainer,
+  FormBoxInput,
 } from './Styles';
 import { path } from '../../helpers/path';
 import { Success } from '../common/Success';
 import { SingleError } from './SingleError';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { SITE_KEY } from '../../helpers/constants';
+import { isEmpty } from 'src/helpers/isEmpty';
 
 const ForgottenPasswordForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -40,8 +44,13 @@ const ForgottenPasswordForm: React.FC = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+  const ref = React.createRef<ReCAPTCHA>();
+  const [recaptchaValue, setRecaptchaValue] = useState('');
 
   useEffect(() => {
+    setErrorMessage('');
+    setRecaptchaValue('');
+    setIsError(false);
     const { isAuthenticated } = auth;
     if (isAuthenticated) {
       history.push(path.home);
@@ -57,11 +66,22 @@ const ForgottenPasswordForm: React.FC = () => {
 
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
-    const payload: ForgottenPassword = {
-      EmailAddress: values.EmailAddress,
-    };
-    setEmail(values.EmailAddress);
-    dispatch(forgottenPasswordRequest(payload));
+    setIsError(false);
+    setErrorMessage('');
+    if (isEmpty(recaptchaValue)) {
+      setIsError(true);
+      setErrorMessage('Please verify that you are not a robot!');
+    } else {
+      const payload: ForgottenPassword = {
+        EmailAddress: values.EmailAddress,
+      };
+      setEmail(values.EmailAddress);
+      dispatch(forgottenPasswordRequest(payload));
+    }
+  };
+
+  const onHandleRecaptcha = (value: any) => {
+    setRecaptchaValue(value);
   };
 
   useEffect(() => {
@@ -89,7 +109,7 @@ const ForgottenPasswordForm: React.FC = () => {
             <FormBox className="col-sm-7 text-center">
               <LogoContainer className="mt-0">
                 <Link className="navbar-brand" to={path.home}>
-                  <img src={logo} width="40" alt="" /> Araka
+                  <img src={logo} height="60" alt="Araka by ProxyPay" title="Araka by ProxyPay" />
                 </Link>
               </LogoContainer>
               <FormBoxHeader>
@@ -113,7 +133,16 @@ const ForgottenPasswordForm: React.FC = () => {
                   value={values.EmailAddress}
                   placeholder="Your email"
                   onChange={onChange}
+                  required={true}
                 />
+                <FormBoxInput>
+                  <ReCAPTCHA
+                    sitekey={SITE_KEY}
+                    onChange={onHandleRecaptcha}
+                    ref={ref}
+                    theme="light"
+                  />
+                </FormBoxInput>
                 <Button
                   type="submit"
                   title={t('forgotten.btn_title')}
@@ -124,8 +153,8 @@ const ForgottenPasswordForm: React.FC = () => {
                   <div className="col-sm-12 text-center mt-2">
                     <h4>
                       By continuing, you accept our{' '}
-                      <Link to="#">Terms of Use</Link> and{' '}
-                      <Link to="#">Privacy Policy</Link>
+                      <Link to={path.terms}>Terms of Use</Link> and{' '}
+                      <Link to={path.terms}>Privacy Policy</Link>
                     </h4>
                   </div>
                 </TermsContainer>
