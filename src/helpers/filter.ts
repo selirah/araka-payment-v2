@@ -26,7 +26,7 @@ export const filter = (product: Product, label: string, v?: any): any => {
             if (values !== undefined) {
               for (let j = 0; j < values.length; j++) {
                 if (parseInt(values[j].value) === v) {
-                  console.log(values[j].label);
+                  // console.log(values[j].label);
                   selectLabel = values[j].label;
                 }
               }
