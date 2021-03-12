@@ -2537,14 +2537,11 @@ label.field-required.control-label--hidden {
   }
 
   .action-btn-custom {
-    transition: all 0.3s ease-in-out;
-    border-radius: 16.5px;
-    padding: 0.3rem 0.7rem;
+    border-radius: 0 !important;
+    padding: 0.5rem !important;
     text-transform: uppercase;
     font-size: 0.6rem;
-    font-weight: 700;
-    text-align: center;
-    margin: 24px 20px 30px;
+    margin: 0 !important;
     text-decoration: none;
   }
 
@@ -2669,9 +2666,11 @@ label.field-required.control-label--hidden {
   .action-btn-custom {
     transition: all 0.3s ease-in-out;
     border-radius: 16.5px;
-    padding: 0.3rem 0.7rem !important;
+    padding: 0.5rem !important;
     text-transform: uppercase;
     font-size: 0.6rem !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
   }
 
   .sidebar .nav-item .nav-link span {
