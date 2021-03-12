@@ -195,7 +195,7 @@ export const Account: React.FC = () => {
               </div>
               <div className="personal-details-right">
                 <h2>Password</h2>
-                <h4>*************************</h4>
+                <h4>*********************</h4>
                 <button
                   className="btn"
                   onClick={() => onShowModalClick(modalTypes.CHANGE_PASSWORD)}
