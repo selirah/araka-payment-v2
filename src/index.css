@@ -2495,6 +2495,10 @@ label.field-required.control-label--hidden {
   text-align: justify;
 }
 
+.form-input-text-phone {
+  margin-left: 14.7rem !important;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media screen and (max-width: 600px) {
   .sidebar-brand-icon img {
