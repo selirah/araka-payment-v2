@@ -1433,10 +1433,6 @@ footer .list-inline-item.mdi {
     top: 5rem;
     left: 8rem;
   }
-
-  .slick-slide img {
-    width: 100%;
-  }
 }
 
 /*** WIZARD ******/
@@ -2598,10 +2594,14 @@ label.field-required.control-label--hidden {
   .swiper-slide img {
     width: 150px !important;
   }
+
+  .coming-soon img {
+    width: 350px !important;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .wireframe {
     display: none;
   }
@@ -2734,5 +2734,9 @@ label.field-required.control-label--hidden {
 
   .swiper-slide img {
     width: 150px !important;
+  }
+
+  .coming-soon img {
+    width: 300px !important;
   }
 }
