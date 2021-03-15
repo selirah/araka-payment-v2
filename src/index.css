@@ -1433,6 +1433,10 @@ footer .list-inline-item.mdi {
     top: 5rem;
     left: 8rem;
   }
+
+  .slick-slide img {
+    width: 100%;
+  }
 }
 
 /*** WIZARD ******/
@@ -2218,42 +2222,6 @@ label.field-required.control-label--hidden {
   color: rgba(66, 84, 102, 0.8);
 }
 
-@media (min-width: 640px) {
-  .choices__list--dropdown .choices__item--selectable {
-    padding-right: 100px;
-  }
-
-  .choices__list--dropdown .choices__item--selectable:after {
-    content: attr(data-select-text);
-    font-size: 12px;
-    opacity: 0;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  [dir='rtl'] .choices__list--dropdown .choices__item--selectable {
-    text-align: right;
-    padding-left: 100px;
-    padding-right: 10px;
-  }
-
-  [dir='rtl'] .choices__list--dropdown .choices__item--selectable:after {
-    right: auto;
-    left: 10px;
-  }
-
-  /* .btn-links button {
-    border-radius: 16.5px;
-    padding: 1rem;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    font-weight: 700;
-    width: 100% !important;
-  } */
-}
-
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
   background-color: #fbd5c7;
 }
@@ -2621,6 +2589,15 @@ label.field-required.control-label--hidden {
   .form-input-text-phone {
     margin-left: 2rem !important;
   }
+
+  .swiper-slide {
+    display: inline-block !important;
+    padding-right: 120px !important;
+  }
+
+  .swiper-slide img {
+    width: 150px !important;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -2748,5 +2725,14 @@ label.field-required.control-label--hidden {
 
   .form-input-text-phone {
     margin-left: 2rem !important;
+  }
+
+  .swiper-slide {
+    display: inline-block !important;
+    padding-right: 120px !important;
+  }
+
+  .swiper-slide img {
+    width: 150px !important;
   }
 }
