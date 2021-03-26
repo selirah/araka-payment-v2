@@ -6,6 +6,7 @@ type Props = {
   title: string;
   isSubmitting: boolean;
   processTitle: string;
+  classname?: string;
 };
 
 const Button: React.FC<Props> = ({
@@ -13,10 +14,13 @@ const Button: React.FC<Props> = ({
   title,
   isSubmitting,
   processTitle,
+  classname,
 }) => {
   return (
     <React.Fragment>
-      <SubmitButton className="text-left row mt-4 justify-content-center">
+      <SubmitButton
+        className={`text-left row mt-4 justify-content-center ${classname}`}
+      >
         <button type={type} className="btn" disabled={isSubmitting}>
           {isSubmitting ? (
             <React.Fragment>

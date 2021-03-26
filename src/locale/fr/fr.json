@@ -34,7 +34,7 @@
       "and": "et",
       "btn-merchant": "Devenez marchand",
       "btn-payments": "Effectuer des paiements",
-      "btn-nav-pay" : "Effectuer des paiements",
+      "btn-nav-pay": "Effectuer des paiements",
       "get_started_paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lectus libero, molestie non vulputate et, tempor id nibh. Sedultrices nec urna sed vestibulum.",
       "language": "Langue",
       "terms": {
@@ -138,7 +138,9 @@
         "sub3": "Recharge de temps d'antenne annulée",
         "btn": "Voir l'historique",
         "btn2": "Recommencez"
-      }
+      },
+      "redirecting": "Nous vous redirigeons vers la page de paiement ... veuillez patienter",
+      "mpesa": "Entrez votre numéro de téléphone"
     },
     "dashboard": {
       "top-nav": {

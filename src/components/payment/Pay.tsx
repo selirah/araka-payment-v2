@@ -48,14 +48,18 @@ const Pay: React.FC = () => {
   const onSubmit = () => {
     switch (isAuthenticated) {
       case true:
-        if (
-          orderData !== undefined &&
-          category !== undefined &&
-          product !== undefined
-        ) {
-          orderData.data.productCategoryId = category.productCategoryId;
-          orderData.data.productId = product.productId;
-          dispatch(processOrderRequest(orderData));
+        if (option === payOption.CREDIT_CARD) {
+          if (
+            orderData !== undefined &&
+            category !== undefined &&
+            product !== undefined
+          ) {
+            orderData.data.productCategoryId = category.productCategoryId;
+            orderData.data.productId = product.productId;
+            dispatch(processOrderRequest(orderData));
+          }
+        } else if (option === payOption.MPESA) {
+          history.push(path.mpesa);
         }
         break;
       case false:
@@ -82,14 +86,12 @@ const Pay: React.FC = () => {
             <h2>Credit/Debit Card</h2>
           </div>
         </div>
-        <div
-          className="col-sm-6 text-center option"
-          // onClick={() => selectOption(payOption.MPESA)}
-        >
+        <div className="col-sm-6 text-center option">
           <div
             className={`selectable-item ${
               option === payOption.MPESA ? 'selected' : null
-            }`} /*onClick={() => selectOption(payOption.CREDIT_CARD)} */
+            }`}
+            onClick={() => selectOption(payOption.MPESA)}
           >
             <img src={mobileWallets} alt="Pay with mobile wallet" />
             <h2>Mobile Wallets</h2>

@@ -10,6 +10,7 @@ import SuccessPage from '../pages/payment/success';
 import FailurePage from '../pages/payment/failure';
 import CancelledPage from '../pages/payment/cancelled';
 import RedirectingPage from '../pages/payment/redirecting';
+import MPESAPage from '../pages/payment/mpesa';
 import LoginPage from '../pages/auth/login';
 import RegisterPage from '../pages/auth/register';
 import RegisterSuccessPage from '../pages/auth/register-success';
@@ -49,6 +50,7 @@ const Routes: React.FC = () => {
           path={path.redirecting}
           component={RedirectingPage}
         />
+        <PrivateRoute exact path={path.mpesa} component={MPESAPage} />
 
         <Route exact component={NotFoundPage} />
       </Switch>

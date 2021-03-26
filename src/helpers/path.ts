@@ -15,5 +15,6 @@ export const path = {
   cancelled: '/transaction/cancelled',
   failure: '/transaction/failure',
   redirecting: '/transaction/redirecting',
-  contact : 'mailto://info@proxypay.africa'
+  contact: 'mailto://info@proxypay.africa',
+  mpesa: '/transaction/mpesa',
 };
