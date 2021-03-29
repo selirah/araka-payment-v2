@@ -5,18 +5,26 @@ import { appSelector } from '../../helpers/appSelector';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { Layout } from '../../components/payment/Layout';
 import { isEmpty } from '../../helpers/isEmpty';
-import { fetchCategories /*resetTransaction*/ } from '../../store/payment';
+import {
+  fetchCategories,
+  clearMobileStates /*resetTransaction*/,
+} from '../../store/payment';
 import { clearAuthState } from '../../store/auth';
+import { getCurrencies } from '../../store/dashboard';
 
 const PaymentPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { categories, loading } = appSelector((state) => state.payment);
+  const { currencies } = appSelector((state) => state.dashboard);
 
   useEffect(() => {
-    // dispatch(resetTransaction());
+    dispatch(clearMobileStates());
     dispatch(clearAuthState());
     if (isEmpty(categories) && !loading) {
       dispatch(fetchCategories());
+    }
+    if (isEmpty(currencies)) {
+      dispatch(getCurrencies());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

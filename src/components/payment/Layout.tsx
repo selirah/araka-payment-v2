@@ -20,7 +20,11 @@ import { Details } from './Details';
 import { Summary } from './Summary';
 import { Pay } from './Pay';
 import { Error } from '../common/Error';
-import { setActiveCategory, setCategory } from '../../store/payment';
+import {
+  setActiveCategory,
+  setCategory,
+  clearMobileStates,
+} from '../../store/payment';
 
 type Props = {
   title?: string;
@@ -47,6 +51,7 @@ const Layout: React.FC<Props> = ({ title }) => {
   useEffect(() => {
     const prods = filterProducts(categories);
     setProducts(prods);
+    dispatch(clearMobileStates());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

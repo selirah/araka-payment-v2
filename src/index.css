@@ -2508,6 +2508,25 @@ label.field-required.control-label--hidden {
   transition: all 0.3s ease-in-out !important;
 }
 
+.modal-box {
+  display: flex;
+  padding: 0 !important;
+}
+
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: transparent;
+  color: rgb(66, 84, 102);
+  font-weight: 300;
+  text-transform: none;
+}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media screen and (max-width: 600px) {
   .sidebar-brand-icon img {

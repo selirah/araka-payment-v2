@@ -9,6 +9,7 @@ import {
   resetTransaction,
   flushCategories,
 } from '../store/payment';
+import { getCurrencies } from '../store/dashboard';
 import { clearAuthState } from '../store/auth';
 import { slider } from '../helpers/slider';
 import { isEmpty } from 'src/helpers/isEmpty';
@@ -16,6 +17,7 @@ import { isEmpty } from 'src/helpers/isEmpty';
 const IndexPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { categories } = appSelector((state) => state.payment);
+  const { currencies } = appSelector((state) => state.dashboard);
 
   useEffect(() => {
     dispatch(resetTransaction());
@@ -25,6 +27,9 @@ const IndexPage: React.FC = () => {
       dispatch(fetchCategories());
     } else {
       dispatch(fetchCategories());
+    }
+    if (!isEmpty(currencies)) {
+      dispatch(getCurrencies());
     }
     slider();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -94,3 +94,33 @@ export const flushCategories = () =>
   action(PaymentActionTypes.FLUSH_CATEGORIES);
 
 export const repopulateForm = () => action(PaymentActionTypes.REPOPULATE_FORM);
+
+export const mobilePaymentRequest = (payload: any) =>
+  action(PaymentActionTypes.MOBILE_PAYMENT_REQUEST, payload);
+
+export const mobilePaymentSuccess = (data: any) =>
+  action(PaymentActionTypes.MOBILE_PAYMENT_SUCCESS, data);
+
+export const mobilePaymentFailure = (error: string) =>
+  action(PaymentActionTypes.MOBILE_PAYMENT_FAILURE, error);
+
+export const checkMobileStatusRequest = (payload: any) =>
+  action(PaymentActionTypes.MOBILE_STATUS_REQUEST, payload);
+
+export const checkMobileStatusSuccess = (data: any) =>
+  action(PaymentActionTypes.MOBILE_STATUS_SUCCESS, data);
+
+export const checkMobileStatusFailure = (error: string) =>
+  action(PaymentActionTypes.MOBILE_STATUS_FAILURE, error);
+
+export const getProvidersRequest = () =>
+  action(PaymentActionTypes.GET_PROVIDERS_REQUEST);
+
+export const getProvidersSuccess = (data: any) =>
+  action(PaymentActionTypes.GET_PROVIDERS_SUCCESS, data);
+
+export const getProvidersFailure = (error: string) =>
+  action(PaymentActionTypes.GET_PROVIDERS_FAILURE, error);
+
+export const clearMobileStates = () =>
+  action(PaymentActionTypes.CLEAR_MOBILE_STATES);

@@ -25,7 +25,7 @@ import {
 import { authorization } from '../../utils/authorization';
 import { secure } from '../../utils/secure';
 
-function* login({ payload }: { type: string; payload: Login }) {
+function* login({ payload }: { type: string; payload: Login }): any {
   try {
     const res = yield call(callApiPost, 'login', payload);
     secure.set('user', res.data);
@@ -44,7 +44,7 @@ function* login({ payload }: { type: string; payload: Login }) {
   }
 }
 
-function* register({ payload }: { type: string; payload: Register }) {
+function* register({ payload }: { type: string; payload: Register }): any {
   try {
     const res = yield call(callApiPost, 'login/register', payload);
     yield put(registerSuccess(res.data));
@@ -61,7 +61,7 @@ function* register({ payload }: { type: string; payload: Register }) {
   }
 }
 
-function* verify({ payload }: { type: string; payload: Verification }) {
+function* verify({ payload }: { type: string; payload: Verification }): any {
   try {
     const res = yield call(callApiPost, 'login/verifyaccount', payload);
     yield put(verificationSuccess(res.data));
@@ -76,7 +76,12 @@ function* verify({ payload }: { type: string; payload: Verification }) {
   }
 }
 
-function* forgotten({ payload }: { type: string; payload: ForgottenPassword }) {
+function* forgotten({
+  payload,
+}: {
+  type: string;
+  payload: ForgottenPassword;
+}): any {
   try {
     const res = yield call(callApiPost, 'login/requestpasswordreset', payload);
     if (res.status === 200) {
@@ -95,7 +100,7 @@ function* forgotten({ payload }: { type: string; payload: ForgottenPassword }) {
   }
 }
 
-function* reset({ payload }: { type: string; payload: ResetPassword }) {
+function* reset({ payload }: { type: string; payload: ResetPassword }): any {
   try {
     const res = yield call(callApiPost, 'login/resetpassword', payload);
     if (res.status === 200) {

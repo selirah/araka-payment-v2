@@ -42,6 +42,7 @@ import checkedIcon from './araka/checked.svg';
 import loadingIcon from './araka/loading.svg';
 import errorIcon from './araka/error.svg';
 import spinnerIcon from './araka/spinner.svg';
+import paymentIcon from './transaction/mobile-money.svg';
 
 export {
   logoNav,
@@ -87,4 +88,5 @@ export {
   errorIcon,
   pcesLogo,
   spinnerIcon,
+  paymentIcon,
 };

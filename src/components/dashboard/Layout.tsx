@@ -14,7 +14,12 @@ import { Recipients } from './Recipients';
 import { pageTypes } from '../../helpers/constants';
 import { Spinner } from '../common/Spinner';
 import { isEmpty } from 'src/helpers/isEmpty';
-import { setRepeatTransaction, fetchCategories } from '../../store/payment';
+import {
+  setRepeatTransaction,
+  fetchCategories,
+  clearMobileStates,
+  resetTransaction,
+} from '../../store/payment';
 import { TransactionHistory } from '../../interfaces';
 
 type Props = {
@@ -36,6 +41,8 @@ export const Layout: React.FC<Props> = ({ title, refresh }) => {
 
   useEffect(() => {
     dispatch(setRepeatTransaction(false));
+    dispatch(clearMobileStates());
+    dispatch(resetTransaction());
     if (isEmpty(categories)) {
       dispatch(fetchCategories());
     }

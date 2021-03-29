@@ -17,7 +17,7 @@ import {
   getCurrencies,
   clearTransactions,
 } from '../../store/dashboard';
-import { setRepeatTransaction } from '../../store/payment';
+import { setRepeatTransaction, clearMobileStates } from '../../store/payment';
 import { clearAuthState } from '../../store/auth';
 
 const DashboardPage: React.FC = () => {
@@ -37,6 +37,7 @@ const DashboardPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(clearAuthState());
+    dispatch(clearMobileStates());
     dispatch(setRepeatTransaction(false));
     if (isEmpty(transactions) && !loading) {
       dispatch(getTransactions());
