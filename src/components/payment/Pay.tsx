@@ -87,20 +87,24 @@ const Pay: React.FC = () => {
           setCounter(counter + 1);
         }, 30000);
       } else {
-        history.push(path.dashboard);
+        // history.push(path.dashboard);
+        window.location.href = path.dashboard;
       }
     }
 
     if (!isEmpty(trxStatus) && mobilePaymentSuccess) {
       switch (trxStatus.status) {
         case 'APPROVED':
-          history.push(path.success);
+          // history.push(path.success);
+          window.location.href = path.success;
           break;
         case 'CANCELED':
-          history.push(path.cancelled);
+          // history.push(path.cancelled);
+          window.location.href = path.cancelled;
           break;
         case 'DECLINED':
-          history.push(path.failure);
+          // history.push(path.failure);
+          window.location.href = path.failure;
           break;
       }
     }
