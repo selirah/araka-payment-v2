@@ -420,3 +420,25 @@ export const SpinnerContainer = styled.div`
   padding: 1.75rem;
   width: 30rem;
 `;
+
+export const VerifyButton = styled.button`
+  border: 1px solid #f4744b;
+  background: #f4744b;
+  color: #fff;
+  border-radius: 2px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 300;
+
+  &:hover {
+    background: #858796;
+    border: 1px solid #858796;
+    color: #fff;
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+`;

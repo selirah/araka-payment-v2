@@ -31,6 +31,7 @@ import {
   FormBoxCustomControl,
   FormBoxCheckLabel,
   FormBoxInput,
+  VerifyButton,
 } from './Styles';
 import { isEmpty } from '../../helpers/isEmpty';
 import { SITE_KEY } from '../../helpers/constants';
@@ -156,7 +157,12 @@ const LoginForm: React.FC<Props> = ({ history }) => {
               </React.Fragment>
               {!isEmpty(error) ? <MultipleErrors error={error} /> : null}
               {!isEmpty(singleError) ? (
-                <SingleError error={singleError} />
+                <>
+                  <SingleError error={singleError} />
+                  <VerifyButton className="btn">
+                    <Link to={path.resend}>Resend Verification Link</Link>
+                  </VerifyButton>
+                </>
               ) : null}
               {isResetSuccess ? (
                 <Success message={resetPasswordMessage} />

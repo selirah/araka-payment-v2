@@ -17,4 +17,5 @@ export const path = {
   redirecting: '/transaction/redirecting',
   contact: 'mailto://info@proxypay.africa',
   mpesa: '/transaction/mpesa',
+  resend: '/auth/resend-verfication',
 };

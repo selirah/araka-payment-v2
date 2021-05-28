@@ -13,6 +13,8 @@ import {
   forgottenPasswordFailure,
   resetPasswordSuccess,
   resetPasswordFailure,
+  resendVerificationFailure,
+  resendVerificationSuccess,
 } from './actions';
 import { callApiPost } from '../../utils/api';
 import {
@@ -119,6 +121,30 @@ function* reset({ payload }: { type: string; payload: ResetPassword }): any {
   }
 }
 
+function* resend({
+  payload,
+}: {
+  type: string;
+  payload: ForgottenPassword;
+}): any {
+  try {
+    const res = yield call(callApiPost, 'login/resendverification', payload);
+    if (res.status === 200) {
+      yield put(resendVerificationSuccess(res.data));
+    } else {
+      yield put(resendVerificationFailure(res.data));
+    }
+  } catch (err) {
+    if (err && err.response) {
+      if (err.response.data.status) {
+        yield put(resendVerificationFailure(err.response.data));
+      } else {
+        yield put(resendVerificationFailure(err.response.data));
+      }
+    }
+  }
+}
+
 function* watchLogin() {
   yield takeEvery(AuthActionTypes.REQUEST_LOGIN_SUBMIT, login);
 }
@@ -139,6 +165,10 @@ function* watchResetPassword() {
   yield takeEvery(AuthActionTypes.RESET_PASSWORD_REQUEST, reset);
 }
 
+function* watchResendVerification() {
+  yield takeEvery(AuthActionTypes.RESEND_VERIFICATION_REQUEST, resend);
+}
+
 function* authSaga() {
   yield all([
     fork(watchLogin),
@@ -146,6 +176,7 @@ function* authSaga() {
     fork(watchVerification),
     fork(watchForgottenPassword),
     fork(watchResetPassword),
+    fork(watchResendVerification),
   ]);
 }
 

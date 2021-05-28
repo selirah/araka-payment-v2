@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { AppDispatch } from '../../helpers/appDispatch';
 import { appSelector } from '../../helpers/appSelector';
 import {
-  forgottenPasswordRequest,
+  resendVerificationRequest,
   resetErrorState,
 } from '../../store/auth/actions';
 import { ChangeLanguage } from '../common/ChangeLanguage';
@@ -31,7 +31,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { SITE_KEY } from '../../helpers/constants';
 import { isEmpty } from '../../helpers/isEmpty';
 
-const ForgottenPasswordForm: React.FC = () => {
+const ResendVerificationForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const history = useHistory();
   const auth = appSelector((state) => state.auth);
@@ -76,7 +76,7 @@ const ForgottenPasswordForm: React.FC = () => {
         EmailAddress: values.EmailAddress,
       };
       setEmail(values.EmailAddress);
-      dispatch(forgottenPasswordRequest(payload));
+      dispatch(resendVerificationRequest(payload));
     }
   };
 
@@ -86,17 +86,17 @@ const ForgottenPasswordForm: React.FC = () => {
 
   useEffect(() => {
     const {
-      isForgottenPassword,
-      forgottenPasswordSuccess,
-      forgottenPasswordError,
+      isResendVerification,
+      resendVericationSuccess,
+      resendVericationFailure,
       forgottenError,
     } = auth;
-    if (forgottenPasswordSuccess) {
-      setValues({ EmailAddress: '' });
-    }
-    setIsSubmitting(isForgottenPassword);
-    setIsSuccess(forgottenPasswordSuccess);
-    setIsError(forgottenPasswordError);
+    // if (resendVericationSuccess) {
+    //   setValues({ EmailAddress: '' });
+    // }
+    setIsSubmitting(isResendVerification);
+    setIsSuccess(resendVericationSuccess);
+    setIsError(resendVericationFailure);
     setErrorMessage(forgottenError);
   }, [auth]);
 
@@ -118,7 +118,7 @@ const ForgottenPasswordForm: React.FC = () => {
                 </Link>
               </LogoContainer>
               <FormBoxHeader>
-                <h4>Reset your password</h4>
+                <h4>Resend verification Link</h4>
               </FormBoxHeader>
               <FormBoxSubHeader>
                 <h6>
@@ -173,4 +173,4 @@ const ForgottenPasswordForm: React.FC = () => {
   );
 };
 
-export { ForgottenPasswordForm };
+export { ResendVerificationForm };
