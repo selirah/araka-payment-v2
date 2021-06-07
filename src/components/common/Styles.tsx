@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { Modal } from 'react-bootstrap';
 
 export const SpinnerContainer = styled.div`
   color: #fbbd19;
@@ -81,4 +82,150 @@ export const ErrorSpan = styled.div`
 
 export const ErrorContainer = styled.div`
   margin-top: 1rem;
+`;
+
+export const ModalBoxLeft = styled.div`
+  width: 25%;
+  background: #f4f4f4;
+  border-radius: 5px 0 0 5px !important;
+  padding: 2rem 1rem 1.5rem 1rem;
+  h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(66, 84, 102, 0.9);
+  }
+
+  .option {
+    border-top: 1px solid #e7e7e7;
+    margin-top: 1rem;
+    display: flex;
+    position: relative;
+
+    h6 {
+      font-size: 0.8rem;
+      margin-top: 1.2rem;
+      font-weight: 700;
+      color: #f55c29;
+      :hover {
+        cursor: pointer;
+      }
+    }
+    img {
+      width: 30px;
+      height: auto;
+      margin-right: 2px;
+    }
+    .indicator {
+      background: #f55c29;
+      width: 0.2rem;
+      height: 0.5rem;
+      position: absolute;
+      right: -1rem;
+      top: 1.3rem;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+  }
+`;
+
+export const ModalBoxRight = styled(Modal.Header)`
+  width: 75%;
+  display: block;
+  padding: 1rem;
+  .header {
+    padding: 0.5rem;
+    border-bottom: 1px solid #e7e7e7;
+    display: flex;
+    justify-content: flex-end;
+    h4 {
+      font-size: 1rem;
+      color: #9b9b9b;
+      margin-right: 0.5rem;
+    }
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+  .body {
+    margin-top: 1rem;
+    text-align: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 2rem;
+    display: block;
+
+    img {
+      vertical-align: middle;
+      width: 200px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1rem;
+    }
+    h4 {
+      font-size: 0.95rem;
+      color: #5a6672;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .pay-form {
+      display: block;
+      padding: 1.5rem;
+      margin-left: auto;
+      margin-right: auto;
+      .phone {
+        border: 1px solid #fbd5c7;
+        height: 1rem;
+        padding: 1.2rem 2rem 1.2rem 3rem;
+        font-size: 1.2rem;
+        width: 100%;
+        font-weight: 400;
+        color: #495057;
+        line-height: 1.5;
+        border-radius: 2px;
+        outline: none;
+      }
+
+      .btnflag {
+        border: none;
+        background: transparent;
+        padding: 0.2rem 0.2rem;
+      }
+
+      .dropdown-btn {
+        text-align: left;
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+
+      .select {
+        width: 100%;
+        margin-top: 1rem;
+        border: 1px solid #fbd5c7;
+        font-weight: 400;
+        color: #495057;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+        border-radius: 2px;
+        outline: none;
+      }
+
+      .btn {
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0.5rem;
+        background-color: #f55c29;
+        color: #fff;
+        font-size: 1rem;
+        border-radius: 2px;
+      }
+    }
+  }
+`;
+
+export const ProcessingContainer = styled.div`
+  position: relative;
+  padding: 1.75rem;
 `;

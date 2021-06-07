@@ -1046,7 +1046,7 @@
   justify-content: space-between;
   padding: 1rem 1rem;
   border-bottom: 1px solid #ffdbce;
-  box-shadow: 0 0.5rem 1rem rgba(255, 203, 170, 0.25) !important;
+  box-shadow: 0 0.5rem 1rem rgba(255, 203, 170, 0.25);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background: transparent;
@@ -1097,7 +1097,7 @@ button.close {
   border-color: #6c757d;
   font-weight: 700;
   border-radius: 16.5px;
-  background-color: #888888 !important;
+  background-color: #888888;
   outline: none !important;
   color: #fff !important;
   transition: all 0.3s ease-in-out;

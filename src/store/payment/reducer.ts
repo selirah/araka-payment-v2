@@ -26,6 +26,12 @@ export const initialState: PaymentState = {
   transaction: undefined,
   setRecipientValues: undefined,
   repopulateForm: false,
+  mobileResponse: null,
+  providers: [],
+  mobilePaymentSuccess: false,
+  mobilePaymentProcessing: false,
+  mobilePaymentSubmit: false,
+  trxStatus: null,
 };
 
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
@@ -221,6 +227,82 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return {
         ...state,
         categories: [],
+      };
+
+    case PaymentActionTypes.MOBILE_PAYMENT_REQUEST:
+      return {
+        ...state,
+        mobilePaymentSubmit: true,
+        error: undefined,
+      };
+
+    case PaymentActionTypes.MOBILE_PAYMENT_SUCCESS:
+      return {
+        ...state,
+        mobilePaymentSubmit: false,
+        mobileResponse: action.payload,
+        mobilePaymentSuccess: true,
+      };
+
+    case PaymentActionTypes.MOBILE_PAYMENT_FAILURE:
+      return {
+        ...state,
+        mobilePaymentSubmit: false,
+        error: action.payload,
+        mobilePaymentSuccess: false,
+      };
+
+    case PaymentActionTypes.MOBILE_STATUS_REQUEST:
+      return {
+        ...state,
+        mobilePaymentProcessing: true,
+        error: undefined,
+      };
+
+    case PaymentActionTypes.MOBILE_STATUS_SUCCESS:
+      return {
+        ...state,
+        mobilePaymentProcessing: false,
+        trxStatus: action.payload,
+      };
+
+    case PaymentActionTypes.MOBILE_STATUS_FAILURE:
+      return {
+        ...state,
+        mobilePaymentProcessing: false,
+        error: action.payload,
+      };
+
+    case PaymentActionTypes.GET_PROVIDERS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: undefined,
+      };
+
+    case PaymentActionTypes.GET_PROVIDERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        providers: action.payload,
+      };
+
+    case PaymentActionTypes.GET_PROVIDERS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case PaymentActionTypes.CLEAR_MOBILE_STATES:
+      return {
+        ...state,
+        mobilePaymentSuccess: false,
+        error: undefined,
+        mobilePaymentProcessing: false,
+        mobilePaymentSubmit: false,
+        mobileResponse: null,
+        trxStatus: null,
       };
 
     case AuthActionTypes.DESTROY_STATES:

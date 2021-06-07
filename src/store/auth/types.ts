@@ -24,6 +24,9 @@ export enum AuthActionTypes {
   RESET_PASSWORD_REQUEST = '@@auth/RESET_PASSWORD_REQUEST',
   RESET_PASSWORD_SUCCESS = '@@auth/RESET_PASSWORD_SUCCESS',
   RESET_PASSWORD_FAILURE = '@@auth/RESET_PASSWORD_FAILURE',
+  RESEND_VERIFICATION_REQUEST = '@@auth/RESEND_VERIFICATION_REQUEST',
+  RESEND_VERIFICATION_SUCCESS = '@@auth/RESEND_VERIFICATION_SUCCESS',
+  RESEND_VERIFICATION_FAILURE = '@@auth/RESEND_VERIFICATION_FAILURE',
 }
 
 export type AuthState = {
@@ -47,4 +50,9 @@ export type AuthState = {
   readonly resetPasswordSuccess: boolean;
   readonly resetPasswordError: boolean;
   readonly resetError: any;
+
+  readonly isResendVerification: boolean;
+  readonly resendVericationSuccess: boolean;
+  readonly resendVericationFailure: boolean;
+  readonly resendError: any;
 };

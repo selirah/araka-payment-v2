@@ -31,12 +31,12 @@
     "home": {
       "banner-header": "A fast and secure payment platform for the internet",
       "banner-text": "is a payment platform that allows its registered users to make payment for goods and services, it also works as a market place that allows its registered merchants to accept payments for their goods and services.",
-      "banner-text-a" : "users have the freedom to choose from a wide range of payment methods, from mobile money through",
-      "banner-text-b" : "to bankcards.",
+      "banner-text-a": "users have the freedom to choose from a wide range of payment methods, from mobile money through",
+      "banner-text-b": "to bankcards.",
       "and": "and",
       "btn-merchant": "Become a merchant",
       "btn-payments": "Start making payments",
-      "btn-nav-pay" : "Make payments",
+      "btn-nav-pay": "Make payments",
       "get_started_paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lectus libero, molestie non vulputate et, tempor id nibh. Sedultrices nec urna sed vestibulum.",
       "language": "Language",
       "terms": {
@@ -60,7 +60,6 @@
         "security_paragraph_3": "E-mail correspondence is not a secure means of communication as it is a free format text and cannot be encrypted. Although we use advanced security measures to protect your information against loss, misuse and alterations, because of the nature of the internet we cannot guarantee the security of your information provided to us over the internet and cannot be held responsible for this.",
         "consent": "Your Consent",
         "consent_paragraph": "By submitting your information, you consent to the use of that information as set out in this Policy. If we change our Privacy Policy we will post the changes on this page, and may place notices on other pages of the website, so that you may be aware of the information we collect and how we use it at all times. Continued use of the service will signify that you agree to any such changes."
-
       }
     },
     "login": {
@@ -141,7 +140,9 @@
         "sub3": "Airtime top-up cancelled",
         "btn": "View history",
         "btn2": "Re-try"
-      }
+      },
+      "redirecting": "We are redirecting you to checkout page...please wait",
+      "mpesa": "Enter your telephone number"
     },
     "dashboard": {
       "top-nav": {

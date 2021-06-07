@@ -30,7 +30,7 @@ import {
   ChangePassword,
 } from '../../interfaces';
 
-function* getTransactions() {
+function* getTransactions(): any {
   try {
     const res = yield call(callApiGet, 'payments/transactionhistory');
     if (res.status === 200) {
@@ -47,7 +47,7 @@ function* getTransactions() {
   }
 }
 
-function* getCurrencies() {
+function* getCurrencies(): any {
   try {
     const res = yield call(callApiGet, 'payments/currencycodes');
     if (res.status === 200) {
@@ -64,7 +64,7 @@ function* getCurrencies() {
   }
 }
 
-function* getUser({ payload }: { type: string; payload: number }) {
+function* getUser({ payload }: { type: string; payload: number }): any {
   try {
     const res = yield call(callApiGet, `payments/clientdetails/${payload}`);
     if (res.status === 200) {
@@ -81,7 +81,7 @@ function* getUser({ payload }: { type: string; payload: number }) {
   }
 }
 
-function* updateUser({ payload }: { type: string; payload: Client }) {
+function* updateUser({ payload }: { type: string; payload: Client }): any {
   try {
     const res = yield call(callApiPost, 'payments/clientdetails', payload);
     if (res.status === 200) {
@@ -98,7 +98,12 @@ function* updateUser({ payload }: { type: string; payload: Client }) {
   }
 }
 
-function* addBeneficiary({ payload }: { type: string; payload: Beneficiary }) {
+function* addBeneficiary({
+  payload,
+}: {
+  type: string;
+  payload: Beneficiary;
+}): any {
   try {
     const res = yield call(callApiPost, 'payments/addbeneficiary', payload);
     if (res.status === 200) {
@@ -115,7 +120,12 @@ function* addBeneficiary({ payload }: { type: string; payload: Beneficiary }) {
   }
 }
 
-function* getBeneficiaries({ payload }: { type: string; payload: number }) {
+function* getBeneficiaries({
+  payload,
+}: {
+  type: string;
+  payload: number;
+}): any {
   try {
     const res = yield call(callApiGet, `payments/beneficiaries/${payload}`);
     if (res.status === 200) {
@@ -137,7 +147,7 @@ function* updateBeneficiary({
 }: {
   type: string;
   payload: Beneficiary;
-}) {
+}): any {
   try {
     const res = yield call(callApiPost, 'payments/updatebeneficiary', payload);
     if (res.status === 200) {
@@ -154,7 +164,12 @@ function* updateBeneficiary({
   }
 }
 
-function* deleteBeneficiary({ payload }: { type: string; payload: number }) {
+function* deleteBeneficiary({
+  payload,
+}: {
+  type: string;
+  payload: number;
+}): any {
   try {
     const res = yield call(callApiPost, `payments/deletebeneficiary`, {
       beneficiaryId: payload,
@@ -178,7 +193,7 @@ function* getDownloadReceiptStream({
 }: {
   type: string;
   payload: number;
-}) {
+}): any {
   try {
     const res = yield call(
       callApiGet,
@@ -207,7 +222,7 @@ function* changePassword({
 }: {
   type: string;
   payload: ChangePassword;
-}) {
+}): any {
   try {
     const res = yield call(callApiPost, 'login/changepassword', payload);
     if (res.status === 200) {

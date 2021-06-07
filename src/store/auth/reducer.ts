@@ -20,6 +20,10 @@ export const initialState: AuthState = {
   resetError: undefined,
   resetPasswordSuccess: false,
   resetPasswordError: false,
+  isResendVerification: false,
+  resendError: undefined,
+  resendVericationFailure: false,
+  resendVericationSuccess: false,
 };
 
 const reducer: Reducer<AuthState> = (state = initialState, action) => {
@@ -86,6 +90,9 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         resetPasswordSuccess: false,
         resetPasswordError: false,
         singleError: '',
+        resendVericationFailure: false,
+        resendVericationSuccess: false,
+        resendError: undefined,
       };
     case AuthActionTypes.SET_USER:
       return {
@@ -191,6 +198,32 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         resetPasswordError: true,
         resetError: action.payload,
       };
+
+    case AuthActionTypes.RESEND_VERIFICATION_REQUEST:
+      return {
+        ...state,
+        isResendVerification: true,
+        resendVericationSuccess: initialState.resendVericationSuccess,
+        resendVericationFailure: initialState.resendVericationFailure,
+        resendError: initialState.resendError,
+      };
+    case AuthActionTypes.RESEND_VERIFICATION_SUCCESS:
+      return {
+        ...state,
+        isResendVerification: initialState.isResendVerification,
+        resendVericationSuccess: true,
+        resendVericationFailure: initialState.resendVericationFailure,
+        resendError: initialState.resendError,
+      };
+    case AuthActionTypes.RESEND_VERIFICATION_FAILURE:
+      return {
+        ...state,
+        isResendVerification: initialState.isResendVerification,
+        resendVericationSuccess: initialState.resendVericationSuccess,
+        resendVericationFailure: true,
+        resendError: action.payload,
+      };
+
     case AuthActionTypes.DESTROY_STATES:
       return initialState;
     default:

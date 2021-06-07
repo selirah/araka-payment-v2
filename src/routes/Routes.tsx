@@ -15,6 +15,7 @@ import RegisterPage from '../pages/auth/register';
 import RegisterSuccessPage from '../pages/auth/register-success';
 import EmailVerificationPage from '../pages/auth/email-verification';
 import ForgottenPasswordPage from '../pages/auth/forgotten-password';
+import ResendVerificationPage from '../pages/auth/resend-verification';
 import ResetPasswordPage from '../pages/auth/reset-password';
 import DashboardPage from '../pages/dashboard/dashboard';
 import NotFoundPage from '../pages/_404';
@@ -39,6 +40,7 @@ const Routes: React.FC = () => {
         <Route exact path={path.verify} component={EmailVerificationPage} />
         <Route exact path={path.forgot} component={ForgottenPasswordPage} />
         <Route exact path={path.reset} component={ResetPasswordPage} />
+        <Route exact path={path.resend} component={ResendVerificationPage} />
 
         <PrivateRoute exact path={path.dashboard} component={DashboardPage} />
         <PrivateRoute exact path={path.success} component={SuccessPage} />
@@ -49,7 +51,6 @@ const Routes: React.FC = () => {
           path={path.redirecting}
           component={RedirectingPage}
         />
-
         <Route exact component={NotFoundPage} />
       </Switch>
     </React.Fragment>

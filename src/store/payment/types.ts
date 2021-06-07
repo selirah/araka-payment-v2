@@ -37,6 +37,16 @@ export enum PaymentActionTypes {
   SET_RECIPIENT_VALUES = '@@payment/SET_RECIPIENT_VALUES',
   REPOPULATE_FORM = '@@payment/REPOPULATE_FORM',
   FLUSH_CATEGORIES = '@@payment/FLUSH_CATEGORIES',
+  CLEAR_MOBILE_STATES = '@@payment/CLEAR_MOBILE_STATES',
+  MOBILE_PAYMENT_REQUEST = '@@payment/MOBILE_PAYMENT_REQUEST',
+  MOBILE_PAYMENT_SUCCESS = '@@payment/MOBILE_PAYMENT_SUCCESS',
+  MOBILE_PAYMENT_FAILURE = '@@payment/MOBILE_PAYMENT_FAILURE',
+  MOBILE_STATUS_REQUEST = '@@payment/MOBILE_STATUS_REQUEST',
+  MOBILE_STATUS_SUCCESS = '@@payment/MOBILE_STATUS_SUCCESS',
+  MOBILE_STATUS_FAILURE = '@@payment/MOBILE_STATUS_FAILURE',
+  GET_PROVIDERS_REQUEST = '@@payment/GET_PROVIDERS_REQUEST',
+  GET_PROVIDERS_SUCCESS = '@@payment/GET_PROVIDERS_SUCCESS',
+  GET_PROVIDERS_FAILURE = '@@payment/GET_PROVIDERS_FAILURE',
 }
 
 export type PaymentState = {
@@ -63,4 +73,10 @@ export type PaymentState = {
   readonly transaction: TransactionHistory | undefined;
   readonly setRecipientValues: Recipient | undefined;
   readonly repopulateForm: boolean;
+  readonly providers: any;
+  readonly mobileResponse: any;
+  readonly mobilePaymentSuccess: boolean;
+  readonly mobilePaymentProcessing: boolean;
+  readonly mobilePaymentSubmit: boolean;
+  readonly trxStatus: any;
 };

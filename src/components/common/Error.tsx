@@ -1,6 +1,5 @@
 import React from 'react';
-import { AlertContainer } from './Styles';
-import { ErrorContainer } from '../common/Styles';
+import { AlertContainer, ErrorContainer } from './Styles';
 
 const Error: React.FC<{ error: string }> = ({ error }) => {
   return (

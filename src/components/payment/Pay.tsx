@@ -11,9 +11,17 @@ import {
   processOrderRequest,
   decreasePaymentStep,
   clearOrderError,
+  getProvidersRequest,
+  mobilePaymentRequest,
+  checkMobileStatusRequest,
+  clearMobileStates,
 } from '../../store/payment/actions';
 import { SmallIcon } from '../common/Styles';
 import { secure } from '../../utils/secure';
+
+import { modalTypes } from '../../helpers/constants';
+import { MobilePaymentModal } from '../common/MobilePaymentModal';
+import { isEmpty } from '../../helpers/isEmpty';
 
 const Pay: React.FC = () => {
   const history = useHistory();
@@ -25,15 +33,43 @@ const Pay: React.FC = () => {
     orderResponse,
     category,
     product,
+    mobilePaymentSubmit,
+    mobilePaymentSuccess,
+    mobileResponse,
+    error,
+    providers,
+    trxStatus,
   } = appSelector((state) => state.payment);
+  const { currencies } = appSelector((state) => state.dashboard);
   const { isAuthenticated } = appSelector((state) => state.auth);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [option, setOption] = useState<string>('');
   const [buttonTitle, setButtonTitle] = useState<string>('Continue to Payment');
+  const [modalType, setModalType] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [provider, setProvider] = useState('');
+  const [counter, setCounter] = useState(0);
 
   const selectOption = (option: string): void => {
     dispatch(setPayOption(option));
   };
+
+  const onShowModalClick = (type: string): void => {
+    setShowModal(true);
+    setModalType(type);
+  };
+
+  const onCloseModal = (): void => {
+    setShowModal(false);
+    setModalType('');
+  };
+
+  useEffect(() => {
+    dispatch(clearMobileStates());
+    dispatch(getProvidersRequest());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setOption(paymentOption);
@@ -43,19 +79,68 @@ const Pay: React.FC = () => {
       secure.remove('orderData');
       history.push(path.redirecting);
     }
-  }, [paymentOption, isSubmit, orderResponse, history]);
+
+    if (mobilePaymentSuccess && !isEmpty(mobileResponse)) {
+      if (counter <= 3) {
+        setInterval(() => {
+          dispatch(checkMobileStatusRequest(mobileResponse.transactionId));
+          setCounter(counter + 1);
+        }, 30000);
+      } else {
+        // history.push(path.dashboard);
+        window.location.href = path.dashboard;
+      }
+    }
+
+    if (!isEmpty(trxStatus) && mobilePaymentSuccess) {
+      switch (trxStatus.status) {
+        case 'APPROVED':
+          // history.push(path.success);
+          window.location.href = path.success;
+          break;
+        case 'CANCELED':
+          // history.push(path.cancelled);
+          window.location.href = path.cancelled;
+          break;
+        case 'DECLINED':
+          // history.push(path.failure);
+          window.location.href = path.failure;
+          break;
+      }
+    }
+  }, [
+    paymentOption,
+    isSubmit,
+    orderResponse,
+    history,
+    mobilePaymentSuccess,
+    mobileResponse,
+    dispatch,
+    trxStatus,
+    counter,
+  ]);
 
   const onSubmit = () => {
     switch (isAuthenticated) {
       case true:
-        if (
-          orderData !== undefined &&
-          category !== undefined &&
-          product !== undefined
-        ) {
-          orderData.data.productCategoryId = category.productCategoryId;
-          orderData.data.productId = product.productId;
-          dispatch(processOrderRequest(orderData));
+        if (option === payOption.CREDIT_CARD) {
+          if (
+            orderData !== undefined &&
+            category !== undefined &&
+            product !== undefined
+          ) {
+            const PaymentInfo = {
+              Channel: '',
+              Provider: '',
+              WalletID: '',
+            };
+            orderData.data.productCategoryId = category.productCategoryId;
+            orderData.data.productId = product.productId;
+            orderData.PaymentInfo = PaymentInfo;
+            dispatch(processOrderRequest(orderData));
+          }
+        } else if (option === payOption.MPESA) {
+          onShowModalClick(modalTypes.MOBILE_PAYMENT);
         }
         break;
       case false:
@@ -66,6 +151,34 @@ const Pay: React.FC = () => {
   const previousProcess = (): void => {
     dispatch(decreasePaymentStep());
     dispatch(clearOrderError());
+  };
+
+  const onSubmitMobilePayment = (e: React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+    if (
+      orderData !== undefined &&
+      category !== undefined &&
+      product !== undefined
+    ) {
+      const PaymentInfo = {
+        Channel: 'MOBILEWALLET',
+        Provider: provider,
+        WalletID: phone,
+      };
+      orderData.data.productCategoryId = category.productCategoryId;
+      orderData.data.productId = product.productId;
+      orderData.PaymentInfo = PaymentInfo;
+      dispatch(mobilePaymentRequest(orderData));
+    }
+  };
+
+  const onPhoneChange = (value: string) => {
+    setPhone(value);
+  };
+
+  const onProviderChange = (e: React.FormEvent<EventTarget>) => {
+    const { value } = e.target as HTMLTextAreaElement;
+    setProvider(value);
   };
 
   return (
@@ -82,14 +195,12 @@ const Pay: React.FC = () => {
             <h2>Credit/Debit Card</h2>
           </div>
         </div>
-        <div
-          className="col-sm-6 text-center option"
-          // onClick={() => selectOption(payOption.MPESA)}
-        >
+        <div className="col-sm-6 text-center option">
           <div
             className={`selectable-item ${
               option === payOption.MPESA ? 'selected' : null
-            }`} /*onClick={() => selectOption(payOption.CREDIT_CARD)} */
+            }`}
+            onClick={() => selectOption(payOption.MPESA)}
           >
             <img src={mobileWallets} alt="Pay with mobile wallet" />
             <h2>Mobile Wallets</h2>
@@ -119,6 +230,24 @@ const Pay: React.FC = () => {
           ) : null}
         </button>
       </div>
+      {showModal && modalType === modalTypes.MOBILE_PAYMENT ? (
+        <MobilePaymentModal
+          show={showModal}
+          onClose={onCloseModal}
+          setPhone={onPhoneChange}
+          setProvider={onProviderChange}
+          onSubmit={onSubmitMobilePayment}
+          phone={phone}
+          providers={providers}
+          error={error}
+          isSubmit={mobilePaymentSubmit}
+          success={mobilePaymentSuccess}
+          data={orderData}
+          currencies={currencies}
+        >
+          <h1>Hey</h1>
+        </MobilePaymentModal>
+      ) : null}
     </React.Fragment>
   );
 };

@@ -72,3 +72,12 @@ export const resetPasswordSuccess = (response: any) =>
 
 export const resetPasswordFailure = (error: any) =>
   action(AuthActionTypes.RESET_PASSWORD_FAILURE, error);
+
+export const resendVerificationRequest = (payload: ForgottenPassword) =>
+  action(AuthActionTypes.RESEND_VERIFICATION_REQUEST, payload);
+
+export const resendVerificationSuccess = (response: any) =>
+  action(AuthActionTypes.RESEND_VERIFICATION_SUCCESS, response);
+
+export const resendVerificationFailure = (error: any) =>
+  action(AuthActionTypes.RESEND_VERIFICATION_FAILURE, error);

@@ -2410,6 +2410,18 @@ label.field-required.control-label--hidden {
   text-align: center;
 }
 
+.mpesa-container {
+  text-align: center;
+  margin-top: 150px;
+}
+
+.mpesa-container h4 {
+  font-size: 1.7rem;
+  margin-top: 1.5rem;
+  font-weight: 700;
+  color: #425466;
+}
+
 .redirecting-container h4 {
   font-size: 1.5rem;
   margin-top: 1.5rem;
@@ -2463,6 +2475,58 @@ label.field-required.control-label--hidden {
   margin-left: 14.7rem !important;
 }
 
+.mpesa-btns {
+  margin-top: 20px;
+}
+
+.mpesa-btns button {
+  padding: 20px;
+  margin-right: 10px;
+}
+
+.mpesa-btns button:first-child {
+  font-size: 18px !important;
+  height: 2.66rem !important;
+  padding: 0.46rem 1.33rem 0.46rem 1.2rem !important;
+  border: none !important;
+  font-weight: 300 !important;
+  border-radius: 5px !important;
+  background: #949dac !important;
+  color: #fff !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.mpesa-btns button:last-child {
+  font-size: 18px !important;
+  height: 2.66rem !important;
+  padding: 0.46rem 1.33rem 0.46rem 1.2rem !important;
+  border: none !important;
+  font-weight: 300 !important;
+  border-radius: 5px !important;
+  background: #f55c29 !important;
+  color: #fff !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.modal-box {
+  display: flex;
+  padding: 0 !important;
+}
+
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: transparent;
+  color: rgb(66, 84, 102);
+  font-weight: 300;
+  text-transform: none;
+}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media screen and (max-width: 600px) {
   .sidebar-brand-icon img {

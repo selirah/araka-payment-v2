@@ -13,6 +13,8 @@ import {
   forgottenPasswordFailure,
   resetPasswordSuccess,
   resetPasswordFailure,
+  resendVerificationFailure,
+  resendVerificationSuccess,
 } from './actions';
 import { callApiPost } from '../../utils/api';
 import {
@@ -25,7 +27,7 @@ import {
 import { authorization } from '../../utils/authorization';
 import { secure } from '../../utils/secure';
 
-function* login({ payload }: { type: string; payload: Login }) {
+function* login({ payload }: { type: string; payload: Login }): any {
   try {
     const res = yield call(callApiPost, 'login', payload);
     secure.set('user', res.data);
@@ -44,7 +46,7 @@ function* login({ payload }: { type: string; payload: Login }) {
   }
 }
 
-function* register({ payload }: { type: string; payload: Register }) {
+function* register({ payload }: { type: string; payload: Register }): any {
   try {
     const res = yield call(callApiPost, 'login/register', payload);
     yield put(registerSuccess(res.data));
@@ -61,7 +63,7 @@ function* register({ payload }: { type: string; payload: Register }) {
   }
 }
 
-function* verify({ payload }: { type: string; payload: Verification }) {
+function* verify({ payload }: { type: string; payload: Verification }): any {
   try {
     const res = yield call(callApiPost, 'login/verifyaccount', payload);
     yield put(verificationSuccess(res.data));
@@ -76,7 +78,12 @@ function* verify({ payload }: { type: string; payload: Verification }) {
   }
 }
 
-function* forgotten({ payload }: { type: string; payload: ForgottenPassword }) {
+function* forgotten({
+  payload,
+}: {
+  type: string;
+  payload: ForgottenPassword;
+}): any {
   try {
     const res = yield call(callApiPost, 'login/requestpasswordreset', payload);
     if (res.status === 200) {
@@ -95,7 +102,7 @@ function* forgotten({ payload }: { type: string; payload: ForgottenPassword }) {
   }
 }
 
-function* reset({ payload }: { type: string; payload: ResetPassword }) {
+function* reset({ payload }: { type: string; payload: ResetPassword }): any {
   try {
     const res = yield call(callApiPost, 'login/resetpassword', payload);
     if (res.status === 200) {
@@ -109,6 +116,30 @@ function* reset({ payload }: { type: string; payload: ResetPassword }) {
         yield put(resetPasswordFailure(err.response.data));
       } else {
         yield put(resetPasswordFailure(err.response.data));
+      }
+    }
+  }
+}
+
+function* resend({
+  payload,
+}: {
+  type: string;
+  payload: ForgottenPassword;
+}): any {
+  try {
+    const res = yield call(callApiPost, 'login/resendverification', payload);
+    if (res.status === 200) {
+      yield put(resendVerificationSuccess(res.data));
+    } else {
+      yield put(resendVerificationFailure(res.data));
+    }
+  } catch (err) {
+    if (err && err.response) {
+      if (err.response.data.status) {
+        yield put(resendVerificationFailure(err.response.data));
+      } else {
+        yield put(resendVerificationFailure(err.response.data));
       }
     }
   }
@@ -134,6 +165,10 @@ function* watchResetPassword() {
   yield takeEvery(AuthActionTypes.RESET_PASSWORD_REQUEST, reset);
 }
 
+function* watchResendVerification() {
+  yield takeEvery(AuthActionTypes.RESEND_VERIFICATION_REQUEST, resend);
+}
+
 function* authSaga() {
   yield all([
     fork(watchLogin),
@@ -141,6 +176,7 @@ function* authSaga() {
     fork(watchVerification),
     fork(watchForgottenPassword),
     fork(watchResetPassword),
+    fork(watchResendVerification),
   ]);
 }
 
