@@ -25,6 +25,7 @@ import display_2 from './araka/2.svg';
 import display_3 from './araka/3.svg';
 import display_4 from './araka/4.svg';
 import display_5 from './araka/5.svg';
+import botVerification from './araka/bot-verification-welcome.jpg';
 import comingSoonPlayStore from './araka/coming-soon-google-play-horizontal.png';
 import exclamationIcon from './araka/exclamation.svg';
 import ag from './logos/ag.jpg';
@@ -70,6 +71,7 @@ export {
   display_3,
   display_4,
   display_5,
+  botVerification,
   exclamationIcon,
   comingSoonPlayStore,
   ag,

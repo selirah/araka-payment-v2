@@ -1,10 +1,12 @@
 import styled from 'styled-components';
+import { media } from '../../helpers/media';
 import {
   display_1,
   display_2,
   display_3,
   display_4,
   display_5,
+  botVerification,
 } from '../../images/Images';
 
 export const ContainerFluid = styled.div`
@@ -40,6 +42,19 @@ export const ImageRegisterSuccessful = styled.div`
   background: url(${display_3}) center no-repeat;
   background-size: cover;
   min-height: 100vh;
+`;
+export const MobileVerificationContainer = styled.div`
+  background: url(${botVerification}) center no-repeat #fff;
+  background-size: contain;
+  min-height: 100vh;
+  // box-shadow: 0.5rem 0 1rem rgba(255, 203, 170, 0.25) !important;
+`;
+
+export const MobileVerificationContainerMobile = styled.div`
+  background: url(${botVerification}) center no-repeat #fff;
+  background-size: 90% auto;
+  min-height: 60vh;
+  // box-shadow: 0.5rem 0 1rem rgba(255, 203, 170, 0.25) !important;
 `;
 
 export const FormContainer = styled.div`
@@ -378,6 +393,9 @@ export const VerificationContainer = styled.div`
     top: 0.5rem;
     margin-right: 1.5rem;
   }
+  ${media.lessThan('sm')`
+    margin-top:2rem;
+  `}
 `;
 
 export const LoadingContainer = styled.div`

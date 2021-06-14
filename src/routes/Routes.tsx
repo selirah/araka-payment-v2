@@ -14,6 +14,7 @@ import LoginPage from '../pages/auth/login';
 import RegisterPage from '../pages/auth/register';
 import RegisterSuccessPage from '../pages/auth/register-success';
 import EmailVerificationPage from '../pages/auth/email-verification';
+import MobileVerificationPage from '../pages/auth/mobile-verification';
 import ForgottenPasswordPage from '../pages/auth/forgotten-password';
 import ResendVerificationPage from '../pages/auth/resend-verification';
 import ResetPasswordPage from '../pages/auth/reset-password';
@@ -38,6 +39,7 @@ const Routes: React.FC = () => {
           component={RegisterSuccessPage}
         />
         <Route exact path={path.verify} component={EmailVerificationPage} />
+        <Route exact path={path.mverify} component={MobileVerificationPage} />
         <Route exact path={path.forgot} component={ForgottenPasswordPage} />
         <Route exact path={path.reset} component={ResetPasswordPage} />
         <Route exact path={path.resend} component={ResendVerificationPage} />

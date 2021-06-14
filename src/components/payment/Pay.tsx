@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { appSelector } from '../../helpers/appSelector';
-import { AppDispatch } from '../../helpers/appDispatch';
-import { setPayOption } from '../../store/payment/actions';
-import { payOption } from '../../helpers/constants';
-import { path } from '../../helpers/path';
-import { creditDebitCards, mobileWallets } from '../../images/Images';
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { appSelector } from '../../helpers/appSelector'
+import { AppDispatch } from '../../helpers/appDispatch'
+import { setPayOption } from '../../store/payment/actions'
+import { payOption } from '../../helpers/constants'
+import { path } from '../../helpers/path'
+import { creditDebitCards, mobileWallets } from '../../images/Images'
 import {
   processOrderRequest,
   decreasePaymentStep,
@@ -14,18 +14,18 @@ import {
   getProvidersRequest,
   mobilePaymentRequest,
   checkMobileStatusRequest,
-  clearMobileStates,
-} from '../../store/payment/actions';
-import { SmallIcon } from '../common/Styles';
-import { secure } from '../../utils/secure';
+  clearMobileStates
+} from '../../store/payment/actions'
+import { SmallIcon } from '../common/Styles'
+import { secure } from '../../utils/secure'
 
-import { modalTypes } from '../../helpers/constants';
-import { MobilePaymentModal } from '../common/MobilePaymentModal';
-import { isEmpty } from '../../helpers/isEmpty';
+import { modalTypes } from '../../helpers/constants'
+import { MobilePaymentModal } from '../common/MobilePaymentModal'
+import { isEmpty } from '../../helpers/isEmpty'
 
 const Pay: React.FC = () => {
-  const history = useHistory();
-  const dispatch: AppDispatch = useDispatch();
+  const history = useHistory()
+  const dispatch: AppDispatch = useDispatch()
   const {
     paymentOption,
     orderData,
@@ -38,57 +38,57 @@ const Pay: React.FC = () => {
     mobileResponse,
     error,
     providers,
-    trxStatus,
-  } = appSelector((state) => state.payment);
-  const { currencies } = appSelector((state) => state.dashboard);
-  const { isAuthenticated } = appSelector((state) => state.auth);
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  const [option, setOption] = useState<string>('');
-  const [buttonTitle, setButtonTitle] = useState<string>('Continue to Payment');
-  const [modalType, setModalType] = useState('');
-  const [showModal, setShowModal] = useState(false);
-  const [phone, setPhone] = useState('');
-  const [provider, setProvider] = useState('');
-  const [counter, setCounter] = useState(0);
+    trxStatus
+  } = appSelector((state) => state.payment)
+  const { currencies } = appSelector((state) => state.dashboard)
+  const { isAuthenticated } = appSelector((state) => state.auth)
+  const [isProcessing, setIsProcessing] = useState<boolean>(false)
+  const [option, setOption] = useState<string>('')
+  const [buttonTitle, setButtonTitle] = useState<string>('Continue to Payment')
+  const [modalType, setModalType] = useState('')
+  const [showModal, setShowModal] = useState(false)
+  const [phone, setPhone] = useState('')
+  const [provider, setProvider] = useState('')
+  const [counter, setCounter] = useState(0)
 
   const selectOption = (option: string): void => {
-    dispatch(setPayOption(option));
-  };
+    dispatch(setPayOption(option))
+  }
 
   const onShowModalClick = (type: string): void => {
-    setShowModal(true);
-    setModalType(type);
-  };
+    setShowModal(true)
+    setModalType(type)
+  }
 
   const onCloseModal = (): void => {
-    setShowModal(false);
-    setModalType('');
-  };
+    setShowModal(false)
+    setModalType('')
+  }
 
   useEffect(() => {
-    dispatch(clearMobileStates());
-    dispatch(getProvidersRequest());
+    dispatch(clearMobileStates())
+    dispatch(getProvidersRequest())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   useEffect(() => {
-    setOption(paymentOption);
-    setIsProcessing(isSubmit);
+    setOption(paymentOption)
+    setIsProcessing(isSubmit)
     if (orderResponse !== undefined) {
-      setButtonTitle('Please wait ... ');
-      secure.remove('orderData');
-      history.push(path.redirecting);
+      setButtonTitle('Please wait ... ')
+      secure.remove('orderData')
+      history.push(path.redirecting)
     }
 
     if (mobilePaymentSuccess && !isEmpty(mobileResponse)) {
       if (counter <= 3) {
         setInterval(() => {
-          dispatch(checkMobileStatusRequest(mobileResponse.transactionId));
-          setCounter(counter + 1);
-        }, 30000);
+          dispatch(checkMobileStatusRequest(mobileResponse.transactionId))
+          setCounter(counter + 1)
+        }, 30000)
       } else {
         // history.push(path.dashboard);
-        window.location.href = path.dashboard;
+        window.location.href = path.dashboard
       }
     }
 
@@ -96,16 +96,16 @@ const Pay: React.FC = () => {
       switch (trxStatus.status) {
         case 'APPROVED':
           // history.push(path.success);
-          window.location.href = path.success;
-          break;
+          window.location.href = path.success
+          break
         case 'CANCELED':
           // history.push(path.cancelled);
-          window.location.href = path.cancelled;
-          break;
+          window.location.href = path.cancelled
+          break
         case 'DECLINED':
           // history.push(path.failure);
-          window.location.href = path.failure;
-          break;
+          window.location.href = path.failure
+          break
       }
     }
   }, [
@@ -117,8 +117,8 @@ const Pay: React.FC = () => {
     mobileResponse,
     dispatch,
     trxStatus,
-    counter,
-  ]);
+    counter
+  ])
 
   const onSubmit = () => {
     switch (isAuthenticated) {
@@ -132,29 +132,29 @@ const Pay: React.FC = () => {
             const PaymentInfo = {
               Channel: '',
               Provider: '',
-              WalletID: '',
-            };
-            orderData.data.productCategoryId = category.productCategoryId;
-            orderData.data.productId = product.productId;
-            orderData.PaymentInfo = PaymentInfo;
-            dispatch(processOrderRequest(orderData));
+              WalletID: ''
+            }
+            orderData.data.productCategoryId = category.productCategoryId
+            orderData.data.productId = product.productId
+            orderData.PaymentInfo = PaymentInfo
+            dispatch(processOrderRequest(orderData))
           }
         } else if (option === payOption.MPESA) {
-          onShowModalClick(modalTypes.MOBILE_PAYMENT);
+          onShowModalClick(modalTypes.MOBILE_PAYMENT)
         }
-        break;
+        break
       case false:
-        history.push(path.login);
+        history.push(path.login)
     }
-  };
+  }
 
   const previousProcess = (): void => {
-    dispatch(decreasePaymentStep());
-    dispatch(clearOrderError());
-  };
+    dispatch(decreasePaymentStep())
+    dispatch(clearOrderError())
+  }
 
   const onSubmitMobilePayment = (e: React.FormEvent<EventTarget>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (
       orderData !== undefined &&
       category !== undefined &&
@@ -163,23 +163,23 @@ const Pay: React.FC = () => {
       const PaymentInfo = {
         Channel: 'MOBILEWALLET',
         Provider: provider,
-        WalletID: phone,
-      };
-      orderData.data.productCategoryId = category.productCategoryId;
-      orderData.data.productId = product.productId;
-      orderData.PaymentInfo = PaymentInfo;
-      dispatch(mobilePaymentRequest(orderData));
+        WalletID: phone
+      }
+      orderData.data.productCategoryId = category.productCategoryId
+      orderData.data.productId = product.productId
+      orderData.PaymentInfo = PaymentInfo
+      dispatch(mobilePaymentRequest(orderData))
     }
-  };
+  }
 
   const onPhoneChange = (value: string) => {
-    setPhone(value);
-  };
+    setPhone(value)
+  }
 
   const onProviderChange = (e: React.FormEvent<EventTarget>) => {
-    const { value } = e.target as HTMLTextAreaElement;
-    setProvider(value);
-  };
+    const { value } = e.target as HTMLTextAreaElement
+    setProvider(value)
+  }
 
   return (
     <React.Fragment>
@@ -200,7 +200,7 @@ const Pay: React.FC = () => {
             className={`selectable-item ${
               option === payOption.MPESA ? 'selected' : null
             }`}
-            onClick={() => selectOption(payOption.MPESA)}
+            // onClick={() => selectOption(payOption.MPESA)}
           >
             <img src={mobileWallets} alt="Pay with mobile wallet" />
             <h2>Mobile Wallets</h2>
@@ -249,7 +249,7 @@ const Pay: React.FC = () => {
         </MobilePaymentModal>
       ) : null}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export { Pay };
+export { Pay }
