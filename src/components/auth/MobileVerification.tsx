@@ -42,7 +42,7 @@ const MobileVerification: React.FC<Props> = ({ processId }) => {
         dispatch(verificationRequest(payload))
       }
     }
-  }, [processId]);
+  }, [processId, auth, dispatch, history]);
 
   useEffect(() => {
     const { isSubmitting, isVerified, verifyError } = auth;
