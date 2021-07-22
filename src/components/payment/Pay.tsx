@@ -200,7 +200,7 @@ const Pay: React.FC = () => {
             className={`selectable-item ${
               option === payOption.MPESA ? 'selected' : null
             }`}
-            //onClick={() => selectOption(payOption.MPESA)}
+            onClick={() => selectOption(payOption.MPESA)}
           >
             <img src={mobileWallets} alt="Pay with mobile wallet" />
             <h2>Mobile Wallets</h2>
@@ -244,9 +244,7 @@ const Pay: React.FC = () => {
           success={mobilePaymentSuccess}
           data={orderData}
           currencies={currencies}
-        >
-          <h1>Hey</h1>
-        </MobilePaymentModal>
+        />
       ) : null}
     </React.Fragment>
   )

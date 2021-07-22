@@ -12,15 +12,12 @@
     <link href="%PUBLIC_URL%/css/mobiriseicons.css" rel="stylesheet" />
     <title>Araka Pay</title>
     <script>
-      const { host, protocol } = window.location;
-      if (host !== 'localhost:3000') {
+      const { host, protocol } = window.location
+      if (host !== 'localhost:3001') {
         if (protocol === 'http:') {
-          window.location.href = window.location.href.replace(
-            'http:',
-            'https:'
-          );
+          window.location.href = window.location.href.replace('http:', 'https:')
         } else if (protocol === 'https:') {
-          console.log('you are accessing us via our secure HTTPS protocol.');
+          console.log('you are accessing us via our secure HTTPS protocol.')
         }
       }
     </script>
