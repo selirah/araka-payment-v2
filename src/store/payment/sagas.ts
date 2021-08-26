@@ -1,5 +1,5 @@
-import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
-import { PaymentActionTypes } from './types';
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
+import { PaymentActionTypes } from './types'
 import {
   fetchCategoriesSuccess,
   fetchCategoriesFailure,
@@ -13,74 +13,72 @@ import {
   getProvidersFailure,
   mobilePaymentSuccess,
   mobilePaymentFailure,
-} from './actions';
-import { callApiGet, callApiPost } from '../../utils/api';
+  paymentSuccess,
+  paymentFailure
+} from './actions'
+import { callApiGet, callApiPost } from '../../utils/api'
 
 function* fetchCategories(): any {
   try {
-    const res = yield call(callApiGet, 'payments/productcategories');
+    const res = yield call(callApiGet, 'payments/productcategories')
     if (res.status === 200) {
-      yield put(fetchCategoriesSuccess(res.data));
+      yield put(fetchCategoriesSuccess(res.data))
     }
   } catch (err) {
     if (err && err.response) {
-      yield put(fetchCategoriesFailure(err.response.data));
+      yield put(fetchCategoriesFailure(err.response.data))
     } else {
-      yield put(fetchCategoriesFailure('An unknwon error occurred'));
+      yield put(fetchCategoriesFailure('An unknwon error occurred'))
     }
   }
 }
 
 function* processOrderRequest({
-  payload,
+  payload
 }: {
-  type: string;
-  payload: any;
+  type: string
+  payload: any
 }): any {
   try {
-    const res = yield call(callApiPost, 'payments/processrequest', payload);
-    yield put(processOrderSuccess(res.data));
+    const res = yield call(callApiPost, 'payments/processrequest', payload)
+    yield put(processOrderSuccess(res.data))
   } catch (err) {
     if (err && err.response) {
-      yield put(processOrderFailure('An error occured during payment.'));
+      yield put(processOrderFailure('An error occured during payment.'))
     } else {
-      throw err;
+      throw err
     }
   }
 }
 
 function* processFeeRequest({ payload }: { type: string; payload: any }): any {
   try {
-    const res = yield call(callApiPost, 'payments/getfees', payload);
+    const res = yield call(callApiPost, 'payments/getfees', payload)
     if (res.status === 200) {
-      yield put(postFeeSuccess(res.data));
+      yield put(postFeeSuccess(res.data))
     } else {
-      yield put(postFeeFailure(res.data));
+      yield put(postFeeFailure(res.data))
     }
   } catch (err) {
     if (err && err.response) {
       yield put(
         postFeeFailure('An error occured when making request to server')
-      );
+      )
     } else {
-      throw err;
+      throw err
     }
   }
 }
 
 function* mobilePayment({ payload }: { type: string; payload: any }): any {
   try {
-    const res = yield call(
-      callApiPost,
-      'payments/processmobilewallet',
-      payload
-    );
-    yield put(mobilePaymentSuccess(res.data));
+    const res = yield call(callApiPost, 'payments/processmobilewallet', payload)
+    yield put(mobilePaymentSuccess(res.data))
   } catch (err) {
     if (err && err.response) {
-      yield put(mobilePaymentFailure('An error occured during payment.'));
+      yield put(mobilePaymentFailure('An error occured during payment.'))
     } else {
-      throw err;
+      throw err
     }
   }
 }
@@ -90,52 +88,71 @@ function* mobileStatus({ payload }: { type: string; payload: any }): any {
     const res = yield call(
       callApiGet,
       `payments/gettransactionstatus/${payload}`
-    );
-    yield put(checkMobileStatusSuccess(res.data));
+    )
+    yield put(checkMobileStatusSuccess(res.data))
   } catch (err) {
     if (err && err.response) {
-      yield put(checkMobileStatusFailure('An error occured during payment.'));
+      yield put(checkMobileStatusFailure('An error occured during payment.'))
     } else {
-      throw err;
+      throw err
     }
   }
 }
 
 function* getProviders(): any {
   try {
-    const res = yield call(callApiGet, 'payments/getmobilewalletproviders');
-    yield put(getProvidersSuccess(res.data));
+    const res = yield call(callApiGet, 'payments/getmobilewalletproviders')
+    yield put(getProvidersSuccess(res.data))
   } catch (err) {
     if (err && err.response) {
-      yield put(getProvidersFailure('An error occured during payment.'));
+      yield put(getProvidersFailure('An error occured during payment.'))
     } else {
-      throw err;
+      throw err
+    }
+  }
+}
+
+function* processPayment({ payload }: { type: string; payload: any }): any {
+  try {
+    const res = yield call(callApiPost, 'payments/', payload)
+    if (res.status === 200) {
+      yield put(paymentSuccess())
+    }
+  } catch (err) {
+    if (err && err.response) {
+      yield put(paymentFailure(err.response.data))
+    } else {
+      throw err
     }
   }
 }
 
 function* watchFetchCategories() {
-  yield takeEvery(PaymentActionTypes.FETCH_CATEGORIES, fetchCategories);
+  yield takeEvery(PaymentActionTypes.FETCH_CATEGORIES, fetchCategories)
 }
 
 function* watchProcessOrderRequest() {
-  yield takeEvery(PaymentActionTypes.SUBMIT_ORDER_REQUEST, processOrderRequest);
+  yield takeEvery(PaymentActionTypes.SUBMIT_ORDER_REQUEST, processOrderRequest)
 }
 
 function* watchPostFeeRequest() {
-  yield takeEvery(PaymentActionTypes.REQUEST_FEE, processFeeRequest);
+  yield takeEvery(PaymentActionTypes.REQUEST_FEE, processFeeRequest)
 }
 
 function* watchMobilePayment() {
-  yield takeEvery(PaymentActionTypes.MOBILE_PAYMENT_REQUEST, mobilePayment);
+  yield takeEvery(PaymentActionTypes.MOBILE_PAYMENT_REQUEST, mobilePayment)
 }
 
 function* watchMobileStatus() {
-  yield takeEvery(PaymentActionTypes.MOBILE_STATUS_REQUEST, mobileStatus);
+  yield takeEvery(PaymentActionTypes.MOBILE_STATUS_REQUEST, mobileStatus)
 }
 
 function* watchGetProviders() {
-  yield takeEvery(PaymentActionTypes.GET_PROVIDERS_REQUEST, getProviders);
+  yield takeEvery(PaymentActionTypes.GET_PROVIDERS_REQUEST, getProviders)
+}
+
+function* watchProcessPayment() {
+  yield takeEvery(PaymentActionTypes.PAYMENT_REQUEST, processPayment)
 }
 
 function* paymentSaga(): Generator {
@@ -146,7 +163,8 @@ function* paymentSaga(): Generator {
     fork(watchMobilePayment),
     fork(watchMobileStatus),
     fork(watchGetProviders),
-  ]);
+    fork(watchProcessPayment)
+  ])
 }
 
-export { paymentSaga };
+export { paymentSaga }

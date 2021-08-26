@@ -1,6 +1,6 @@
-import { Reducer } from 'redux';
-import { PaymentState, PaymentActionTypes } from './types';
-import { AuthActionTypes } from '../auth';
+import { Reducer } from 'redux'
+import { PaymentState, PaymentActionTypes } from './types'
+import { AuthActionTypes } from '../auth'
 
 export const initialState: PaymentState = {
   categories: [],
@@ -32,120 +32,121 @@ export const initialState: PaymentState = {
   mobilePaymentProcessing: false,
   mobilePaymentSubmit: false,
   trxStatus: null,
-};
+  submitted: false
+}
 
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
   switch (action.type) {
     case PaymentActionTypes.FETCH_CATEGORIES:
       return {
         ...state,
-        loading: true,
-      };
+        loading: true
+      }
     case PaymentActionTypes.FETCH_CATEGORIES_SUCCESS:
       return {
         ...state,
         categories: action.payload,
-        loading: false,
-      };
+        loading: false
+      }
     case PaymentActionTypes.FETCH_CATEGORIES_FAILURE:
       return {
         ...state,
         loading: false,
-        error: action.payload,
-      };
+        error: action.payload
+      }
 
     case PaymentActionTypes.INCREASE_PAYMENT_STEP:
       return {
         ...state,
-        step: state.step + 1,
-      };
+        step: state.step + 1
+      }
 
     case PaymentActionTypes.INCREASE_PAYMENT_STEP_CUSTOM:
       return {
         ...state,
-        step: action.payload,
-      };
+        step: action.payload
+      }
 
     case PaymentActionTypes.DECREASE_PAYMENT_STEP:
       return {
         ...state,
-        step: state.step - 1,
-      };
+        step: state.step - 1
+      }
 
     case PaymentActionTypes.DECREASE_PAYMENT_STEP_CUSTOM:
       return {
         ...state,
-        step: action.payload,
-      };
+        step: action.payload
+      }
 
     case PaymentActionTypes.SET_ACTIVE_CATEGORY:
       return {
         ...state,
-        activeCategory: action.payload,
-      };
+        activeCategory: action.payload
+      }
 
     case PaymentActionTypes.SET_ACTIVE_PRODUCT:
       return {
         ...state,
-        activeProduct: action.payload,
-      };
+        activeProduct: action.payload
+      }
 
     case PaymentActionTypes.FETCH_PRODUCTS:
       return {
         ...state,
-        products: action.payload,
-      };
+        products: action.payload
+      }
 
     case PaymentActionTypes.SUBMIT_ORDER_REQUEST:
       return {
         ...state,
         isSubmit: true,
-        orderError: initialState.orderError,
-      };
+        orderError: initialState.orderError
+      }
 
     case PaymentActionTypes.ORDER_SUCCESS:
       return {
         ...state,
         isSubmit: initialState.isSubmit,
-        orderResponse: action.payload,
-      };
+        orderResponse: action.payload
+      }
 
     case PaymentActionTypes.ORDER_FAILURE:
       return {
         ...state,
         isSubmit: initialState.isSubmit,
-        orderError: action.payload,
-      };
+        orderError: action.payload
+      }
 
     case PaymentActionTypes.SAVE_ORDER_DATA:
       return {
         ...state,
-        orderData: action.payload,
-      };
+        orderData: action.payload
+      }
 
     case PaymentActionTypes.SET_CATEGORY:
       return {
         ...state,
-        category: action.payload,
-      };
+        category: action.payload
+      }
 
     case PaymentActionTypes.SET_PRODUCT:
       return {
         ...state,
-        product: action.payload,
-      };
+        product: action.payload
+      }
 
     case PaymentActionTypes.IS_PERFORMING_PAYMENT:
       return {
         ...state,
-        isPerformingPayment: action.payload,
-      };
+        isPerformingPayment: action.payload
+      }
 
     case PaymentActionTypes.SET_ACTIVE_PAY_OPTION:
       return {
         ...state,
-        paymentOption: action.payload,
-      };
+        paymentOption: action.payload
+      }
 
     case PaymentActionTypes.RESET_TRANSACTION:
       return {
@@ -163,136 +164,136 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         fee: initialState.fee,
         feeError: initialState.feeError,
         setRecipientValues: initialState.setRecipientValues,
-        repopulateForm: initialState.repopulateForm,
-      };
+        repopulateForm: initialState.repopulateForm
+      }
 
     case PaymentActionTypes.CLEAR_ORDER_ERROR:
       return {
         ...state,
-        orderError: initialState.orderError,
-      };
+        orderError: initialState.orderError
+      }
 
     case PaymentActionTypes.FORM_VALID_ERROR:
       return {
         ...state,
-        isFormValidError: action.payload,
-      };
+        isFormValidError: action.payload
+      }
 
     case PaymentActionTypes.REQUEST_FEE:
       return {
         ...state,
         feeError: initialState.feeError,
-        feeLoading: true,
-      };
+        feeLoading: true
+      }
 
     case PaymentActionTypes.REQUEST_FEE_SUCCESS:
       return {
         ...state,
         fee: action.payload,
-        feeLoading: false,
-      };
+        feeLoading: false
+      }
 
     case PaymentActionTypes.REQUEST_FEE_FAILURE:
       return {
         ...state,
         feeError: action.payload,
-        feeLoading: false,
-      };
+        feeLoading: false
+      }
 
     case PaymentActionTypes.REPEAT_TRANSACTION:
       return {
         ...state,
-        repeatTransaction: action.payload,
-      };
+        repeatTransaction: action.payload
+      }
 
     case PaymentActionTypes.SET_TRANSACTION:
       return {
         ...state,
-        transaction: action.payload,
-      };
+        transaction: action.payload
+      }
 
     case PaymentActionTypes.SET_RECIPIENT_VALUES:
       return {
         ...state,
-        setRecipientValues: action.payload,
-      };
+        setRecipientValues: action.payload
+      }
 
     case PaymentActionTypes.REPOPULATE_FORM:
       return {
         ...state,
-        repopulateForm: true,
-      };
+        repopulateForm: true
+      }
 
     case PaymentActionTypes.FLUSH_CATEGORIES:
       return {
         ...state,
-        categories: [],
-      };
+        categories: []
+      }
 
     case PaymentActionTypes.MOBILE_PAYMENT_REQUEST:
       return {
         ...state,
         mobilePaymentSubmit: true,
-        error: undefined,
-      };
+        error: undefined
+      }
 
     case PaymentActionTypes.MOBILE_PAYMENT_SUCCESS:
       return {
         ...state,
         mobilePaymentSubmit: false,
         mobileResponse: action.payload,
-        mobilePaymentSuccess: true,
-      };
+        mobilePaymentSuccess: true
+      }
 
     case PaymentActionTypes.MOBILE_PAYMENT_FAILURE:
       return {
         ...state,
         mobilePaymentSubmit: false,
         error: action.payload,
-        mobilePaymentSuccess: false,
-      };
+        mobilePaymentSuccess: false
+      }
 
     case PaymentActionTypes.MOBILE_STATUS_REQUEST:
       return {
         ...state,
         mobilePaymentProcessing: true,
-        error: undefined,
-      };
+        error: undefined
+      }
 
     case PaymentActionTypes.MOBILE_STATUS_SUCCESS:
       return {
         ...state,
         mobilePaymentProcessing: false,
-        trxStatus: action.payload,
-      };
+        trxStatus: action.payload
+      }
 
     case PaymentActionTypes.MOBILE_STATUS_FAILURE:
       return {
         ...state,
         mobilePaymentProcessing: false,
-        error: action.payload,
-      };
+        error: action.payload
+      }
 
     case PaymentActionTypes.GET_PROVIDERS_REQUEST:
       return {
         ...state,
         loading: true,
-        error: undefined,
-      };
+        error: undefined
+      }
 
     case PaymentActionTypes.GET_PROVIDERS_SUCCESS:
       return {
         ...state,
         loading: false,
-        providers: action.payload,
-      };
+        providers: action.payload
+      }
 
     case PaymentActionTypes.GET_PROVIDERS_FAILURE:
       return {
         ...state,
         loading: false,
-        error: action.payload,
-      };
+        error: action.payload
+      }
 
     case PaymentActionTypes.CLEAR_MOBILE_STATES:
       return {
@@ -302,15 +303,37 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         mobilePaymentProcessing: false,
         mobilePaymentSubmit: false,
         mobileResponse: null,
-        trxStatus: null,
-      };
+        trxStatus: null
+      }
+
+    case PaymentActionTypes.PAYMENT_REQUEST:
+      return {
+        ...state,
+        isSubmit: true,
+        orderError: initialState.orderError
+      }
+
+    case PaymentActionTypes.PAYMENT_SUCCESS:
+      return {
+        ...state,
+        isSubmit: initialState.isSubmit,
+        submitted: true
+      }
+
+    case PaymentActionTypes.PAYMENT_FAILURE:
+      return {
+        ...state,
+        isSubmit: initialState.isSubmit,
+        orderError: action.payload,
+        submitted: initialState.submitted
+      }
 
     case AuthActionTypes.DESTROY_STATES:
-      return initialState;
+      return initialState
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export { reducer as paymentReducer };
+export { reducer as paymentReducer }

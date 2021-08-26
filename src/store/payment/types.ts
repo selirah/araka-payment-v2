@@ -4,8 +4,8 @@ import {
   OrderResponse,
   Fee,
   TransactionHistory,
-  Recipient,
-} from '../../interfaces';
+  Recipient
+} from '../../interfaces'
 
 export enum PaymentActionTypes {
   FETCH_CATEGORIES = '@@payment/FETCH_CATEGORIES',
@@ -47,36 +47,40 @@ export enum PaymentActionTypes {
   GET_PROVIDERS_REQUEST = '@@payment/GET_PROVIDERS_REQUEST',
   GET_PROVIDERS_SUCCESS = '@@payment/GET_PROVIDERS_SUCCESS',
   GET_PROVIDERS_FAILURE = '@@payment/GET_PROVIDERS_FAILURE',
+  PAYMENT_REQUEST = '@@payment/PAYMENT_REQUEST',
+  PAYMENT_SUCCESS = '@@payment/PAYMENT_SUCCESS',
+  PAYMENT_FAILURE = '@@payment/PAYMENT_FAILURE'
 }
 
 export type PaymentState = {
-  readonly categories: Category[];
-  readonly products: Product[];
-  readonly loading: boolean;
-  readonly error: any;
-  readonly step: number;
-  readonly activeCategory: number;
-  readonly activeProduct: number;
-  readonly orderResponse: OrderResponse | undefined;
-  readonly isSubmit: boolean;
-  readonly orderData: any;
-  readonly orderError: any;
-  readonly product: Product | undefined;
-  readonly category: Category | undefined;
-  readonly isPerformingPayment: boolean;
-  readonly paymentOption: string;
-  readonly isFormValidError: string;
-  readonly fee: Fee | undefined;
-  readonly feeError: any;
-  readonly feeLoading: boolean;
-  readonly repeatTransaction: boolean;
-  readonly transaction: TransactionHistory | undefined;
-  readonly setRecipientValues: Recipient | undefined;
-  readonly repopulateForm: boolean;
-  readonly providers: any;
-  readonly mobileResponse: any;
-  readonly mobilePaymentSuccess: boolean;
-  readonly mobilePaymentProcessing: boolean;
-  readonly mobilePaymentSubmit: boolean;
-  readonly trxStatus: any;
-};
+  readonly categories: Category[]
+  readonly products: Product[]
+  readonly loading: boolean
+  readonly error: any
+  readonly step: number
+  readonly activeCategory: number
+  readonly activeProduct: number
+  readonly orderResponse: OrderResponse | undefined
+  readonly isSubmit: boolean
+  readonly orderData: any
+  readonly orderError: any
+  readonly product: Product | undefined
+  readonly category: Category | undefined
+  readonly isPerformingPayment: boolean
+  readonly paymentOption: string
+  readonly isFormValidError: string
+  readonly fee: Fee | undefined
+  readonly feeError: any
+  readonly feeLoading: boolean
+  readonly repeatTransaction: boolean
+  readonly transaction: TransactionHistory | undefined
+  readonly setRecipientValues: Recipient | undefined
+  readonly repopulateForm: boolean
+  readonly providers: any
+  readonly mobileResponse: any
+  readonly mobilePaymentSuccess: boolean
+  readonly mobilePaymentProcessing: boolean
+  readonly mobilePaymentSubmit: boolean
+  readonly trxStatus: any
+  readonly submitted: boolean
+}
