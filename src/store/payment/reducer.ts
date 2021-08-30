@@ -164,7 +164,8 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
         fee: initialState.fee,
         feeError: initialState.feeError,
         setRecipientValues: initialState.setRecipientValues,
-        repopulateForm: initialState.repopulateForm
+        repopulateForm: initialState.repopulateForm,
+        isSubmit: initialState.isSubmit
       }
 
     case PaymentActionTypes.CLEAR_ORDER_ERROR:
