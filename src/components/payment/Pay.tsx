@@ -182,12 +182,6 @@ const Pay: React.FC = () => {
     setProvider(value)
   }
 
-  let form: any = []
-
-  for (const key in orderData.data) {
-    form.push(<input type="hidden" name={key} value={orderData.data[key]} />)
-  }
-
   return (
     <React.Fragment>
       <div className="row display-options justify-content-center">
@@ -222,7 +216,7 @@ const Pay: React.FC = () => {
         >
           Previous
         </button>
-        {/* <button
+        <button
           type="button"
           className="btn option-submit-button"
           onClick={onSubmit}
@@ -235,24 +229,7 @@ const Pay: React.FC = () => {
               <span className="sr-only">Loading...</span>
             </React.Fragment>
           ) : null}
-        </button> */}
-        <form onSubmit={onSubmit}>
-          {form}
-          <button
-            type={option === payOption.MPESA ? 'button' : 'submit'}
-            className="btn option-submit-button"
-            onClick={option === payOption.MPESA ? onSubmit : () => null}
-            disabled={paymentOption === '' ? true : false}
-          >
-            {buttonTitle}{' '}
-            {isProcessing ? (
-              <React.Fragment>
-                <SmallIcon className="fa fa-spinner fa-spin fa-3x fa-fw"></SmallIcon>
-                <span className="sr-only">Loading...</span>
-              </React.Fragment>
-            ) : null}
-          </button>
-        </form>
+        </button>
       </div>
       {showModal && modalType === modalTypes.MOBILE_PAYMENT ? (
         <MobilePaymentModal
