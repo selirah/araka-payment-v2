@@ -8,7 +8,7 @@ import { payOption } from '../../helpers/constants'
 import { path } from '../../helpers/path'
 import { creditDebitCards, mobileWallets } from '../../images/Images'
 import {
-  processOrderRequest,
+  /*processOrderRequest*/
   decreasePaymentStep,
   clearOrderError,
   getProvidersRequest,
@@ -120,26 +120,26 @@ const Pay: React.FC = () => {
     counter
   ])
 
-  const onSubmit = () => {
+  const onSubmit = (e: any) => {
     switch (isAuthenticated) {
       case true:
         if (option === payOption.CREDIT_CARD) {
-          if (
-            orderData !== undefined &&
-            category !== undefined &&
-            product !== undefined
-          ) {
-            const PaymentInfo = {
-              Channel: '',
-              Provider: '',
-              WalletID: ''
-            }
-            orderData.data.productCategoryId = category.productCategoryId
-            orderData.data.productId = product.productId
-            orderData.PaymentInfo = PaymentInfo
-            // console.log(orderData)
-            dispatch(processOrderRequest(orderData))
-          }
+          // if (
+          //   orderData !== undefined &&
+          //   category !== undefined &&
+          //   product !== undefined
+          // ) {
+          //   const PaymentInfo = {
+          //     Channel: '',
+          //     Provider: '',
+          //     WalletID: ''
+          //   }
+          //   orderData.data.productCategoryId = category.productCategoryId
+          //   orderData.data.productId = product.productId
+          //   orderData.PaymentInfo = PaymentInfo
+          //   // console.log(orderData)
+          //   dispatch(processOrderRequest(orderData))
+          // }
         } else if (option === payOption.MPESA) {
           onShowModalClick(modalTypes.MOBILE_PAYMENT)
         }
