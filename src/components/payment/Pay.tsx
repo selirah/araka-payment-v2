@@ -139,7 +139,7 @@ const Pay: React.FC = () => {
             orderData.PaymentInfo = PaymentInfo
             // console.log(orderData)
             dispatch(processOrderRequest(orderData))
-          }
+          } 
         } else if (option === payOption.MPESA) {
           onShowModalClick(modalTypes.MOBILE_PAYMENT)
         }

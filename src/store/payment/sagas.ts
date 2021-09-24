@@ -17,6 +17,8 @@ import {
   paymentFailure
 } from './actions'
 import { callApiGet, callApiPost } from '../../utils/api'
+import { path } from '../../helpers/path'
+import { logout } from '../auth'
 
 function* fetchCategories(): any {
   try {
@@ -24,9 +26,17 @@ function* fetchCategories(): any {
     if (res.status === 200) {
       yield put(fetchCategoriesSuccess(res.data))
     }
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
-      yield put(fetchCategoriesFailure(err.response.data))
+      if (err.response.status === 401) {
+        yield put(logout())
+        localStorage.removeItem('user')
+        localStorage.removeItem('persist:root')
+        localStorage.clear()
+        window.location.href = path.login
+      } else {
+        yield put(fetchCategoriesFailure(err.response.data))
+      }
     } else {
       yield put(fetchCategoriesFailure('An unknwon error occurred'))
     }
@@ -41,10 +51,19 @@ function* processOrderRequest({
 }): any {
   try {
     const res = yield call(callApiPost, 'payments/processrequest', payload)
+    console.log(res.data)
     yield put(processOrderSuccess(res.data))
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
-      yield put(processOrderFailure('An error occured during payment.'))
+      if (err.response.status === 401) {
+        yield put(logout())
+        localStorage.removeItem('user')
+        localStorage.removeItem('persist:root')
+        localStorage.clear()
+        window.location.href = path.login
+      } else {
+        yield put(processOrderFailure('An error occured during payment.'))
+      }
     } else {
       throw err
     }
@@ -59,11 +78,19 @@ function* processFeeRequest({ payload }: { type: string; payload: any }): any {
     } else {
       yield put(postFeeFailure(res.data))
     }
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
-      yield put(
-        postFeeFailure('An error occured when making request to server')
-      )
+      if (err.response.status === 401) {
+        yield put(logout())
+        localStorage.removeItem('user')
+        localStorage.removeItem('persist:root')
+        localStorage.clear()
+        window.location.href = path.login
+      } else {
+        yield put(
+          postFeeFailure('An error occured when making request to server')
+        )
+      }
     } else {
       throw err
     }
@@ -74,9 +101,17 @@ function* mobilePayment({ payload }: { type: string; payload: any }): any {
   try {
     const res = yield call(callApiPost, 'payments/processmobilewallet', payload)
     yield put(mobilePaymentSuccess(res.data))
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
-      yield put(mobilePaymentFailure('An error occured during payment.'))
+      if (err.response.status === 401) {
+        yield put(logout())
+        localStorage.removeItem('user')
+        localStorage.removeItem('persist:root')
+        localStorage.clear()
+        window.location.href = path.login
+      } else {
+        yield put(mobilePaymentFailure('An error occured during payment.'))
+      }
     } else {
       throw err
     }
@@ -90,9 +125,17 @@ function* mobileStatus({ payload }: { type: string; payload: any }): any {
       `payments/gettransactionstatus/${payload}`
     )
     yield put(checkMobileStatusSuccess(res.data))
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
-      yield put(checkMobileStatusFailure('An error occured during payment.'))
+      if (err.response.status === 401) {
+        yield put(logout())
+        localStorage.removeItem('user')
+        localStorage.removeItem('persist:root')
+        localStorage.clear()
+        window.location.href = path.login
+      } else {
+        yield put(checkMobileStatusFailure('An error occured during payment.'))
+      }
     } else {
       throw err
     }
@@ -103,9 +146,17 @@ function* getProviders(): any {
   try {
     const res = yield call(callApiGet, 'payments/getmobilewalletproviders')
     yield put(getProvidersSuccess(res.data))
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
-      yield put(getProvidersFailure('An error occured during payment.'))
+      if (err.response.status === 401) {
+        yield put(logout())
+        localStorage.removeItem('user')
+        localStorage.removeItem('persist:root')
+        localStorage.clear()
+        window.location.href = path.login
+      } else {
+        yield put(getProvidersFailure('An error occured during payment.'))
+      }
     } else {
       throw err
     }
@@ -118,9 +169,17 @@ function* processPayment({ payload }: { type: string; payload: any }): any {
     if (res.status === 200) {
       yield put(paymentSuccess())
     }
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
-      yield put(paymentFailure(err.response.data))
+      if (err.response.status === 401) {
+        yield put(logout())
+        localStorage.removeItem('user')
+        localStorage.removeItem('persist:root')
+        localStorage.clear()
+        window.location.href = path.login
+      } else {
+        yield put(paymentFailure(err.response.data))
+      }
     } else {
       throw err
     }

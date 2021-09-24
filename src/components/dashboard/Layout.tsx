@@ -1,91 +1,90 @@
-import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import { useDispatch } from 'react-redux';
-import { appSelector } from '../../helpers/appSelector';
-import { AppDispatch } from '../../helpers/appDispatch';
-import { SideBar } from './SideBar';
-import { TopNav } from './TopNav';
-import { ContentContainer } from './ContentContainer';
-import { NewUser } from './NewUser';
-import { Content } from './Content';
-import { Account } from './Account';
-import { EditAccount } from './EditAccount';
-import { Recipients } from './Recipients';
-import { pageTypes } from '../../helpers/constants';
-import { Spinner } from '../common/Spinner';
-import { isEmpty } from 'src/helpers/isEmpty';
+import React, { useState, useEffect } from 'react'
+import { Helmet } from 'react-helmet'
+import { useDispatch } from 'react-redux'
+import { appSelector } from '../../helpers/appSelector'
+import { AppDispatch } from '../../helpers/appDispatch'
+import { SideBar } from './SideBar'
+import { TopNav } from './TopNav'
+import { ContentContainer } from './ContentContainer'
+import { NewUser } from './NewUser'
+import { Content } from './Content'
+import { Account } from './Account'
+import { EditAccount } from './EditAccount'
+import { Recipients } from './Recipients'
+import { pageTypes } from '../../helpers/constants'
+import { Spinner } from '../common/Spinner'
+import { isEmpty } from 'src/helpers/isEmpty'
 import {
   setRepeatTransaction,
   fetchCategories,
   clearMobileStates,
-  resetTransaction,
-} from '../../store/payment';
-import { TransactionHistory } from '../../interfaces';
+  resetTransaction
+} from '../../store/payment'
+import { TransactionHistory } from '../../interfaces'
 
 type Props = {
-  title?: string;
-  refresh(): void;
-};
+  title?: string
+  refresh(): void
+}
 
 export const Layout: React.FC<Props> = ({ title, refresh }) => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch()
   const { pageSwitch, transactions, loading, editAccount } = appSelector(
     (state) => state.dashboard
-  );
-  const { categories } = appSelector((state) => state.payment);
-  const [page, setPage] = useState<string>(pageSwitch);
-  const [transactionData, setTransactionData] = useState<TransactionHistory[]>(
-    transactions
-  );
-  const [spinner, setSpinner] = useState<boolean>(loading);
+  )
+  const { categories } = appSelector((state) => state.payment)
+  const [page, setPage] = useState<string>(pageSwitch)
+  const [transactionData, setTransactionData] =
+    useState<TransactionHistory[]>(transactions)
+  const [spinner, setSpinner] = useState<boolean>(loading)
 
   useEffect(() => {
-    dispatch(setRepeatTransaction(false));
-    dispatch(clearMobileStates());
-    dispatch(resetTransaction());
+    dispatch(setRepeatTransaction(false))
+    dispatch(clearMobileStates())
+    dispatch(resetTransaction())
     if (isEmpty(categories)) {
-      dispatch(fetchCategories());
+      dispatch(fetchCategories())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   useEffect(() => {
-    setPage(pageSwitch);
-    setSpinner(loading);
-    setTransactionData(transactions);
-  }, [pageSwitch, loading, transactions]);
+    setPage(pageSwitch)
+    setSpinner(loading)
+    setTransactionData(transactions)
+  }, [pageSwitch, loading, transactions])
 
-  let render: React.ReactNode;
+  let render: React.ReactNode
 
   switch (page) {
     case pageTypes.HOME:
       if (spinner && isEmpty(transactionData)) {
-        render = <Spinner />;
+        render = <Spinner />
       } else if (!spinner && isEmpty(transactionData)) {
-        render = <NewUser />;
+        render = <NewUser />
       } else {
-        render = <Content transactions={transactionData} refresh={refresh} />;
+        render = <Content transactions={transactionData} refresh={refresh} />
       }
-      break;
+      break
     case pageTypes.ACCOUNT:
       if (!editAccount) {
-        render = <Account />;
+        render = <Account />
       } else {
-        render = <EditAccount />;
+        render = <EditAccount />
       }
-      break;
+      break
     case pageTypes.RECIPIENTS:
-      render = <Recipients />;
-      break;
+      render = <Recipients />
+      break
     default:
       if (spinner && isEmpty(transactionData)) {
-        render = <Spinner />;
+        render = <Spinner />
       } else if (!spinner && isEmpty(transactionData)) {
-        render = <NewUser />;
+        render = <NewUser />
       } else {
-        render = <Content transactions={transactionData} refresh={refresh} />;
+        render = <Content transactions={transactionData} refresh={refresh} />
       }
-      break;
+      break
   }
 
   return (
@@ -105,5 +104,5 @@ export const Layout: React.FC<Props> = ({ title, refresh }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
