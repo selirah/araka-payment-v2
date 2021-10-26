@@ -49,7 +49,7 @@ const Pay: React.FC = () => {
   const [showModal, setShowModal] = useState(false)
   const [phone, setPhone] = useState('')
   const [provider, setProvider] = useState('')
-  const [counter, setCounter] = useState(0)
+  const [counter, setCounter] = useState(1)
 
   const selectOption = (option: string): void => {
     dispatch(setPayOption(option))
@@ -85,7 +85,7 @@ const Pay: React.FC = () => {
         setInterval(() => {
           dispatch(checkMobileStatusRequest(mobileResponse.transactionId))
           setCounter(counter + 1)
-        }, 30000)
+        }, 10000)
       } else {
         // history.push(path.dashboard);
         window.location.href = path.dashboard
@@ -139,7 +139,7 @@ const Pay: React.FC = () => {
             orderData.PaymentInfo = PaymentInfo
             // console.log(orderData)
             dispatch(processOrderRequest(orderData))
-          } 
+          }
         } else if (option === payOption.MPESA) {
           onShowModalClick(modalTypes.MOBILE_PAYMENT)
         }
