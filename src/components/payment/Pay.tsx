@@ -192,7 +192,11 @@ const Pay: React.FC = () => {
             }`}
             onClick={() => selectOption(payOption.CREDIT_CARD)}
           >
-            <img src={creditDebitCards} alt="Pay with credit or debit card" />
+            <img
+              src={creditDebitCards}
+              width="300"
+              alt="Pay with credit or debit card"
+            />
             <h2>Credit/Debit Card</h2>
           </div>
         </div>
@@ -203,7 +207,7 @@ const Pay: React.FC = () => {
             }`}
             onClick={() => selectOption(payOption.MPESA)}
           >
-            <img src={mobileWallets} alt="Pay with mobile wallet" />
+            <img src={mobileWallets} width="300" alt="Pay with mobile wallet" />
             <h2>Mobile Wallets</h2>
           </div>
         </div>

@@ -1,28 +1,28 @@
-import React from 'react';
-import { Modal } from 'react-bootstrap';
-import { ModalBoxLeft, ModalBoxRight, ProcessingContainer } from './Styles';
-import { paymentIcon, mobileWallets } from '../../images/Images';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
-import { Spinner } from './Spinner';
-import { SmallIcon } from '../auth/Styles';
-import { getCurrency } from '../../helpers/functions';
-import { Currency } from 'src/interfaces';
-import { Error } from './Error';
+import React from 'react'
+import { Modal } from 'react-bootstrap'
+import { ModalBoxLeft, ModalBoxRight, ProcessingContainer } from './Styles'
+import { paymentIcon, mobileWallets } from '../../images/Images'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+import { Spinner } from './Spinner'
+import { SmallIcon } from '../auth/Styles'
+import { getCurrency } from '../../helpers/functions'
+import { Currency } from 'src/interfaces'
+import { Error } from './Error'
 
 interface MobilePaymentModalProps {
-  show: boolean;
-  onClose(): void;
-  onSubmit(e: React.FormEvent<EventTarget>): void;
-  setPhone(value: string): void;
-  setProvider(value: React.FormEvent<EventTarget>): void;
-  success: boolean;
-  error: any;
-  isSubmit: boolean;
-  data: any;
-  phone: string;
-  providers: string[];
-  currencies: Currency[];
+  show: boolean
+  onClose(): void
+  onSubmit(e: React.FormEvent<EventTarget>): void
+  setPhone(value: string): void
+  setProvider(value: React.FormEvent<EventTarget>): void
+  success: boolean
+  error: any
+  isSubmit: boolean
+  data: any
+  phone: string
+  providers: string[]
+  currencies: Currency[]
 }
 
 export const MobilePaymentModal: React.FC<MobilePaymentModalProps> = ({
@@ -37,7 +37,7 @@ export const MobilePaymentModal: React.FC<MobilePaymentModalProps> = ({
   success,
   error,
   isSubmit,
-  currencies,
+  currencies
 }) => {
   return (
     <Modal
@@ -65,7 +65,7 @@ export const MobilePaymentModal: React.FC<MobilePaymentModalProps> = ({
             </h2>
           </div>
           <div className="body">
-            <img src={mobileWallets} alt="logo" />
+            <img src={mobileWallets} alt="logo" width="300" height="200" />
             {!success ? (
               <React.Fragment>
                 <h4>
@@ -125,5 +125,5 @@ export const MobilePaymentModal: React.FC<MobilePaymentModalProps> = ({
         </ModalBoxRight>
       </Modal.Body>
     </Modal>
-  );
-};
+  )
+}
