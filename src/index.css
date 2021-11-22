@@ -1706,7 +1706,7 @@ label.field-required.control-label--hidden {
 }
 
 .option img {
-  max-width: 9rem;
+  /* max-width: 12rem; */
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 }
