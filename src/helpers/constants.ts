@@ -29,4 +29,4 @@ export const transactionStatus = {
   CANCELLED: 'CANCELED'
 }
 
-export const SITE_KEY = '6LcEA9UbAAAAAORyDKVyGvDhEVhNN5VcHdeTopna'
+export const SITE_KEY = '6LfK1CUaAAAAAPogOw89QtsBfRoJl40XmigN4xnf'
