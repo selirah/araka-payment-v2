@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-import { AppDispatch } from '../../helpers/appDispatch';
-import { appSelector } from '../../helpers/appSelector';
-import {
-  resetErrorState,
-  resetPasswordRequest,
-} from '../../store/auth/actions';
-import { ChangeLanguage } from '../common/ChangeLanguage';
-import { logo } from '../../images/Images';
-import { PasswordInput } from './PasswordInput';
-import { Button } from './Button';
-import { ResetPassword } from '../../interfaces';
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
+import { AppDispatch } from '../../helpers/appDispatch'
+import { appSelector } from '../../helpers/appSelector'
+import { resetErrorState, resetPasswordRequest } from '../../store/auth/actions'
+import { ChangeLanguage } from '../common/ChangeLanguage'
+import { logo } from '../../images/Images'
+import { PasswordInput } from './PasswordInput'
+import { Button } from './Button'
+import { ResetPassword } from '../../interfaces'
 import {
   ContainerFluid,
   ImageContainerLogin,
@@ -20,97 +17,107 @@ import {
   FormBox,
   FormBoxHeader,
   LogoContainer,
-  TermsContainer,
-  FormBoxInput,
-} from './Styles';
-import { isEmpty } from 'src/helpers/isEmpty';
-import { path } from 'src/helpers/path';
-import { SingleError } from './SingleError';
-import ReCAPTCHA from 'react-google-recaptcha';
-import { SITE_KEY } from '../../helpers/constants';
+  TermsContainer
+} from './Styles'
+import { isEmpty } from 'src/helpers/isEmpty'
+import { path } from 'src/helpers/path'
+import { SingleError } from './SingleError'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { SITE_KEY } from '../../helpers/constants'
 
 type Props = {
-  processId: string | null;
-};
+  processId: string | null
+}
+
+const DELAY = 1500
 
 const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
-  const dispatch: AppDispatch = useDispatch();
-  const history = useHistory();
-  const auth = appSelector((state) => state.auth);
-  const { t } = useTranslation();
+  const dispatch: AppDispatch = useDispatch()
+  const history = useHistory()
+  const auth = appSelector((state) => state.auth)
+  const { t } = useTranslation()
   const [values, setValues] = useState<ResetPassword>({
     Password: '',
     ProcessId: processId === null ? '' : processId,
-    Confirm: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [singleError, setSingleError] = useState<string>('');
+    Confirm: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [singleError, setSingleError] = useState<string>('')
   // const [isSccess, setIsSuccess] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const ref = React.createRef<ReCAPTCHA>();
-  const [recaptchaValue, setRecaptchaValue] = useState('');
+  const [isError, setIsError] = useState<boolean>(false)
+  const [load, setLoad] = useState(false)
+  const [expired, setExpired] = useState(false)
+  const reCaptchaRef = useRef<any>()
+  const [isMounted, setIsMounted] = useState(false)
 
   const onChange = (e: React.FormEvent<EventTarget>): void => {
-    const { name, value } = e.target as HTMLTextAreaElement;
-    setValues({ ...values, [name]: value });
-  };
+    const { name, value } = e.target as HTMLTextAreaElement
+    setValues({ ...values, [name]: value })
+  }
 
   useEffect(() => {
-    setSingleError('');
-    setRecaptchaValue('');
-    setIsError(false);
-    dispatch(resetErrorState());
-    const { isAuthenticated } = auth;
+    setSingleError('')
+    setIsError(false)
+    dispatch(resetErrorState())
+    const { isAuthenticated } = auth
     if (isAuthenticated) {
-      history.push(path.home);
+      history.push(path.home)
     }
     if (isEmpty(processId)) {
-      history.push(path.login);
+      history.push(path.login)
+    }
+    setTimeout(() => {
+      setLoad(true)
+    }, DELAY)
+    return () => {
+      setIsMounted(!isMounted)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
-    e.preventDefault();
-    setIsError(false);
-    setSingleError('');
+    e.preventDefault()
+    setIsError(false)
+    setSingleError('')
     if (values.Password !== values.Confirm) {
-      setIsError(true);
-      setSingleError('Passwords not match!');
+      setIsError(true)
+      setSingleError('Passwords not match!')
     } else {
-      if (isEmpty(recaptchaValue)) {
-        setIsError(true);
-        setSingleError('Please verify that you are not a robot!');
-      } else {
-        const payload: ResetPassword = {
-          Password: values.Password,
-          ProcessId: values.ProcessId,
-        };
-        dispatch(resetPasswordRequest(payload));
-      }
+      reCaptchaRef.current
+        .executeAsync()
+        .then((value: string) => {
+          if (value && !expired) {
+            const payload: ResetPassword = {
+              Password: values.Password,
+              ProcessId: values.ProcessId
+            }
+            dispatch(resetPasswordRequest(payload))
+          }
+        })
+        .catch((err: any) => {})
     }
-  };
+  }
 
-  const onHandleRecaptcha = (value: any) => {
-    setRecaptchaValue(value);
-  };
+  const handleRecaptcha = useCallback((value) => {
+    if (value === null) setExpired(true)
+  }, [])
 
   useEffect(() => {
     const {
       isResettingPassword,
       resetPasswordSuccess,
       resetPasswordError,
-      resetError,
-    } = auth;
-    setIsSubmitting(isResettingPassword);
+      resetError
+    } = auth
+    setIsSubmitting(isResettingPassword)
     if (resetPasswordSuccess) {
-      history.push(path.login);
+      history.push(path.login)
     }
     if (resetPasswordError) {
-      setIsError(resetPasswordError);
-      setSingleError(resetError);
+      setIsError(resetPasswordError)
+      setSingleError(resetError)
     }
-  }, [auth, history]);
+  }, [auth, history])
 
   return (
     <React.Fragment>
@@ -121,7 +128,12 @@ const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
             <FormBox className="col-sm-5 text-center">
               <LogoContainer className="mt-0">
                 <Link className="navbar-brand" to={path.home}>
-                  <img src={logo} height="60" alt="Araka by ProxyPay" title="Araka by ProxyPay" />
+                  <img
+                    src={logo}
+                    height="60"
+                    alt="Araka by ProxyPay"
+                    title="Araka by ProxyPay"
+                  />
                 </Link>
               </LogoContainer>
               <FormBoxHeader>
@@ -145,14 +157,7 @@ const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
                   onChange={onChange}
                   required={true}
                 />
-                <FormBoxInput>
-                  <ReCAPTCHA
-                    sitekey={SITE_KEY}
-                    onChange={onHandleRecaptcha}
-                    ref={ref}
-                    theme="light"
-                  />
-                </FormBoxInput>
+
                 <Button
                   type="submit"
                   title={t('forgotten.btn_title')}
@@ -169,13 +174,22 @@ const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
                   </div>
                 </TermsContainer>
               </form>
+              {load && (
+                <ReCAPTCHA
+                  theme="light"
+                  size="invisible"
+                  ref={reCaptchaRef}
+                  sitekey={`${SITE_KEY}`}
+                  onChange={handleRecaptcha}
+                />
+              )}
             </FormBox>
             <ChangeLanguage />
           </FormContainer>
         </div>
       </ContainerFluid>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export { ResetPasswordForm };
+export { ResetPasswordForm }

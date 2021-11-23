@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-import { AppDispatch } from '../../helpers/appDispatch';
-import { appSelector } from '../../helpers/appSelector';
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
+import { AppDispatch } from '../../helpers/appDispatch'
+import { appSelector } from '../../helpers/appSelector'
 import {
   resendVerificationRequest,
-  resetErrorState,
-} from '../../store/auth/actions';
-import { ChangeLanguage } from '../common/ChangeLanguage';
-import { logo } from '../../images/Images';
-import { TextInput } from './TextInput';
-import { Button } from './Button';
-import { ForgottenPassword } from '../../interfaces';
+  resetErrorState
+} from '../../store/auth/actions'
+import { ChangeLanguage } from '../common/ChangeLanguage'
+import { logo } from '../../images/Images'
+import { TextInput } from './TextInput'
+import { Button } from './Button'
+import { ForgottenPassword } from '../../interfaces'
 import {
   ContainerFluid,
   ImageContainerLogin,
@@ -21,84 +21,93 @@ import {
   FormBoxHeader,
   LogoContainer,
   FormBoxSubHeader,
-  TermsContainer,
-  FormBoxInput,
-} from './Styles';
-import { path } from '../../helpers/path';
-import { Success } from '../common/Success';
-import { SingleError } from './SingleError';
-import ReCAPTCHA from 'react-google-recaptcha';
-import { SITE_KEY } from '../../helpers/constants';
-import { isEmpty } from '../../helpers/isEmpty';
+  TermsContainer
+} from './Styles'
+import { path } from '../../helpers/path'
+import { Success } from '../common/Success'
+import { SingleError } from './SingleError'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { SITE_KEY } from '../../helpers/constants'
+
+const DELAY = 1500
 
 const ResendVerificationForm: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
-  const history = useHistory();
-  const auth = appSelector((state) => state.auth);
-  const { t } = useTranslation();
+  const dispatch: AppDispatch = useDispatch()
+  const history = useHistory()
+  const auth = appSelector((state) => state.auth)
+  const { t } = useTranslation()
   const [values, setValues] = useState<ForgottenPassword>({
-    EmailAddress: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [isSccess, setIsSuccess] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const ref = React.createRef<ReCAPTCHA>();
-  const [recaptchaValue, setRecaptchaValue] = useState('');
+    EmailAddress: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [isSccess, setIsSuccess] = useState<boolean>(false)
+  const [isError, setIsError] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [load, setLoad] = useState(false)
+  const [expired, setExpired] = useState(false)
+  const reCaptchaRef = useRef<any>()
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setErrorMessage('');
-    setRecaptchaValue('');
-    setIsError(false);
-    const { isAuthenticated } = auth;
+    setErrorMessage('')
+    setIsError(false)
+    const { isAuthenticated } = auth
     if (isAuthenticated) {
-      history.push(path.home);
+      history.push(path.home)
     }
-    dispatch(resetErrorState());
+    dispatch(resetErrorState())
+    setTimeout(() => {
+      setLoad(true)
+    }, DELAY)
+    return () => {
+      setIsMounted(!isMounted)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const onChange = (e: React.FormEvent<EventTarget>): void => {
-    const { name, value } = e.target as HTMLTextAreaElement;
-    setValues({ ...values, [name]: value });
-  };
+    const { name, value } = e.target as HTMLTextAreaElement
+    setValues({ ...values, [name]: value })
+  }
 
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
-    e.preventDefault();
-    setIsError(false);
-    setErrorMessage('');
-    if (isEmpty(recaptchaValue)) {
-      setIsError(true);
-      setErrorMessage('Please verify that you are not a robot!');
-    } else {
-      const payload: ForgottenPassword = {
-        EmailAddress: values.EmailAddress,
-      };
-      setEmail(values.EmailAddress);
-      dispatch(resendVerificationRequest(payload));
-    }
-  };
+    e.preventDefault()
+    setIsError(false)
+    setErrorMessage('')
+    reCaptchaRef.current
+      .executeAsync()
+      .then((value: string) => {
+        if (value && !expired) {
+          const payload: ForgottenPassword = {
+            EmailAddress: values.EmailAddress
+          }
+          setEmail(values.EmailAddress)
+          dispatch(resendVerificationRequest(payload))
+        }
+      })
+      .catch((err: any) => {})
+  }
 
-  const onHandleRecaptcha = (value: any) => {
-    setRecaptchaValue(value);
-  };
+  const handleRecaptcha = useCallback((value) => {
+    if (value === null) setExpired(true)
+  }, [])
 
   useEffect(() => {
     const {
       isResendVerification,
       resendVericationSuccess,
       resendVericationFailure,
-      forgottenError,
-    } = auth;
+      forgottenError
+    } = auth
     // if (resendVericationSuccess) {
     //   setValues({ EmailAddress: '' });
     // }
-    setIsSubmitting(isResendVerification);
-    setIsSuccess(resendVericationSuccess);
-    setIsError(resendVericationFailure);
-    setErrorMessage(forgottenError);
-  }, [auth]);
+    setIsSubmitting(isResendVerification)
+    setIsSuccess(resendVericationSuccess)
+    setIsError(resendVericationFailure)
+    setErrorMessage(forgottenError)
+  }, [auth])
 
   return (
     <React.Fragment>
@@ -140,14 +149,6 @@ const ResendVerificationForm: React.FC = () => {
                   onChange={onChange}
                   required={true}
                 />
-                <FormBoxInput>
-                  <ReCAPTCHA
-                    sitekey={SITE_KEY}
-                    onChange={onHandleRecaptcha}
-                    ref={ref}
-                    theme="light"
-                  />
-                </FormBoxInput>
                 <Button
                   type="submit"
                   title={t('forgotten.btn_title')}
@@ -164,13 +165,22 @@ const ResendVerificationForm: React.FC = () => {
                   </div>
                 </TermsContainer>
               </form>
+              {load && (
+                <ReCAPTCHA
+                  theme="light"
+                  size="invisible"
+                  ref={reCaptchaRef}
+                  sitekey={`${SITE_KEY}`}
+                  onChange={handleRecaptcha}
+                />
+              )}
             </FormBox>
             <ChangeLanguage />
           </FormContainer>
         </div>
       </ContainerFluid>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export { ResendVerificationForm };
+export { ResendVerificationForm }

@@ -1,32 +1,32 @@
 export const payOption = {
   CREDIT_CARD: 'CREDIT_CARD',
-  MPESA: 'MPESA',
-};
+  MPESA: 'MPESA'
+}
 
 export const pageTypes = {
   HOME: 'HOME',
   ACCOUNT: 'ACCOUNT',
-  RECIPIENTS: 'RECIPIENTS',
-};
+  RECIPIENTS: 'RECIPIENTS'
+}
 
 export const pageHeader = {
   Home: 'Home',
   Account: 'Account',
-  Recipients: 'Recipients',
-};
+  Recipients: 'Recipients'
+}
 
 export const modalTypes = {
   ADD_BENEFICIARY: 'ADD_BENEFICIARY',
   EDIT_BENEFICIARY: 'EDIT_BENEFICIARY',
   DELETE_BENEFICIARY: 'DELETE_BENEFICIARY',
   CHANGE_PASSWORD: 'CHANGE_PASSWORD',
-  MOBILE_PAYMENT: 'MOBILE_PAYMENT',
-};
+  MOBILE_PAYMENT: 'MOBILE_PAYMENT'
+}
 
 export const transactionStatus = {
   APPROVED: 'APPROVED',
   DECLINED: 'DECLINED',
-  CANCELLED: 'CANCELED',
-};
+  CANCELLED: 'CANCELED'
+}
 
-export const SITE_KEY = '6Lf00SUaAAAAAJbCW3lrIe7duzL0-FuOvNfsk2jY';
+export const SITE_KEY = '6LcEA9UbAAAAAORyDKVyGvDhEVhNN5VcHdeTopna'

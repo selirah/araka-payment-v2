@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { History } from 'history';
-import { AppDispatch } from '../../helpers/appDispatch';
-import { appSelector } from '../../helpers/appSelector';
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { History } from 'history'
+import { AppDispatch } from '../../helpers/appDispatch'
+import { appSelector } from '../../helpers/appSelector'
 import {
   registerRequest,
   resetErrorState,
-  clearAuthState,
-} from '../../store/auth/actions';
-import { ChangeLanguage } from '../common/ChangeLanguage';
-import { logo } from '../../images/Images';
-import { TextInput } from './TextInput';
-import { PasswordInput } from './PasswordInput';
-import { MultipleErrors } from './MultipleErrors';
-import { SingleError } from './SingleError';
-import { Button } from './Button';
-import { Register, Error } from '../../interfaces';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+  clearAuthState
+} from '../../store/auth/actions'
+import { ChangeLanguage } from '../common/ChangeLanguage'
+import { logo } from '../../images/Images'
+import { TextInput } from './TextInput'
+import { PasswordInput } from './PasswordInput'
+import { MultipleErrors } from './MultipleErrors'
+import { SingleError } from './SingleError'
+import { Button } from './Button'
+import { Register, Error } from '../../interfaces'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import {
   ContainerFluid,
   ImageContainerLogin,
@@ -29,106 +29,117 @@ import {
   FormBoxCustomControl,
   FormBoxCheckLabel,
   LogoContainer,
-  FormBoxSubHeader,
-  FormBoxInput,
-} from './Styles';
-import { isEmpty } from '../../helpers/isEmpty';
-import { path } from '../../helpers/path';
-import ReCAPTCHA from 'react-google-recaptcha';
-import { SITE_KEY } from '../../helpers/constants';
+  FormBoxSubHeader
+} from './Styles'
+import { isEmpty } from '../../helpers/isEmpty'
+import { path } from '../../helpers/path'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { SITE_KEY } from '../../helpers/constants'
 
 interface Props {
-  history: History;
+  history: History
 }
 
+const DELAY = 1500
+
 const RegisterForm: React.FC<Props> = ({ history }) => {
-  const dispatch: AppDispatch = useDispatch();
-  const auth = appSelector((state) => state.auth);
-  const { t } = useTranslation();
+  const dispatch: AppDispatch = useDispatch()
+  const auth = appSelector((state) => state.auth)
+  const { t } = useTranslation()
   const [values, setValues] = useState<Register>({
     Name: '',
     EmailAddress: '',
     PhoneNumber: '',
     Password: '',
     IsBusiness: false,
-    Confirm: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [isBusiness, setIsBusiness] = useState<boolean>(false);
-  const [error, setError] = useState<Error | {}>({});
-  const [singleError, setSingleError] = useState<string>('');
-  const [phone, setPhone] = useState('');
-  const ref = React.createRef<ReCAPTCHA>();
-  const [recaptchaValue, setRecaptchaValue] = useState('');
+    Confirm: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [isBusiness, setIsBusiness] = useState<boolean>(false)
+  const [error, setError] = useState<Error | {}>({})
+  const [singleError, setSingleError] = useState<string>('')
+  const [phone, setPhone] = useState('')
+  const [load, setLoad] = useState(false)
+  const [expired, setExpired] = useState(false)
+  const reCaptchaRef = useRef<any>()
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setSingleError('');
-    setRecaptchaValue('');
-    dispatch(clearAuthState());
-    const { isAuthenticated } = auth;
+    setSingleError('')
+    dispatch(clearAuthState())
+    const { isAuthenticated } = auth
     if (isAuthenticated) {
-      history.push(path.home);
+      history.push(path.home)
     }
-    dispatch(resetErrorState());
+    dispatch(resetErrorState())
+    setTimeout(() => {
+      setLoad(true)
+    }, DELAY)
+    return () => {
+      setIsMounted(!isMounted)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const onChange = (e: React.FormEvent<EventTarget>): void => {
-    const { name, value } = e.target as HTMLTextAreaElement;
-    setValues({ ...values, [name]: value });
-  };
+    const { name, value } = e.target as HTMLTextAreaElement
+    setValues({ ...values, [name]: value })
+  }
 
   const onSubmit = (e: React.FormEvent<EventTarget>) => {
-    e.preventDefault();
-    setSingleError('');
+    e.preventDefault()
+    setSingleError('')
 
     if (values.Password !== values.Confirm) {
-      setSingleError('Passwords not match!');
+      setSingleError('Passwords not match!')
     } else {
-      if (isEmpty(recaptchaValue)) {
-        setSingleError('Please verify that you are not a robot!');
-      } else {
-        const payload: Register = {
-          Name: values.Name,
-          EmailAddress: values.EmailAddress,
-          PhoneNumber: phone,
-          Password: values.Password,
-          IsBusiness: isBusiness,
-        };
-        dispatch(registerRequest(payload));
-      }
+      reCaptchaRef.current
+        .executeAsync()
+        .then((value: string) => {
+          if (value && !expired) {
+            const payload: Register = {
+              Name: values.Name,
+              EmailAddress: values.EmailAddress,
+              PhoneNumber: phone,
+              Password: values.Password,
+              IsBusiness: isBusiness
+            }
+            dispatch(registerRequest(payload))
+          }
+        })
+        .catch((err: any) => {})
     }
-  };
-
-  const onHandleRecaptcha = (value: any) => {
-    setRecaptchaValue(value);
-  };
+  }
 
   useEffect(() => {
-    const { isSubmitting, error, singleError, success } = auth;
-    setIsSubmitting(isSubmitting);
-    setError(error);
-    setSingleError(singleError);
+    const { isSubmitting, error, singleError, success } = auth
+    setIsSubmitting(isSubmitting)
+    setError(error)
+    setSingleError(singleError)
     if (success) {
       setValues({
         Name: '',
         EmailAddress: '',
         PhoneNumber: '',
         Password: '',
-        IsBusiness: false,
-      });
-      setPhone('');
-      history.push(path.registerSuccess);
+        IsBusiness: false
+      })
+      setPhone('')
+      history.push(path.registerSuccess)
     }
-  }, [auth, history]);
+  }, [auth, history])
 
   const setBusinessFlag = (): void => {
-    setIsBusiness(!isBusiness);
-  };
+    setIsBusiness(!isBusiness)
+  }
 
   const setPhoneNumber = (e: string) => {
-    setPhone(e);
-  };
+    setPhone(e)
+  }
+
+  const handleRecaptcha = useCallback((value) => {
+    if (value === null) setExpired(true)
+  }, [])
 
   return (
     <React.Fragment>
@@ -139,7 +150,12 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
             <FormBox className="col-sm-7 text-center">
               <LogoContainer className="mt-0">
                 <Link className="navbar-brand" to={path.home}>
-                  <img src={logo} height="60" alt="Araka by ProxyPay" title="Araka by ProxyPay" />
+                  <img
+                    src={logo}
+                    height="60"
+                    alt="Araka by ProxyPay"
+                    title="Araka by ProxyPay"
+                  />
                 </Link>
               </LogoContainer>
               <FormBoxSubHeader>
@@ -185,18 +201,18 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                     width: '100%',
                     fontWeight: 400,
                     lineHeight: '1.5',
-                    color: '#495057',
+                    color: '#495057'
                   }}
                   buttonStyle={{
                     border: 'none',
                     background: 'transparent',
                     padding: '0.2rem 1rem',
-                    borderRadius: '0',
+                    borderRadius: '0'
                   }}
                   dropdownStyle={{
                     textAlign: 'left',
                     fontSize: '0.8rem',
-                    fontWeight: 'normal',
+                    fontWeight: 'normal'
                   }}
                 />
                 <PasswordInput
@@ -214,14 +230,6 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   placeholder="Retype password ..."
                   onChange={onChange}
                 />
-                <FormBoxInput>
-                  <ReCAPTCHA
-                    sitekey={SITE_KEY}
-                    onChange={onHandleRecaptcha}
-                    ref={ref}
-                    theme="light"
-                  />
-                </FormBoxInput>
                 <div className="text-left mt-2 mb-5">
                   <FormBoxCustomControl className="custom-control custom-checkbox">
                     <input
@@ -253,13 +261,22 @@ const RegisterForm: React.FC<Props> = ({ history }) => {
                   </h4>
                 </TermsContainer>
               </form>
+              {load && (
+                <ReCAPTCHA
+                  theme="light"
+                  size="invisible"
+                  ref={reCaptchaRef}
+                  sitekey={`${SITE_KEY}`}
+                  onChange={handleRecaptcha}
+                />
+              )}
             </FormBox>
             <ChangeLanguage />
           </FormContainer>
         </div>
       </ContainerFluid>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export { RegisterForm };
+export { RegisterForm }
