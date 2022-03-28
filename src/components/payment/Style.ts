@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const MPESAPaymentContainer = styled.div`
   border: 0.0625rem solid #e0e0e0;
@@ -59,7 +59,7 @@ export const MPESAPaymentContainer = styled.div`
       background: #e3653b;
     }
   }
-`;
+`
 
 export const FormBoxInput = styled.div`
   position: relative;
@@ -68,7 +68,7 @@ export const FormBoxInput = styled.div`
   .form-control-mpesa {
     padding: 0.8rem !important;
   }
-`;
+`
 
 export const ImageBox = styled.div`
   margin-top: 3rem;
@@ -78,4 +78,4 @@ export const ImageBox = styled.div`
     cursor: pointer;
     transition: all 0.5s ease-in-out;
   }
-`;
+`

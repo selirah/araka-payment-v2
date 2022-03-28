@@ -1,5 +1,5 @@
-import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
-import { AuthActionTypes } from './types';
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
+import { AuthActionTypes } from './types'
 import {
   loginError,
   loginSuccess,
@@ -14,89 +14,89 @@ import {
   resetPasswordSuccess,
   resetPasswordFailure,
   resendVerificationFailure,
-  resendVerificationSuccess,
-} from './actions';
-import { callApiPost } from '../../utils/api';
+  resendVerificationSuccess
+} from './actions'
+import { callApiPost } from '../../utils/api'
 import {
   Login,
   Register,
   Verification,
   ForgottenPassword,
-  ResetPassword,
-} from '../../interfaces';
-import { authorization } from '../../utils/authorization';
-import { secure } from '../../utils/secure';
+  ResetPassword
+} from '../../interfaces'
+import { authorization } from '../../utils/authorization'
+import { secure } from '../../utils/secure'
 
 function* login({ payload }: { type: string; payload: Login }): any {
   try {
-    const res = yield call(callApiPost, 'login', payload);
-    secure.set('user', res.data);
-    yield authorization(res.data.token);
-    yield put(loginSuccess(res.data));
-  } catch (err) {
+    const res = yield call(callApiPost, 'login', payload)
+    secure.set('user', res.data)
+    yield authorization(res.data.token)
+    yield put(loginSuccess(res.data))
+  } catch (err: any) {
     if (err && err.response) {
       if (err.response.data.status) {
-        yield put(loginError(err.response.data));
+        yield put(loginError(err.response.data))
       } else {
-        yield put(logError(err.response.data));
+        yield put(logError(err.response.data))
       }
     } else {
-      throw err;
+      throw err
     }
   }
 }
 
 function* register({ payload }: { type: string; payload: Register }): any {
   try {
-    const res = yield call(callApiPost, 'login/register', payload);
-    yield put(registerSuccess(res.data));
-  } catch (err) {
+    const res = yield call(callApiPost, 'login/register', payload)
+    yield put(registerSuccess(res.data))
+  } catch (err: any) {
     if (err && err.response) {
       if (err.response.data.status) {
-        yield put(registerError(err.response.data));
+        yield put(registerError(err.response.data))
       } else {
-        yield put(logError(err.response.data));
+        yield put(logError(err.response.data))
       }
     } else {
-      throw err;
+      throw err
     }
   }
 }
 
 function* verify({ payload }: { type: string; payload: Verification }): any {
   try {
-    const res = yield call(callApiPost, 'login/verifyaccount', payload);
-    yield put(verificationSuccess(res.data));
-  } catch (err) {
+    const res = yield call(callApiPost, 'login/verifyaccount', payload)
+    yield put(verificationSuccess(res.data))
+  } catch (err: any) {
     if (err && err.response) {
       if (err.response.data.status) {
-        yield put(verificationError(err.response.data));
+        yield put(verificationError(err.response.data))
       } else {
-        yield put(logVerifyError(err.response.data));
+        yield put(logVerifyError(err.response.data))
       }
     }
   }
 }
 
 function* forgotten({
-  payload,
+  payload
 }: {
-  type: string;
-  payload: ForgottenPassword;
+  type: string
+  payload: ForgottenPassword
 }): any {
   try {
-    const res = yield call(callApiPost, 'login/requestpasswordreset', payload);
+    const res = yield call(callApiPost, 'login/requestpasswordreset', payload)
     if (res.status === 200) {
-      yield put(forgottenPasswordSuccess(res.data));
+      yield put(forgottenPasswordSuccess(res.data))
     } else {
-      yield put(forgottenPasswordFailure(res.data));
+      yield put(forgottenPasswordFailure(res.data))
     }
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
       if (err.response.data.status) {
-        yield put(forgottenPasswordFailure(err.response.data));
+        yield put(forgottenPasswordFailure(err.response.data))
       } else {
-        yield put(forgottenPasswordFailure(err.response.data));
+        yield put(forgottenPasswordFailure(err.response.data))
       }
     }
   }
@@ -104,69 +104,69 @@ function* forgotten({
 
 function* reset({ payload }: { type: string; payload: ResetPassword }): any {
   try {
-    const res = yield call(callApiPost, 'login/resetpassword', payload);
+    const res = yield call(callApiPost, 'login/resetpassword', payload)
     if (res.status === 200) {
-      yield put(resetPasswordSuccess(res.data));
+      yield put(resetPasswordSuccess(res.data))
     } else {
-      yield put(resetPasswordFailure(res.data));
+      yield put(resetPasswordFailure(res.data))
     }
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
       if (err.response.data.status) {
-        yield put(resetPasswordFailure(err.response.data));
+        yield put(resetPasswordFailure(err.response.data))
       } else {
-        yield put(resetPasswordFailure(err.response.data));
+        yield put(resetPasswordFailure(err.response.data))
       }
     }
   }
 }
 
 function* resend({
-  payload,
+  payload
 }: {
-  type: string;
-  payload: ForgottenPassword;
+  type: string
+  payload: ForgottenPassword
 }): any {
   try {
-    const res = yield call(callApiPost, 'login/resendverification', payload);
+    const res = yield call(callApiPost, 'login/resendverification', payload)
     if (res.status === 200) {
-      yield put(resendVerificationSuccess(res.data));
+      yield put(resendVerificationSuccess(res.data))
     } else {
-      yield put(resendVerificationFailure(res.data));
+      yield put(resendVerificationFailure(res.data))
     }
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
       if (err.response.data.status) {
-        yield put(resendVerificationFailure(err.response.data));
+        yield put(resendVerificationFailure(err.response.data))
       } else {
-        yield put(resendVerificationFailure(err.response.data));
+        yield put(resendVerificationFailure(err.response.data))
       }
     }
   }
 }
 
 function* watchLogin() {
-  yield takeEvery(AuthActionTypes.REQUEST_LOGIN_SUBMIT, login);
+  yield takeEvery(AuthActionTypes.REQUEST_LOGIN_SUBMIT, login)
 }
 
 function* watchRegister() {
-  yield takeEvery(AuthActionTypes.REQUEST_REGISTER_SUBMIT, register);
+  yield takeEvery(AuthActionTypes.REQUEST_REGISTER_SUBMIT, register)
 }
 
 function* watchVerification() {
-  yield takeEvery(AuthActionTypes.VERIFY_EMAIL_REQUEST, verify);
+  yield takeEvery(AuthActionTypes.VERIFY_EMAIL_REQUEST, verify)
 }
 
 function* watchForgottenPassword() {
-  yield takeEvery(AuthActionTypes.FORGOTTEN_PASSWORD_REQUEST, forgotten);
+  yield takeEvery(AuthActionTypes.FORGOTTEN_PASSWORD_REQUEST, forgotten)
 }
 
 function* watchResetPassword() {
-  yield takeEvery(AuthActionTypes.RESET_PASSWORD_REQUEST, reset);
+  yield takeEvery(AuthActionTypes.RESET_PASSWORD_REQUEST, reset)
 }
 
 function* watchResendVerification() {
-  yield takeEvery(AuthActionTypes.RESEND_VERIFICATION_REQUEST, resend);
+  yield takeEvery(AuthActionTypes.RESEND_VERIFICATION_REQUEST, resend)
 }
 
 function* authSaga() {
@@ -176,8 +176,8 @@ function* authSaga() {
     fork(watchVerification),
     fork(watchForgottenPassword),
     fork(watchResetPassword),
-    fork(watchResendVerification),
-  ]);
+    fork(watchResendVerification)
+  ])
 }
 
-export { authSaga };
+export { authSaga }

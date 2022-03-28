@@ -1,51 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { appSelector } from '../../helpers/appSelector';
-import { AppDispatch } from '../../helpers/appDispatch';
-import { Link, useLocation } from 'react-router-dom';
-import { logo } from '../../images/Images';
-import { path } from '../../helpers/path';
-import { logout } from '../../store/auth/actions';
-import { secure } from '../../utils/secure';
-import { user as avatar } from '../../images/Images';
-import { User } from 'src/interfaces';
+import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { appSelector } from '../../helpers/appSelector'
+import { AppDispatch } from '../../helpers/appDispatch'
+import { Link, useLocation } from 'react-router-dom'
+import { logo } from '../../images/Images'
+import { path } from '../../helpers/path'
+import { logout } from '../../store/auth/actions'
+import { secure } from '../../utils/secure'
+import { user as avatar } from '../../images/Images'
+import { User } from 'src/interfaces'
 
 const Nav: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
-  const { isAuthenticated, user } = appSelector((state) => state.auth);
+  const dispatch: AppDispatch = useDispatch()
+  const { isAuthenticated, user } = appSelector((state) => state.auth)
   const [lang, setLang] = useState<string | null>(
     localStorage.getItem('i18nextLng')
-  );
-  const [userDetails] = useState<User | undefined>(user);
-  const [fname, setFname] = useState('');
-  const { t, i18n } = useTranslation();
-  const location = useLocation().pathname;
-  const MERCHANT_URL = process.env.REACT_APP_MERCHANT_URL;
+  )
+  const [userDetails] = useState<User | undefined>(user)
+  const [fname, setFname] = useState('')
+  const { t, i18n } = useTranslation()
+  const location = useLocation().pathname
+  const MERCHANT_URL = process.env.REACT_APP_MERCHANT_URL
 
   const changeLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
-    setLang(lang);
-  };
-  const href = '#';
+    i18n.changeLanguage(lang)
+    setLang(lang)
+  }
+  const href = '#'
 
   useEffect(() => {
     if (userDetails !== undefined) {
-      let name: string[] | undefined;
+      let name: string[] | undefined
       if (userDetails.name !== null) {
-        name = userDetails.name?.split(' ');
-        setFname(name[0]);
+        name = userDetails.name?.split(' ')
+        setFname(name[0])
       } else {
-        setFname('Test Account');
+        setFname('Test Account')
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const logoutUser = (): void => {
-    secure.removeAll();
-    dispatch(logout());
-  };
+    secure.removeAll()
+    dispatch(logout())
+  }
 
   return (
     <header>
@@ -53,7 +53,12 @@ const Nav: React.FC = () => {
         <nav className="navbar navbar-alt navbar-expand-md navbar-custom shadow">
           <div className="container">
             <Link className="navbar-brand" to={path.home}>
-              <img src={logo} height="60" alt="Araka by ProxyPay" title="Araka by ProxyPay" />
+              <img
+                src={logo}
+                height="60"
+                alt="Araka by ProxyPay"
+                title="Araka by ProxyPay"
+              />
             </Link>
             <button
               className="navbar-toggler custom-toggler"
@@ -97,7 +102,7 @@ const Nav: React.FC = () => {
                   >
                     {t('nav-links.about')}
                   </Link>
-                </li>  
+                </li>
                 <li className="nav-item">
                   <Link to={path.payment} className="btn btn-pay">
                     {t('home.btn-nav-pay')}
@@ -191,7 +196,7 @@ const Nav: React.FC = () => {
         </nav>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export { Nav };
+export { Nav }
