@@ -69,7 +69,7 @@ const Summary: React.FC = () => {
   let summary: React.ReactNode
   if (data !== null || data !== undefined) {
     summary = Object.keys(data.data).map(function (key, index) {
-      // console.log(key, data.data[key]);
+      // console.log(key, data.data[key])
       if (
         key !== 'PricingInfo' &&
         key !== 'SubscriberAccountInfo' &&
@@ -77,7 +77,9 @@ const Summary: React.FC = () => {
         key !== 'Authorization' &&
         key !== 'package' &&
         key !== 'customerNumberInfo' &&
-        key !== 'CustomerNumber'
+        key !== 'CustomerNumber' &&
+        key !== 'quoteCode' &&
+        key !== 'product'
       ) {
         const { value, selectLabel, isDate } = filter(
           product!,
