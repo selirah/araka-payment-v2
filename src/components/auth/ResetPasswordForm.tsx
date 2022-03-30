@@ -38,7 +38,7 @@ const ResetPasswordForm: React.FC<Props> = ({ processId }) => {
   const { t } = useTranslation()
   const [values, setValues] = useState<ResetPassword>({
     Password: '',
-    ProcessId: processId === null ? '' : processId,
+    ProcessId: processId ?? '',
     Confirm: ''
   })
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)

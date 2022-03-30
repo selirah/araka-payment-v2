@@ -1,3 +1,4 @@
 export type ForgottenPassword = {
-  EmailAddress: string;
-};
+  EmailAddress: string
+  CallbackURL?: string
+}

@@ -1,5 +1,5 @@
-import { Reducer } from 'redux';
-import { AuthState, AuthActionTypes } from './types';
+import { Reducer } from 'redux'
+import { AuthState, AuthActionTypes } from './types'
 
 export const initialState: AuthState = {
   isAuthenticated: false,
@@ -23,8 +23,8 @@ export const initialState: AuthState = {
   isResendVerification: false,
   resendError: undefined,
   resendVericationFailure: false,
-  resendVericationSuccess: false,
-};
+  resendVericationSuccess: false
+}
 
 const reducer: Reducer<AuthState> = (state = initialState, action) => {
   switch (action.type) {
@@ -33,51 +33,51 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         ...state,
         isSubmitting: true,
         error: {},
-        singleError: '',
-      };
+        singleError: ''
+      }
     case AuthActionTypes.REQUEST_REGISTER_SUBMIT:
       return {
         ...state,
         isSubmitting: true,
         error: {},
-        singleError: '',
-      };
+        singleError: ''
+      }
     case AuthActionTypes.LOGIN_SUCCESS:
       return {
         ...state,
         isSubmitting: false,
         user: action.payload,
         isAuthenticated: true,
-        success: true,
-      };
+        success: true
+      }
     case AuthActionTypes.LOGIN_ERROR:
       return {
         ...state,
         isSubmitting: false,
         error: action.payload,
-        success: false,
-      };
+        success: false
+      }
     case AuthActionTypes.REGISTER_SUCCESS:
       return {
         ...state,
         isSubmitting: false,
         user: action.payload,
-        success: true,
-      };
+        success: true
+      }
     case AuthActionTypes.LOG_SINGLE_ERROR: {
       return {
         ...state,
         isSubmitting: false,
         singleError: action.payload,
-        success: false,
-      };
+        success: false
+      }
     }
     case AuthActionTypes.REGISTER_ERROR:
       return {
         ...state,
         isSubmitting: false,
-        error: action.payload,
-      };
+        error: action.payload
+      }
     case AuthActionTypes.RESET_ERROR_STATE:
       return {
         ...state,
@@ -92,51 +92,51 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         singleError: '',
         resendVericationFailure: false,
         resendVericationSuccess: false,
-        resendError: undefined,
-      };
+        resendError: undefined
+      }
     case AuthActionTypes.SET_USER:
       return {
         ...state,
         user: action.payload,
-        isAuthenticated: true,
-      };
+        isAuthenticated: true
+      }
     case AuthActionTypes.VERIFY_EMAIL_REQUEST:
       return {
         ...state,
         isVerifying: true,
         verifyError: '',
         isVerified: false,
-        verificationResponse: undefined,
-      };
+        verificationResponse: undefined
+      }
     case AuthActionTypes.VERIFY_EMAIL_SUCCESS:
       return {
         ...state,
         isVerified: true,
         verificationResponse: action.payload,
-        isVerifying: false,
-      };
+        isVerifying: false
+      }
     case AuthActionTypes.VERIFY_EMAIL_FAILURE:
       return {
         ...state,
         isVerified: initialState.isVerified,
         verifyError: action.payload,
         verificationResponse: initialState.verificationResponse,
-        isVerifying: false,
-      };
+        isVerifying: false
+      }
     case AuthActionTypes.CLEAR_VERIFICATION_RESPONSE:
       return {
         ...state,
         verificationResponse: initialState.verificationResponse,
         isVerified: initialState.isVerified,
-        verifyError: initialState.verifyError,
-      };
+        verifyError: initialState.verifyError
+      }
     case AuthActionTypes.VERIFY_ERROR: {
       return {
         ...state,
         isVerifying: false,
         verifyError: action.payload,
-        isVerified: false,
-      };
+        isVerified: false
+      }
     }
     case AuthActionTypes.CLEAR_AUTH_STATES:
       return {
@@ -147,32 +147,32 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         error: initialState.error,
         isSubmitting: initialState.isSubmitting,
         forgottenPasswordError: initialState.forgottenPasswordError,
-        forgottenPasswordSuccess: initialState.forgottenPasswordSuccess,
-      };
+        forgottenPasswordSuccess: initialState.forgottenPasswordSuccess
+      }
     case AuthActionTypes.FORGOTTEN_PASSWORD_REQUEST:
       return {
         ...state,
         isForgottenPassword: true,
         forgottenPasswordSuccess: initialState.forgottenPasswordSuccess,
         forgottenPasswordError: initialState.forgottenPasswordError,
-        forgottenError: initialState.forgottenError,
-      };
+        forgottenError: initialState.forgottenError
+      }
     case AuthActionTypes.FORGOTTEN_PASSWORD_SUCCESS:
       return {
         ...state,
         isForgottenPassword: initialState.isForgottenPassword,
         forgottenPasswordSuccess: true,
         forgottenPasswordError: initialState.forgottenPasswordError,
-        forgottenError: initialState.forgottenError,
-      };
+        forgottenError: initialState.forgottenError
+      }
     case AuthActionTypes.FORGOTTEN_PASSWORD_FAILURE:
       return {
         ...state,
         isForgottenPassword: initialState.isForgottenPassword,
         forgottenPasswordSuccess: initialState.forgottenPasswordSuccess,
         forgottenPasswordError: true,
-        forgottenError: action.payload,
-      };
+        forgottenError: action.payload
+      }
 
     case AuthActionTypes.RESET_PASSWORD_REQUEST:
       return {
@@ -180,24 +180,24 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         isResettingPassword: true,
         resetPasswordSuccess: initialState.resetPasswordSuccess,
         resetPasswordError: initialState.resetPasswordError,
-        resetError: initialState.resetError,
-      };
+        resetError: initialState.resetError
+      }
     case AuthActionTypes.RESET_PASSWORD_SUCCESS:
       return {
         ...state,
         isResettingPassword: initialState.isResettingPassword,
         resetPasswordSuccess: true,
         resetPasswordError: initialState.resetPasswordError,
-        resetError: initialState.resetError,
-      };
+        resetError: initialState.resetError
+      }
     case AuthActionTypes.RESET_PASSWORD_FAILURE:
       return {
         ...state,
         isResettingPassword: initialState.isResettingPassword,
         resetPasswordSuccess: initialState.resetPasswordSuccess,
         resetPasswordError: true,
-        resetError: action.payload,
-      };
+        resetError: action.payload
+      }
 
     case AuthActionTypes.RESEND_VERIFICATION_REQUEST:
       return {
@@ -205,30 +205,30 @@ const reducer: Reducer<AuthState> = (state = initialState, action) => {
         isResendVerification: true,
         resendVericationSuccess: initialState.resendVericationSuccess,
         resendVericationFailure: initialState.resendVericationFailure,
-        resendError: initialState.resendError,
-      };
+        resendError: initialState.resendError
+      }
     case AuthActionTypes.RESEND_VERIFICATION_SUCCESS:
       return {
         ...state,
         isResendVerification: initialState.isResendVerification,
         resendVericationSuccess: true,
         resendVericationFailure: initialState.resendVericationFailure,
-        resendError: initialState.resendError,
-      };
+        resendError: initialState.resendError
+      }
     case AuthActionTypes.RESEND_VERIFICATION_FAILURE:
       return {
         ...state,
         isResendVerification: initialState.isResendVerification,
         resendVericationSuccess: initialState.resendVericationSuccess,
         resendVericationFailure: true,
-        resendError: action.payload,
-      };
+        resendError: action.payload
+      }
 
     case AuthActionTypes.DESTROY_STATES:
-      return initialState;
+      return initialState
     default:
-      return state;
+      return state
   }
-};
+}
 
-export { reducer as authReducer };
+export { reducer as authReducer }

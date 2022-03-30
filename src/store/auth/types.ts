@@ -1,4 +1,4 @@
-import { User, Error, VerificationResponse } from '../../interfaces';
+import { User, Error, VerificationResponse } from '../../interfaces'
 
 export enum AuthActionTypes {
   IS_SUBMITTING = '@@auth/IS_SUBMITTING',
@@ -26,33 +26,33 @@ export enum AuthActionTypes {
   RESET_PASSWORD_FAILURE = '@@auth/RESET_PASSWORD_FAILURE',
   RESEND_VERIFICATION_REQUEST = '@@auth/RESEND_VERIFICATION_REQUEST',
   RESEND_VERIFICATION_SUCCESS = '@@auth/RESEND_VERIFICATION_SUCCESS',
-  RESEND_VERIFICATION_FAILURE = '@@auth/RESEND_VERIFICATION_FAILURE',
+  RESEND_VERIFICATION_FAILURE = '@@auth/RESEND_VERIFICATION_FAILURE'
 }
 
 export type AuthState = {
-  readonly isAuthenticated: boolean;
-  readonly isSubmitting: boolean;
-  readonly error: Error | {};
-  readonly success: boolean;
-  readonly user: User | undefined;
-  readonly singleError: string;
-  readonly verificationResponse: VerificationResponse | undefined;
-  readonly verifyError: string;
-  readonly isVerifying: boolean;
-  readonly isVerified: boolean;
+  readonly isAuthenticated: boolean
+  readonly isSubmitting: boolean
+  readonly error: Error | {}
+  readonly success: boolean
+  readonly user: User | undefined
+  readonly singleError: string
+  readonly verificationResponse: VerificationResponse | undefined
+  readonly verifyError: string
+  readonly isVerifying: boolean
+  readonly isVerified: boolean
 
-  readonly isForgottenPassword: boolean;
-  readonly forgottenPasswordSuccess: boolean;
-  readonly forgottenPasswordError: boolean;
-  readonly forgottenError: any;
+  readonly isForgottenPassword: boolean
+  readonly forgottenPasswordSuccess: boolean
+  readonly forgottenPasswordError: boolean
+  readonly forgottenError: any
 
-  readonly isResettingPassword: boolean;
-  readonly resetPasswordSuccess: boolean;
-  readonly resetPasswordError: boolean;
-  readonly resetError: any;
+  readonly isResettingPassword: boolean
+  readonly resetPasswordSuccess: boolean
+  readonly resetPasswordError: boolean
+  readonly resetError: any
 
-  readonly isResendVerification: boolean;
-  readonly resendVericationSuccess: boolean;
-  readonly resendVericationFailure: boolean;
-  readonly resendError: any;
-};
+  readonly isResendVerification: boolean
+  readonly resendVericationSuccess: boolean
+  readonly resendVericationFailure: boolean
+  readonly resendError: any
+}
