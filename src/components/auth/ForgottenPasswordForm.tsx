@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
@@ -21,15 +21,15 @@ import {
   FormBoxHeader,
   LogoContainer,
   FormBoxSubHeader,
-  TermsContainer,
-  FormBoxInput
+  TermsContainer
 } from './Styles'
 import { path } from '../../helpers/path'
 import { Success } from '../common/Success'
 import { SingleError } from './SingleError'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { SITE_KEY } from '../../helpers/constants'
-import { isEmpty } from '../../helpers/isEmpty'
+
+const DELAY = 1500
 
 const ForgottenPasswordForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
@@ -44,18 +44,25 @@ const ForgottenPasswordForm: React.FC = () => {
   const [isError, setIsError] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [email, setEmail] = useState<string>('')
-  const ref = React.createRef<ReCAPTCHA>()
-  const [recaptchaValue, setRecaptchaValue] = useState('')
+  const [load, setLoad] = useState(false)
+  const [expired, setExpired] = useState(false)
+  const reCaptchaRef = useRef<any>()
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
     setErrorMessage('')
-    setRecaptchaValue('')
     setIsError(false)
     const { isAuthenticated } = auth
     if (isAuthenticated) {
       history.push(path.home)
     }
     dispatch(resetErrorState())
+    setTimeout(() => {
+      setLoad(true)
+    }, DELAY)
+    return () => {
+      setIsMounted(!isMounted)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -68,30 +75,32 @@ const ForgottenPasswordForm: React.FC = () => {
     e.preventDefault()
     setIsError(false)
     setErrorMessage('')
-    if (isEmpty(recaptchaValue)) {
-      setIsError(true)
-      setErrorMessage('Please verify that you are not a robot!')
-    } else {
-      const getUrl = window.location
-      const baseUrl =
-        getUrl.protocol +
-        '//' +
-        getUrl.host +
-        '/' +
-        getUrl.pathname.split('/')[1] +
-        '/reset-password'
-      const payload: ForgottenPassword = {
-        EmailAddress: values.EmailAddress,
-        CallbackURL: baseUrl
-      }
-      setEmail(values.EmailAddress)
-      dispatch(forgottenPasswordRequest(payload))
-    }
+    reCaptchaRef.current
+      .executeAsync()
+      .then((value: string) => {
+        if (value && !expired) {
+          const getUrl = window.location
+          const baseUrl =
+            getUrl.protocol +
+            '//' +
+            getUrl.host +
+            '/' +
+            getUrl.pathname.split('/')[1] +
+            '/reset-password'
+          const payload: ForgottenPassword = {
+            EmailAddress: values.EmailAddress,
+            CallbackURL: baseUrl
+          }
+          setEmail(values.EmailAddress)
+          dispatch(forgottenPasswordRequest(payload))
+        }
+      })
+      .catch((err: any) => {})
   }
 
-  const onHandleRecaptcha = (value: any) => {
-    setRecaptchaValue(value)
-  }
+  const handleRecaptcha = useCallback((value) => {
+    if (value === null) setExpired(true)
+  }, [])
 
   useEffect(() => {
     const {
@@ -149,14 +158,6 @@ const ForgottenPasswordForm: React.FC = () => {
                   onChange={onChange}
                   required={true}
                 />
-                <FormBoxInput>
-                  <ReCAPTCHA
-                    sitekey={SITE_KEY}
-                    onChange={onHandleRecaptcha}
-                    ref={ref}
-                    theme="light"
-                  />
-                </FormBoxInput>
                 <Button
                   type="submit"
                   title={t('forgotten.btn_title')}
@@ -173,6 +174,15 @@ const ForgottenPasswordForm: React.FC = () => {
                   </div>
                 </TermsContainer>
               </form>
+              {load && (
+                <ReCAPTCHA
+                  theme="light"
+                  size="invisible"
+                  ref={reCaptchaRef}
+                  sitekey={`${SITE_KEY}`}
+                  onChange={handleRecaptcha}
+                />
+              )}
             </FormBox>
             <ChangeLanguage />
           </FormContainer>
