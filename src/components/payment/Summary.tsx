@@ -79,7 +79,8 @@ const Summary: React.FC = () => {
         key !== 'customerNumberInfo' &&
         key !== 'CustomerNumber' &&
         key !== 'quoteCode' &&
-        key !== 'product'
+        key !== 'product' &&
+        key !== 'customerName'
       ) {
         const { value, selectLabel, isDate } = filter(
           product!,
